@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react-homework-template/static/css/main.b87514ff.css",
-    "main.js": "/react-homework-template/static/js/main.5a9bc161.js",
-    "index.html": "/react-homework-template/index.html",
-    "main.b87514ff.css.map": "/react-homework-template/static/css/main.b87514ff.css.map",
-    "main.5a9bc161.js.map": "/react-homework-template/static/js/main.5a9bc161.js.map"
+    "main.css": "/TaskPro-FrontEnd-Team12/static/css/main.b87514ff.css",
+    "main.js": "/TaskPro-FrontEnd-Team12/static/js/main.5a9bc161.js",
+    "index.html": "/TaskPro-FrontEnd-Team12/index.html",
+    "main.b87514ff.css.map": "/TaskPro-FrontEnd-Team12/static/css/main.b87514ff.css.map",
+    "main.5a9bc161.js.map": "/TaskPro-FrontEnd-Team12/static/js/main.5a9bc161.js.map"
   },
   "entrypoints": [
     "static/css/main.b87514ff.css",
