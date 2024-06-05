@@ -1,15 +1,17 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const WelcomePage = () => (
-  <div>
-    <h1>Welcome</h1>
-    <Link to="/auth/login">
-      <button>Log In</button>
-    </Link>
-    <Link to="/auth/register">
-      <button>Register</button>
-    </Link>
-  </div>
+  <section>
+    <div>
+      <h1>Task Pro</h1>
+      <NavLink to="/auth/login">
+        <button>Log In</button>
+      </NavLink>
+      <NavLink to="/auth/register">
+        <button>Register</button>
+      </NavLink>
+    </div>
+  </section>
 );
 
 export default WelcomePage;
