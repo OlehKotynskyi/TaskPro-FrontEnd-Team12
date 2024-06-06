@@ -1,0 +1,106 @@
+.form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.formWrap {
+	position: relative;
+	width: 100%;
+	margin-bottom: 14px;
+}
+
+.formImput {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	height: 49px;
+	width: 100%;
+	font-size: 14px;
+	background-color: inherit;
+	letter-spacing: -0.02em;
+	border: none;
+	line-height: 21px;
+	color: #ffff;
+	border: 1px solid rgba(190, 219, 176, 0.4);
+	box-shadow: 0 4px 16px rgba(22, 22, 22, 0.08);
+	border-radius: 8px;
+	padding: 14px 30px 14px 18px;
+	outline: none;
+}
+
+.formImput:focus {
+	opacity: 1;
+}
+
+.formImput:focus::placeholder {
+	transition: opacity 0.3s ease-in-out;
+	border: none;
+}
+
+.formImput:-webkit-autofill,
+.formImput:-webkit-autofill:hover,
+.formImput:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0 1000px rgba(31, 31, 31, 1) inset;
+	-webkit-text-fill-color: #bedbb0
+}
+
+.formImput:focus-within {
+	border: 1px solid rgba(190, 219, 176, 1);
+}
+
+.formBtn {
+	color: rgba(22, 22, 22, 1);
+	background-color: rgba(190, 219, 176, 1);
+	width: 100%;
+	height: 49px;
+	margin-top: 10px;
+	font-style: normal;
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 8px;
+	line-height: 21px;
+	letter-spacing: -0.02em;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	transition: all 0.3s ease-in-out;
+
+}
+
+.formBtn:hover,
+.formBtn:focus,
+.formBtn:active {
+	background: #a1cf89;
+}
+
+.formBtn:active {
+	transform: scale(0.95);
+}
+
+@media screen and (min-width: 767px) {
+	.formBtn {
+		width: 344px;
+	}
+
+}
+
+.errors {
+	position: absolute;
+	bottom: -12px;
+	font-size: 10px;
+	color: rgba(255, 0, 0, 0.788);
+}
+
+.icon {
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	stroke: rgba(255, 255, 255, 0.3);
+	fill: rgba(22, 22, 22, 1);
+	transform: translateY(-50%);
+	transition: all 0.3s ease-in-out;
+}
