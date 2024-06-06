@@ -1,18 +1,19 @@
 .headerBox {
-    width: 1180px;
-    height: 68px;
+    margin: 0 auto;
+    width: 375px;
+    height: 60px;
     border: 1px solid black;
     margin-left: auto;
     display: flex;
     align-items: center;
-    flex-direction: row-reverse;
+    justify-content: space-between
 }
 
 .imgBtn {
     display: flex;
     align-items: center;
     height: 32px;
-    margin-right: 24px;
+    margin-right: 20px;
     gap: 8px;
 
 }
@@ -30,4 +31,61 @@
     font-size: 14px;
 
     color: #161616;
+}
+
+.dropdown {
+
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    font-size: 14px;
+    border: none;
+}
+
+.dropdownContent {
+
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdownContent button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownContent button:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdownContent {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.rightBlock {
+    display: flex;
+    align-items: center;
+    gap: 14px
+}
+
+.themeBtn {
+    border: none;
+    font-weight: 400;
+    font-size: 14px;
+    color: #161616;
+}
+
+.burgerMenu {
+    margin-left: 20px;
 }

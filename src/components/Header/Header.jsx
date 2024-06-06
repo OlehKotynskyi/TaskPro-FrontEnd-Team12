@@ -19,13 +19,21 @@ export const Header = () => {
 
   return (
     <div className={styles.headerBox}>
-      {/* <button  onClick={handleModalOpen}> */}
-      <div className={styles.imgBtn}>
-        <p className={styles.text}>name</p>
-
-        <svg onClick={handleModalOpen} className={styles.svg}></svg>
+      <button className={styles.burgerMenu}>sd</button>
+      <div className={styles.rightBlock}>
+        <div className={styles.dropdown}>
+          <button className={styles.dropbtn}>Dropdown</button>
+          <div className={styles.dropdownContent}>
+            <button className={styles.themeBtn}>light</button>
+            <button className={styles.themeBtn}>dark</button>
+            <button className={styles.themeBtn}>violet</button>
+          </div>
+        </div>
+        <div className={styles.imgBtn}>
+          <p className={styles.text}>name</p>
+          <svg onClick={handleModalOpen} className={styles.svg}></svg>
+        </div>
       </div>
-      {/* </button> */}
       {isModalOpen && (
         <div className="modal">
           <form onSubmit={handleEditProfile}>
