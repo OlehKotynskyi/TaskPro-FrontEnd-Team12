@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import styles from './Header.module.css';
 export const Header = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -18,9 +18,14 @@ export const Header = () => {
   };
 
   return (
-    <div className="header">
-      <h1>Header</h1>
-      <button onClick={handleModalOpen}>Edit Profile</button>
+    <div className={styles.headerBox}>
+      {/* <button  onClick={handleModalOpen}> */}
+      <div className={styles.imgBtn}>
+        <p className={styles.text}>name</p>
+
+        <svg onClick={handleModalOpen} className={styles.svg}></svg>
+      </div>
+      {/* </button> */}
       {isModalOpen && (
         <div className="modal">
           <form onSubmit={handleEditProfile}>

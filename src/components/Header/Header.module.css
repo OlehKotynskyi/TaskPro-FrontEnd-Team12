@@ -1,0 +1,33 @@
+.headerBox {
+    width: 1180px;
+    height: 68px;
+    border: 1px solid black;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.imgBtn {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    margin-right: 24px;
+    gap: 8px;
+
+}
+
+.svg {
+
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border: 1px solid black;
+}
+
+.text {
+    font-weight: 500;
+    font-size: 14px;
+
+    color: #161616;
+}
