@@ -1,7 +1,10 @@
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import css from './RegisterForm.module.css';
+import sprite from '../../images/sprite.svg';
 
 const schema = yup.object().shape({
   name: yup
@@ -16,6 +19,8 @@ const schema = yup.object().shape({
 });
 
 export const RegisterForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -23,6 +28,7 @@ export const RegisterForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const navigate = useNavigate();
 
   const onSubmit = data => {
@@ -31,24 +37,58 @@ export const RegisterForm = () => {
     navigate('/home');
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(prevState => !prevState);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Name</label>
-        <input {...register('name')} />
-        {errors.name && <p>{errors.name.message}</p>}
+    <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+      <div className={css.formWrap}>
+        <input
+          className={css.formImput}
+          placeholder="Enter your name"
+          type="text"
+          name="name"
+          {...register('name')}
+        />
+        {errors.name && <p className={css.errors}>{errors.name.message}</p>}
       </div>
-      <div>
-        <label>Email</label>
-        <input {...register('email')} />
-        {errors.email && <p>{errors.email.message}</p>}
+      <div className={css.formWrap}>
+        <input
+          className={css.formImput}
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          {...register('email')}
+        />
+        {errors.email && <p className={css.errors}>{errors.email.message}</p>}
       </div>
-      <div>
-        <label>Password</label>
-        <input type="password" {...register('password')} />
-        {errors.password && <p>{errors.password.message}</p>}
+      <div className={css.formWrap} style={{ position: 'relative' }}>
+        <input
+          className={css.formImput}
+          type={showPassword ? 'text' : 'password'}
+          {...register('password')}
+          placeholder="Create a password"
+        />
+        <svg
+          className={css.icon}
+          width="20"
+          height="20"
+          onClick={toggleShowPassword}
+        >
+          <use
+            xlinkHref={`${sprite}#${
+              showPassword ? 'icon-eye' : 'icon-eye-off'
+            }`}
+          ></use>
+        </svg>
+        {errors.password && (
+          <p className={css.errors}>{errors.password.message}</p>
+        )}
       </div>
-      <button type="submit">Register Now</button>
+      <button className={css.formBtn} type="submit">
+        Register Now
+      </button>
     </form>
   );
 };
