@@ -1,0 +1,89 @@
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.header{
+    display: flex;
+    position: relative;
+    width: 350px;
+    border: 1px solid rgba(190, 219, 176, 0.5);
+    border-radius: 8px;
+    height: 221px;
+    background: #121212;
+}
+
+.container{
+    padding-top: 24px;
+    padding-left: 24px;
+}
+
+h2{
+    font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+        color: #fff;
+}
+
+.onCloseButton{
+    
+    width: 18px;
+    height: 18px;
+    border: 0;
+    background: #fc0000;
+
+}
+
+.closeContainer{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 14px;
+    padding-right: 14px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.formInput{
+    margin-top: 24px;
+    box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
+    background: #1f1f1f;
+    opacity: 0.4;
+    width: 302px;
+    height: 49px;
+    border: 0;
+}
+
+.formButton{
+    width: 302px;
+    border-radius: 8px;
+    width: 302px;
+    height: 49px;
+    background: #bedbb0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+}
+
+.submitButtonText{
+    font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: -0.02em;
+        color: #161616;
+        border: 0;
+}
