@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -45,7 +45,7 @@ export const RegisterForm = () => {
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.formWrap}>
         <input
-          className={css.formImput}
+          className={`${css.formImput} ${errors.name ? css.error : ''}`}
           placeholder="Enter your name"
           type="text"
           name="name"
@@ -55,7 +55,7 @@ export const RegisterForm = () => {
       </div>
       <div className={css.formWrap}>
         <input
-          className={css.formImput}
+          className={`${css.formImput} ${errors.name ? css.error : ''}`}
           type="email"
           name="email"
           placeholder="Enter your email"
@@ -65,7 +65,7 @@ export const RegisterForm = () => {
       </div>
       <div className={css.formWrap} style={{ position: 'relative' }}>
         <input
-          className={css.formImput}
+          className={`${css.formImput} ${errors.name ? css.error : ''}`}
           type={showPassword ? 'text' : 'password'}
           {...register('password')}
           placeholder="Create a password"
