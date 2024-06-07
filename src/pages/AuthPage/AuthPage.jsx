@@ -1,16 +1,27 @@
 import { Route, Routes, NavLink } from 'react-router-dom';
 import { LoginForm } from '../../components/LoginForm/LoginForm';
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm';
+import clsx from 'clsx';
 import css from './AuthPage.module.css';
 
 const AuthPage = () => (
   <section className={css.section}>
     <div className={css.wrapper}>
       <nav className={css.nav}>
-        <NavLink className={css.register} to="/auth/register">
+        <NavLink
+          className={({ isActive }) =>
+            clsx(css.link, { [css.activeLink]: isActive })
+          }
+          to="/auth/register"
+        >
           Register
         </NavLink>
-        <NavLink className={css.login} to="/auth/login">
+        <NavLink
+          className={({ isActive }) =>
+            clsx(css.link, { [css.activeLink]: isActive })
+          }
+          to="/auth/login"
+        >
           Log In
         </NavLink>
       </nav>
