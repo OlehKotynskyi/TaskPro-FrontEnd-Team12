@@ -2,8 +2,7 @@
     margin: 0 auto;
     width: 375px;
     height: 60px;
-    border: 1px solid black;
-    margin-left: auto;
+
     display: flex;
     align-items: center;
     justify-content: space-between
@@ -18,59 +17,61 @@
 
 }
 
-.svg {
-
-    border-radius: 8px;
-    width: 32px;
-    height: 32px;
-    border: 1px solid black;
+.avatarWrap {
+    cursor: pointer;
 }
+
+.arrowIcon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.arrowIcon path {
+    stroke: #161616;
+}
+
 
 .text {
     font-weight: 500;
     font-size: 14px;
-
     color: #161616;
 }
 
 .dropdown {
-
+    width: 68px;
+    height: 21px;
     position: relative;
     display: inline-block;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(22, 22, 22, 0.8);
 }
 
 .dropbtn {
+    background-color: transparent;
+    padding-top: 2px;
     font-size: 14px;
     border: none;
+    display: flex;
+    gap: 4px;
+    align-items: center;
 }
 
 .dropdownContent {
-
-    display: none;
     position: absolute;
     background-color: #f1f1f1;
-    width: 100%;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-}
-
-.dropdownContent button {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdownContent button:hover {
-    background-color: #ddd;
-}
-
-.dropdown:hover .dropdownContent {
-    display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    border: 1px solid #ecedfd;
+    border-radius: 8px;
+    width: 100px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .rightBlock {
@@ -80,12 +81,165 @@
 }
 
 .themeBtn {
+    text-align: left;
+    height: 21px;
     border: none;
-    font-weight: 400;
     font-size: 14px;
     color: #161616;
+    letter-spacing: -0.02em;
+}
+
+.themeBtn:hover {
+    color: #9DC888
 }
 
 .burgerMenu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
     margin-left: 20px;
+    width: 24px;
+    height: 24px;
+}
+
+.burgerMenu path {
+    stroke: rgba(22, 22, 22, 1);
+}
+
+.svgStyles {
+    height: 32px;
+    width: 32px;
+    fill: rgba(22, 22, 22, 1);
+    stroke: #ddd;
+}
+
+
+.modalWrap {
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(102, 106, 109, 0.686);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainer {
+    background-color: aliceblue;
+    border-radius: 8px;
+    width: 335px;
+    padding: 24px;
+    position: relative;
+}
+
+
+.titleBox {
+    margin-bottom: 24px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 18px;
+    color: #161616;
+    line-height: 27px;
+}
+
+.closeBtn {
+    position: absolute;
+    border: none;
+    background: none;
+    width: 18px;
+    height: 18px;
+    top: 14px;
+    right: 14px;
+
+}
+
+.closeBtn path {
+    stroke: rgba(22, 22, 22, 1);
+}
+
+.avatarBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 68px;
+    position: relative;
+    margin: 0 auto 24px;
+}
+
+.avatar {
+    width: 68px;
+    height: 68px;
+    background-color: #5255bc;
+    border-radius: 8px;
+
+}
+
+.avatarBtn {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    border-radius: 6px;
+    border: transparent;
+    background-color: #999696;
+    bottom: -11px
+}
+
+.input {
+    width: 100%;
+    padding: 18px 14px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #161616;
+
+}
+
+.sendBtn {
+    margin-top: 10px;
+    border-radius: 8px;
+    width: 100%;
+    padding: 14px;
+}
+
+@media screen and (min-width: 767px) {
+    .modalContainer {
+        width: 400px;
+    }
+
+
+
+
+    .burgerMenu {
+
+        width: 32px;
+        height: 32px;
+    }
+
+
+}
+
+@media screen and (min-width: 1440px) {
+    .headerBox {
+        margin: unset;
+        margin-left: auto;
+        width: 1180px;
+
+
+    }
+
+    .burgerMenu {
+        display: none;
+    }
+
+    .headerBox {
+        justify-content: flex-end;
+    }
 }
