@@ -1,0 +1,53 @@
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 8px;
+    height: 49px;
+    background: #bedbb0;
+    border: 0;
+    padding: 0 12px;
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+	.button:hover,
+	.button:focus,
+	.button:active {
+		background: #a1cf89;
+	}
+
+	.button:active {
+		transform: scale(0.95);
+	}
+}
+
+.buttonText {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: #161616;
+    border: 0;
+    
+}
+
+.iconWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    margin-right: 8px; 
+    background: #161616;
+}
+
+.icon {
+    width: 14px;
+    height: 14px;
+    stroke: #fff; /* Ensure the color matches your design */
+    background: transparent;
+}
