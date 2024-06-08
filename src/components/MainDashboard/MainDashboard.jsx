@@ -3,6 +3,7 @@ import '../../styles/base.css';
 import css from './MainDashboard.module.css';
 import { Link } from 'react-router-dom';
 import { AddColumnModal } from 'components/ModalWindow/AddColumnModal/AddColumnModal';
+import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 import { Filters } from 'components/ModalWindow/Filters/Filters';
 import { NewColumn } from 'components/NewColumn/NewColumn';
 
@@ -12,6 +13,9 @@ export const MainDashboard = () => {
 
   const [showAddColumnModal, setShowAddColumnModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
+
+  //Modal AddCard State
+  const [isShownAddCardModal, setIsShownAddCardModal] = useState(false);
 
   const handleOpenAdd = () => {
     setShowAddColumnModal(true);
@@ -28,6 +32,11 @@ export const MainDashboard = () => {
   const handleCloseFilter = () => {
     setShowFilter(false);
   };
+
+  const handleAddCardModal = () => {
+        setIsShownAddCardModal(!isShownAddCardModal);
+  };
+
 
   return (
     <div className={css.dashboardBackground}>
@@ -65,6 +74,9 @@ export const MainDashboard = () => {
       {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />};
       {showFilter && <Filters onClose={handleCloseFilter} />};
       <NewColumn />
+
+      {isShownAddCardModal && <AddCardModal onClose={handleAddCardModal} />};
+
     </div>
   );
 };
