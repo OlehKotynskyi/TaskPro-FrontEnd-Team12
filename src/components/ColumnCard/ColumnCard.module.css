@@ -1,0 +1,118 @@
+.columnHeader {
+    border-radius: 8px;
+    width: 334px;
+    height: 56px;
+    background: #121212;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 14px;
+}
+
+svg {
+    background: #fff;
+}
+
+
+.columnTitle {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: #fff;
+
+}
+
+.headerSvgContainer {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+
+.contentTitle {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: #fff;
+}
+
+.contentText {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cardContainer {
+    border-radius: 8px;
+    width: 334px;
+    height: 154px;
+    background: #121212;
+}
+
+.infoContainer {
+    display: flex;
+    gap: 14px;
+    padding: 0 18px 14px 20px;
+}
+
+.infoTitle {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 8px;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.5);
+    padding-bottom: 4px;
+}
+
+.infoText {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: -0.02em;
+    color: #fff;
+
+}
+
+.priority {
+    display: block;
+}
+
+.deadlineContainer {
+    display: block;
+}
+
+.infoIcons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+    gap: 8px;
+    margin-left: 126px;
+}
+
+.container {
+    display: flex;
+
+}
+
+.headerSvgButton {
+    width: 16px;
+    height: 16px;
+    border: 0;
+}
+
+.cardsList {
+    display: flex;
+    gap: 8px;
+}
+
+.contentContainer {
+    padding: 14px 20px 28px 20px;
+}
