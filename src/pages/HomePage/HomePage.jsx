@@ -1,4 +1,4 @@
-// import { MainDashboard } from 'components/MainDashboard/MainDashboard';
+import { MainDashboard } from 'components/MainDashboard/MainDashboard';
 import { useState } from 'react';
 import { Header } from '../../components/Header/Header';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
@@ -12,7 +12,7 @@ const HomePage = () => {
       <Sidebar visible={sidebarVisible} onVisible={setSidebarVisible} />
       <div className={css.homePageContent}>
         <Header onVisible={setSidebarVisible} />
-        {/* <MainDashboard /> */}
+        <MainDashboard />
       </div>
     </div>
   );
