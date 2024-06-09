@@ -7,11 +7,14 @@ import { Filters } from "components/ModalWindow/Filters/Filters";
 import { NewColumn } from "components/NewColumn/NewColumn";
 
 import plus from '../../images/sprite.svg'
+import SimpleBar from "simplebar-react";
 
 export const MainDashboard = () => {
     const [amountOfBoards, setAmountOfBoards] = useState(1);
     const [showAddColumnModal, setShowAddColumnModal] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
+
+    setAmountOfBoards(1)
 
     const handleOpenAdd = () => {
         setShowAddColumnModal(true);

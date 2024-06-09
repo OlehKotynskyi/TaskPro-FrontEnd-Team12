@@ -1,4 +1,6 @@
+
 // import { useState } from 'react';
+
 import css from './ProgressModal.module.css'
 
 export const ProgressModal = ({ onClose }) => {
@@ -9,6 +11,7 @@ export const ProgressModal = ({ onClose }) => {
   // const saveValue = (e) => {
   //   console.log(e);
   // }
+
 
   return (
     <div className={css.modalBackdrop}>
