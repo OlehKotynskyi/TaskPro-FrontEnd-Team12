@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import css from './LoginForm.module.css';
+import sprite from '../../images/sprite.svg';
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -12,6 +15,7 @@ const schema = yup.object().shape({
 });
 
 export const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -27,19 +31,47 @@ export const LoginForm = () => {
     navigate('/home');
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(prevState => !prevState);
+  };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Email</label>
-        <input {...register('email')} />
-        {errors.email && <p>{errors.email.message}</p>}
+    <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+      <div className={css.formWrap}>
+        <input
+          className={`${css.formImput} ${errors.email ? css.error : ''}`}
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          {...register('email')}
+        />
+        {errors.email && <p className={css.errors}>{errors.email.message}</p>}
       </div>
-      <div>
-        <label>Password</label>
-        <input type="password" {...register('password')} />
-        {errors.password && <p>{errors.password.message}</p>}
+      <div className={css.formWrap}>
+        <input
+          className={`${css.formImput} ${errors.password ? css.error : ''}`}
+          type={showPassword ? 'text' : 'password'}
+          {...register('password')}
+          placeholder="Create a password"
+        />
+        <svg
+          className={css.icon}
+          width="20"
+          height="20"
+          onClick={toggleShowPassword}
+        >
+          <use
+            xlinkHref={`${sprite}#${
+              showPassword ? 'icon-eye' : 'icon-eye-off'
+            }`}
+          ></use>
+        </svg>
+        {errors.password && (
+          <p className={css.errors}>{errors.password.message}</p>
+        )}
       </div>
-      <button type="submit">Log In Now</button>
+      <button className={css.formBtn} type="submit">
+        Log In Now
+      </button>
     </form>
   );
 };
