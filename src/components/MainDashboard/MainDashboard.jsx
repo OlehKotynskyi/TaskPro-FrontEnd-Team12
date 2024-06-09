@@ -9,11 +9,11 @@ import { NewColumn } from "components/NewColumn/NewColumn";
 import plus from '../../images/sprite.svg'
 
 export const MainDashboard = () => {
-    const [amountOfBoards, setAmountOfBoards] = useState(1);
+    const [amountOfBoards,] = useState(1);
     const [showAddColumnModal, setShowAddColumnModal] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
 
-    setAmountOfBoards(1)
+    
 
     const handleOpenAdd = () => {
         setShowAddColumnModal(true);
