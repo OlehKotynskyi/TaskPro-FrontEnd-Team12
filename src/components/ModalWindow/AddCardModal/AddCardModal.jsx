@@ -17,8 +17,6 @@ export const AddCardModal = ({ onClose }) => {
 
     return (
         <ModalContainer modalTitle="Add card" onClose={onClose}>
-
-            {/* form */}
             <div className={styles.form}>
                 <input
                     className={styles.formInput}
@@ -87,7 +85,7 @@ export const AddCardModal = ({ onClose }) => {
                         onChange={(e) => setDeadline(e.target.value)}
                     />
                 </div>
-                <ModalButton onClick={handleSubmit}>Add</ModalButton>
+                <ModalButton icon="plus" onClick={handleSubmit}>Add</ModalButton>
             </div>
         </ModalContainer>
     );
