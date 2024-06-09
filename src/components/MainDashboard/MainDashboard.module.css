@@ -53,6 +53,7 @@ p,h3{
         border: 0;
         align-items: center;
         justify-content: center;
+        
 }
 
 .buttonText{
@@ -65,4 +66,14 @@ p,h3{
 
 .dashboardContainer{
     padding-left: 24px;
+}
+
+.plusSvg{
+    background: #fff;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+.columnsContainer{
+    display: flex;
 }
