@@ -1,4 +1,4 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 import css from './Sidebar.module.css';
 import clsx from 'clsx';
 import logo from '../../images/sprite.svg';
@@ -7,21 +7,21 @@ import helpImg from '../../images/flower/flower.png';
 import { BordCard } from 'components/BordCard/BordCard';
 
 export const Sidebar = ({ visible, onVisible }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
+  //  const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleModalOpen = () => {
-    setModalOpen(true);
-  };
+  //  const handleModalOpen = () => {
+  //    setModalOpen(true);
+  //  };
 
-  const handleModalClose = () => {
-    setModalOpen(false);
-  };
+  //  const handleModalClose = () => {
+  //    setModalOpen(false);
+  //  };
 
-  const handleCreateBoard = e => {
-    e.preventDefault();
-    // Handle create board
-    handleModalClose();
-  };
+  //  const handleCreateBoard = e => {
+  //    e.preventDefault();
+  //    // Handle create board
+  //    handleModalClose();
+  //  };
   const closeSidebar = () => {
     onVisible(false);
   };
