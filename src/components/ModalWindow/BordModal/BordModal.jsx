@@ -96,9 +96,7 @@ export const BordModal = ({ onClose, type, board }) => {
             </li>
           ))}
         </ul>
-        <ModalButton onClick={onSubmit}>
-          {isCreate ? 'Create' : 'Edit'}
-        </ModalButton>
+        <ModalButton icon="plus">{isCreate ? 'Create' : 'Edit'}</ModalButton>
       </form>
     </ModalContainer>
   );
