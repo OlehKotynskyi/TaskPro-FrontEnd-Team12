@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 // import { boardsApi } from 'store/boardsSlice';
 // import { clearActiveBoardId } from 'store/activeBoardSlice';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://project-team-12-taskpro-backend.onrender.com';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -53,7 +53,7 @@ export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   try {
     thunkAPI.dispatch({ type: 'auth/clearState' });
 
-    await axios.post('/api/users/logOut');
+    await axios.post('/api/users/signOut');
 
     
     clearAuthHeader();
