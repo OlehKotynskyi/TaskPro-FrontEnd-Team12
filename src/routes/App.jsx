@@ -1,5 +1,5 @@
 import React, { lazy, useEffect, useRef } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PrivateRoute from './PrivateRoute';
 import { Layout } from '../components/Layout/Layout';
@@ -43,6 +43,9 @@ export const App = () => {
         <>
           <Routes>
             <Route path="/" element={<Layout />}>
+              <Route path="/" element={<Navigate to="/welcome" replace />} />
+              <Route path="/welcome" element={<WelcomePage />} />
+              <Route path="/auth/*" element={<AuthPage />} />
               <Route
                 path="/home"
                 element={
@@ -51,8 +54,6 @@ export const App = () => {
                   </PrivateRoute>
                 }
               />
-              <Route path="/welcome" element={<WelcomePage />} />
-              <Route path="/auth/*" element={<AuthPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
