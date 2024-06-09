@@ -1,56 +1,34 @@
-import css from './ColumnCard.module.css'
+import { useState } from 'react';
+import css from './ColumnCard.module.css';
+import { ColumnCardItem } from 'components/ColumnCardItem/ColumnCardItem';
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
+import { ProgressModal } from 'components/ModalWindow/ProgressModal/ProgressModal';
 
 export const ColumnCard = () => {
+    const [showProgressModal, setShowProgressModal] = useState(false);
+
+    const handleOpenProgress = () => {
+        setShowProgressModal(true);
+    };
+
+    const handleCloseProgress = () => {
+        setShowProgressModal(false);
+    };
+
+    const cards = [1, 2, 3, 4]; 
+
     return (
-        <ul className={css.cardsList}>
-                <li className={css.cardContainer}>
-                    <div className={css.contentContainer}>
-                        <h4 className={css.contentTitle}>The Watch Spot Design</h4>
-                        <p className={css.contentText}>Create a visually stunning
-                            and eye-catching watch dial
-                            design that embodies our brand's
-                            essence of sleek aesthetics and
-                            modern elegance. Your design should
-                            be unique, innovative, and reflective
-                            of the latest trends in watch design.</p>
-                    </div>
-                    <div className={css.infoContainer}>
-                        
-                        <div className={css.priority}>
-                            <p className={css.infoTitle}>Priority</p>
-                            <div className={css.container}>
-                            <svg width="12px" height="12px">
-                                <use></use>
-                            </svg>
-                            <p className={css.infoText}>Low</p>
-                            </div>
-                        </div>
-                        <div className={css.deadlineContainer}>
-                            <p className={css.infoTitle}>Deadline</p>
-                            <div>
-                                <p className={css.infoText}>12/05/2023</p>
-                            </div>
-                        </div>
-                        <div className={css.infoIcons}>
-                            <button className={css.headerSvgButton}>
-                                <svg width="16px" height="16px">
-                                    <use></use>
-                                </svg>
-                            </button>
-                            <button className={css.headerSvgButton}>
-                                <svg width="16px" height="16px">
-                                    <use></use>
-                                </svg>
-                            </button>
-                            <button className={css.headerSvgButton}>
-                                <svg width="16px" height="16px">
-                                    <use></use>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    
-                </li>
-            </ul>
-    )
-}
+        <>
+            <SimpleBar style={{ maxHeight: 450 }}>
+                <ul className={css.cardsList}>
+                    {cards.map((card, index) => (
+                        <ColumnCardItem key={index} showProgressModal={showProgressModal} handleOpenProgress={handleOpenProgress} />
+                    ))}
+                </ul>
+                
+            </SimpleBar>
+            {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
+            </>
+    );
+};

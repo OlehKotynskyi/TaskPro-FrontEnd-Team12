@@ -5,6 +5,9 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import css from './LoginForm.module.css';
 import sprite from '../../images/sprite.svg';
+import { logIn } from '../../redux/auth/authOperations.js';
+import { useDispatch } from 'react-redux';
+
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -16,6 +19,8 @@ const schema = yup.object().shape({
 
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -23,13 +28,15 @@ export const LoginForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const navigate = useNavigate();
 
-  const onSubmit = data => {
-    console.log(data);
-    // Імітуємо API виклик та успішний логін
-    navigate('/home');
-  };
+ const onSubmit = async data => {
+   try {
+     await dispatch(logIn(data)).unwrap();
+     navigate('/home');
+   } catch (error) {
+     console.error('Failed to register:', error);
+   }
+ };
 
   const toggleShowPassword = () => {
     setShowPassword(prevState => !prevState);

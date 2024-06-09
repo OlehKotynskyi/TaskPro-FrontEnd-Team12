@@ -1,16 +1,14 @@
 .button {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 100%;
-    border-radius: 8px;
     height: 49px;
-    background: #bedbb0;
     border: 0;
+    border-radius: 8px;
     padding: 0 12px;
+    background: #bedbb0;
 }
-
 
 @media (hover: hover) and (pointer: fine) {
 	.button:hover,
@@ -18,7 +16,6 @@
 	.button:active {
 		background: #a1cf89;
 	}
-
 	.button:active {
 		transform: scale(0.95);
 	}
@@ -26,12 +23,10 @@
 
 .buttonText {
     font-family: "Poppins", sans-serif;
-    font-weight: 500;
     font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
     letter-spacing: -0.02em;
-    color: #161616;
-    border: 0;
-    
 }
 
 .iconWrap {
@@ -48,6 +43,6 @@
 .icon {
     width: 14px;
     height: 14px;
-    stroke: #fff; /* Ensure the color matches your design */
+    stroke: #fff;
     background: transparent;
 }
