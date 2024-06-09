@@ -18,19 +18,21 @@ const icons = [
 ];
 const backgrounds = Array.from({ length: 15 }, (_, i) => String(i + 1));
 
-export const BordModal = ({ onClose, type }) => {
+export const BordModal = ({ onClose, type, board }) => {
   const isCreate = type === 'create';
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      title: '',
-      icon: 'icon-project',
-      bgnd: '',
+      title: isCreate ? '' : board.title,
+      icon: isCreate ? 'icon-project' : board.icon,
+      bgnd: isCreate ? '' : '2',
     },
   });
 
   const onSubmit = data => {
     console.log(data);
   };
+
   return (
     <ModalContainer onClose={onClose} modalTitle={'New board'}>
       <form onSubmit={handleSubmit(onSubmit)}>
