@@ -19,16 +19,15 @@ export const ColumnCard = () => {
     const cards = [1, 2, 3, 4]; 
 
     return (
-        <>
-            <SimpleBar style={{ maxHeight: 450 }}>
+        <div className={css.column}>
+            <SimpleBar style={{ maxHeight: 450}}>
                 <ul className={css.cardsList}>
                     {cards.map((card, index) => (
                         <ColumnCardItem key={index} showProgressModal={showProgressModal} handleOpenProgress={handleOpenProgress} />
                     ))}
                 </ul>
-                
             </SimpleBar>
             {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
-            </>
+        </div>
     );
 };

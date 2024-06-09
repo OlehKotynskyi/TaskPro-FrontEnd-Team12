@@ -6,7 +6,8 @@ import { AddColumnModal } from "components/ModalWindow/AddColumnModal/AddColumnM
 import { Filters } from "components/ModalWindow/Filters/Filters";
 import { NewColumn } from "components/NewColumn/NewColumn";
 
-import plus from '../../images/sprite.svg'
+// import plus from '../../images/sprite.svg'
+import { ModalButton } from "components/ModalWindow/Shared/ModalButton/ModalButton";
 
 export const MainDashboard = () => {
     const [amountOfBoards,] = useState(1);
@@ -45,13 +46,14 @@ export const MainDashboard = () => {
             {amountOfBoards > 0 ? 
                 <div className={css.dashboardContainer}>
                     <h3 className={css.headerText}>Project office</h3> 
-                    <div>
-                        <button onClick={handleOpenAdd} className={css.addColumnButton}>
+                    <div style = {{width: 320}}>
+                        <ModalButton styleType="neutral" icon="plus" onClick={handleOpenAdd}>Add another column</ModalButton>
+                        {/* <button onClick={handleOpenAdd} className={css.addColumnButton}>
                             <svg className={css.plusSvg} width={28} height={28}>
                                 <use href={`${plus}#icon-plus`}></use>
                             </svg>
                             <p className={css.buttonText}>Add another column</p>
-                        </button>
+                        </button> */}
                     </div>
                 </div>
                 : 

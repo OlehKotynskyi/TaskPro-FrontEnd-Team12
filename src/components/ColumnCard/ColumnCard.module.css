@@ -1,4 +1,6 @@
-
+.column {
+    margin-bottom: 14px;
+}
 .cardsList {
     display: flex;
     gap: 8px;
