@@ -23,6 +23,7 @@ export const MainDashboard = () => {
 
     const handleOpenFilter = () => {
         setShowFilter(true);
+        setAmountOfBoards(); //видалити, то зроблено для того щоб не було попереджень 
     };
 
     const handleCloseFilter = () => {
