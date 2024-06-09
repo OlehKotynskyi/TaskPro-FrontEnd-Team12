@@ -1,9 +1,6 @@
 import React, { useRef, useState } from 'react';
-import styles from './Header.module.css';
-import { ReactComponent as ArrowIcon } from '../../images/icons/chevron-down.svg';
-import { ReactComponent as UserIcon } from '../../images/icons/user.svg';
-import { ReactComponent as CrossIcon } from '../../images/icons/x-close.svg';
-import { ReactComponent as BurgerMenu } from '../../images/icons/menu.svg';
+import css from './Header.module.css';
+import sprite from '../../images/sprite.svg';
 import { useOutsideClick } from 'hooks/useOutsideClick';
 
 export const Header = ({ onVisible }) => {
@@ -33,9 +30,11 @@ export const Header = ({ onVisible }) => {
     // Handle edit profile
     handleModalClose();
   };
+
   const onOpenSidebar = () => {
     onVisible(true);
   };
+
   const hendelWrapClick = e => {
     if (e.target === e.currentTarget) {
       setModalOpen(false);
@@ -43,66 +42,76 @@ export const Header = ({ onVisible }) => {
   };
 
   return (
-    <div className={styles.headerBox}>
-      <button className={styles.burgerMenu} onClick={onOpenSidebar}>
-        <BurgerMenu />
+    <div className={css.headerBox}>
+      <button className={css.burgerMenu} onClick={onOpenSidebar}>
+        <svg className={css.menu}>
+          <use href={`${sprite}#icon-menu`} />
+        </svg>
       </button>
 
-      <div className={styles.rightBlock}>
-        <div className={styles.dropdown} ref={ref}>
-          <button className={styles.dropbtn} onClick={toggleOpenTheme}>
+      <div className={css.rightBlock}>
+        <div className={css.dropdown} ref={ref}>
+          <button className={css.dropbtn} onClick={toggleOpenTheme}>
             Theme
-            <div className={styles.arrowIcon}>
-              <ArrowIcon />
+            <div className={`${css.arrowIcon} ${isShowTheme ? css.open : ''}`}>
+              <svg className={css.arrow}>
+                <use href={`${sprite}#icon-chevron-down`} />
+              </svg>
             </div>
           </button>
-          {isShowTheme && (
-            <div className={styles.dropdownContent}>
-              <button
-                className={styles.themeBtn}
-                onClick={() => onSelectTheme('light')}
-              >
-                Light
-              </button>
-              <button
-                className={styles.themeBtn}
-                onClick={() => onSelectTheme('dark')}
-              >
-                Dark
-              </button>
-              <button
-                className={styles.themeBtn}
-                onClick={() => onSelectTheme('violet')}
-              >
-                Violet
-              </button>
-            </div>
-          )}
+          <div
+            className={`${css.dropdownContent} ${isShowTheme ? css.show : ''}`}
+          >
+            <button
+              className={css.themeBtn}
+              onClick={() => onSelectTheme('light')}
+            >
+              Light
+            </button>
+            <button
+              className={css.themeBtn}
+              onClick={() => onSelectTheme('dark')}
+            >
+              Dark
+            </button>
+            <button
+              className={css.themeBtn}
+              onClick={() => onSelectTheme('violet')}
+            >
+              Violet
+            </button>
+          </div>
         </div>
-        <div className={styles.imgBtn}>
-          <p className={styles.text}>Name</p>
-          <div className={styles.avatarWrap} onClick={handleModalOpen}>
-            <UserIcon width={32} height={32} />
+        <div className={css.imgBtn}>
+          <p className={css.text}>Name</p>
+          <div className={css.avatarWrap} onClick={handleModalOpen}>
+            <svg className={css.avatar}>
+              <use href={`${sprite}#icon-user`} />
+            </svg>
           </div>
         </div>
       </div>
       {isModalOpen && (
-        <div className={styles.modalWrap} onClick={hendelWrapClick}>
-          <div className={styles.modalContainer}>
-            <button className={styles.closeBtn} onClick={handleModalClose}>
-              <CrossIcon />
+        <div className={css.modalWrap} onClick={hendelWrapClick}>
+          <div className={css.modalContainer}>
+            <button className={css.closeBtn} onClick={handleModalClose}>
+              <svg>
+                <use href={`${sprite}#icon-x-close`} />
+              </svg>
             </button>
-            <div className={styles.titleBox}>
-              <h2 className={styles.title}>Edit profil</h2>
+            <div className={css.titleBox}>
+              <h2 className={css.title}>Edit profile</h2>
             </div>
-            <form className={styles.form} onSubmit={handleEditProfile}>
-              <div className={styles.avatarBox}>
-                <UserIcon width="68px" height="68px" />
-                <button className={styles.avatarBtn}>+</button>
+            <form className={css.form} onSubmit={handleEditProfile}>
+              <div className={css.avatarBox}>
+                <svg>
+                  <use href={`${sprite}#icon-user`} />
+                </svg>
+                <button className={css.avatarBtn}>+</button>
               </div>
               <label>
                 <input
-                  className={styles.input}
+                  className={css.input}
                   type="text"
                   value="name"
                   required
@@ -110,7 +119,7 @@ export const Header = ({ onVisible }) => {
               </label>
               <label>
                 <input
-                  className={styles.input}
+                  className={css.input}
                   type="email"
                   value="email"
                   required
@@ -118,14 +127,14 @@ export const Header = ({ onVisible }) => {
               </label>
               <label>
                 <input
-                  className={styles.input}
+                  className={css.input}
                   type="password"
                   value="password"
                   required
                 />
               </label>
               {/* Add photo upload here */}
-              <button className={styles.sendBtn} type="submit">
+              <button className={css.sendBtn} type="submit">
                 Save
               </button>
             </form>
