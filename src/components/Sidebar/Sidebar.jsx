@@ -5,6 +5,22 @@ import logo from '../../images/sprite.svg';
 import helpImg2x from '../../images/flower/flower_@2x.png';
 import helpImg from '../../images/flower/flower.png';
 import { BordCard } from 'components/BordCard/BordCard';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logOut } from '../../redux/auth/authOperations';
+
+export const Sidebar = ({ visible, onVisible }) => {
+  //  const [isModalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  //  const handleModalOpen = () => {
+  //    setModalOpen(true);
+  //  };
+
+  //  const handleModalClose = () => {
+  //    setModalOpen(false);
+  //  };
+
 import { BordModal } from 'components/ModalWindow/BordModal/BordModal';
 import { HelpModal } from 'components/ModalWindow/HelpModal/HelpModal';
 
@@ -21,6 +37,10 @@ export const Sidebar = ({ visible, onVisible }) => {
   const handleModalOpenHelp = () => {
     setModalOpenHelp(true);
     onVisible(false);
+  };
+  const handleLogOut = () => {
+    dispatch(logOut());
+    navigate('/welcome');
   };
 
   const handleModalCloseHelp = () => setModalOpenHelp(false);
@@ -81,7 +101,7 @@ export const Sidebar = ({ visible, onVisible }) => {
               Need help?
             </button>
           </div>
-          <button className={css.logOutBtn}>
+          <button className={css.logOutBtn} onClick={handleLogOut}>
             <svg className={css.logOutSvg}>
               <use href={`${logo}#icon-login`} />
             </svg>
