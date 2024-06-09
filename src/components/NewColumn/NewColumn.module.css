@@ -1,3 +1,8 @@
+.columnContainer{
+    padding-left: 24px;
+    margin-top: 10px;
+}
+
 .columnHeader{
     border-radius: 8px;
     width: 334px;
@@ -8,10 +13,7 @@
     align-items: center;
     padding: 20px 20px 20px 20px;
     margin-bottom: 14px;
-}
-
-svg{
-    background: #fff;
+    
 }
 
 
