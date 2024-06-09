@@ -6,6 +6,8 @@ import { AddColumnModal } from "components/ModalWindow/AddColumnModal/AddColumnM
 import { Filters } from "components/ModalWindow/Filters/Filters";
 import { NewColumn } from "components/NewColumn/NewColumn";
 
+import plus from '../../images/sprite.svg'
+
 export const MainDashboard = () => {
     const [amountOfBoards, setAmountOfBoards] = useState(1);
     const [showAddColumnModal, setShowAddColumnModal] = useState(false);
@@ -43,8 +45,8 @@ export const MainDashboard = () => {
                     <h3 className={css.headerText}>Project office</h3> 
                     <div>
                         <button onClick={handleOpenAdd} className={css.addColumnButton}>
-                            <svg width={28} height={28}>
-                                <use></use>
+                            <svg className={css.plusSvg} width={28} height={28}>
+                                <use href={`${plus}#icon-plus`}></use>
                             </svg>
                             <p className={css.buttonText}>Add another column</p>
                         </button>
@@ -61,9 +63,13 @@ export const MainDashboard = () => {
                 </div>
             }
 
-            {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />};
-            {showFilter && <Filters onClose={handleCloseFilter} />};
-            <NewColumn />
+            {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
+            {showFilter && <Filters onClose={handleCloseFilter} />}
+            <div className={css.columnsContainer}>
+                <NewColumn />
+                <NewColumn />
+                <NewColumn />
+            </div>
         </div>
     );
 };

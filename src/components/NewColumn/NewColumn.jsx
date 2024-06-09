@@ -16,7 +16,7 @@ export const NewColumn = ({ onClose }) => {
     };
 
     return (
-        <div>
+        <div className={css.columnContainer}>
             <div className={css.columnHeader}>
                 <h4 className={css.columnTitle}>To Do</h4>
                 <div className={css.headerSvgContainer}>
@@ -33,7 +33,7 @@ export const NewColumn = ({ onClose }) => {
                 </div>
             </div>
             
-            <ColumnCard/>
+            <ColumnCard />
 
             {showEditModal && <EditColumnModal onClose={handleCloseEdit} />}
         </div>
