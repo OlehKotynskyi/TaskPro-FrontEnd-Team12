@@ -1,27 +1,23 @@
-//import { useState } from 'react';
+import { useState } from 'react';
 import css from './Sidebar.module.css';
 import clsx from 'clsx';
 import logo from '../../images/sprite.svg';
 import helpImg2x from '../../images/flower/flower_@2x.png';
 import helpImg from '../../images/flower/flower.png';
 import { BordCard } from 'components/BordCard/BordCard';
+import { BordModal } from 'components/ModalWindow/BordModal/BordModal';
 
 export const Sidebar = ({ visible, onVisible }) => {
-  //  const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  //  const handleModalOpen = () => {
-  //    setModalOpen(true);
-  //  };
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
 
-  //  const handleModalClose = () => {
-  //    setModalOpen(false);
-  //  };
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
 
-  //  const handleCreateBoard = e => {
-  //    e.preventDefault();
-  //    // Handle create board
-  //    handleModalClose();
-  //  };
   const closeSidebar = () => {
     onVisible(false);
   };
@@ -42,7 +38,7 @@ export const Sidebar = ({ visible, onVisible }) => {
           <p className={css.createTitle}>My boards</p>
           <div className={css.createBox}>
             <p className={css.createText}>Create a new board</p>
-            <button className={css.createBtn}>
+            <button className={css.createBtn} onClick={handleModalOpen}>
               <svg className={css.createSvg}>
                 <use href={`${logo}#icon-plus`} />
               </svg>
@@ -83,6 +79,7 @@ export const Sidebar = ({ visible, onVisible }) => {
           </button>
         </div>
       </aside>
+      {isModalOpen && <BordModal onClose={handleModalClose} type="create" />}
     </div>
   );
 };
