@@ -1,29 +1,32 @@
-//import { useState } from 'react';
+import { useState } from 'react';
 import css from './Sidebar.module.css';
 import clsx from 'clsx';
 import logo from '../../images/sprite.svg';
 import helpImg2x from '../../images/flower/flower_@2x.png';
 import helpImg from '../../images/flower/flower.png';
 import { BordCard } from 'components/BordCard/BordCard';
+import { BordModal } from 'components/ModalWindow/BordModal/BordModal';
+import { HelpModal } from 'components/ModalWindow/HelpModal/HelpModal';
 
 export const Sidebar = ({ visible, onVisible }) => {
-  //  const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpenHelp, setModalOpenHelp] = useState(false);
 
-  //  const handleModalOpen = () => {
-  //    setModalOpen(true);
-  //  };
-
-  //  const handleModalClose = () => {
-  //    setModalOpen(false);
-  //  };
-
-  //  const handleCreateBoard = e => {
-  //    e.preventDefault();
-  //    // Handle create board
-  //    handleModalClose();
-  //  };
-  const closeSidebar = () => {
+  const handleModalOpen = () => {
+    setModalOpen(true);
     onVisible(false);
+  };
+  const handleModalClose = () => setModalOpen(false);
+
+  const handleModalOpenHelp = () => {
+    setModalOpenHelp(true);
+    onVisible(false);
+  };
+
+  const handleModalCloseHelp = () => setModalOpenHelp(false);
+
+  const closeSidebar = e => {
+    if (e.target === e.currentTarget) onVisible(false);
   };
 
   return (
@@ -42,7 +45,7 @@ export const Sidebar = ({ visible, onVisible }) => {
           <p className={css.createTitle}>My boards</p>
           <div className={css.createBox}>
             <p className={css.createText}>Create a new board</p>
-            <button className={css.createBtn}>
+            <button className={css.createBtn} onClick={handleModalOpen}>
               <svg className={css.createSvg}>
                 <use href={`${logo}#icon-plus`} />
               </svg>
@@ -50,7 +53,10 @@ export const Sidebar = ({ visible, onVisible }) => {
           </div>
         </div>
         <ul className={css.projects}>
-          <BordCard title={'Project office'} icon={'icon-help-circle'} />
+          <BordCard
+            board={{ title: 'Project office', icon: 'icon-colors' }}
+            closeSidebar={() => onVisible(false)}
+          />
         </ul>
         <div className={css.block}>
           <div className={css.helpBlock}>
@@ -68,7 +74,7 @@ export const Sidebar = ({ visible, onVisible }) => {
               , check out our support resources or reach out to our customer
               support team.
             </p>
-            <button className={css.helpBtn}>
+            <button className={css.helpBtn} onClick={handleModalOpenHelp}>
               <svg className={css.helpSvg}>
                 <use href={`${logo}#icon-help-circle`} />
               </svg>
@@ -83,6 +89,8 @@ export const Sidebar = ({ visible, onVisible }) => {
           </button>
         </div>
       </aside>
+      {isModalOpen && <BordModal onClose={handleModalClose} type="create" />}
+      {isModalOpenHelp && <HelpModal onClose={handleModalCloseHelp} />}
     </div>
   );
 };
