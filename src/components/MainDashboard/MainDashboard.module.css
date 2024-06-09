@@ -1,0 +1,79 @@
+p,h3{
+   color: white;
+}
+
+
+.noProjectNotify{
+    width: 486px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);    
+}
+
+.dashboardBackground{
+    background: #1f1f1f;
+    height: 702px;
+}
+
+.noProjectContainer{
+    display: flex;
+    justify-content: center;
+    padding-top: 281px;
+}
+
+.filter{
+    display: flex;
+    background: #1f1f1f;
+    border: 0;
+}
+
+.filterContainer{
+    position: absolute;
+    right: 0;
+    display: flex;
+    padding: 14px 24px 0 0;
+}
+
+.filterText{
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.addColumnButton{
+    border-radius: 8px;
+        width: 334px;
+        height: 56px;
+        background: #121212;
+        display: flex;
+        border: 0;
+        align-items: center;
+        justify-content: center;
+        
+}
+
+.buttonText{
+    font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: -0.02em;
+        color: #fff;
+}
+
+.dashboardContainer{
+    padding-left: 24px;
+}
+
+.plusSvg{
+    background: #fff;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+.columnsContainer{
+    display: flex;
+}
