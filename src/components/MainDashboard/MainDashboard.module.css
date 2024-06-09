@@ -74,6 +74,9 @@ p,h3{
     margin-right: 8px;
 }
 
-.columnsContainer{
+.columnsContainer {
     display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 10px;
 }
