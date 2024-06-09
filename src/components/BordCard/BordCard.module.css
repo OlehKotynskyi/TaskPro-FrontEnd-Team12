@@ -1,0 +1,52 @@
+.card {
+    display: flex;
+    align-items: center;
+    padding: 20px 18px 20px 14px;
+    gap: 4px;
+    background-color: #1f1f1f;
+    position: relative;
+}
+
+.cardActive::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 4px 0 0 4px;
+    width: 4px;
+    height: 100%;
+    background-color: #bedbb0;
+}
+
+.cardSvg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.btnSvg {
+    width: 16px;
+    height: 16px;
+    stroke: rgba(255, 255, 255, 0.5);
+}
+
+.btn {
+    border: none;
+    background-color: transparent;
+}
+
+.btnBlock {
+    display: flex;
+    gap: 8px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: #fff;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './Header.module.css';
 import { ReactComponent as ArrowIcon } from '../../images/icons/chevron-down.svg';
 import { ReactComponent as UserIcon } from '../../images/icons/user.svg';
 import { ReactComponent as CrossIcon } from '../../images/icons/x-close.svg';
 import { ReactComponent as BurgerMenu } from '../../images/icons/menu.svg';
+import { useOutsideClick } from 'hooks/useOutsideClick';
 
-export const Header = () => {
+export const Header = ({ onVisible }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isShowTheme, setIsShowTheme] = useState(false);
+  const ref = useRef(null);
+
+  useOutsideClick(ref, () => setIsShowTheme(false));
 
   const toggleOpenTheme = () => setIsShowTheme(!isShowTheme);
 
@@ -29,15 +33,23 @@ export const Header = () => {
     // Handle edit profile
     handleModalClose();
   };
+  const onOpenSidebar = () => {
+    onVisible(true);
+  };
+  const hendelWrapClick = e => {
+    if (e.target === e.currentTarget) {
+      setModalOpen(false);
+    }
+  };
 
   return (
     <div className={styles.headerBox}>
-      <button className={styles.burgerMenu}>
+      <button className={styles.burgerMenu} onClick={onOpenSidebar}>
         <BurgerMenu />
       </button>
 
       <div className={styles.rightBlock}>
-        <div className={styles.dropdown}>
+        <div className={styles.dropdown} ref={ref}>
           <button className={styles.dropbtn} onClick={toggleOpenTheme}>
             Theme
             <div className={styles.arrowIcon}>
@@ -75,7 +87,7 @@ export const Header = () => {
         </div>
       </div>
       {isModalOpen && (
-        <div className={styles.modalWrap}>
+        <div className={styles.modalWrap} onClick={hendelWrapClick}>
           <div className={styles.modalContainer}>
             <button className={styles.closeBtn} onClick={handleModalClose}>
               <CrossIcon />

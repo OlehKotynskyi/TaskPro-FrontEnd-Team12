@@ -1,8 +1,8 @@
 .headerBox {
     margin: 0 auto;
-    width: 375px;
-    height: 60px;
-
+    width: 100%;
+    padding: 14px 20px;
+    background-color: #1f1f1f;
     display: flex;
     align-items: center;
     justify-content: space-between
@@ -32,13 +32,15 @@
 
 .arrowIcon path {
     stroke: #161616;
+
 }
 
 
 .text {
     font-weight: 500;
     font-size: 14px;
-    color: #161616;
+    color: #f1f1f1;
+
 }
 
 .dropdown {
@@ -59,6 +61,7 @@
     display: flex;
     gap: 4px;
     align-items: center;
+    color: #f1f1f1;
 }
 
 .dropdownContent {
@@ -87,6 +90,7 @@
     font-size: 14px;
     color: #161616;
     letter-spacing: -0.02em;
+
 }
 
 .themeBtn:hover {
@@ -117,7 +121,6 @@
 
 
 .modalWrap {
-
     left: 0;
     top: 0;
     position: fixed;
@@ -211,11 +214,6 @@
 }
 
 @media screen and (min-width: 767px) {
-    .headerBox {
-
-        width: 768px;
-    }
-
 
     .modalContainer {
         width: 400px;
@@ -233,13 +231,6 @@
 }
 
 @media screen and (min-width: 1440px) {
-    .headerBox {
-        margin: unset;
-        margin-left: auto;
-        width: 1180px;
-
-
-    }
 
     .burgerMenu {
         display: none;
