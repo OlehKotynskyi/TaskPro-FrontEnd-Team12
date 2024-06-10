@@ -13,7 +13,8 @@ export const AddCardModal = ({ onClose }) => {
     const [labelColor, setLabelColor] = useState('black');
     const [deadline, setDeadline] = useState(new Date());
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         console.log({ title, description, labelColor, deadline });
         onClose();
     };
@@ -59,51 +60,27 @@ export const AddCardModal = ({ onClose }) => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
+
+                {/* radio buttons */}
                 <div className={styles.labelContainer}>
                     <span className={styles.labelTitle}>Label color</span>
-                    <div className={styles.radioGroup}>
-                        <label className={styles.radioLabel}>
-                            <input
-                                type="radio"
-                                value="blue"
-                                checked={labelColor === 'blue'}
-                                onChange={() => setLabelColor('blue')}
-                                className={styles.radioInput}
-                            />
-                            <span className={`${styles.customRadio} ${styles.blueLabel} ${labelColor === 'blue' ? styles.selected : ''}`}></span>
-                        </label>
-                        <label className={styles.radioLabel}>
-                            <input
-                                type="radio"
-                                value="pink"
-                                checked={labelColor === 'pink'}
-                                onChange={() => setLabelColor('pink')}
-                                className={styles.radioInput}
-                            />
-                            <span className={`${styles.customRadio} ${styles.pinkLabel} ${labelColor === 'pink' ? styles.selected : ''}`}></span>
-                        </label>
-                        <label className={styles.radioLabel}>
-                            <input
-                                type="radio"
-                                value="green"
-                                checked={labelColor === 'green'}
-                                onChange={() => setLabelColor('green')}
-                                className={styles.radioInput}
-                            />
-                            <span className={`${styles.customRadio} ${styles.greenLabel} ${labelColor === 'green' ? styles.selected : ''}`}></span>
-                        </label>
-                        <label className={styles.radioLabel}>
-                            <input
-                                type="radio"
-                                value="black"
-                                checked={labelColor === 'black'}
-                                onChange={() => setLabelColor('black')}
-                                className={styles.radioInput}
-                            />
-                            <span className={`${styles.customRadio} ${styles.blackLabel} ${labelColor === 'black' ? styles.selected : ''}`}></span>
-                        </label>
-                    </div>
+                        <div className={styles.radioGroup}>
+                            {['blue', 'pink', 'green', 'black'].map((color) => (
+                                <label className={styles.radioLabel} key={color}>
+                                    <input
+                                        type="radio"
+                                        value={color}
+                                        checked={labelColor === color}
+                                        onChange={() => setLabelColor(color)}
+                                        className={styles.radioInput}
+                                    />
+                                    <span className={`${styles.customRadio} ${styles[`${color}Label`]} ${labelColor === color ? styles.selected : ''}`}></span>
+                                </label>
+                            ))}
+                        </div>
                 </div>
+                
+                {/* calendar */}
                 <div className={styles.deadlineContainer}>
                     <span className={styles.labelTitle}>Deadline</span>
                     <DatePicker
@@ -113,6 +90,7 @@ export const AddCardModal = ({ onClose }) => {
                         customInput={<CustomInput />}
                     />
                 </div>
+
                 <ModalButton icon="plus" onClick={handleSubmit}>Add</ModalButton>
             </div>
         </ModalContainer>
