@@ -18,9 +18,9 @@ export const ColumnCard = () => {
     setShowProgressModal(false);
   };
 
-  const handleAddCard = () => {
-    setShowAddCardModal(true);
-  };
+  //  const handleAddCard = () => {
+  //    setShowAddCardModal(true);
+  //  };
 
   const handleCloseAddCard = () => {
     setShowAddCardModal(false);
@@ -42,9 +42,9 @@ export const ColumnCard = () => {
             ))}
           </ul>
         </SimpleBar>
-        <button className={css.addButton} onClick={handleAddCard}>
+        {/*<button className={css.addButton} onClick={handleAddCard}>
           Add another card
-        </button>
+        </button>*/}
         {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
       </div>
       {showAddCardModal && <AddCardModal onClose={handleCloseAddCard} />}

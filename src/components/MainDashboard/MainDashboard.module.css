@@ -11,7 +11,8 @@
 .dashboardBackground {
 	background: #1f1f1f;
 	height: 100vh;
-	padding: 14px 20px 24px;
+	overflow: auto;
+	padding: 14px 20px 0px 14px;
 }
 
 .noProjectContainer {
@@ -32,6 +33,7 @@
 	position: absolute;
 	right: 20px;
 	display: flex;
+
 }
 
 .filterText {
@@ -50,8 +52,7 @@
 
 .addColumnButton {
 	border-radius: 8px;
-	width: 334px;
-	/* Фіксована ширина */
+	max-width: 334px;
 	height: 56px;
 	background: #121212;
 	display: flex;
@@ -61,9 +62,7 @@
 	flex-shrink: 0;
 	margin-left: 10px;
 	white-space: nowrap;
-	/* Запобігає переносу тексту */
-	overflow: auto;
-	/* Забезпечує горизонтальний скролл при потребі */
+
 }
 
 .buttonText {
@@ -80,10 +79,9 @@
 }
 
 .columnsWrapper {
-	display: flex;
-	align-items: flex-start;
-	overflow-x: auto;
+
 	padding-bottom: 10px;
+	padding-top: 14px;
 }
 
 .columnsContainer {
