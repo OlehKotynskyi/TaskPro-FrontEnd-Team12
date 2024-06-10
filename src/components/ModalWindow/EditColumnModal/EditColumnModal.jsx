@@ -1,27 +1,28 @@
-import css from './EditColumnModal.module.css'
+import React, { useState } from 'react';
+import styles from './EditColumnModal.module.css';
+import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
+import { ModalButton } from "../Shared/ModalButton/ModalButton"
 
-export const EditColumnModal = ({ onClose }) => {
+export const EditColumnModal = ({ title = "Current title", onClose }) => {
+  const [newTitle, setNewTitle] = useState(title);
 
+  const handleSubmit = () => {
+      console.log({ newTitle });
+      onClose();
+  };
 
   return (
-    <div className={css.modalBackdrop}>
-      <div className={css.header} onClick={(e) => e.stopPropagation()}>
-        <div className={css.container}>
-          <h2>Edit column</h2>
-          <div className={css.closeContainer}>
-            <button className={css.onCloseButton} onClick={onClose}>
-              <svg width={9} height={9}><use></use></svg>
-            </button>
-          </div>
-          <form className={css.form} action="">
-            <input className={css.formInput} type="text" placeholder='To Do' />
-            <button className={css.formButton} type='submit'>
-              <svg width={28} height={28}><use></use></svg>
-              <p className={css.submitButtonText}>Add</p>
-            </button>
-          </form>
-          </div>
-        </div>
-      </div>
+    <ModalContainer modalTitle="Edit column" onClose={onClose}>
+      <form>
+        <input
+            className={styles.formInput}
+            type="text"
+            placeholder="Title"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+          />
+        <ModalButton icon="plus" onClick={handleSubmit}>Add</ModalButton>
+      </form>
+    </ModalContainer>
   );
 };
