@@ -7,7 +7,7 @@ import { Filters } from "components/ModalWindow/Filters/Filters";
 import { NewColumn } from "components/NewColumn/NewColumn";
 
 // import plus from '../../images/sprite.svg'
-import { ModalButton } from "components/ModalWindow/Shared/ModalButton/ModalButton";
+import { DashboardButton } from "components/DashboardButton/DashboardButton";
 
 export const MainDashboard = () => {
     const [amountOfBoards,] = useState(1);
@@ -46,15 +46,7 @@ export const MainDashboard = () => {
             {amountOfBoards > 0 ? 
                 <div className={css.dashboardContainer}>
                     <h3 className={css.headerText}>Project office</h3> 
-                    <div style = {{width: 320}}>
-                        <ModalButton styleType="neutral" icon="plus" onClick={handleOpenAdd}>Add another column</ModalButton>
-                        {/* <button onClick={handleOpenAdd} className={css.addColumnButton}>
-                            <svg className={css.plusSvg} width={28} height={28}>
-                                <use href={`${plus}#icon-plus`}></use>
-                            </svg>
-                            <p className={css.buttonText}>Add another column</p>
-                        </button> */}
-                    </div>
+                    
                 </div>
                 : 
                 <div className={css.noProjectContainer}>
@@ -66,13 +58,14 @@ export const MainDashboard = () => {
                     </p>
                 </div>
             }
-
             {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
             {showFilter && <Filters onClose={handleCloseFilter} />}
             <div className={css.columnsContainer}>
                 <NewColumn />
                 <NewColumn />
-                <NewColumn />
+                <div style={{ width: 320 }}>
+                    <DashboardButton styleType="neutral" icon="plus" onClick={handleOpenAdd}>Add another column</DashboardButton>
+                </div>
             </div>
         </div>
     );

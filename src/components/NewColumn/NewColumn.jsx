@@ -2,8 +2,8 @@ import { useState } from 'react';
 import css from './NewColumn.module.css'
 import { EditColumnModal } from 'components/ModalWindow/EditColumnModal/EditColumnModal';
 import { ColumnCard } from 'components/ColumnCard/ColumnCard';
-import { ModalButton } from 'components/ModalWindow/Shared/ModalButton/ModalButton';
 import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
+import { DashboardButton } from 'components/DashboardButton/DashboardButton';
 
 export const NewColumn = ({ onClose }) => {
 
@@ -40,7 +40,7 @@ export const NewColumn = ({ onClose }) => {
             </div>
             
             <ColumnCard />
-            <ModalButton icon="plus" onClick={handleAddCardModalOpen}>Add another card</ModalButton>
+            <DashboardButton icon="plus" onClick={handleAddCardModalOpen}>Add another card</DashboardButton>
             {showAddCardModal && <AddCardModal onClose={handleAddCardModalClose}></AddCardModal>}
             {showEditModal && <EditColumnModal onClose={handleCloseEdit} />}
         </div>
