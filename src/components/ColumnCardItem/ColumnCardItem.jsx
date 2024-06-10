@@ -4,14 +4,18 @@ import sprite from '../../images/sprite.svg';
 import { EditCardModal } from 'components/ModalWindow/EditCardModal/EditCardModal';
 
 export const ColumnCardItem = ({
+  index,
   showProgressModal,
   handleOpenProgress,
+  handleDeleteCard, 
   handleCloseProgress,
 }) => {
   const [showEditCardModal, setShowEditCardModal] = useState(false);
 
   const handleEditModalOpen = () => setShowEditCardModal(true);
   const handleEditModalClose = () => setShowEditCardModal(false);
+
+  const handleDelete = () => handleDeleteCard(index);
 
   return (
     <>
@@ -50,7 +54,7 @@ export const ColumnCardItem = ({
                 <use href={`${sprite}#icon-pencil`}></use>
               </svg>
             </button>
-            <button className={css.headerSvgButton}>
+            <button className={css.headerSvgButton} onClick={handleDelete}>
               <svg className={css.icon} width="16px" height="16px">
                 <use href={`${sprite}#icon-trash`}></use>
               </svg>
@@ -62,3 +66,5 @@ export const ColumnCardItem = ({
     </>
   );
 };
+
+
