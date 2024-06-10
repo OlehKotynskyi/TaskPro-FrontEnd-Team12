@@ -9,10 +9,41 @@
 }
 
 .dashboardBackground {
-	background: #1f1f1f;
-	height: 100vh;
-	overflow: auto;
-	padding: 14px 20px 0px 14px;
+	display: flex;
+	padding: 14px 20px;
+	flex-grow: 1;
+	overflow-x: auto;
+	margin-bottom: 10px;
+}
+
+.dashboardBackground::-webkit-scrollbar {
+	height: 12px;
+	width: calc(100% - 24px);
+}
+
+.dashboardBackground::-webkit-scrollbar-thumb {
+	background-color: rgb(18, 18, 18);
+	border-radius: 12px;
+
+}
+
+.dashboardBackground::-webkit-scrollbar-track {
+
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+	.dashboardBackground {
+		padding: 26px 32px 16px;
+	}
+}
+
+@media (min-width: 1440px) {
+	.dashboardBackground {
+		padding: 14px 24px;
+	}
 }
 
 .noProjectContainer {
@@ -45,9 +76,16 @@
 
 .headerText {
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 18px;
 	letter-spacing: -0.02em;
 	color: #fff;
+}
+
+@media (min-width: 1440px) {
+
+	.headerText {
+		font-size: 18px;
+	}
 }
 
 .addColumnButton {
@@ -79,13 +117,34 @@
 }
 
 .columnsWrapper {
-
-	padding-bottom: 10px;
+	display: flex;
 	padding-top: 14px;
+	flex-grow: 1;
+
+}
+
+
+@media (min-width: 768px) {
+	.columnsWrapper {
+		padding-top: 26px;
+	}
+}
+
+@media (min-width: 1440px) {
+	.columnsWrapper {
+		padding-top: 14px;
+	}
 }
 
 .columnsContainer {
 	display: flex;
 	width: 100%;
-	gap: 10px;
+	gap: 34px;
+	flex-grow: 1;
+}
+
+.dashboardContainer {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 }
