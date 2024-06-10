@@ -3,25 +3,39 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 49px;
+    height: 56px;
     border: 0;
     border-radius: 8px;
     padding: 0 12px;
-        background: #bedbb0;
-            color: #161616;
 }
 
+.default {
+    background: #bedbb0;
+    color: #161616;
+}
+
+.neutral {
+    background: #121212;
+    color: #fff;
+}
 
 @media (hover: hover) and (pointer: fine) {
 
-    .button:hover,
-    .button:focus,
-    .button:active {
+    .default:hover,
+    .default:focus,
+    .default:active {
         background: #a1cf89;
     }
 
-    .button:active {
+    .default:active,
+    .neutral:active {
         transform: scale(0.95);
+    }
+
+    .neutral:hover,
+    .neutral:focus,
+    .neutral:active {
+        background: #1a1a1a;
     }
 }
 
@@ -41,12 +55,26 @@
     height: 28px;
     border-radius: 5px;
     margin-right: 8px;
+}
+
+.defaultWrap {
     background: #161616;
+}
+
+.neutralWrap {
+    background: #ffffff;
 }
 
 .icon {
     width: 14px;
     height: 14px;
-    stroke: #fff;
     background: transparent;
+}
+
+.defaultIcon {
+    stroke: #fff;
+}
+
+.neutralIcon {
+    stroke: #161616;
 }
