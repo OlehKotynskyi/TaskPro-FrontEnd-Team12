@@ -8,8 +8,6 @@ import '../../styles/base.css';
 import css from './MainDashboard.module.css';
 import sprite from '../../images/sprite.svg';
 
-// import plus from '../../images/sprite.svg'
-
 import { DashboardButton } from 'components/DashboardButton/DashboardButton';
 
 export const MainDashboard = () => {
@@ -43,65 +41,40 @@ export const MainDashboard = () => {
           <p className={css.filterText}>Filters</p>
         </button>
       </div>
-      return (
-      <div className={css.dashboardBackground}>
-        <div className={css.filterContainer}>
-          <button onClick={handleOpenFilter} className={css.filter}>
-            <svg width={12} height={12}>
-              <use></use>
-            </svg>
-            <p className={css.filterText}>Filters</p>
-          </button>
-        </div>
 
-        {amountOfBoards > 0 ? (
-          <div className={css.dashboardContainer}>
-            <h3 className={css.headerText}>Project office</h3>
-          </div>
-        ) : (
-          <div className={css.noProjectContainer}>
-            <p className={css.noProjectNotify}>
-              Before starting your project, it is essential
-              <Link to="#"> to create a board</Link> to visualize and track all
-              the necessary tasks and milestones. This board serves as a
-              powerful tool to organize the workflow and ensure effective
-              collaboration among team members.
-            </p>
-          </div>
-        )}
-        {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
-        {showFilter && <Filters onClose={handleCloseFilter} />}
-        <div className={css.columnsContainer}>
-          <NewColumn />
-          <NewColumn />
-          <div style={{ width: 320 }}>
-            <DashboardButton
-              styleType="neutral"
-              icon="plus"
-              onClick={handleOpenAdd}
-            >
-              Add another column
-            </DashboardButton>
+      {amountOfBoards > 0 ? (
+        <div className={css.dashboardContainer}>
+          <h3 className={css.headerText}>Project office</h3>
+          <div className={css.columnsWrapper}>
+            <div className={css.columnsContainer}>
+              <NewColumn />
+              <NewColumn />
+              <NewColumn />
+              <DashboardButton
+                styleType="neutral"
+                icon="plus"
+                onClick={handleOpenAdd}
+                className={css.addColumnButton}
+              >
+                Add another column
+              </DashboardButton>
+            </div>
           </div>
         </div>
-      </div>
       ) : (
-      <div className={css.noProjectContainer}>
-        <p className={css.noProjectNotify}>
-          Before starting your project, it is essential
-          <Link to="#"> to create a board</Link> to visualize and track all the
-          necessary tasks and milestones. This board serves as a powerful tool
-          to organize the workflow and ensure effective collaboration among team
-          members.
-        </p>
-      </div>
-      ){showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
+        <div className={css.noProjectContainer}>
+          <p className={css.noProjectNotify}>
+            Before starting your project, it is essential
+            <Link to="#"> to create a board</Link> to visualize and track all
+            the necessary tasks and milestones. This board serves as a powerful
+            tool to organize the workflow and ensure effective collaboration
+            among team members.
+          </p>
+        </div>
+      )}
+
+      {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
       {showFilter && <Filters onClose={handleCloseFilter} />}
-      <div className={css.columnsContainer}>
-        <NewColumn />
-        <NewColumn />
-        <NewColumn />
-      </div>
     </div>
   );
 };

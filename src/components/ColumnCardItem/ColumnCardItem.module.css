@@ -52,7 +52,7 @@
 
 .cardContainer {
 	border-radius: 8px;
-	width: 334px;
+	max-width: 334px;
 	background: #121212;
 	position: relative;
 }

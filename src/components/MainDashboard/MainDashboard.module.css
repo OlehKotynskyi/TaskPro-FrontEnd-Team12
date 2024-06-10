@@ -51,13 +51,19 @@
 .addColumnButton {
 	border-radius: 8px;
 	width: 334px;
+	/* Фіксована ширина */
 	height: 56px;
 	background: #121212;
 	display: flex;
 	border: 0;
 	align-items: center;
 	justify-content: center;
-
+	flex-shrink: 0;
+	margin-left: 10px;
+	white-space: nowrap;
+	/* Запобігає переносу тексту */
+	overflow: auto;
+	/* Забезпечує горизонтальний скролл при потребі */
 }
 
 .buttonText {
@@ -67,21 +73,21 @@
 	color: #fff;
 }
 
-/*.dashboardContainer {
-	margin-bottom: 20px;
-	margin-top: 20px;
-
-}*/
-
 .plusSvg {
 	background: #fff;
 	border-radius: 8px;
 	margin-right: 8px;
 }
 
+.columnsWrapper {
+	display: flex;
+	align-items: flex-start;
+	overflow-x: auto;
+	padding-bottom: 10px;
+}
+
 .columnsContainer {
 	display: flex;
-	overflow-x: auto;
-	/*padding: 10px;*/
+	width: 100%;
 	gap: 10px;
 }
