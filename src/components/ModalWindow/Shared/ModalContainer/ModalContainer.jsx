@@ -2,8 +2,15 @@ import styles from './ModalContainer.module.css';
 import sprite from '../../../../images/sprite.svg';
 
 export const ModalContainer = ({ children, onClose, modalTitle }) => {
+
+    const handleWrapClick = e => {
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
+    };
+    
     return (
-        <div className={styles.modalBackdrop}>
+        <div className={styles.modalBackdrop} onClick={handleWrapClick}>
             <div className={styles.modalContainer}>
                 <div className={styles.header}>
             <h2 className={styles.title}>{modalTitle}</h2>

@@ -29,8 +29,8 @@ export const ColumnCard = () => {
     const cards = [1, 2, 3, 4]; 
 
     return (
-        <>
-            <SimpleBar style={{ maxHeight: 450 }}>
+        <div className={css.column}>
+            <SimpleBar style={{ maxHeight: 450}}>
                 <ul className={css.cardsList}>
                     {cards.map((card, index) => (
                         <ColumnCardItem key={index} showProgressModal={showProgressModal} handleOpenProgress={handleOpenProgress} />
@@ -39,8 +39,9 @@ export const ColumnCard = () => {
             </SimpleBar>
             <button className={css.addButton} onClick={handleAddCard}>Add another card</button> 
             {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
-            {showAddCardModal && <AddCardModal onClose={handleCloseAddCard} />}
-        </>
+        </div>
+//  {showAddCardModal && <AddCardModal onClose={handleCloseAddCard} />}
+       
     );
 };
 
