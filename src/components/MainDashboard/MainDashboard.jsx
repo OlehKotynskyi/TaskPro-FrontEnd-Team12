@@ -12,9 +12,7 @@ import { DashboardButton } from "components/DashboardButton/DashboardButton";
 export const MainDashboard = () => {
     const [amountOfBoards,] = useState(1);
     const [showAddColumnModal, setShowAddColumnModal] = useState(false);
-    const [showFilter, setShowFilter] = useState(false);
-
-    
+    const [showFilter, setShowFilter] = useState(false); 
 
     const handleOpenAdd = () => {
         setShowAddColumnModal(true);
