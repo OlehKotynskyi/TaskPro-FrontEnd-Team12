@@ -17,6 +17,10 @@ export const MainDashboard = () => {
   const [showAddColumnModal, setShowAddColumnModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
 
+  const handleOpenAdd = () => {
+    setShowAddColumnModal(true);
+  };
+
   const handleCloseAdd = () => {
     setShowAddColumnModal(false);
   };
@@ -91,8 +95,7 @@ export const MainDashboard = () => {
           members.
         </p>
       </div>
-      )}
-      {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
+      ){showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
       {showFilter && <Filters onClose={handleCloseFilter} />}
       <div className={css.columnsContainer}>
         <NewColumn />
