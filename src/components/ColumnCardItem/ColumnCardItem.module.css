@@ -1,6 +1,6 @@
 .columnHeader {
 	border-radius: 8px;
-	max-width: 334px;
+	max-width: 335px;
 	height: 56px;
 	background: #121212;
 	display: flex;
@@ -15,6 +15,7 @@
 	font-size: 14px;
 	letter-spacing: -0.02em;
 	color: #fff;
+
 }
 
 .headerSvgContainer {
@@ -29,6 +30,8 @@
 	font-size: 14px;
 	letter-spacing: -0.02em;
 	color: #fff;
+	line-height: normal;
+	margin-bottom: 8px;
 }
 
 .contentText {
@@ -44,20 +47,21 @@
 	text-overflow: ellipsis;
 	white-space: normal;
 	position: relative;
-	padding-top: 8px;
+
 }
 
 .cardContainer {
 	border-radius: 8px;
-	max-width: 334px;
+	max-width: 335px;
 	background: #121212;
 	position: relative;
+	padding: 14px 24px;
 }
 
 .infoContainer {
 	display: flex;
+	align-items: flex-end;
 	gap: 14px;
-	padding: 0 18px 14px 20px;
 }
 
 .infoTitle {
@@ -65,7 +69,6 @@
 	font-size: 8px;
 	letter-spacing: -0.02em;
 	color: rgba(255, 255, 255, 0.5);
-	padding-bottom: 4px;
 }
 
 .infoText {
@@ -76,27 +79,29 @@
 }
 
 .priority {
-	display: block;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 
 .deadlineContainer {
-	display: block;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	gap: 7px;
 }
 
 .infoIcons {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
-	flex-direction: row;
+
 	gap: 8px;
-	margin-left: 126px;
-	margin-top: 15px;
 }
 
 .container {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-end;
 	gap: 4px;
 }
 
@@ -104,41 +109,53 @@
 	width: 16px;
 	height: 16px;
 	border: 0;
+	color: #8fa1d0;
 }
 
 .contentContainer {
-	padding: 14px 20px 28px 20px;
 	position: relative;
+	margin-bottom: 28px;
 }
 
 .contentContainer::after {
 	content: '';
-	display: block;
-	width: 290px;
+	width: 100%;
 	height: 1px;
 	background: rgba(255, 255, 255, 0.1);
-	margin: 14px 0;
 	position: absolute;
-	bottom: 0;
+	bottom: -14px;
+
 }
 
 .cardContainer::before {
 	content: "";
-	display: block;
 	position: absolute;
+	left: 0;
+	top: 0;
 	width: 4px;
-	height: 143px;
+	height: 100%;
 	border-radius: 4px 0 0 4px;
 	background: #8fa1d0;
 }
 
-.icon {
-	background-color: #121212;
-}
+
 
 .infoColor {
 	width: 14px;
 	height: 14px;
 	border-radius: 50%;
 	background-color: #BEDBB0;
+}
+
+.icon {
+	background-color: #121212;
+	color: rgba(255, 255, 255, 0.5);
+	transition: all 0.3s ease-in-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+	.icon:hover {
+		color: #bedbb0;
+	}
 }
