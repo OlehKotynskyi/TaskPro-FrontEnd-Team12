@@ -5,10 +5,10 @@ import { ColumnCardItem } from 'components/ColumnCardItem/ColumnCardItem';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import { ProgressModal } from 'components/ModalWindow/ProgressModal/ProgressModal';
-import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 
 export const ColumnCard = () => {
   const [showProgressModal, setShowProgressModal] = useState(false);
+
   const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [screenSize, setScreenSize] = useState('pc');
 
@@ -31,6 +31,7 @@ export const ColumnCard = () => {
     };
   }, []);
 
+
   const handleOpenProgress = () => {
     setShowProgressModal(true);
   };
@@ -39,6 +40,7 @@ export const ColumnCard = () => {
     setShowProgressModal(false);
   };
 
+
   const handleAddCard = () => {
     setShowAddCardModal(true);
   };
@@ -46,6 +48,7 @@ export const ColumnCard = () => {
   const handleCloseAddCard = () => {
     setShowAddCardModal(false);
   };
+
 
   const cards = [1, 2, 3, 4];
 
@@ -70,7 +73,6 @@ export const ColumnCard = () => {
 
         {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
       </div>
-      {showAddCardModal && <AddCardModal onClose={handleCloseAddCard} />}
     </>
   );
 };

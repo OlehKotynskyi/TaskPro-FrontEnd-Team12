@@ -97,10 +97,6 @@
 	margin-left: 126px;
 }
 
-.iconTrash,
-.iconPencil {
-	background-color: #121212;
-}
 
 .container {
 	display: flex;
@@ -110,7 +106,6 @@
 .headerSvgButton {
 	width: 16px;
 	height: 16px;
-	border: 0;
 }
 
 .cardsList {
@@ -120,4 +115,19 @@
 
 .contentContainer {
 	padding: 14px 20px 28px 20px;
+}
+
+.iconTrash,
+.iconPencil {
+	background-color: inherit;
+	color: rgba(255, 255, 255, 0.5);
+	transition: all 0.3s ease-in-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+	.iconTrash:hover,
+	.iconPencil:hover {
+		color: #bedbb0;
+	}
 }
