@@ -5,6 +5,7 @@ export const ColumnCardItem = ({
   showProgressModal,
   handleOpenProgress,
   handleCloseProgress,
+  handleDeleteCard, 
 }) => {
   return (
     <li className={css.cardContainer}>
@@ -42,7 +43,7 @@ export const ColumnCardItem = ({
               <use href={`${sprite}#icon-pencil`}></use>
             </svg>
           </button>
-          <button className={css.headerSvgButton}>
+            <button onClick={handleDeleteCard} className={css.headerSvgButton}>
             <svg className={css.icon} width="16px" height="16px">
               <use href={`${sprite}#icon-trash`}></use>
             </svg>

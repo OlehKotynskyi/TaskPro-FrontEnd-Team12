@@ -4,11 +4,15 @@ import { ColumnCardItem } from 'components/ColumnCardItem/ColumnCardItem';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import { ProgressModal } from 'components/ModalWindow/ProgressModal/ProgressModal';
-import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 
 export const ColumnCard = () => {
   const [showProgressModal, setShowProgressModal] = useState(false);
-  const [showAddCardModal, setShowAddCardModal] = useState(false);
+  const [cards, setCards] = useState([
+    { id: 1, title: "Card 1" },
+    { id: 2, title: "Card 2" },
+    { id: 3, title: "Card 3" },
+    { id: 4, title: "Card 4" }
+  ]);
 
   const handleOpenProgress = () => {
     setShowProgressModal(true);
@@ -18,36 +22,28 @@ export const ColumnCard = () => {
     setShowProgressModal(false);
   };
 
-  //  const handleAddCard = () => {
-  //    setShowAddCardModal(true);
-  //  };
-
-  const handleCloseAddCard = () => {
-    setShowAddCardModal(false);
+  const handleDeleteCard = (cardId) => {
+    setCards(cards.filter(card => card.id !== cardId));
   };
-
-  const cards = [1, 2, 3, 4];
 
   return (
     <>
       <div className={css.column}>
         <SimpleBar style={{ maxHeight: 450 }}>
           <ul className={css.cardsList}>
-            {cards.map((card, index) => (
+            {cards.map((card) => (
               <ColumnCardItem
-                key={index}
+                key={card.id}
+                card={card}
                 showProgressModal={showProgressModal}
                 handleOpenProgress={handleOpenProgress}
+                handleDeleteCard={() => handleDeleteCard(card.id)}
               />
             ))}
           </ul>
         </SimpleBar>
-        {/*<button className={css.addButton} onClick={handleAddCard}>
-          Add another card
-        </button>*/}
         {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
       </div>
-      {showAddCardModal && <AddCardModal onClose={handleCloseAddCard} />}
     </>
   );
 };
