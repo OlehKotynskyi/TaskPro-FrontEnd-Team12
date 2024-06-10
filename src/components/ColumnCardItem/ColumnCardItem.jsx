@@ -1,4 +1,5 @@
 import css from './ColumnCardItem.module.css';
+import sprite from "../../images/sprite.svg"
 
 
 export const ColumnCardItem = ({ showProgressModal, handleOpenProgress, handleCloseProgress}) => {
@@ -31,17 +32,17 @@ export const ColumnCardItem = ({ showProgressModal, handleOpenProgress, handleCl
                         <div className={css.infoIcons}>
                             <button onClick={handleOpenProgress} className={css.headerSvgButton}>
                                 <svg width="16px" height="16px">
-                                    <use></use>
+                                    <use href={`${sprite}#icon-arrow-circle-broken`}></use>
                                 </svg>
                             </button>
                             <button className={css.headerSvgButton}>
                                 <svg width="16px" height="16px">
-                                    <use></use>
+                                    <use href={`${sprite}#icon-pencil`}></use>
                                 </svg>
                             </button>
                             <button className={css.headerSvgButton}>
                                 <svg width="16px" height="16px">
-                                    <use></use>
+                                    <use href={`${sprite}#icon-trash`}></use>
                                 </svg>
                             </button>
                         </div>
