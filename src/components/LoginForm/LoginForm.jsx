@@ -7,7 +7,7 @@ import css from './LoginForm.module.css';
 import sprite from '../../images/sprite.svg';
 import { logIn } from '../../redux/auth/authOperations.js';
 import { useDispatch } from 'react-redux';
-
+import { LoaderButton } from 'components/Loaders/LoaderButton';
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -21,6 +21,7 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -29,14 +30,17 @@ export const LoginForm = () => {
     resolver: yupResolver(schema),
   });
 
- const onSubmit = async data => {
-   try {
-     await dispatch(logIn(data)).unwrap();
-     navigate('/home');
-   } catch (error) {
-     console.error('Failed to register:', error);
-   }
- };
+  const onSubmit = async data => {
+    try {
+      setIsLoading(true);
+      await dispatch(logIn(data)).unwrap();
+      navigate('/home');
+    } catch (error) {
+      console.error('Failed to register:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const toggleShowPassword = () => {
     setShowPassword(prevState => !prevState);
@@ -75,9 +79,9 @@ export const LoginForm = () => {
         {errors.password && (
           <p className={css.errors}>{errors.password.message}</p>
         )}
-      </div>
-      <button className={css.formBtn} type="submit">
-        Log In Now
+      </div>{' '}
+      <button className={css.formBtn} type="submit" disabled={isLoading}>
+        {isLoading ? <LoaderButton /> : 'Log In Now'}
       </button>
     </form>
   );
