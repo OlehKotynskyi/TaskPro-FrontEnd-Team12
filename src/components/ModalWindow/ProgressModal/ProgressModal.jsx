@@ -1,41 +1,50 @@
+import { useState } from 'react';
+import sprite from '../../../images/sprite.svg';
+import styles from './ProgressModal.module.css';
 
-// import { useState } from 'react';
+const StatusButton = ({ isActive, onClick, text }) => (
+  <button onClick={onClick} className={styles.button}>
+    <span className={`${styles.text} ${isActive ? styles.done : styles.progress}`}>{text}</span>
+    <svg className={`${styles.icon} ${isActive ? styles.done : styles.progress}`}>
+      <use xlinkHref={`${sprite}#icon-arrow-circle-broken`} />
+    </svg>
+  </button>
+);
 
-import css from './ProgressModal.module.css'
+export const ProgressModal = ({ doneStatus = false, onClose }) => {
+  const [isDone, setIsDone] = useState(doneStatus);
 
-export const ProgressModal = ({ onClose }) => {
+  const handleWrapClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
-  // const [inputValue, setInputValue] = useState("");
-
-
-  // const saveValue = (e) => {
-  //   console.log(e);
-  // }
-
+  const handleStatusChange = (status) => {
+    setIsDone(status);
+    console.log('Current isDone value:', isDone);
+  };
 
   return (
-    <div className={css.modalBackdrop}>
-      <div className={css.header} onClick={(e) => e.stopPropagation()}>
-        <div className={css.container}>
-          <div className={css.closeContainer}>
-            <button className={css.onCloseButton} onClick={onClose}>
-              <svg width={9} height={9}><use href="../../../images/sprite.svg#icon-x-close"></use></svg>
-            </button>
-          </div>
-          <div className={css.progressContainer}>
-                <p>In progress</p>
-                <svg width='16px' height='16px'>
-                    <use></use>
-                </svg>
-                  </div>
-            <div className={css.progressContainer}>
-                <p>Done</p>
-                <svg width='16px' height='16px'>
-                    <use></use>
-                </svg>
-            </div>
-          </div>
-        </div>
+    <div className={styles.modalBackdrop} onClick={handleWrapClick}>
+      <div className={styles.modalContainer}>
+        <ul>
+          <li className={styles.listItem}>
+            <StatusButton 
+              isActive={!isDone} 
+              onClick={() => handleStatusChange(false)} 
+              text="In progress" 
+            />
+          </li>
+          <li className={styles.listItem}>
+            <StatusButton 
+              isActive={isDone} 
+              onClick={() => handleStatusChange(true)} 
+              text="Done" 
+            />
+          </li>
+        </ul>   
       </div>
+    </div>
   );
 };
