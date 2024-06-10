@@ -32,6 +32,7 @@ export const ColumnCard = () => {
             ))}
           </ul>
         </SimpleBar>
+
         {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
       </div>
     </>

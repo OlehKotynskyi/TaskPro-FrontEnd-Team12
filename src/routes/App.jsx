@@ -8,6 +8,7 @@ import {
   selectAccessToken,
 } from '../redux/auth/authSelectors';
 import { refreshUser } from '../redux/auth/authOperations';
+import { Loader } from '../components/Loaders/Loader';
 
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
@@ -38,7 +39,7 @@ export const App = () => {
   return (
     <>
       {isRefreshing ? (
-        <div>Loading...</div>
+        <Loader />
       ) : (
         <>
           <Routes>

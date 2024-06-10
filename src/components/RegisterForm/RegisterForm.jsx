@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import css from './RegisterForm.module.css';
 import sprite from '../../images/sprite.svg';
 import { register as registerUser } from '../../redux/auth/authOperations';
-
 import { useDispatch } from 'react-redux';
+import { LoaderButton } from 'components/Loaders/LoaderButton';
 
 const schema = yup.object().shape({
   name: yup
@@ -25,7 +25,8 @@ export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -34,13 +35,15 @@ export const RegisterForm = () => {
     resolver: yupResolver(schema),
   });
 
-
   const onSubmit = async data => {
     try {
+      setIsLoading(true);
       await dispatch(registerUser(data)).unwrap();
       navigate('/home');
     } catch (error) {
       console.error('Failed to register:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -92,9 +95,9 @@ export const RegisterForm = () => {
         {errors.password && (
           <p className={css.errors}>{errors.password.message}</p>
         )}
-      </div>
-      <button className={css.formBtn} type="submit">
-        Register Now
+      </div>{' '}
+      <button className={css.formBtn} type="submit" disabled={isLoading}>
+        {isLoading ? <LoaderButton /> : 'Register Now'}
       </button>
     </form>
   );
