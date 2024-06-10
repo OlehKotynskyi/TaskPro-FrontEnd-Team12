@@ -7,6 +7,7 @@ import { ProgressModal } from 'components/ModalWindow/ProgressModal/ProgressModa
 
 export const ColumnCard = () => {
   const [showProgressModal, setShowProgressModal] = useState(false);
+  const [cards, setCards] = useState([1, 2, 3, 4]);
 
   const handleOpenProgress = () => {
     setShowProgressModal(true);
@@ -16,7 +17,9 @@ export const ColumnCard = () => {
     setShowProgressModal(false);
   };
 
-  const cards = [1, 2, 3, 4];
+  const handleDeleteCard = (indexToDelete) => {
+    setCards((prevCards) => prevCards.filter((_, index) => index !== indexToDelete));
+  };
 
   return (
     <>
@@ -26,8 +29,10 @@ export const ColumnCard = () => {
             {cards.map((card, index) => (
               <ColumnCardItem
                 key={index}
+                index={index}
                 showProgressModal={showProgressModal}
                 handleOpenProgress={handleOpenProgress}
+                handleDeleteCard={handleDeleteCard}
               />
             ))}
           </ul>
@@ -38,3 +43,4 @@ export const ColumnCard = () => {
     </>
   );
 };
+
