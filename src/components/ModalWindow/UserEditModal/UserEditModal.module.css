@@ -144,6 +144,16 @@
 }
 
 
+
+.eye {
+  background-color: transparent;
+  border: none;
+  color: var(--white);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 18px;
+}
 .avatar {
   display: block;
   cursor: pointer;

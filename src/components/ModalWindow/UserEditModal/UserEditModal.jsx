@@ -1,10 +1,10 @@
 import { useRef } from "react";
-import { Field, Form, Formik } from "formik";
-import { ErrorMessage } from "formik";
+import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import css from './UserEditModal.module.css';
 import sprite from '../../../images/sprite.svg';
-import PasswordField from "./PasswordField"
+import PasswordField from "./PasswordField";
 
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -20,9 +20,14 @@ const ValidationSchema = Yup.object().shape({
 
 export default function UserEditModal({ onClose }) {
   const fileInputRef = useRef(null);
+  const methods = useForm({
+    resolver: yupResolver(ValidationSchema),
+  });
+  const { handleSubmit, reset } = methods;
 
-  const handleSubmit = (values, actions) => {
-    actions.resetForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
   };
 
   const handleMenuClick = (ev) => {
@@ -37,7 +42,7 @@ export default function UserEditModal({ onClose }) {
     const file = event.target.files[0];
     if (file) {
       console.log("Selected file:", file.name);
-      // додати логіку для завантаження файлу на сервер або новлення аватарки
+      // додати логіку для завантаження файлу на сервер або оновлення аватарки
     }
   };
 
@@ -58,7 +63,7 @@ export default function UserEditModal({ onClose }) {
           <p className={css.txt}>Edit Profile</p>
           <div className={css.avatarContainer}>
             <svg className={css.avatar}>
-                <use href={`${sprite}#icon-user`} />
+              <use href={`${sprite}#icon-user`} />
             </svg>
             <button
               type="button"
@@ -76,62 +81,53 @@ export default function UserEditModal({ onClose }) {
               />
             </button>
           </div>
-          <div>
-            <Formik
-              initialValues={{
-                name: "",
-                email: "",
-                password: "",
-              }}
-              onSubmit={handleSubmit}
-              validationSchema={ValidationSchema}
-            >
-              <Form className={css.forma} autoComplete="off">
-                <div className={css.formGroup}>
-                  <label htmlFor="name" className={css.formLabel} />
-                  <Field
-                    type="text"
-                    name="name"
-                    className={css.formInput}
-                    placeholder="Name"
-                  />
-                  <ErrorMessage
-                    name="name"
-                    component="span"
-                    className={css.error}
-                  />
-                </div>
-                <div className={css.formGroup}>
-                  <label htmlFor="email" className={css.formLabel} />
-                  <Field
-                    type="text"
-                    name="email"
-                    className={css.formInput}
-                    placeholder="Email"
-                  />
-                  <ErrorMessage
-                    name="email"
-                    component="span"
-                    className={css.error}
-                  />
-                </div>
-                <div className={css.formGroup}>
-                  <label htmlFor="password" className={css.formLabel} />
-                  
-                  <PasswordField />
-                  <ErrorMessage
+          <FormProvider {...methods}>
+            <form className={css.forma} onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+              <div className={css.formGroup}>
+                <label htmlFor="name" className={css.formLabel}></label>
+                <input
+                  type="text"
+                  name="name"
+                  className={css.formInput}
+                  placeholder="Name"
+                  {...methods.register("name")}
+                />
+                {methods.formState.errors.name && (
+                  <span className={css.error}>{methods.formState.errors.name.message}</span>
+                )}
+              </div>
+              <div className={css.formGroup}>
+                <label htmlFor="email" className={css.formLabel}></label>
+                <input
+                  type="text"
+                  name="email"
+                  className={css.formInput}
+                  placeholder="Email"
+                  {...methods.register("email")}
+                />
+                {methods.formState.errors.email && (
+                  <span className={css.error}>{methods.formState.errors.email.message}</span>
+                )}
+              </div>
+              <div className={css.formGroup}>
+                <label htmlFor="password" className={css.formLabel}></label>
+                <input
+                    type="password"
                     name="password"
-                    component="span"
-                    className={css.error}
+                    className={css.formInput}
+                    placeholder="Password"
+                    {...methods.register("password")}
                   />
-                </div>
-
-                <button type="submit" className={css.btn}>
-                  Send
-                </button>
-              </Form>
-            </Formik>
-          </div>
+                {/* <PasswordField /> */}
+                {methods.formState.errors.password && (
+                  <span className={css.error}>{methods.formState.errors.password.message}</span>
+                )}
+              </div>
+              <button type="submit" className={css.btn}>
+                Send
+              </button>
+            </form>
+          </FormProvider>
         </div>
       </div>
     </>

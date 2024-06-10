@@ -1,31 +1,18 @@
-import { useState } from "react";
-import { Field } from "formik";
-import css from "../../../components/ModalWindow/UserEditModal/PasswordField.module.css";
-import sprite from '../../../images/sprite.svg';
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+import css from './UserEditModal.module.css';
 
 const PasswordField = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const { register } = useFormContext();
 
   return (
-    <div className={css.passwordField}>
-      <Field
-        type={showPassword ? "text" : "password"}
-        name="password"
-        className={css.formInput}
-        placeholder="Password"
-      />
-      <button className={css.eye} onClick={togglePasswordVisibility}>
-        <svg width="18" height="18" stroke="currentColor">
-          <use
-            href={`${sprite}${showPassword ? "#eye-slash-icon" : "#eye-icon"}`}
-          ></use>
-        </svg>
-      </button>
-    </div>
+    <input
+      type="password"
+      name="password"
+      className={css.formInput}
+      placeholder="Password"
+      {...register("password")}
+    />
   );
 };
 
