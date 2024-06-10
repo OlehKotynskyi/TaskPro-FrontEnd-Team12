@@ -1,18 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import styles from './AddCardModal.module.css';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import { format, isToday, isTomorrow, isYesterday } from 'date-fns';
 import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
 import { ModalButton } from "../Shared/ModalButton/ModalButton"
-
 
 export const AddCardModal = ({ onClose }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [labelColor, setLabelColor] = useState('');
-    const [deadline, setDeadline] = useState('');
+    const [deadline, setDeadline] = useState(new Date());
 
     const handleSubmit = () => {
         console.log({ title, description, labelColor, deadline });
         onClose();
+    };
+
+    const CustomInput = forwardRef(({ value, onClick }, ref) => {
+        const displayValue = getDisplayValue(deadline, value);
+
+        return (
+            <button className={styles.customInput} onClick={onClick} ref={ref}>
+                {displayValue}
+                <span className={styles.calendarIcon} />
+            </button>
+        );
+    });
+
+    const getDisplayValue = (date, formattedDate) => {
+        const today = new Date();
+        if (isToday(date)) {
+            return `Today, ${formattedDate}`;
+        } else if (isTomorrow(date)) {
+            return `Tomorrow, ${formattedDate}`;
+        } else if (isYesterday(date)) {
+            return `Yesterday, ${formattedDate}`;
+        } else if (date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth()) {
+            const dayOfWeek = format(date, 'EEEE');
+            return `${dayOfWeek}, ${formattedDate}`;
+        }
+        return formattedDate;
     };
 
     return (
@@ -78,11 +106,11 @@ export const AddCardModal = ({ onClose }) => {
                 </div>
                 <div className={styles.deadlineContainer}>
                     <span className={styles.labelTitle}>Deadline</span>
-                    <input
-                        className={styles.deadlineInput}
-                        type="date"
-                        value={deadline}
-                        onChange={(e) => setDeadline(e.target.value)}
+                    <DatePicker
+                        selected={deadline}
+                        dateFormat="MMMM d"
+                        onChange={(date) => setDeadline(date)}
+                        customInput={<CustomInput />}
                     />
                 </div>
                 <ModalButton icon="plus" onClick={handleSubmit}>Add</ModalButton>
