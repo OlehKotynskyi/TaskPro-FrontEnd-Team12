@@ -2,6 +2,7 @@ import React, { useState, forwardRef } from 'react';
 import styles from './AddCardModal.module.css';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
+import './customDatePicker.css';
 import { format, isToday, isTomorrow, isYesterday } from 'date-fns';
 import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
 import { ModalButton } from "../Shared/ModalButton/ModalButton"
@@ -17,8 +18,9 @@ export const AddCardModal = ({ onClose }) => {
         onClose();
     };
 
-    const CustomInput = forwardRef(({ value, onClick }, ref) => {
-        const displayValue = getDisplayValue(deadline, value);
+    const CustomInput = forwardRef(({ value: formattedDate, onClick }, ref) => {
+        const today = new Date();
+        const displayValue = getDisplayValue(deadline, formattedDate, today);
 
         return (
             <button className={styles.customInput} onClick={onClick} ref={ref}>
@@ -29,18 +31,16 @@ export const AddCardModal = ({ onClose }) => {
     });
 
     const getDisplayValue = (date, formattedDate) => {
-        const today = new Date();
         if (isToday(date)) {
             return `Today, ${formattedDate}`;
         } else if (isTomorrow(date)) {
             return `Tomorrow, ${formattedDate}`;
         } else if (isYesterday(date)) {
             return `Yesterday, ${formattedDate}`;
-        } else if (date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth()) {
+        } else {
             const dayOfWeek = format(date, 'EEEE');
             return `${dayOfWeek}, ${formattedDate}`;
         }
-        return formattedDate;
     };
 
     return (
