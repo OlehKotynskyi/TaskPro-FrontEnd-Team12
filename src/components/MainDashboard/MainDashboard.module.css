@@ -12,7 +12,7 @@
 	background: #1f1f1f;
 	height: 100vh;
 	overflow: auto;
-	padding: 14px 20px 0px 14px;
+	padding: 14px 20px 36px 14px;
 }
 
 .noProjectContainer {
@@ -30,10 +30,11 @@
 }
 
 .filterContainer {
-	position: absolute;
-	right: 20px;
+	position:static;
+	right: 0;
 	display: flex;
-
+	justify-content:space-between;
+	
 }
 
 .filterText {
@@ -79,7 +80,6 @@
 }
 
 .columnsWrapper {
-
 	padding-bottom: 10px;
 	padding-top: 14px;
 }
@@ -88,4 +88,33 @@
 	display: flex;
 	width: 100%;
 	gap: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+	.dashboardBackground {
+		padding: 26px 32px 96px 32px;
+		}
+	.columnsWrapper {
+	padding-top: 26px;
+	}
+
+	.headerText{
+		font-size: 18px;
+	}
+	.columnsContainer{
+		gap: 34px;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.dashboardBackground {
+		padding: 14px 20px 60px 20px;
+	}
+	.headerText{
+	font-size: 14px;
+	}
+	.columnsWrapper {
+	padding-top: 40px;
+	}
 }
