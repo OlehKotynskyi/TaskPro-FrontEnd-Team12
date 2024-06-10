@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import css from './UserEditModal.module.css';
 import sprite from '../../../images/sprite.svg';
-import PasswordField from "./PasswordField";
 
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
