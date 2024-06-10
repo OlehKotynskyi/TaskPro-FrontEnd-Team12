@@ -1,135 +1,135 @@
 .columnHeader {
-    border-radius: 8px;
-    width: 334px;
-    height: 56px;
-    background: #121212;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    margin-bottom: 14px;
+	border-radius: 8px;
+	max-width: 334px;
+	height: 56px;
+	background: #121212;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	margin-bottom: 14px;
 }
 
 .columnTitle {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: -0.02em;
-    color: #fff;
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	letter-spacing: -0.02em;
+	color: #fff;
 }
 
 .headerSvgContainer {
-    display: flex;
-    gap: 8px;
-    align-items: flex-end;
-    justify-content: flex-end;
+	display: flex;
+	gap: 8px;
+	align-items: flex-end;
+	justify-content: flex-end;
 }
 
 .contentTitle {
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: -0.02em;
-    color: #fff;
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
+	font-size: 14px;
+	letter-spacing: -0.02em;
+	color: #fff;
 }
 
 .contentText {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 133%;
-    letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.5);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    position: relative;
-    padding-top: 8px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 133%;
+	letter-spacing: -0.02em;
+	color: rgba(255, 255, 255, 0.5);
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	position: relative;
+	padding-top: 8px;
 }
 
 .cardContainer {
-    border-radius: 8px;
-    width: 334px;
-    background: #121212;
-    position: relative;
+	border-radius: 8px;
+	width: 334px;
+	background: #121212;
+	position: relative;
 }
 
 .infoContainer {
-    display: flex;
-    gap: 14px;
-    padding: 0 18px 14px 20px;
+	display: flex;
+	gap: 14px;
+	padding: 0 18px 14px 20px;
 }
 
 .infoTitle {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 8px;
-    letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.5);
-    padding-bottom: 4px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+	font-size: 8px;
+	letter-spacing: -0.02em;
+	color: rgba(255, 255, 255, 0.5);
+	padding-bottom: 4px;
 }
 
 .infoText {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 10px;
-    letter-spacing: -0.02em;
-    color: #fff;
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+	font-size: 10px;
+	letter-spacing: -0.02em;
+	color: #fff;
 }
 
 .priority {
-    display: block;
+	display: block;
 }
 
 .deadlineContainer {
-    display: block;
+	display: block;
 }
 
 .infoIcons {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-direction: row;
-    gap: 8px;
-    margin-left: 126px;
-    margin-top: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	flex-direction: row;
+	gap: 8px;
+	margin-left: 126px;
+	margin-top: 15px;
 }
 
 .container {
-    display: flex;
+	display: flex;
 }
 
 .headerSvgButton {
-    width: 16px;
-    height: 16px;
-    border: 0;
+	width: 16px;
+	height: 16px;
+	border: 0;
 }
 
 .contentContainer {
-    padding: 14px 20px 28px 20px;
-    position: relative;
+	padding: 14px 20px 28px 20px;
+	position: relative;
 }
 
-.contentContainer::after{
-    content: '';
-    display: block;
-    width: 290px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.1);
-    margin: 14px 0;
-    position: absolute;
-    bottom: 0;
+.contentContainer::after {
+	content: '';
+	display: block;
+	width: 290px;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.1);
+	margin: 14px 0;
+	position: absolute;
+	bottom: 0;
 }
 
 .cardContainer::before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 4px;
-    height: 143px;
-    border-radius: 4px 0 0 4px;
-    background: #8fa1d0;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 4px;
+	height: 143px;
+	border-radius: 4px 0 0 4px;
+	background: #8fa1d0;
 }

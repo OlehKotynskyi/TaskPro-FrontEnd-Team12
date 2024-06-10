@@ -3,7 +3,7 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 14px 20px;
-	background-color: #1f1f1f;
+	background-color: #121212;
 }
 
 @media screen and (min-width: 768px) {
@@ -132,6 +132,7 @@
 	letter-spacing: -0.02em;
 	color: rgba(255, 255, 255, 0.5);
 	transition: all 0.3s ease-in-out;
+
 }
 
 .themeBtn:not(:last-child) {
@@ -139,7 +140,8 @@
 }
 
 .themeBtn:hover {
-	color: #9DC888
+	color: #9DC888;
+	transform: translateX(5px);
 }
 
 .burgerMenu {
