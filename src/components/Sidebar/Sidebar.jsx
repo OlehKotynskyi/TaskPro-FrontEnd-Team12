@@ -53,7 +53,7 @@ export const Sidebar = ({ visible, onVisible }) => {
         </div>
         <div className={css.block}>
           <p className={css.createTitle}>My boards</p>
-          <div className={css.createBo}>
+          <div className={css.createBox}>
             <p className={css.createText}>Create a new board</p>
             <button className={css.createBtn} onClick={handleModalOpen}>
               <svg className={css.createSvg}>
