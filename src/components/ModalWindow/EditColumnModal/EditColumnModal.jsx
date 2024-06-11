@@ -6,14 +6,14 @@ import { ModalButton } from "../Shared/ModalButton/ModalButton"
 export const EditColumnModal = ({ columnTitle, onClose }) => {
   const [newTitle, setNewTitle] = useState(columnTitle);
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
+  const handleSubmit = () => {
       console.log("New Column title is ", newTitle);
-      onClose(newTitle === "" ? "Untitled" : newTitle);
+      // onClose(newTitle);
+      onClose(newTitle);
   };
 
   return (
-    <ModalContainer modalTitle="Edit column" onClose={onClose}>
+    <ModalContainer modalTitle="Edit column" onClose={() => onClose(newTitle)}>
       <form>
         <input
             className={styles.formInput}
