@@ -9,7 +9,6 @@
 }
 
 .dashboardBackground {
-	display: flex;
 	padding: 14px 20px;
 	flex-grow: 1;
 	overflow-x: auto;
@@ -156,9 +155,7 @@
 	.headerText{
 		font-size: 18px;
 	}
-	.columnsContainer{
-		gap: 34px;
-	}
+	
 }
 
 @media screen and (max-width: 375px) {
@@ -171,4 +168,7 @@
 	.columnsWrapper {
 	padding-top: 40px;
 	}
+}
+.columnsContainer {
+	gap: 34px;
 }
