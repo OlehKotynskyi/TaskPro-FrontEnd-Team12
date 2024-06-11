@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import css from './Sidebar.module.css';
 import clsx from 'clsx';
-import logo from '../../images/sprite.svg';
+import sprite from '../../images/sprite.svg';
 import helpImg2x from '../../images/flower/flower_@2x.png';
 import helpImg from '../../images/flower/flower.png';
 import { BordCard } from 'components/BordCard/BordCard';
@@ -47,7 +47,7 @@ export const Sidebar = ({ visible, onVisible }) => {
       <aside className={css.sidebar}>
         <div className={css.logoBox}>
           <svg className={css.logoSvg}>
-            <use href={`${logo}#icon-logo`} />
+            <use href={`${sprite}#icon-logo`} />
           </svg>
           <h1 className={css.logoTitle}>Task Pro</h1>
         </div>
@@ -57,7 +57,7 @@ export const Sidebar = ({ visible, onVisible }) => {
             <p className={css.createText}>Create a new board</p>
             <button className={css.createBtn} onClick={handleModalOpen}>
               <svg className={css.createSvg}>
-                <use href={`${logo}#icon-plus`} />
+                <use href={`${sprite}#icon-plus`} />
               </svg>
             </button>
           </div>
@@ -86,14 +86,14 @@ export const Sidebar = ({ visible, onVisible }) => {
             </p>
             <button className={css.helpBtn} onClick={handleModalOpenHelp}>
               <svg className={css.helpSvg}>
-                <use href={`${logo}#icon-help-circle`} />
+                <use href={`${sprite}#icon-help-circle`} />
               </svg>
               Need help?
             </button>
           </div>
           <button className={css.logOutBtn} onClick={handleLogOut}>
             <svg className={css.logOutSvg}>
-              <use href={`${logo}#icon-login`} />
+              <use href={`${sprite}#icon-login`} />
             </svg>
             Log out
           </button>
