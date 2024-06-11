@@ -5,12 +5,14 @@ import { ColumnCardItem } from 'components/ColumnCardItem/ColumnCardItem';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import { ProgressModal } from 'components/ModalWindow/ProgressModal/ProgressModal';
+import { EditCardModal } from 'components/ModalWindow/EditCardModal/EditCardModal';
+
 
 export const ColumnCard = () => {
   const [showProgressModal, setShowProgressModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [cards, setCards] = useState([1, 2, 3, 4]);
 
-  //  const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [screenSize, setScreenSize] = useState('pc');
 
   useEffect(() => {
@@ -40,6 +42,9 @@ export const ColumnCard = () => {
     setShowProgressModal(false);
   };
 
+  const handleOpenEdit = () => setShowEditModal(true);
+  const handleCloseEdit = () => setShowEditModal(false);
+
   const handleDeleteCard = indexToDelete => {
     setCards(prevCards =>
       prevCards.filter((_, index) => index !== indexToDelete)
@@ -64,15 +69,16 @@ export const ColumnCard = () => {
               <ColumnCardItem
                 key={index}
                 index={index}
-                showProgressModal={showProgressModal}
                 handleOpenProgress={handleOpenProgress}
                 handleDeleteCard={handleDeleteCard}
+                handleOpenEdit={handleOpenEdit}
               />
             ))}
           </ul>
         </SimpleBar>
 
         {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
+        {showEditModal && <EditCardModal onClose={handleCloseEdit}></EditCardModal>}
       </div>
     </>
   );
