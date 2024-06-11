@@ -1,24 +1,18 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import css from './ColumnCardItem.module.css';
 import sprite from '../../images/sprite.svg';
-import { EditCardModal } from 'components/ModalWindow/EditCardModal/EditCardModal';
 
 export const ColumnCardItem = ({
   index,
-  showProgressModal,
+  handleOpenEdit,
   handleOpenProgress,
   handleDeleteCard, 
-  handleCloseProgress,
 }) => {
-  const [showEditCardModal, setShowEditCardModal] = useState(false);
-
-  const handleEditModalOpen = () => setShowEditCardModal(true);
-  const handleEditModalClose = () => setShowEditCardModal(false);
 
   const handleDelete = () => handleDeleteCard(index);
 
   return (
-    <>
+    <div>
       <li className={css.cardContainer}>
         <div className={css.contentContainer}>
           <h4 className={css.contentTitle}>The Watch Spot Design</h4>
@@ -49,7 +43,7 @@ export const ColumnCardItem = ({
                 <use href={`${sprite}#icon-arrow-circle-broken`}></use>
               </svg>
             </button>
-            <button className={css.headerSvgButton} onClick={handleEditModalOpen}>
+            <button className={css.headerSvgButton} onClick={handleOpenEdit}>
               <svg className={css.icon} width="16px" height="16px">
                 <use href={`${sprite}#icon-pencil`}></use>
               </svg>
@@ -62,8 +56,8 @@ export const ColumnCardItem = ({
           </div>
         </div>
       </li>
-      {showEditCardModal && <EditCardModal onClose={handleEditModalClose}></EditCardModal>}
-    </>
+      
+    </div>
   );
 };
 

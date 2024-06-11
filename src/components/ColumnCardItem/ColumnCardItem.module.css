@@ -159,3 +159,7 @@
 		color: #bedbb0;
 	}
 }
+
+.modal {
+	z-index: 99999;
+}

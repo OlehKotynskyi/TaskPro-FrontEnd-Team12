@@ -87,7 +87,7 @@ export const EditCardModal = ({data = tempData, onClose }) => {
                         </div>
                 </div> 
 
-                {/* calendar */}          
+                {/* calendar           */}
                 <div className={styles.deadlineContainer}>
                     <span className={styles.labelTitle}>Deadline</span>
                     <DatePicker
