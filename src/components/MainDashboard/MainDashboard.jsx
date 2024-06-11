@@ -33,18 +33,20 @@ export const MainDashboard = () => {
 
   return (
     <div className={css.dashboardBackground}>
+      
       <div className={css.filterContainer}>
+        <h3 className={css.headerText}>Project office</h3>
         <button onClick={handleOpenFilter} className={css.filter}>
           <svg className={css.iconFilter} width={16} height={16}>
             <use href={`${sprite}#icon-filter`} />
           </svg>
+          
           <p className={css.filterText}>Filters</p>
         </button>
       </div>
 
       {amountOfBoards > 0 ? (
         <div className={css.dashboardContainer}>
-          <h3 className={css.headerText}>Project office</h3>
           <div className={css.columnsWrapper}>
             <div className={css.columnsContainer}>
               <NewColumn />
