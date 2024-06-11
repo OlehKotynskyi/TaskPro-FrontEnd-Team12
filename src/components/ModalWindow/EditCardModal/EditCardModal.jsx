@@ -85,9 +85,8 @@ export const EditCardModal = ({data = tempData, onClose }) => {
                                 </label>
                             ))}
                         </div>
-                </div> 
-
-                {/* calendar */}          
+                </div>
+                {/* calendar */}
                 <div className={styles.deadlineContainer}>
                     <span className={styles.labelTitle}>Deadline</span>
                     <DatePicker
@@ -103,3 +102,9 @@ export const EditCardModal = ({data = tempData, onClose }) => {
         </ModalContainer>
     );
 };
+
+
+
+
+
+

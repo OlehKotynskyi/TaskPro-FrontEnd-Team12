@@ -1,22 +1,20 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import css from './ColumnCardItem.module.css';
 import sprite from '../../images/sprite.svg';
-import { EditCardModal } from 'components/ModalWindow/EditCardModal/EditCardModal';
 
 export const ColumnCardItem = ({
   index,
-  showProgressModal,
+  handleOpenEdit,
   handleOpenProgress,
   handleDeleteCard, 
   handleCloseProgress,
   handleEditModalOpen
-}) => {
 
 
   const handleDelete = () => handleDeleteCard(index);
 
   return (
-    <>
+    <div>
       <li className={css.cardContainer}>
         <div className={css.contentContainer}>
           <h4 className={css.contentTitle}>The Watch Spot Design</h4>
@@ -41,13 +39,18 @@ export const ColumnCardItem = ({
               <p className={css.infoText}>12/05/2023</p>
             </div>
           </div>
+          <div className = {css.infoIcons}>
+            <svg className={css.icon} width="16px" height="16px">
+              <use href={`${sprite}#icon-bell`}></use>
+            </svg>
+          </div>
           <div className={css.infoIcons}>
             <button onClick={handleOpenProgress} className={css.headerSvgButton}>
               <svg className={css.icon} width="16px" height="16px">
                 <use href={`${sprite}#icon-arrow-circle-broken`}></use>
               </svg>
             </button>
-            <button className={css.headerSvgButton} onClick={handleEditModalOpen}>
+            <button className={css.headerSvgButton} onClick={handleOpenEdit}>
               <svg className={css.icon} width="16px" height="16px">
                 <use href={`${sprite}#icon-pencil`}></use>
               </svg>
@@ -60,9 +63,7 @@ export const ColumnCardItem = ({
           </div>
         </div>
       </li>
-      
-    </>
+    </div>
+
   );
 };
-
-

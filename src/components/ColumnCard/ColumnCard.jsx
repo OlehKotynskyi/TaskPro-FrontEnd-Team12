@@ -9,6 +9,7 @@ import { EditCardModal } from 'components/ModalWindow/EditCardModal/EditCardModa
 
 export const ColumnCard = () => {
   const [showProgressModal, setShowProgressModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [cards, setCards] = useState([1, 2, 3, 4]);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
 
@@ -43,6 +44,9 @@ export const ColumnCard = () => {
     setShowProgressModal(false);
   };
 
+  const handleOpenEdit = () => setShowEditModal(true);
+  const handleCloseEdit = () => setShowEditModal(false);
+
   const handleDeleteCard = indexToDelete => {
     setCards(prevCards =>
       prevCards.filter((_, index) => index !== indexToDelete)
@@ -71,17 +75,24 @@ export const ColumnCard = () => {
               <ColumnCardItem
                 key={index}
                 index={index}
-                showProgressModal={showProgressModal}
                 handleOpenProgress={handleOpenProgress}
                 handleDeleteCard={handleDeleteCard}
+
                 handleEditModalOpen={handleEditModalOpen}
+
+                handleOpenEdit={handleOpenEdit}
+
               />
             ))}
           </ul>
         </SimpleBar>
 
         {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
+
         {showEditCardModal && <EditCardModal onClose={handleEditModalClose}></EditCardModal>}
+
+        {showEditModal && <EditCardModal onClose={handleCloseEdit}></EditCardModal>}
+
       </div>
     </>
   );

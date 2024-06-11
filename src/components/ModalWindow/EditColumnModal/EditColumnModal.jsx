@@ -13,7 +13,7 @@ export const EditColumnModal = ({ columnTitle, onClose }) => {
   };
 
   return (
-    <ModalContainer modalTitle="Edit column" onClose={() => onClose(newTitle)}>
+    <ModalContainer modalTitle="Edit column" onClose={() => onClose(columnTitle)}>
       <form>
         <input
             className={styles.formInput}
