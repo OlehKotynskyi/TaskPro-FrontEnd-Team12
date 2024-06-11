@@ -18,7 +18,7 @@ export const NewColumn = ({ onClose }) => {
   };
 
   const handleCloseEdit = (newTitle) => {
-    setColumnTitle(newTitle);
+    setColumnTitle(newTitle === "" ? "Untitled" : newTitle);
     setShowEditModal(false);
   };
 
