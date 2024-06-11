@@ -1,130 +1,90 @@
-.modalBackdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.header {
-    display: flex;
-    position: relative;
-    width: 300px;
-    border: 1px solid rgba(190, 219, 176, 0.5);
-    border-radius: 8px;
-    height: 234px;
-    background: #121212;
-}
-
-.container {
-    padding-top: 24px;
-    padding-left: 24px;
-}
-
-.filterLine {
+.labelTitle {
+    margin-bottom: 14px;
     font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.02em;
     color: #fff;
-    position: relative;
-    padding-bottom: 14px;
 }
 
-.onCloseButton {
-
-    width: 18px;
-    height: 18px;
-    border: 0;
-    background: #fc0000;
-
-}
-
-.closeContainer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding-top: 14px;
-    padding-right: 14px;
-}
-
-.form {
+.radioGroup {
     display: flex;
     flex-direction: column;
-    gap: 24px;
 }
 
-.formButton {
-    width: 302px;
-    border-radius: 8px;
-    width: 302px;
-    height: 49px;
-    background: #bedbb0;
+.radioLabel {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border: 0;
+
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
-
-
-.filterLine::after{
-    content: "";
-    width: 252px;
-    height: 1px;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    color: #fff;
-    z-index: 1002000;
+.radioLabel:not(:last-child) {
+    margin-bottom: 12px;
 }
 
-.formText {
-    font-family: "Poppins", sans-serif;
+.radioInput {
+    display: none;
+}
+
+.labelText {
     font-weight: 400;
     font-size: 12px;
     letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.5);
-}
-.formContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    color: #fff;
+    margin-left: 10px;
 }
 
-.formRadio{
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+.customRadio {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: currentColor;
+    position: relative;
+    transition: all 0.2s ease;
 }
 
-.formInput{
-    margin-right: 8px;
+.customRadio::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
 }
 
-.formTitle{
-    font-family: "Poppins", sans-serif;
-        font-weight: 500;
-        font-size: 14px;
-        letter-spacing: -0.02em;
-        color: #fff;
-        margin-top: 14px
+.radioInput:checked + .customRadio {
+    border: 1px solid currentColor;
+    background: #1e1e1e;
 }
 
-.formInput:first-child{
-    
-} 
-.formInput:nth-child(2) {
-    
+.radioInput:checked + .customRadio::before {
+    background: currentColor;
+    border-color: currentColor;
 }
-.formInput:nth-child(3) {
 
+
+.blueLabel {
+    color: #6C89FA;
 }
-.formInput:nth-child(4) {
 
+.pinkLabel {
+    color: #F99FB4;
+}
+
+.greenLabel {
+    color: #B4E1A8;
+}
+
+.blackLabel {
+    color: #555555;
 }
