@@ -6,25 +6,30 @@ import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 import { DashboardButton } from 'components/DashboardButton/DashboardButton';
 import sprite from '../../images/sprite.svg';
 
+
+
 export const NewColumn = ({ onClose }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAddCardModal, setShowAddCardModal] = useState(false);
+  const [columnTitle, setColumnTitle] = useState('To Do');
 
   const handleOpenEdit = () => {
     setShowEditModal(true);
   };
 
-  const handleCloseEdit = () => {
+  const handleCloseEdit = (newTitle) => {
+    setColumnTitle(newTitle);
     setShowEditModal(false);
   };
 
   const handleAddCardModalOpen = () => setShowAddCardModal(true);
   const handleAddCardModalClose = () => setShowAddCardModal(false);
+  
 
   return (
     <div className={css.columnContainer}>
       <div className={css.columnHeader}>
-        <h4 className={css.columnTitle}>To Do</h4>
+        <h4 className={css.columnTitle}>{columnTitle}</h4>
         <div className={css.headerSvgContainer}>
           <button onClick={handleOpenEdit} className={css.headerSvgButton}>
             <svg className={css.iconPencil} width="16px" height="16px">
@@ -46,7 +51,7 @@ export const NewColumn = ({ onClose }) => {
       {showAddCardModal && (
         <AddCardModal onClose={handleAddCardModalClose}></AddCardModal>
       )}
-      {showEditModal && <EditColumnModal onClose={handleCloseEdit} />}
+      {showEditModal && <EditColumnModal columnTitle={columnTitle} onClose={handleCloseEdit} />}
     </div>
   );
 };
