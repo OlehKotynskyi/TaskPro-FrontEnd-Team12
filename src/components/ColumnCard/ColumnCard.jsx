@@ -10,7 +10,7 @@ export const ColumnCard = () => {
   const [showProgressModal, setShowProgressModal] = useState(false);
   const [cards, setCards] = useState([1, 2, 3, 4]);
 
-  const [showAddCardModal, setShowAddCardModal] = useState(false);
+  //  const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [screenSize, setScreenSize] = useState('pc');
 
   useEffect(() => {
@@ -32,7 +32,6 @@ export const ColumnCard = () => {
     };
   }, []);
 
-
   const handleOpenProgress = () => {
     setShowProgressModal(true);
   };
@@ -41,17 +40,24 @@ export const ColumnCard = () => {
     setShowProgressModal(false);
   };
 
-  const handleDeleteCard = (indexToDelete) => {
-    setCards((prevCards) => prevCards.filter((_, index) => index !== indexToDelete));
+  const handleDeleteCard = indexToDelete => {
+    setCards(prevCards =>
+      prevCards.filter((_, index) => index !== indexToDelete)
+    );
   };
 
   const simpleBarStyle = {
-    maxHeight: screenSize === 'mobile' ? 450 : screenSize === 'tablet' ? 616 : 450,
+    maxHeight:
+      screenSize === 'mobile' ? 450 : screenSize === 'tablet' ? 616 : 450,
   };
 
   return (
     <>
-      <div className={clsx(css.column, { [css.columnResponsive]: screenSize !== 'pc' })}>
+      <div
+        className={clsx(css.column, {
+          [css.columnResponsive]: screenSize !== 'pc',
+        })}
+      >
         <SimpleBar style={simpleBarStyle}>
           <ul className={css.cardsList}>
             {cards.map((card, index) => (
@@ -71,4 +77,3 @@ export const ColumnCard = () => {
     </>
   );
 };
-
