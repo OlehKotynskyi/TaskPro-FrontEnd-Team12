@@ -9,8 +9,6 @@
 }
 
 .dashboardBackground {
-	display: flex;
-	flex-direction: column;
 	padding: 14px 20px;
 	flex-grow: 1;
 	overflow-x: auto;
@@ -148,5 +146,34 @@
 	display: flex;
 	width: 100%;
 	gap: 10px;
-	flex-grow: 1;
+}
+
+
+@media screen and (max-width: 768px) {
+	.dashboardBackground {
+		padding: 26px 32px 96px 32px;
+		}
+	.columnsWrapper {
+	padding-top: 26px;
+	}
+
+	.headerText{
+		font-size: 18px;
+	}
+	
+}
+
+@media screen and (max-width: 375px) {
+	.dashboardBackground {
+		padding: 14px 20px 60px 20px;
+	}
+	.headerText{
+	font-size: 14px;
+	}
+	.columnsWrapper {
+	padding-top: 40px;
+	}
+}
+.columnsContainer {
+	gap: 34px;
 }

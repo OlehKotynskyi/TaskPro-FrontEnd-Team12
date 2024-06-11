@@ -7,7 +7,9 @@ export const ColumnCardItem = ({
   handleOpenEdit,
   handleOpenProgress,
   handleDeleteCard, 
-}) => {
+  handleCloseProgress,
+  handleEditModalOpen
+
 
   const handleDelete = () => handleDeleteCard(index);
 
@@ -61,7 +63,7 @@ export const ColumnCardItem = ({
           </div>
         </div>
       </li>
-      
     </div>
+
   );
 };
