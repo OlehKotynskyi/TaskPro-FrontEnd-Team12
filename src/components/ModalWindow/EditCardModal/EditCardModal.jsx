@@ -1,5 +1,5 @@
 import React, { useState, forwardRef } from 'react';
-import styles from './AddCardModal.module.css';
+import styles from './EditCardModal.module.css';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './customDatePicker.css';
@@ -7,21 +7,28 @@ import { format, isToday, isTomorrow, isYesterday } from 'date-fns';
 import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
 import { ModalButton } from "../Shared/ModalButton/ModalButton"
 
-export const AddCardModal = ({ onClose }) => {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [labelColor, setLabelColor] = useState('black');
-    const [deadline, setDeadline] = useState(new Date());
+const tempData = {
+        title: "Current title",
+        description: "Current description can be changed and saved with this Modal",
+        labelColor: 'blue',
+        deadline: new Date(),
+    }
+
+export const EditCardModal = ({data = tempData, onClose }) => {
+    const [newTitle, setNewTitle] = useState(data.title);
+    const [newDescription, setNewDescription] = useState(data.description);
+    const [newLabelColor, setNewLabelColor] = useState(data.labelColor);
+    const [newDeadline, setNewDeadline] = useState(data.deadline);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({ title, description, labelColor, deadline });
+        console.log({ newTitle, newDescription, newLabelColor, newDeadline });
         onClose();
     };
 
     const CustomInput = forwardRef(({ value: formattedDate, onClick }, ref) => {
         const today = new Date();
-        const displayValue = getDisplayValue(deadline, formattedDate, today);
+        const displayValue = getDisplayValue(newDeadline, formattedDate, today);
 
         return (
             <button className={styles.customInput} onClick={onClick} ref={ref}>
@@ -45,20 +52,20 @@ export const AddCardModal = ({ onClose }) => {
     };
 
     return (
-        <ModalContainer modalTitle="Add card" onClose={onClose}>
+        <ModalContainer modalTitle="Edit card" onClose={onClose}>
             <div className={styles.form}>
                 <input
                     className={styles.formInput}
                     type="text"
-                    placeholder="Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder={newTitle}
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}
                 />
                 <textarea
                     className={styles.textareaInput}
                     placeholder="Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    value={newDescription}
+                    onChange={(e) => setNewDescription(e.target.value)}
                 ></textarea>
 
                 {/* radio buttons */}
@@ -70,23 +77,23 @@ export const AddCardModal = ({ onClose }) => {
                                     <input
                                         type="radio"
                                         value={color}
-                                        checked={labelColor === color}
-                                        onChange={() => setLabelColor(color)}
+                                        checked={newLabelColor === color}
+                                        onChange={() => setNewLabelColor(color)}
                                         className={styles.radioInput}
                                     />
-                                    <span className={`${styles.customRadio} ${styles[`${color}Label`]} ${labelColor === color ? styles.selected : ''}`}></span>
+                                    <span className={`${styles.customRadio} ${styles[`${color}Label`]} ${newLabelColor === color ? styles.selected : ''}`}></span>
                                 </label>
                             ))}
                         </div>
-                </div>
-                
-                {/* calendar */}
+                </div> 
+
+                {/* calendar */}          
                 <div className={styles.deadlineContainer}>
                     <span className={styles.labelTitle}>Deadline</span>
                     <DatePicker
-                        selected={deadline}
+                        selected={newDeadline}
                         dateFormat="MMMM d"
-                        onChange={(date) => setDeadline(date)}
+                        onChange={(date) => setNewDeadline(date)}
                         customInput={<CustomInput />}
                     />
                 </div>

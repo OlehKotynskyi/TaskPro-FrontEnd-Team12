@@ -1,8 +1,12 @@
 .column {
-    margin-bottom: 14px;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	margin-bottom: 14px;
 }
+
 .cardsList {
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
+	display: flex;
+	gap: 8px;
+	flex-direction: column;
 }

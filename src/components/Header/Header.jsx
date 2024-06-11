@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import css from './Header.module.css';
 import sprite from '../../images/sprite.svg';
 import { useOutsideClick } from 'hooks/useOutsideClick';
+import UserEditModal from '../ModalWindow/UserEditModal/UserEditModal';
 
 export const Header = ({ onVisible }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -25,21 +26,21 @@ export const Header = ({ onVisible }) => {
     setIsShowTheme(false);
   };
 
-  const handleEditProfile = e => {
-    e.preventDefault();
-    // Handle edit profile
-    handleModalClose();
-  };
+  //  const handleEditProfile = e => {
+  //    e.preventDefault();
+  //    // Handle edit profile
+  //    handleModalClose();
+  //  };
 
   const onOpenSidebar = () => {
     onVisible(true);
   };
 
-  const hendelWrapClick = e => {
-    if (e.target === e.currentTarget) {
-      setModalOpen(false);
-    }
-  };
+  //  const hendelWrapClick = e => {
+  //    if (e.target === e.currentTarget) {
+  //      setModalOpen(false);
+  //    }
+  //  };
 
   return (
     <div className={css.headerBox}>
@@ -91,7 +92,8 @@ export const Header = ({ onVisible }) => {
           </div>
         </div>
       </div>
-      {isModalOpen && (
+      {isModalOpen && <UserEditModal onClose={handleModalClose} />}
+      {/* {isModalOpen && (
         <div className={css.modalWrap} onClick={hendelWrapClick}>
           <div className={css.modalContainer}>
             <button className={css.closeBtn} onClick={handleModalClose}>
@@ -134,13 +136,13 @@ export const Header = ({ onVisible }) => {
                 />
               </label>
               {/* Add photo upload here */}
-              <button className={css.sendBtn} type="submit">
+      {/* <button className={css.sendBtn} type="submit">
                 Save
               </button>
             </form>
           </div>
-        </div>
-      )}
+        </div> */}
+      {/* )} */}
     </div>
   );
 };

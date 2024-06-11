@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 99999;
 }
 
 .modalContainer {
@@ -17,7 +17,6 @@
     border-radius: 8px;
     padding: 24px;
     width: 335px;
-
 }
 
 .header {
@@ -43,6 +42,7 @@
     font-weight: 500;
     line-height: 27px;
     letter-spacing: -0.02em;
+    color:#fff
 }
 
 .icon {
