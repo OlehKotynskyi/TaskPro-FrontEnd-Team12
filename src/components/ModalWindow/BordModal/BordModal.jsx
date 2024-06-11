@@ -154,7 +154,7 @@ export const BordModal = ({ onClose, type, board }) => {
             <label htmlFor="empty" className={css.labeIcon}>
               <div className={css.backgroundBox}>
                 <svg className={css.emptyPicture}>
-                  <use href={`${logo}#icon-image-05`} />
+                  <use href={`${logo}#icon-hexagon-01`} />
                 </svg>
               </div>
             </label>
