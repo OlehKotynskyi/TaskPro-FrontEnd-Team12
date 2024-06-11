@@ -6,11 +6,10 @@ export const ColumnCardItem = ({
   index,
   handleOpenEdit,
   handleOpenProgress,
-  handleDeleteCard, 
+  handleDeleteCard,
   handleCloseProgress,
-  handleEditModalOpen
-
-
+  handleEditModalOpen,
+}) => {
   const handleDelete = () => handleDeleteCard(index);
 
   return (
@@ -20,9 +19,9 @@ export const ColumnCardItem = ({
           <h4 className={css.contentTitle}>The Watch Spot Design</h4>
           <p className={css.contentText}>
             Create a visually stunning and eye-catching watch dial design that
-            embodies our brand's essence of sleek aesthetics and modern elegance.
-            Your design should be unique, innovative, and reflective of the latest
-            trends in watch design.
+            embodies our brand's essence of sleek aesthetics and modern
+            elegance. Your design should be unique, innovative, and reflective
+            of the latest trends in watch design.
           </p>
         </div>
         <div className={css.infoContainer}>
@@ -39,13 +38,16 @@ export const ColumnCardItem = ({
               <p className={css.infoText}>12/05/2023</p>
             </div>
           </div>
-          <div className = {css.infoIcons}>
+          <div className={css.infoIcons}>
             <svg className={css.icon} width="16px" height="16px">
               <use href={`${sprite}#icon-bell`}></use>
             </svg>
           </div>
           <div className={css.infoIcons}>
-            <button onClick={handleOpenProgress} className={css.headerSvgButton}>
+            <button
+              onClick={handleOpenProgress}
+              className={css.headerSvgButton}
+            >
               <svg className={css.icon} width="16px" height="16px">
                 <use href={`${sprite}#icon-arrow-circle-broken`}></use>
               </svg>
@@ -64,6 +66,5 @@ export const ColumnCardItem = ({
         </div>
       </li>
     </div>
-
   );
 };
