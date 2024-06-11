@@ -37,6 +37,11 @@ export const ColumnCardItem = ({
               <p className={css.infoText}>12/05/2023</p>
             </div>
           </div>
+          <div className = {css.infoIcons}>
+            <svg className={css.icon} width="16px" height="16px">
+              <use href={`${sprite}#icon-bell`}></use>
+            </svg>
+          </div>
           <div className={css.infoIcons}>
             <button onClick={handleOpenProgress} className={css.headerSvgButton}>
               <svg className={css.icon} width="16px" height="16px">
@@ -60,5 +65,3 @@ export const ColumnCardItem = ({
     </div>
   );
 };
-
-
