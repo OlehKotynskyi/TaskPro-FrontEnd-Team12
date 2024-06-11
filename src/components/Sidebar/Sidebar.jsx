@@ -56,7 +56,7 @@ export const Sidebar = ({ visible, onVisible }) => {
           <div className={css.createBox}>
             <p className={css.createText}>Create a new board</p>
             <button className={css.createBtn} onClick={handleModalOpen}>
-              <svg className={css.createSv}>
+              <svg className={css.createSvg}>
                 <use href={`${logo}#icon-plus`} />
               </svg>
             </button>
