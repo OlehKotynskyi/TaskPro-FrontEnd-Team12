@@ -1,6 +1,21 @@
 import React from 'react';
 import logo from '../../../images/sprite.svg';
 import css from './BordModal.module.css';
+import path1 from '../../../images/modal_background/modalBgIcon(1).jpg';
+import path2 from '../../../images/modal_background/modalBgIcon (2) .jpg';
+import path3 from '../../../images/modal_background/modalBgIcon(3).jpg';
+import path4 from '../../../images/modal_background/modalBgIcon(4).jpg';
+import path5 from '../../../images/modal_background/modalBgIcon (5) .jpg';
+import path6 from '../../../images/modal_background/modalBgIcon(6) .jpg';
+import path7 from '../../../images/modal_background/modalBgIcon(7) .jpg';
+import path8 from '../../../images/modal_background/modalBgIcon(8) .jpg';
+import path9 from '../../../images/modal_background/modalBgIcon(9) .jpg';
+import path10 from '../../../images/modal_background/modalBgIcon(10) .jpg';
+import path11 from '../../../images/modal_background/modalBgIcon(11) .jpg';
+import path12 from '../../../images/modal_background/modalBgIcon(12) .jpg';
+import path13 from '../../../images/modal_background/modalBgIcon (13).jpg';
+import path14 from '../../../images/modal_background/modalBgIcon (14).jpg';
+import path15 from '../../../images/modal_background/modalBgIcon(15).jpg';
 
 import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { useForm } from 'react-hook-form';
@@ -16,8 +31,68 @@ const icons = [
   'icon-colors',
   'icon-hexagon-01',
 ];
-const backgrounds = Array.from({ length: 15 }, (_, i) => String(i + 1));
-
+const backgrounds = [
+  {
+    name: '1',
+    path: path1,
+  },
+  {
+    name: '2',
+    path: path2,
+  },
+  {
+    name: '3',
+    path: path3,
+  },
+  {
+    name: '4',
+    path: path4,
+  },
+  {
+    name: '5',
+    path: path5,
+  },
+  {
+    name: '6',
+    path: path6,
+  },
+  {
+    name: '7',
+    path: path7,
+  },
+  {
+    name: '8',
+    path: path8,
+  },
+  {
+    name: '9',
+    path: path9,
+  },
+  {
+    name: '10',
+    path: path10,
+  },
+  {
+    name: '11',
+    path: path11,
+  },
+  {
+    name: '12',
+    path: path12,
+  },
+  {
+    name: '13',
+    path: path13,
+  },
+  {
+    name: '14',
+    path: path14,
+  },
+  {
+    name: '15',
+    path: path15,
+  },
+];
 export const BordModal = ({ onClose, type, board }) => {
   const isCreate = type === 'create';
 
@@ -34,7 +109,10 @@ export const BordModal = ({ onClose, type, board }) => {
   };
 
   return (
-    <ModalContainer onClose={onClose} modalTitle={'New board'}>
+    <ModalContainer
+      onClose={onClose}
+      modalTitle={isCreate ? 'New Board' : 'Edit Board'}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           className={css.input}
@@ -76,7 +154,7 @@ export const BordModal = ({ onClose, type, board }) => {
             <label htmlFor="empty" className={css.labeIcon}>
               <div className={css.backgroundBox}>
                 <svg className={css.emptyPicture}>
-                  <use href={`${logo}#icon-bell`} />
+                  <use href={`${logo}#icon-hexagon-01`} />
                 </svg>
               </div>
             </label>
@@ -91,7 +169,7 @@ export const BordModal = ({ onClose, type, board }) => {
                 id={item}
               />
               <label htmlFor={item} className={css.labeIcon}>
-                <div className={css.backgroundBox}>{item}</div>
+                <img src={item.path} alt="#" className={css.iconImg} />
               </label>
             </li>
           ))}
