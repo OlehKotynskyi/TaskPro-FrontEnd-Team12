@@ -3,16 +3,17 @@ import styles from './EditColumnModal.module.css';
 import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
 import { ModalButton } from "../Shared/ModalButton/ModalButton"
 
-export const EditColumnModal = ({ title = "Current title", onClose }) => {
-  const [newTitle, setNewTitle] = useState(title);
+export const EditColumnModal = ({ columnTitle, onClose }) => {
+  const [newTitle, setNewTitle] = useState(columnTitle);
 
   const handleSubmit = () => {
-      console.log({ newTitle });
-      onClose();
+      console.log("New Column title is ", newTitle);
+      // onClose(newTitle);
+      onClose(newTitle);
   };
 
   return (
-    <ModalContainer modalTitle="Edit column" onClose={onClose}>
+    <ModalContainer modalTitle="Edit column" onClose={() => onClose(newTitle)}>
       <form>
         <input
             className={styles.formInput}

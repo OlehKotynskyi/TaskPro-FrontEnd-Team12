@@ -27,7 +27,6 @@
 }
 
 .dashboardBackground::-webkit-scrollbar-track {
-
 	background-color: rgba(255, 255, 255, 0.1);
 	border-radius: 12px;
 	border: 1px solid rgba(0, 0, 0, 0.5);
@@ -61,11 +60,11 @@
 }
 
 .filterContainer {
-	position:static;
+	position: static;
 	right: 0;
 	display: flex;
-	justify-content:space-between;
-	
+	justify-content: space-between;
+
 }
 
 .filterText {
@@ -87,6 +86,12 @@
 	.headerText {
 		font-size: 18px;
 	}
+}
+
+.dashboardContainer {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 }
 
 .addColumnButton {
@@ -118,10 +123,10 @@
 }
 
 .columnsWrapper {
+	display: flex;
 	padding-bottom: 10px;
 	padding-top: 14px;
 	flex-grow: 1;
-
 }
 
 
