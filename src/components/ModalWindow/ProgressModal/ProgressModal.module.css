@@ -8,39 +8,43 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10000;
+    z-index: 99999;
 }
 
-.header {
-    display: flex;
-    position: relative;
-    border-radius: 8px;
-    width: 135px;
-    height: 86px;
+.modalContainer {
     background: #121212;
+    border: 1px solid rgba(190, 219, 176, 0.5);
+    border-radius: 8px;
+    padding: 18px;
+    width: 155px;
 }
 
-.container {
-    padding-top: 24px;
-    padding-left: 24px;
-}
-
-.onCloseButton {
-    width: 18px;
-    height: 18px;
-    border: 0;
-    background: #fc0000;
-
-}
-
-.closeContainer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding-top: 14px;
-    padding-right: 14px;
-}
-
-.progressContainer{
+.button {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.listItem:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.text {
+    font-size: 14px;
+}
+
+.done {
+    color: #BEDBB0;
+}
+
+.progress {
+    font-size: 14px;
+    color: #7c7c7c;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    background: none;
 }

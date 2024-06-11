@@ -9,6 +9,8 @@
 	border: 0;
 	border-radius: 8px;
 	padding: 14px;
+
+	transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .default {
@@ -27,17 +29,19 @@
 	.default:focus,
 	.default:active {
 		background: #a1cf89;
+		transform: scale(1.04);
 	}
 
 	.default:active,
 	.neutral:active {
-		transform: scale(0.95);
+		transform: scale(1);
 	}
 
 	.neutral:hover,
 	.neutral:focus,
 	.neutral:active {
 		background: #1a1a1a;
+		transform: scale(1.04);
 	}
 }
 

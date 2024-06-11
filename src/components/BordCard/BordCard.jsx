@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import css from './BordCard.module.css';
-import logo from '../../images/sprite.svg';
+import sprite from '../../images/sprite.svg';
 import clsx from 'clsx';
 import { BordModal } from 'components/ModalWindow/BordModal/BordModal';
 
@@ -22,18 +22,18 @@ export const BordCard = ({ board, closeSidebar }) => {
   return (
     <li className={clsx(css.card, { [css.cardActive]: true })}>
       <svg className={css.cardSvg}>
-        <use href={`${logo}#${board.icon}`} />
+        <use href={`${sprite}#${board.icon}`} />
       </svg>
       <p className={css.title}>{board.title}</p>
       <div className={css.btnBlock}>
         <button className={css.btn} onClick={onEditBoard}>
           <svg className={css.btnSvg}>
-            <use href={`${logo}#icon-pencil`} />
+            <use href={`${sprite}#icon-pencil`} />
           </svg>
         </button>
         <button className={css.btn} onClick={onDelete}>
           <svg className={css.btnSvg}>
-            <use href={`${logo}#icon-trash`} />
+            <use href={`${sprite}#icon-trash`} />
           </svg>
         </button>
       </div>
