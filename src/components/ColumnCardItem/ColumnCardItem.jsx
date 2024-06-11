@@ -9,11 +9,9 @@ export const ColumnCardItem = ({
   handleOpenProgress,
   handleDeleteCard, 
   handleCloseProgress,
+  handleEditModalOpen
 }) => {
-  const [showEditCardModal, setShowEditCardModal] = useState(false);
 
-  const handleEditModalOpen = () => setShowEditCardModal(true);
-  const handleEditModalClose = () => setShowEditCardModal(false);
 
   const handleDelete = () => handleDeleteCard(index);
 
@@ -62,7 +60,7 @@ export const ColumnCardItem = ({
           </div>
         </div>
       </li>
-      {showEditCardModal && <EditCardModal onClose={handleEditModalClose}></EditCardModal>}
+      
     </>
   );
 };
