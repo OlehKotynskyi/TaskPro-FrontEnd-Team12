@@ -3,7 +3,7 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 14px 20px;
-	background-color: #1f1f1f;
+	background-color: #161616;
 }
 
 @media screen and (min-width: 768px) {
@@ -164,6 +164,7 @@
 	width: 24px;
 	height: 24px;
 	background-color: transparent;
+
 }
 
 @media screen and (min-width: 768px) {

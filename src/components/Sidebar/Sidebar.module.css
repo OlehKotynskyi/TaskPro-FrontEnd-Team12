@@ -4,13 +4,14 @@
     position: absolute;
     top: 0;
     left: -100%;
-    background: rgba(21, 21, 21, 0.5);
     z-index: 1;
+
 }
 
 .sidebarWrap.visible {
+    background-color: rgba(21, 21, 21, 0.5);
     left: 0;
-    transition: all 0.3s linear;
+    transition: background-color 1s linear 1s;
 }
 
 .sidebar {

@@ -64,9 +64,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #1F1F1F;
 }
 
 .emptyPicture {
     width: 16px;
     height: 16px;
+    stroke: rgb(56, 55, 55);
+}
+
+.iconImg {
+    width: 28;
+    height: 28px;
+    border-radius: 8px;
 }
