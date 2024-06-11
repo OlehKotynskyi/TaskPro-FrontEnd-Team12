@@ -10,6 +10,7 @@
 
 .dashboardBackground {
 	display: flex;
+	flex-direction: column;
 	padding: 14px 20px;
 	flex-grow: 1;
 	overflow-x: auto;
@@ -62,11 +63,11 @@
 }
 
 .filterContainer {
-	position:static;
+	position: static;
 	right: 0;
 	display: flex;
-	justify-content:space-between;
-	
+	justify-content: space-between;
+
 }
 
 .filterText {
@@ -88,6 +89,12 @@
 	.headerText {
 		font-size: 18px;
 	}
+}
+
+.dashboardContainer {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 }
 
 .addColumnButton {
@@ -119,10 +126,10 @@
 }
 
 .columnsWrapper {
+	display: flex;
 	padding-bottom: 10px;
 	padding-top: 14px;
 	flex-grow: 1;
-
 }
 
 
@@ -142,21 +149,25 @@
 	display: flex;
 	width: 100%;
 	gap: 10px;
+	flex-grow: 1;
+
 }
 
 
 @media screen and (max-width: 768px) {
 	.dashboardBackground {
 		padding: 26px 32px 96px 32px;
-		}
-	.columnsWrapper {
-	padding-top: 26px;
 	}
 
-	.headerText{
+	.columnsWrapper {
+		padding-top: 26px;
+	}
+
+	.headerText {
 		font-size: 18px;
 	}
-	.columnsContainer{
+
+	.columnsContainer {
 		gap: 34px;
 	}
 }
@@ -165,10 +176,12 @@
 	.dashboardBackground {
 		padding: 14px 20px 60px 20px;
 	}
-	.headerText{
-	font-size: 14px;
+
+	.headerText {
+		font-size: 14px;
 	}
+
 	.columnsWrapper {
-	padding-top: 40px;
+		padding-top: 40px;
 	}
 }
