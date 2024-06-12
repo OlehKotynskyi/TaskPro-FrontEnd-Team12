@@ -1,0 +1,91 @@
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	max-width: 334px;
+	width: 100%;
+    height: 49px;
+	border: 0;
+	border-radius: 8px;
+	padding: 14px;
+
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dashboard {
+    height: 56px;
+}
+
+.default {
+	background: #bedbb0;
+	color: #161616;
+}
+
+.neutral {
+	background: #121212;
+	color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+	.default:hover,
+	.default:focus,
+	.default:active {
+		background: #a1cf89;
+		transform: scale(1.04);
+	}
+
+	.default:active,
+	.neutral:active {
+		transform: scale(1);
+	}
+
+	.neutral:hover,
+	.neutral:focus,
+	.neutral:active {
+		background: #1a1a1a;
+		transform: scale(1.04);
+	}
+}
+
+.buttonText {
+	font-family: "Poppins", sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 21px;
+	letter-spacing: -0.02em;
+}
+
+.iconWrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 5px;
+	margin-right: 8px;
+	flex: 0 0 28px;
+}
+
+.defaultWrap {
+	background: #161616;
+}
+
+.neutralWrap {
+	background: #ffffff;
+}
+
+.icon {
+	width: 14px;
+	height: 14px;
+	background: transparent;
+}
+
+.defaultIcon {
+	stroke: #fff;
+}
+
+.neutralIcon {
+	stroke: #161616;
+}

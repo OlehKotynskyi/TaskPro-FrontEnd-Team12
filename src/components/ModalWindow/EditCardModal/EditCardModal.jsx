@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './customDatePicker.css';
 import { format, isToday, isTomorrow, isYesterday } from 'date-fns';
 import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
-import { ModalButton } from "../Shared/ModalButton/ModalButton"
+import { Button } from "../../Shared/Button/Button"
 
 const tempData = {
         title: "Current title",
@@ -97,7 +97,7 @@ export const EditCardModal = ({data = tempData, onClose }) => {
                     />
                 </div>
 
-                <ModalButton icon="plus" onClick={handleSubmit}>Add</ModalButton>
+                <Button icon="plus" onClick={handleSubmit}>Add</Button>
             </div>
         </ModalContainer>
     );
