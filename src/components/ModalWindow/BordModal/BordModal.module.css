@@ -1,80 +1,81 @@
 .input {
-    width: 100%;
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 14px;
-    letter-spacing: -0.02em;
-    color: #fff;
-    border: 1px solid #bedbb0;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
-    background: #1f1f1f;
-    opacity: 0.4;
-    padding: 14px 18px;
+	width: 100%;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 14px;
+	letter-spacing: -0.02em;
+	color: #fff;
+	border: 1px solid #bedbb0;
+	border-radius: 8px;
+	box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
+	background: #1f1f1f;
+	opacity: 0.4;
+	padding: 14px 18px;
 }
 
 .input:focus {
-    outline: none;
-    opacity: 1;
+	outline: none;
+	opacity: 1;
 }
 
 .listIcons {
-    display: flex;
-    gap: 8px;
+	display: flex;
+	gap: 8px;
 }
 
 .icon {
-    width: 18px;
-    height: 18px;
-    opacity: 0.5;
+	width: 18px;
+	height: 18px;
+	opacity: 0.5;
 }
 
 
 
 .inputIcon:checked+.labeIcon .icon {
-    opacity: 1;
+	opacity: 1;
 }
 
 .inputIcon {
-    display: none;
+	display: none;
 }
 
 .text {
 
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: -0.02em;
-    color: #fff;
-    margin: 24px 0 14px;
+	font-weight: 500;
+	font-size: 14px;
+	letter-spacing: -0.02em;
+	color: #fff;
+	margin: 24px 0 14px;
 }
 
 .listBackground {
-    width: 280px;
-    display: flex;
-    gap: 4px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
+	width: 280px;
+	display: flex;
+	gap: 4px;
+	margin-bottom: 40px;
+	flex-wrap: wrap;
 }
 
 .backgroundBox {
-    border-radius: 8px;
-    width: 28px;
-    height: 28px;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #1F1F1F;
+	border-radius: 8px;
+	width: 28px;
+	height: 28px;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #1F1F1F;
 }
 
 .emptyPicture {
-    width: 16px;
-    height: 16px;
-    stroke: rgb(56, 55, 55);
+	width: 28;
+	height: 28px;
+	fill: #1F1F1F;
+	color: rgb(56, 55, 55);
 }
 
 .iconImg {
-    width: 28;
-    height: 28px;
-    border-radius: 8px;
+	width: 28;
+	height: 28px;
+	border-radius: 8px;
 }
