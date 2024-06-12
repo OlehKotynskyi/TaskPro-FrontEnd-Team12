@@ -6,8 +6,6 @@ import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 import { DashboardButton } from 'components/DashboardButton/DashboardButton';
 import sprite from '../../images/sprite.svg';
 
-
-
 export const NewColumn = ({ onClose }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAddCardModal, setShowAddCardModal] = useState(false);
@@ -24,7 +22,6 @@ export const NewColumn = ({ onClose }) => {
 
   const handleAddCardModalOpen = () => setShowAddCardModal(true);
   const handleAddCardModalClose = () => setShowAddCardModal(false);
-  
 
   return (
     <div className={css.columnContainer}>
@@ -44,8 +41,10 @@ export const NewColumn = ({ onClose }) => {
         </div>
       </div>
 
-      <ColumnCard />
-      <DashboardButton icon="plus" onClick={handleAddCardModalOpen}>
+      <div className={css.cardsContainer}>
+        <ColumnCard />
+      </div>
+      <DashboardButton className={css.addCardButton} icon="plus" onClick={handleAddCardModalOpen}>
         Add another card
       </DashboardButton>
       {showAddCardModal && (

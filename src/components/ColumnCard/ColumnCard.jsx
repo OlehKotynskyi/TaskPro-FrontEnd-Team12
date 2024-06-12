@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import css from './ColumnCard.module.css';
 import { ColumnCardItem } from 'components/ColumnCardItem/ColumnCardItem';
-import SimpleBar from 'simplebar-react';
-import 'simplebar-react/dist/simplebar.min.css';
 import { ProgressModal } from 'components/ModalWindow/ProgressModal/ProgressModal';
 import { EditCardModal } from 'components/ModalWindow/EditCardModal/EditCardModal';
 
@@ -12,10 +10,8 @@ export const ColumnCard = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [cards, setCards] = useState([1, 2, 3, 4]);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
-
-
-
   const [screenSize, setScreenSize] = useState('pc');
+  const listRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,14 +49,8 @@ export const ColumnCard = () => {
     );
   };
 
-  const simpleBarStyle = {
-    maxHeight:
-      screenSize === 'mobile' ? 450 : screenSize === 'tablet' ? 616 : 450,
-  };
-
   const handleEditModalOpen = () => setShowEditCardModal(true);
   const handleEditModalClose = () => setShowEditCardModal(false);
-
 
   return (
     <>
@@ -69,7 +59,14 @@ export const ColumnCard = () => {
           [css.columnResponsive]: screenSize !== 'pc',
         })}
       >
-        <SimpleBar style={simpleBarStyle}>
+        <div
+          className={css.scrollable}
+          style={{
+            maxHeight: `calc(100vh - 20px)`,
+            overflowY: 'auto',
+          }}
+          ref={listRef}
+        >
           <ul className={css.cardsList}>
             {cards.map((card, index) => (
               <ColumnCardItem
@@ -77,22 +74,16 @@ export const ColumnCard = () => {
                 index={index}
                 handleOpenProgress={handleOpenProgress}
                 handleDeleteCard={handleDeleteCard}
-
                 handleEditModalOpen={handleEditModalOpen}
-
                 handleOpenEdit={handleOpenEdit}
-
               />
             ))}
           </ul>
-        </SimpleBar>
+        </div>
 
         {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
-
-        {showEditCardModal && <EditCardModal onClose={handleEditModalClose}></EditCardModal>}
-
-        {showEditModal && <EditCardModal onClose={handleCloseEdit}></EditCardModal>}
-
+        {showEditCardModal && <EditCardModal onClose={handleEditModalClose} />}
+        {showEditModal && <EditCardModal onClose={handleCloseEdit} />}
       </div>
     </>
   );
