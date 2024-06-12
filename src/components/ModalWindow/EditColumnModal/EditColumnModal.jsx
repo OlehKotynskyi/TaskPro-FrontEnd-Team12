@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import styles from './EditColumnModal.module.css';
 import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
-import { ModalButton } from "../Shared/ModalButton/ModalButton"
+import { Button } from "../../Shared/Button/Button"
 
 export const EditColumnModal = ({ columnTitle, onClose }) => {
   const [newTitle, setNewTitle] = useState(columnTitle);
 
   const handleSubmit = () => {
       console.log("New Column title is ", newTitle);
-      // onClose(newTitle);
       onClose(newTitle);
   };
 
@@ -22,7 +21,7 @@ export const EditColumnModal = ({ columnTitle, onClose }) => {
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
           />
-        <ModalButton icon="plus" onClick={handleSubmit}>Add</ModalButton>
+        <Button icon="plus" onClick={handleSubmit}>Add</Button>
       </form>
     </ModalContainer>
   );

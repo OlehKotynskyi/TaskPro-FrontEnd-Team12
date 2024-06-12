@@ -3,7 +3,7 @@ import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { useForm } from 'react-hook-form';
 import css from './HelpModal.module.css';
 import clsx from 'clsx';
-import { ModalButton } from '../Shared/ModalButton/ModalButton';
+import { Button } from "../../Shared/Button/Button"
 
 export const HelpModal = ({ onClose }) => {
   const { register, handleSubmit } = useForm();
@@ -27,7 +27,7 @@ export const HelpModal = ({ onClose }) => {
           name="text"
           placeholder="Comment"
         />
-        <ModalButton>Send</ModalButton>
+        <Button>Send</Button>
       </form>
     </ModalContainer>
   );

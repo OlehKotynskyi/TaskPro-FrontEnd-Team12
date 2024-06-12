@@ -3,7 +3,7 @@ import css from './NewColumn.module.css';
 import { EditColumnModal } from 'components/ModalWindow/EditColumnModal/EditColumnModal';
 import { ColumnCard } from 'components/ColumnCard/ColumnCard';
 import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
-import { DashboardButton } from 'components/DashboardButton/DashboardButton';
+import { Button } from '../Shared/Button/Button';
 import sprite from '../../images/sprite.svg';
 
 export const NewColumn = ({ onClose }) => {
@@ -44,9 +44,9 @@ export const NewColumn = ({ onClose }) => {
       <div className={css.cardsContainer}>
         <ColumnCard />
       </div>
-      <DashboardButton className={css.addCardButton} icon="plus" onClick={handleAddCardModalOpen}>
+      <Button usage="dashboard" className={css.addCardButton} icon="plus" onClick={handleAddCardModalOpen}>
         Add another card
-      </DashboardButton>
+      </Button>
       {showAddCardModal && (
         <AddCardModal onClose={handleAddCardModalClose}></AddCardModal>
       )}
