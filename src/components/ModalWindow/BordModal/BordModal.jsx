@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../../images/sprite.svg';
+import sprite from '../../../images/sprite.svg';
 import css from './BordModal.module.css';
 import path1 from '../../../images/modal_background/modalBgIcon(1).jpg';
 import path2 from '../../../images/modal_background/modalBgIcon (2) .jpg';
@@ -135,7 +135,7 @@ export const BordModal = ({ onClose, type, board }) => {
               />
               <label htmlFor={item} className={css.labeIcon}>
                 <svg className={css.icon}>
-                  <use href={`${logo}#${item}`} />
+                  <use href={`${sprite}#${item}`} />
                 </svg>
               </label>
             </li>
@@ -154,7 +154,7 @@ export const BordModal = ({ onClose, type, board }) => {
             <label htmlFor="empty" className={css.labeIcon}>
               <div className={css.backgroundBox}>
                 <svg className={css.emptyPicture}>
-                  <use href={`${logo}#icon-hexagon-01`} />
+                  <use href={`${sprite}#icon-block-background`} />
                 </svg>
               </div>
             </label>
