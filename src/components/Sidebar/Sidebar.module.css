@@ -6,20 +6,31 @@
     left: -100%;
     z-index: 1;
 
+
 }
 
 .sidebarWrap.visible {
+    transition: background-color 0.1s linear;
     background-color: rgba(21, 21, 21, 0.5);
     left: 0;
-    transition: background-color 1s linear 1s;
 }
 
 .sidebar {
+    top: 0;
+    left: -100%;
+    position: absolute;
     width: 225px;
     height: 100%;
     background: #121212;
     padding: 14px 0 24px;
 }
+
+.sidebarWrap.visible .sidebar {
+    left: 0;
+    transition: left 0.3s ease-in-out;
+}
+
+
 
 .logoBox {
     display: flex;
@@ -192,10 +203,14 @@
 }
 
 @media screen and (min-width: 1440px) {
-    .sidebarWrap {
+    .sidebarWrap, .sidebar {
         position: static;
         width: 260px;
+    }
 
+
+    .projects {
+        height: calc(100% - 510px);
     }
 
     .helpText {
