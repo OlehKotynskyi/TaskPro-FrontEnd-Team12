@@ -62,7 +62,6 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
-
       });
     //   .addCase(handleGoogleAuth.fulfilled, (state, action) => {
     //     const { token } = action.payload;

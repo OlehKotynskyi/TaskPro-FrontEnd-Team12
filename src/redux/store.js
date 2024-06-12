@@ -16,7 +16,7 @@ import authReducer from './auth/authSlice';
 // import { themeSlice } from './themeSlice';
 // import { activeBoardIdSlice } from './activeBoardSlice';
 // import sidebarReducer from './sidebarSlice';
-// import { boardsApi } from './boardsSlice';
+import boardsReduser from './boards/boardsSlice';
 // import { columnsApi } from './columnsSlice';
 // import { todosApi } from './cardsSlice';
 // import { filterReducer } from './filterSlice';
@@ -42,6 +42,7 @@ const rootReducer = combineReducers({
   // theme: themeSlice.reducer,
   // sidebar: sidebarReducer,
   auth: persistReducer(authPersistConfig, authReducer),
+  boards: boardsReduser,
   // filter: filterReducer,
   // activeBoardId: activeBoardIdSlice.reducer,
   // [boardsApi.reducerPath]: boardsApi.reducer,
