@@ -25,6 +25,8 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -36,7 +38,11 @@ export const LoginForm = () => {
       await dispatch(logIn(data)).unwrap();
       navigate('/home');
     } catch (error) {
-      console.error('Failed to register:', error);
+      console.error('Failed to log in:', error);
+      setError('server', {
+        type: 'manual',
+        message: 'Failed to log in. Please try again.',
+      });
     } finally {
       setIsLoading(false);
     }
@@ -45,41 +51,58 @@ export const LoginForm = () => {
   const toggleShowPassword = () => {
     setShowPassword(prevState => !prevState);
   };
+
+  const handleEmailValidation = e => {
+    const email = e.target.value;
+    if (!email) {
+      clearErrors('email');
+      return;
+    }
+    const isValid = schema.fields.email.isValidSync(email);
+    if (!isValid) {
+      setError('email', { type: 'manual', message: 'Invalid email' });
+    } else {
+      clearErrors('email');
+    }
+  };
+
   return (
-    <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={css.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className={css.formWrap}>
-        <input
-          className={`${css.formImput} ${errors.email ? css.error : ''}`}
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          {...register('email')}
-        />
-        {errors.email && <p className={css.errors}>{errors.email.message}</p>}
+        <div className={css.formWrapImput}>
+          <input
+            className={`${css.formImput} ${errors.email ? css.error : ''}`}
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            {...register('email', { onBlur: handleEmailValidation })}
+          />
+          {errors.email && <p className={css.errors}>{errors.email.message}</p>}
+        </div>
+        <div className={css.formWrapImput}>
+          <input
+            className={`${css.formImput} ${errors.password ? css.error : ''}`}
+            type={showPassword ? 'text' : 'password'}
+            {...register('password')}
+            placeholder="Create a password"
+          />
+          <svg
+            className={css.icon}
+            width="20"
+            height="20"
+            onClick={toggleShowPassword}
+          >
+            <use
+              xlinkHref={`${sprite}#${
+                showPassword ? 'icon-eye' : 'icon-eye-off'
+              }`}
+            ></use>
+          </svg>
+          {errors.password && (
+            <p className={css.errors}>{errors.password.message}</p>
+          )}
+        </div>
       </div>
-      <div className={css.formWrap}>
-        <input
-          className={`${css.formImput} ${errors.password ? css.error : ''}`}
-          type={showPassword ? 'text' : 'password'}
-          {...register('password')}
-          placeholder="Create a password"
-        />
-        <svg
-          className={css.icon}
-          width="20"
-          height="20"
-          onClick={toggleShowPassword}
-        >
-          <use
-            xlinkHref={`${sprite}#${
-              showPassword ? 'icon-eye' : 'icon-eye-off'
-            }`}
-          ></use>
-        </svg>
-        {errors.password && (
-          <p className={css.errors}>{errors.password.message}</p>
-        )}
-      </div>{' '}
       <button className={css.formBtn} type="submit" disabled={isLoading}>
         {isLoading ? <LoaderButton /> : 'Log In Now'}
       </button>

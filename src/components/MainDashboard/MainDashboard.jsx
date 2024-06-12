@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AddColumnModal } from 'components/ModalWindow/AddColumnModal/AddColumnModal';
 import { Filters } from 'components/ModalWindow/Filters/Filters';
@@ -14,6 +14,22 @@ export const MainDashboard = () => {
   const [amountOfBoards] = useState(1);
   const [showAddColumnModal, setShowAddColumnModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
+  const [showRightSpacer, setShowRightSpacer] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrollable =
+        document.documentElement.scrollHeight >
+        window.innerHeight + window.pageYOffset;
+
+      setShowRightSpacer(!isScrollable);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleOpenAdd = () => {
     setShowAddColumnModal(true);
@@ -33,14 +49,13 @@ export const MainDashboard = () => {
 
   return (
     <div className={css.dashboardBackground}>
-      
       <div className={css.filterContainer}>
         <h3 className={css.headerText}>Project office</h3>
         <button onClick={handleOpenFilter} className={css.filter}>
           <svg className={css.iconFilter} width={16} height={16}>
             <use href={`${sprite}#icon-filter`} />
           </svg>
-          
+
           <p className={css.filterText}>Filters</p>
         </button>
       </div>
@@ -52,6 +67,9 @@ export const MainDashboard = () => {
               <NewColumn />
               <NewColumn />
               <NewColumn />
+              <NewColumn />
+              <NewColumn />
+              <NewColumn />
               <DashboardButton
                 styleType="neutral"
                 icon="plus"
@@ -60,6 +78,7 @@ export const MainDashboard = () => {
               >
                 Add another column
               </DashboardButton>
+              {showRightSpacer && <div className={css.rightSpacer}></div>}
             </div>
           </div>
         </div>
