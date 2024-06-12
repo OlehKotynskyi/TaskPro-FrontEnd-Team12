@@ -6,9 +6,17 @@
 }
 
 .formWrap {
+	width: 100%;
+	margin-bottom: 24px;
+}
+
+.formWrapImput {
 	position: relative;
 	width: 100%;
-	margin-bottom: 14px;
+}
+
+.formWrapImput:not(:last-child) {
+	margin-bottom: 22px;
 }
 
 .formImput {
@@ -61,7 +69,6 @@
 	background-color: rgba(190, 219, 176, 1);
 	width: 100%;
 	height: 49px;
-	margin-top: 10px;
 	font-style: normal;
 	font-size: 14px;
 	font-weight: 500;
@@ -96,7 +103,7 @@
 
 .errors {
 	position: absolute;
-	bottom: -12px;
+	bottom: -15px;
 	font-size: 10px;
 	color: rgba(255, 0, 0, 0.788);
 }

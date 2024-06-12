@@ -6,6 +6,7 @@
 	letter-spacing: -0.02em;
 	text-align: center;
 	color: rgba(255, 255, 255, 0.5);
+
 }
 
 .dashboardBackground {
@@ -13,6 +14,7 @@
 	flex-grow: 1;
 	overflow-x: auto;
 	margin-bottom: 10px;
+
 }
 
 .dashboardBackground::-webkit-scrollbar {
@@ -92,6 +94,7 @@
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
+
 }
 
 .addColumnButton {
@@ -127,6 +130,7 @@
 	padding-bottom: 10px;
 	padding-top: 14px;
 	flex-grow: 1;
+
 }
 
 
@@ -145,35 +149,35 @@
 .columnsContainer {
 	display: flex;
 	width: 100%;
-	gap: 10px;
+	gap: 34px;
 }
 
 
 @media screen and (max-width: 768px) {
 	.dashboardBackground {
 		padding: 26px 32px 96px 32px;
-		}
-	.columnsWrapper {
-	padding-top: 26px;
 	}
 
-	.headerText{
+	.columnsWrapper {
+		padding-top: 26px;
+	}
+
+	.headerText {
 		font-size: 18px;
 	}
-	
+
 }
 
 @media screen and (max-width: 375px) {
 	.dashboardBackground {
 		padding: 14px 20px 60px 20px;
 	}
-	.headerText{
-	font-size: 14px;
+
+	.headerText {
+		font-size: 14px;
 	}
+
 	.columnsWrapper {
-	padding-top: 40px;
+		padding-top: 40px;
 	}
-}
-.columnsContainer {
-	gap: 34px;
 }
