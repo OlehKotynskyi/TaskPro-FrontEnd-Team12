@@ -51,6 +51,11 @@ export const EditCardModal = ({data = tempData, onClose }) => {
         }
     };
 
+    const isPastDate = (date) => {
+        const today = new Date();
+        return date < today.setHours(0, 0, 0, 0);
+    };
+
     return (
         <ModalContainer modalTitle="Edit card" onClose={onClose}>
             <div className={styles.form}>
@@ -94,6 +99,8 @@ export const EditCardModal = ({data = tempData, onClose }) => {
                         dateFormat="MMMM d"
                         onChange={(date) => setNewDeadline(date)}
                         customInput={<CustomInput />}
+                        minDate={new Date()}
+                        dayClassName={(date) => isPastDate(date) ? 'react-datepicker__day--disabled' : undefined}
                     />
                 </div>
 

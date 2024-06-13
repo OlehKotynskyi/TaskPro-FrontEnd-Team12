@@ -10,7 +10,6 @@
 	box-shadow: 0 24px 30px rgba(0, 0, 0, 0.5);
 }
 
-
 .react-datepicker__header {
 	background-color: var(--background-dark-light);
 	border: none;
@@ -104,6 +103,19 @@
 	color: var(--color-dark-text);
 }
 
+
+/* disabled days */
+.react-datepicker__day--disabled {
+	color: grey;
+	pointer-events: none;
+	background: none !important;
+}
+
+.react-datepicker__day--disabled:hover {
+	background-color: transparent !important;
+}
+
+/* no trianble on the bottom */
 .react-datepicker__triangle {
 	display: none;
 }
