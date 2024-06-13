@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './customDatePicker.css';
 import { format, isToday, isTomorrow, isYesterday } from 'date-fns';
 import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
-import { ModalButton } from "../Shared/ModalButton/ModalButton"
+import { Button } from "../../Shared/Button/Button"
 
 const tempData = {
         title: "Current title",
@@ -51,6 +51,11 @@ export const EditCardModal = ({data = tempData, onClose }) => {
         }
     };
 
+    const isPastDate = (date) => {
+        const today = new Date();
+        return date < today.setHours(0, 0, 0, 0);
+    };
+
     return (
         <ModalContainer modalTitle="Edit card" onClose={onClose}>
             <div className={styles.form}>
@@ -94,10 +99,12 @@ export const EditCardModal = ({data = tempData, onClose }) => {
                         dateFormat="MMMM d"
                         onChange={(date) => setNewDeadline(date)}
                         customInput={<CustomInput />}
+                        minDate={new Date()}
+                        dayClassName={(date) => isPastDate(date) ? 'react-datepicker__day--disabled' : undefined}
                     />
                 </div>
 
-                <ModalButton icon="plus" onClick={handleSubmit}>Add</ModalButton>
+                <Button icon="plus" onClick={handleSubmit}>Add</Button>
             </div>
         </ModalContainer>
     );

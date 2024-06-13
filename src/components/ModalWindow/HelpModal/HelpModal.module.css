@@ -4,11 +4,11 @@
     font-weight: 400;
     font-size: 14px;
     letter-spacing: -0.02em;
-    color: #fff;
-    border: 1px solid #bedbb0;
+    color: var(--color-white);
+    border: 1px solid var(--color-green);
     border-radius: 8px;
     box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
-    background: #1f1f1f;
+    background-color: var(--background-dark-light);
     opacity: 0.4;
     padding: 14px 18px;
 }

@@ -1,2 +1,26 @@
 @import url('../fonts/fonts.css');
 @import url('./normalize.css');
+
+:root {
+	--background-dark: #121212;
+	--background-dark-light: #1f1f1f;
+	--background-blue-light: #d6d8ff;
+	--color-light: #635e5e;
+	--color-gray: rgba(255, 255, 255, 0.5);
+	--color-green: #bedbb0;
+	--color-green-hover: #9dc888;
+	--color-dark-gray: rgba(255, 255, 255, 0.3);
+	--color-blue: #5255bc;
+	--color-blue-light: #8fa1d0;
+	--color-blue-light-btn: #7b7ede;
+	--color-pink: #e09cb5;
+	--color-dark-text: #161616;
+	--color-dark: #000;
+	--color-blue-white: #b8bcfd;
+	--color-white: #fff;
+	--color-gray-rgb: rgba(255, 255, 255, 0.8);
+}
+
+/*transition: all 0.3s ease-in-out;*/
+/*transition: background-color 0.3s ease,
+transform 0.3s ease;*/

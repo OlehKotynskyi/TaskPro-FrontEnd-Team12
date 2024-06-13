@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './AddColumnModal.module.css';
 import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
-import { ModalButton } from "../Shared/ModalButton/ModalButton"
+import { Button } from "../../Shared/Button/Button"
 
 export const AddColumnModal = ({ onClose }) => {
   const [title, setTitle] = useState('');
@@ -21,7 +21,7 @@ export const AddColumnModal = ({ onClose }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-        <ModalButton icon="plus" onClick={handleSubmit}>Add</ModalButton>
+        <Button icon="plus" onClick={handleSubmit}>Add</Button>
       </form>
     </ModalContainer>
   );

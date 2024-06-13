@@ -42,17 +42,15 @@ export const HelpModal = ({ onClose }) => {
   return (
     <ModalContainer onClose={onClose} modalTitle="Need help">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={css.formWrapImput}>
-          <input
-            className={css.input}
-            {...register('email', { onBlur: handleEmailValidation })}
-            type="text"
-            name="email"
-            placeholder="Email address "
-            id="email"
-          />
-          {errors.email && <p className={css.errors}>{errors.email.message}</p>}
-        </div>
+        <input
+          className={css.input}
+          {...register('email', { onBlur: handleEmailValidation })}
+          type="text"
+          name="email"
+          placeholder="Email address "
+          id="email"
+        />
+        {errors.email && <p className={css.errors}>{errors.email.message}</p>}
         <textarea
           className={clsx(css.input, css.textarea)}
           {...register('text')}

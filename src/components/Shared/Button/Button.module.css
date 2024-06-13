@@ -5,11 +5,16 @@
 	flex-shrink: 0;
 	max-width: 334px;
 	width: 100%;
-	height: 56px;
+	height: 49px;
 	border: 0;
 	border-radius: 8px;
 	padding: 14px;
+
 	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dashboard {
+	height: 56px;
 }
 
 .default {
@@ -27,7 +32,7 @@
 	.default:hover,
 	.default:focus,
 	.default:active {
-		background: var(--color-green-hover);
+		background-color: var(--color-green-hover);
 		transform: scale(1.04);
 	}
 
@@ -45,6 +50,7 @@
 }
 
 .buttonText {
+	font-family: "Poppins", sans-serif;
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 21px;

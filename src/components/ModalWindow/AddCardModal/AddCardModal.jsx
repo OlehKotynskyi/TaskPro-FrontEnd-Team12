@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './customDatePicker.css';
 import { format, isToday, isTomorrow, isYesterday } from 'date-fns';
 import { ModalContainer } from "../Shared/ModalContainer/ModalContainer"
-import { ModalButton } from "../Shared/ModalButton/ModalButton"
+import { Button } from "../../Shared/Button/Button"
 
 export const AddCardModal = ({ onClose }) => {
     const [title, setTitle] = useState('');
@@ -42,6 +42,11 @@ export const AddCardModal = ({ onClose }) => {
             const dayOfWeek = format(date, 'EEEE');
             return `${dayOfWeek}, ${formattedDate}`;
         }
+    };
+
+    const isPastDate = (date) => {
+        const today = new Date();
+        return date < today.setHours(0, 0, 0, 0);
     };
 
     return (
@@ -88,10 +93,11 @@ export const AddCardModal = ({ onClose }) => {
                         dateFormat="MMMM d"
                         onChange={(date) => setDeadline(date)}
                         customInput={<CustomInput />}
+                        minDate={new Date()}
+                        dayClassName={(date) => isPastDate(date) ? 'react-datepicker__day--disabled' : undefined}
                     />
                 </div>
-
-                <ModalButton icon="plus" onClick={handleSubmit}>Add</ModalButton>
+                <Button icon="plus" onClick={handleSubmit}>Add</Button>
             </div>
         </ModalContainer>
     );

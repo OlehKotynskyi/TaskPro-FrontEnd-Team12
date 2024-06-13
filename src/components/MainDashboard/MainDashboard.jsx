@@ -8,7 +8,7 @@ import '../../styles/base.css';
 import css from './MainDashboard.module.css';
 import sprite from '../../images/sprite.svg';
 
-import { DashboardButton } from 'components/DashboardButton/DashboardButton';
+import { Button } from '../Shared/Button/Button';
 
 export const MainDashboard = () => {
   const [amountOfBoards] = useState(1);
@@ -70,14 +70,15 @@ export const MainDashboard = () => {
               <NewColumn />
               <NewColumn />
               <NewColumn />
-              <DashboardButton
-                styleType="neutral"
+              <Button
+                usage="dashboard"
+                color="neutral"
                 icon="plus"
                 onClick={handleOpenAdd}
                 className={css.addColumnButton}
               >
                 Add another column
-              </DashboardButton>
+              </Button>
               {showRightSpacer && <div className={css.rightSpacer}></div>}
             </div>
           </div>

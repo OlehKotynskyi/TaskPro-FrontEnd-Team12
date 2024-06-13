@@ -21,7 +21,7 @@
     position: absolute;
     width: 225px;
     height: 100%;
-    background: #121212;
+    background-color: var(--background-dark);
     padding: 14px 0 24px;
 }
 
@@ -44,19 +44,19 @@
     font-weight: 600;
     font-size: 16px;
     letter-spacing: -0.04em;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .logoSvg {
     width: 32px;
     height: 32px;
-    fill: #1f1f1f;
+    fill: var(--background-dark-light);
 }
 
 .createTitle {
     font-size: 12px;
     letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color-gray);
     margin-bottom: 8px;
 }
 
@@ -76,7 +76,7 @@
     font-size: 14px;
     letter-spacing: -0.02em;
     line-height: 21px;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .createBtn {
@@ -84,20 +84,32 @@
     border-radius: 6px;
     width: 40px;
     height: 36px;
-    background: #bedbb0;
+    background-color: var(--color-green);
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.createBtn:hover, .createBtn:active {
-    background: #9dc888;
+@media (hover: hover) and (pointer: fine) {
+
+    .createBtn:hover,
+    .createBtn:focus,
+    .createBtn:active {
+        background-color: var(--color-green-hover);
+        transform: scale(1.08);
+    }
+
+    .createBtn:active {
+        transform: scale(1);
+    }
 }
 
 .createSvg {
     width: 20px;
     height: 20px;
-    stroke: #121212
+    stroke: var(--background-dark);
 }
 
 .projects {
@@ -108,7 +120,7 @@
 }
 
 .helpBlock {
-    background-color: #1f1f1f;
+    background-color: var(--background-dark-light);
     padding: 14px;
     border-radius: 8px;
     margin-bottom: 24px;
@@ -126,13 +138,13 @@
     font-size: 12px;
     line-height: 133%;
     letter-spacing: -0.02em;
-    color: #fff;
+    color: var(--color-white);
     word-break: break-word;
     margin-bottom: 18px;
 }
 
 .helpLink {
-    color: #9dc888;
+    color: var(--color-green-hover);
 }
 
 .helpSvg {
@@ -150,7 +162,7 @@
     font-weight: 500;
     font-size: 12px;
     letter-spacing: -0.02em;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .logOutSvg {
@@ -167,14 +179,14 @@
     background-color: transparent;
     font-weight: 500;
     font-size: 14px;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .block {
     padding: 0 14px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
     .sidebar {
         width: 260px;
         padding: 24px 0;
@@ -203,7 +215,9 @@
 }
 
 @media screen and (min-width: 1440px) {
-    .sidebarWrap, .sidebar {
+
+    .sidebarWrap,
+    .sidebar {
         position: static;
         width: 260px;
     }
