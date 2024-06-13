@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import {
   register,
   logIn,
   logOut,
   refreshUser,
-  //   editProfile,
-  //   handleGoogleAuth,
+  userCurrent,
+  updateUser
 } from './authOperations.js';
 // import {
 //   addCard,
@@ -20,6 +20,9 @@ const initialState = {
   refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
+  boards: [],
+  status: 'idle',
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -62,6 +65,29 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
+      })
+      .addCase(userCurrent.pending, state => {
+        state.status = 'loading';
+        state.isLoggedIn = true;
+      })
+      .addCase(userCurrent.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload.user;
+        state.boards = action.payload.boards;
+        state.isLoggedIn = true;
+      })
+      .addCase(userCurrent.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+        state.isLoggedIn = true;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        toast.success('User profile updated successfully');
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.error = action.payload;
+        toast.error('Failed to update user profile');
       });
     //   .addCase(handleGoogleAuth.fulfilled, (state, action) => {
     //     const { token } = action.payload;

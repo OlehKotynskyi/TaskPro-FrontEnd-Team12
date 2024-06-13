@@ -11,15 +11,10 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-// Імпортуйте свої редюсери
 import authReducer from './auth/authSlice';
-// import { themeSlice } from './themeSlice';
-// import { activeBoardIdSlice } from './activeBoardSlice';
-// import sidebarReducer from './sidebarSlice';
+
 import boardsReduser from './boards/boardsSlice';
-// import { columnsApi } from './columnsSlice';
-// import { todosApi } from './cardsSlice';
-// import { filterReducer } from './filterSlice';
+
 
 const authPersistConfig = {
   key: 'auth',
