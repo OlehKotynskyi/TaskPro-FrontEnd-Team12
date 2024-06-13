@@ -235,7 +235,5 @@
         height: calc(100% - 532px);
     }
 
-    .helpText {
-        font-size: 16px;
-    }
+
 }

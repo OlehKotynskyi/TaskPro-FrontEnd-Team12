@@ -19,9 +19,9 @@ import path15 from '../../../images/modal_background/modalBgIcon(15).jpg';
 
 import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { useForm } from 'react-hook-form';
-import { ModalButton } from '../Shared/ModalButton/ModalButton';
 import { useDispatch } from 'react-redux';
 import { addBoard, editBoard } from '../../../redux/boards/boardsOperations';
+import { Button } from 'components/Shared/Button/Button';
 
 const icons = [
   'icon-project',
@@ -188,7 +188,7 @@ export const BordModal = ({ onClose, type, board }) => {
             </li>
           ))}
         </ul>
-        <ModalButton icon="plus">{isCreate ? 'Create' : 'Edit'}</ModalButton>
+        <Button icon="plus">{isCreate ? 'Create' : 'Edit'}</Button>
       </form>
     </ModalContainer>
   );

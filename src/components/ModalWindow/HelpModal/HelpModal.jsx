@@ -3,9 +3,9 @@ import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { useForm } from 'react-hook-form';
 import css from './HelpModal.module.css';
 import clsx from 'clsx';
-import { ModalButton } from '../Shared/ModalButton/ModalButton';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from 'components/Shared/Button/Button';
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -57,7 +57,7 @@ export const HelpModal = ({ onClose }) => {
           name="text"
           placeholder="Comment"
         />
-        <ModalButton>Send</ModalButton>
+        <Button>Send</Button>
       </form>
     </ModalContainer>
   );
