@@ -4,7 +4,7 @@
 	font-weight: 400;
 	font-size: 14px;
 	letter-spacing: 0.02em;
-	color: var(--color-white);
+	color: var(--color-text-base);
 }
 
 .radioGroup {
@@ -34,7 +34,7 @@
 	font-weight: 400;
 	font-size: 12px;
 	letter-spacing: -0.02em;
-	color: var(--color-white);
+	color: var(--card-text);
 	margin-left: 10px;
 }
 

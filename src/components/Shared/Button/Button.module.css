@@ -19,12 +19,12 @@
 
 .default {
 	background-color: var(--color-green);
-	color: var(--color-dark-text);
+	color: var(--color-btn-text);
 }
 
 .neutral {
-	background-color: var(--background-dark);
-	color: var(--color-white);
+	background-color: var(--main-todo);
+	color: var(--color-text-base);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -32,7 +32,7 @@
 	.default:hover,
 	.default:focus,
 	.default:active {
-		background-color: var(--color-green-hover);
+		background-color: var(--color-green-dark);
 		transform: scale(1.04);
 	}
 
@@ -44,7 +44,7 @@
 	.neutral:hover,
 	.neutral:focus,
 	.neutral:active {
-		background: #1a1a1a;
+		background-color: var(--main-todo-hv);
 		transform: scale(1.04);
 	}
 }
@@ -69,11 +69,11 @@
 }
 
 .defaultWrap {
-	background-color: var(--color-dark-text);
+	background-color: var(--color-btn-text);
 }
 
 .neutralWrap {
-	background-color: var(--color-white);
+	background-color: var(--main-todo-svg);
 }
 
 .icon {
@@ -83,9 +83,9 @@
 }
 
 .defaultIcon {
-	stroke: var(--color-white);
+	stroke: var(--main-todo-svg-defalt);
 }
 
 .neutralIcon {
-	stroke: var(--color-dark-text);
+	stroke: var(--color-modal-time);
 }

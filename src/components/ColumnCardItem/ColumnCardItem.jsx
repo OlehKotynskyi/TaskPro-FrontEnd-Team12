@@ -11,7 +11,7 @@ export const ColumnCardItem = ({
   const handleDelete = () => handleDeleteCard(index);
 
   return (
-    <div>
+    <>
       <li className={css.cardContainer}>
         <div className={css.contentContainer}>
           <h4 className={css.contentTitle}>The Watch Spot Design</h4>
@@ -63,6 +63,6 @@ export const ColumnCardItem = ({
           </div>
         </div>
       </li>
-    </div>
+    </>
   );
 };

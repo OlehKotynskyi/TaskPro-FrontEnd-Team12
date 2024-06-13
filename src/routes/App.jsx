@@ -9,7 +9,7 @@ import {
 } from '../redux/auth/authSelectors';
 import { refreshUser } from '../redux/auth/authOperations';
 import { Loader } from '../components/Loaders/Loader';
-
+import { ThemeProvider } from '../components/ThemeContext/ThemeContext';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -50,9 +50,11 @@ export const App = () => {
               <Route
                 path="/home"
                 element={
-                  <PrivateRoute>
-                    <HomePage />
-                  </PrivateRoute>
+                  <ThemeProvider>
+                    <PrivateRoute>
+                      <HomePage />
+                    </PrivateRoute>
+                  </ThemeProvider>
                 }
               />
               <Route path="*" element={<NotFoundPage />} />
