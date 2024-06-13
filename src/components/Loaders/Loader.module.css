@@ -70,7 +70,7 @@
 }
 
 .ring:nth-child(4) {
-	border-bottom: 8px solid var(--background-dark-light);
+	border-bottom: 8px solid var(--color-light);
 	animation: rotate4 2s linear infinite;
 }
 
