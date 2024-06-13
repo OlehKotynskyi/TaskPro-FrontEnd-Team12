@@ -1,6 +1,6 @@
 .sidebarWrap {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     position: absolute;
     top: 0;
     left: -100%;
@@ -186,7 +186,10 @@
     padding: 0 14px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
+
+
+
     .sidebar {
         width: 260px;
         padding: 24px 0;
@@ -216,15 +219,20 @@
 
 @media screen and (min-width: 1440px) {
 
-    .sidebarWrap,
-    .sidebar {
+    .sidebarWrap {
         position: static;
         width: 260px;
     }
 
+    .sidebar {
+        position: static;
+        width: 260px;
+
+    }
+
 
     .projects {
-        height: calc(100% - 510px);
+        height: calc(100% - 532px);
     }
 
     .helpText {
