@@ -127,7 +127,7 @@
     line-height: 133%;
     letter-spacing: -0.02em;
     color: #fff;
-    word-break: break-all;
+    word-break: break-word;
     margin-bottom: 18px;
 }
 

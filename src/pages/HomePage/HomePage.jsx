@@ -1,11 +1,22 @@
 import { MainDashboard } from 'components/MainDashboard/MainDashboard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from '../../components/Header/Header';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import css from './HomePage.module.css';
+import { useDispatch } from 'react-redux';
+import { featchBoards } from '../../redux/boards/boardsOperations';
 
 const HomePage = () => {
+  const dispatch = useDispatch();
   const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  useEffect(() => {
+    const getAllBoards = () => {
+      const payload = {};
+      dispatch(featchBoards(payload));
+    };
+    getAllBoards();
+  }, [dispatch]);
 
   return (
     <div className={css.homePage}>
