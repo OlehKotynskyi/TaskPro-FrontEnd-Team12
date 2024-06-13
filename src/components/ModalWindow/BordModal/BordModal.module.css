@@ -4,11 +4,11 @@
 	font-weight: 400;
 	font-size: 14px;
 	letter-spacing: -0.02em;
-	color: #fff;
-	border: 1px solid #bedbb0;
+	color: var(--color-white);
+	border: 1px solid var(--color-green);
 	border-radius: 8px;
 	box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
-	background: #1f1f1f;
+	background-color: var(--background-dark-light);
 	opacity: 0.4;
 	padding: 14px 18px;
 }
@@ -44,7 +44,7 @@
 	font-weight: 500;
 	font-size: 14px;
 	letter-spacing: -0.02em;
-	color: #fff;
+	color: var(--color-white);
 	margin: 24px 0 14px;
 }
 
@@ -60,17 +60,17 @@
 	border-radius: 8px;
 	width: 28px;
 	height: 28px;
-	background: #fff;
+	background: var(--color-white);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #1F1F1F;
+	background-color: var(--background-dark-light);
 }
 
 .emptyPicture {
 	width: 28;
 	height: 28px;
-	fill: #1F1F1F;
+	fill: var(--background-dark-light);
 	color: rgb(56, 55, 55);
 }
 
