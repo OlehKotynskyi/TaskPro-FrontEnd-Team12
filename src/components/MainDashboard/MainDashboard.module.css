@@ -5,7 +5,7 @@
 	line-height: 129%;
 	letter-spacing: -0.02em;
 	text-align: center;
-	color: rgba(255, 255, 255, 0.5);
+	color: var(--color-gray);
 
 }
 
@@ -73,14 +73,14 @@
 	font-weight: 500;
 	font-size: 14px;
 	letter-spacing: -0.02em;
-	color: rgba(255, 255, 255, 0.8);
+	color: var(--color-gray-rgb);
 }
 
 .headerText {
 	font-weight: 500;
 	font-size: 18px;
 	letter-spacing: -0.02em;
-	color: #fff;
+	color: var(--color-white);
 }
 
 @media (min-width: 1440px) {
@@ -101,7 +101,7 @@
 	border-radius: 8px;
 	max-width: 334px;
 	height: 56px;
-	background: #121212;
+	background-color: var(--background-dark);
 	display: flex;
 	border: 0;
 	align-items: center;
@@ -109,18 +109,17 @@
 	flex-shrink: 0;
 	margin-left: 10px;
 	white-space: nowrap;
-
 }
 
 .buttonText {
 	font-weight: 500;
 	font-size: 14px;
 	letter-spacing: -0.02em;
-	color: #fff;
+	color: var(--color-white);
 }
 
 .plusSvg {
-	background: #fff;
+	background-color: var(--color-white);
 	border-radius: 8px;
 	margin-right: 8px;
 }

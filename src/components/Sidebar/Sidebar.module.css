@@ -1,82 +1,82 @@
 .sidebarWrap {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    z-index: 1;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: -100%;
+	z-index: 1;
 
 
 }
 
 .sidebarWrap.visible {
-    transition: background-color 0.1s linear;
-    background-color: rgba(21, 21, 21, 0.5);
-    left: 0;
+	transition: background-color 0.1s linear;
+	background-color: rgba(21, 21, 21, 0.5);
+	left: 0;
 }
 
 .sidebar {
-    top: 0;
-    left: -100%;
-    position: absolute;
-    width: 225px;
-    height: 100%;
-    background: #121212;
-    padding: 14px 0 24px;
+	top: 0;
+	left: -100%;
+	position: absolute;
+	width: 225px;
+	height: 100%;
+	background-color: var(--background-dark);
+	padding: 14px 0 24px;
 }
 
 .sidebarWrap.visible .sidebar {
-    left: 0;
-    transition: left 0.3s ease-in-out;
+	left: 0;
+	transition: left 0.3s ease-in-out;
 }
 
 
 
 .logoBox {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 70px;
-    padding: 0 14px;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-bottom: 70px;
+	padding: 0 14px;
 }
 
 .logoTitle {
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: -0.04em;
-    color: #fff;
+	font-weight: 600;
+	font-size: 16px;
+	letter-spacing: -0.04em;
+	color: var(--color-white);
 }
 
 .logoSvg {
-    width: 32px;
-    height: 32px;
-    fill: #1f1f1f;
+	width: 32px;
+	height: 32px;
+	fill: var(--background-dark-light);
 }
 
 .createTitle {
-    font-size: 12px;
-    letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 8px;
+	font-size: 12px;
+	letter-spacing: -0.02em;
+	color: var(--color-gray);
+	margin-bottom: 8px;
 }
 
 .createBox {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: space-between;
-    padding: 14px 4px 14px 0;
-    align-items: center;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	display: flex;
+	justify-content: space-between;
+	padding: 14px 4px 14px 0;
+	align-items: center;
 
 }
 
 .createText {
-    width: 76px;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: -0.02em;
-    line-height: 21px;
-    color: #fff;
+	width: 76px;
+	font-weight: 500;
+	font-size: 14px;
+	letter-spacing: -0.02em;
+	line-height: 21px;
+	color: var(--color-white);
 }
 
 .createBtn {
@@ -84,136 +84,148 @@
     border-radius: 6px;
     width: 40px;
     height: 36px;
-    background: #bedbb0;
+   	background-color: var(--color-green);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
+
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.createBtn:hover, .createBtn:active {
-    background: #9dc888;
+@media (hover: hover) and (pointer: fine) {
+	.createBtn:hover,
+	.createBtn:focus,
+    .createBtn:active {
+		background-color: var(--color-green-hover);
+		transform: scale(1.08);
+	}
+	.createBtn:active {
+		transform: scale(1);
+	}
 }
 
 .createSvg {
-    width: 20px;
-    height: 20px;
-    stroke: #121212
+	width: 20px;
+	height: 20px;
+	stroke: var(--background-dark);
 }
 
 .projects {
-    height: calc(100% - 468px);
-    overflow-y: auto;
-    padding: 40px 0 20px;
+	height: calc(100% - 468px);
+	overflow-y: auto;
+	padding: 40px 0 20px;
 
 }
 
 .helpBlock {
-    background-color: #1f1f1f;
-    padding: 14px;
-    border-radius: 8px;
-    margin-bottom: 24px;
+	background-color: var(--background-dark-light);
+	padding: 14px;
+	border-radius: 8px;
+	margin-bottom: 24px;
 }
 
 .img {
-    width: 54px;
-    height: 78px;
-    margin-bottom: 14px;
+	width: 54px;
+	height: 78px;
+	margin-bottom: 14px;
 }
 
 .helpText {
-    width: 168px;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 133%;
-    letter-spacing: -0.02em;
-    color: #fff;
-    word-break: break-all;
-    margin-bottom: 18px;
+	width: 168px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 133%;
+	letter-spacing: -0.02em;
+	color: var(--color-white);
+	word-break: break-all;
+	margin-bottom: 18px;
 }
 
 .helpLink {
-    color: #9dc888;
+	color: var(--color-green-hover);
 }
 
 .helpSvg {
-    width: 20px;
-    height: 20px;
+	width: 20px;
+	height: 20px;
 
 }
 
 .helpBtn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border: none;
-    background-color: transparent;
-    font-weight: 500;
-    font-size: 12px;
-    letter-spacing: -0.02em;
-    color: #fff;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border: none;
+	background-color: transparent;
+	font-weight: 500;
+	font-size: 12px;
+	letter-spacing: -0.02em;
+	color: var(--color-white);
 }
 
 .logOutSvg {
-    width: 23px;
-    height: 23px;
+	width: 23px;
+	height: 23px;
 }
 
 .logOutBtn {
-    gap: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: transparent;
-    font-weight: 500;
-    font-size: 14px;
-    color: #fff;
+	gap: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	background-color: transparent;
+	font-weight: 500;
+	font-size: 14px;
+	color: var(--color-white);
 }
 
 .block {
-    padding: 0 14px;
+	padding: 0 14px;
 }
 
 @media screen and (max-width: 768px) {
-    .sidebar {
-        width: 260px;
-        padding: 24px 0;
-    }
+	.sidebar {
+		width: 260px;
+		padding: 24px 0;
+	}
 
-    .logoBox {
-        padding: 0 24px;
-    }
+	.logoBox {
+		padding: 0 24px;
+	}
 
-    .helpText {
-        font-size: 14px;
-    }
+	.helpText {
+		font-size: 14px;
+	}
 
-    .logOutSvg {
-        width: 32px;
-        height: 32px;
-    }
+	.logOutSvg {
+		width: 32px;
+		height: 32px;
+	}
 
-    .block {
-        padding: 0 24px;
-    }
+	.block {
+		padding: 0 24px;
+	}
 
-    .projects {
-        height: calc(100% - 500px);
-    }
+	.projects {
+		height: calc(100% - 500px);
+	}
 }
 
 @media screen and (min-width: 1440px) {
-    .sidebarWrap, .sidebar {
-        position: static;
-        width: 260px;
-    }
+
+	.sidebarWrap,
+	.sidebar {
+		position: static;
+		width: 260px;
+	}
 
 
-    .projects {
-        height: calc(100% - 510px);
-    }
+	.projects {
+		height: calc(100% - 510px);
+	}
 
-    .helpText {
-        font-size: 16px;
-    }
+	.helpText {
+		font-size: 16px;
+	}
 }
