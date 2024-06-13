@@ -1,15 +1,32 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import css from './Header.module.css';
 import sprite from '../../images/sprite.svg';
 import { useOutsideClick } from 'hooks/useOutsideClick';
 import UserEditModal from '../ModalWindow/UserEditModal/UserEditModal';
+import {
+  selectUser,
+  selectIsLoggedIn,
+  selectIsRefreshing,
+} from '../../redux/auth/authSelectors';
+import { userCurrent } from '../../redux/auth/authOperations';
 
 export const Header = ({ onVisible }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isShowTheme, setIsShowTheme] = useState(false);
   const ref = useRef(null);
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useOutsideClick(ref, () => setIsShowTheme(false));
+
+  useEffect(() => {
+    if (isLoggedIn && !isRefreshing) {
+      dispatch(userCurrent());
+    }
+  }, [dispatch, isLoggedIn, isRefreshing]);
 
   const toggleOpenTheme = () => setIsShowTheme(!isShowTheme);
 
@@ -26,21 +43,9 @@ export const Header = ({ onVisible }) => {
     setIsShowTheme(false);
   };
 
-  //  const handleEditProfile = e => {
-  //    e.preventDefault();
-  //    // Handle edit profile
-  //    handleModalClose();
-  //  };
-
   const onOpenSidebar = () => {
     onVisible(true);
   };
-
-  //  const hendelWrapClick = e => {
-  //    if (e.target === e.currentTarget) {
-  //      setModalOpen(false);
-  //    }
-  //  };
 
   return (
     <div className={css.headerBox}>
@@ -84,65 +89,19 @@ export const Header = ({ onVisible }) => {
           </div>
         </div>
         <div className={css.imgBtn}>
-          <p className={css.text}>Name</p>
+          <p className={css.text}>{user ? user.name : 'Loading...'}</p>
           <div className={css.avatarWrap} onClick={handleModalOpen}>
-            <svg className={css.avatar}>
-              <use href={`${sprite}#icon-user`} />
-            </svg>
+            {user?.avatarURL ? (
+              <img src={user.avatarURL} alt="avatar" className={css.avatar} />
+            ) : (
+              <svg className={css.avatar}>
+                <use href={`${sprite}#icon-user`} />
+              </svg>
+            )}
           </div>
         </div>
       </div>
       {isModalOpen && <UserEditModal onClose={handleModalClose} />}
-      {/* {isModalOpen && (
-        <div className={css.modalWrap} onClick={hendelWrapClick}>
-          <div className={css.modalContainer}>
-            <button className={css.closeBtn} onClick={handleModalClose}>
-              <svg>
-                <use href={`${sprite}#icon-x-close`} />
-              </svg>
-            </button>
-            <div className={css.titleBox}>
-              <h2 className={css.title}>Edit profile</h2>
-            </div>
-            <form className={css.form} onSubmit={handleEditProfile}>
-              <div className={css.avatarBox}>
-                <svg>
-                  <use href={`${sprite}#icon-user`} />
-                </svg>
-                <button className={css.avatarBtn}>+</button>
-              </div>
-              <label>
-                <input
-                  className={css.input}
-                  type="text"
-                  value="name"
-                  required
-                />
-              </label>
-              <label>
-                <input
-                  className={css.input}
-                  type="email"
-                  value="email"
-                  required
-                />
-              </label>
-              <label>
-                <input
-                  className={css.input}
-                  type="password"
-                  value="password"
-                  required
-                />
-              </label>
-              {/* Add photo upload here */}
-      {/* <button className={css.sendBtn} type="submit">
-                Save
-              </button>
-            </form>
-          </div>
-        </div> */}
-      {/* )} */}
     </div>
   );
 };

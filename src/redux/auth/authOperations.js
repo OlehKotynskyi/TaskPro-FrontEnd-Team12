@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-hot-toast';
-// import { boardsApi } from 'store/boardsSlice';
-// import { clearActiveBoardId } from 'store/activeBoardSlice';
 
 axios.defaults.baseURL = 'https://project-team-12-taskpro-backend.onrender.com';
 
@@ -20,9 +18,6 @@ export const register = createAsyncThunk(
     try {
       const { data } = await axios.post('/api/users/signUp', credentials);
       setAuthHeader();
-
-      //   await thunkAPI.dispatch(boardsApi.util.invalidateTags(['Boards']));
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -36,9 +31,6 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post('/api/users/signIn', credentials);
       setAuthHeader(data.token);
-
-      //   await thunkAPI.dispatch(boardsApi.util.invalidateTags(['Boards']));
-
       return data;
     } catch (error) {
       toast.error(
@@ -55,10 +47,7 @@ export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
 
     await axios.post('/api/users/signOut');
 
-    
     clearAuthHeader();
-
-    // thunkAPI.dispatch(clearActiveBoardId());
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -87,22 +76,53 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-// export const editProfile = createAsyncThunk(
-//   'auth/editProfile',
-//   async ({ formData, token }, thunkAPI) => {
-//     try {
-//       const resp = await axios.patch('api/users', formData, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//           'Content-Type': 'multipart/form-data',
-//         },
-//       });
-//       return resp.data.user;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const userCurrent = createAsyncThunk(
+  'auth/current',
+  async (_, thunkAPI) => {
+    const accessToken = thunkAPI.getState().auth.accessToken;
+    const controller = new AbortController();
+    thunkAPI.signal.addEventListener('abort', () => controller.abort());
+    if (!accessToken) {
+      return thunkAPI.rejectWithValue('No access token available');
+    }
+    setAuthHeader(accessToken);
+    try {
+      const resp = await axios.get('/api/users/current', {
+        signal: controller.signal,
+      });
+
+      return resp.data;
+    } catch (error) {
+      toast.error('Failed to fetch user data');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async ({formData}, thunkAPI) => {
+    const accessToken = thunkAPI.getState().auth.accessToken;
+    const controller = new AbortController();
+    thunkAPI.signal.addEventListener('abort', () => controller.abort());
+    if (!accessToken) {
+      return thunkAPI.rejectWithValue('No access token available');
+    }
+    setAuthHeader(accessToken);
+    try {
+      const response = await axios.patch('/api/users/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        signal: controller.signal,
+      });
+      return response.data.user;
+    } catch (error) {
+      
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 // export const handleGoogleAuth = createAsyncThunk(
 //   'auth/handleAuth',

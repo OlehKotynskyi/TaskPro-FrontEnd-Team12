@@ -1,36 +1,90 @@
-import { useRef } from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
+import { useRef, useEffect, useState } from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import { useSelector, useDispatch } from 'react-redux';
 import css from './UserEditModal.module.css';
 import sprite from '../../../images/sprite.svg';
+import {
+  selectUser,
+  selectIsLoggedIn,
+  selectIsRefreshing,
+  selectAccessToken,
+} from '../../../redux/auth/authSelectors';
+import { userCurrent, updateUser } from '../../../redux/auth/authOperations';
+import { Toaster, toast } from 'react-hot-toast';
 
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  email: Yup.string().email("Must be a valid email!").required("Required"),
-  password: Yup.string()
-    .min(7, "Too short")
-    .max(256, "Too long")
-    .required("Required"),
+    .min(3, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  email: Yup.string().email('Must be a valid email!').required('Required'),
+  password: Yup.string().min(7, 'Too short').max(256, 'Too long'),
 });
-
 
 export default function UserEditModal({ onClose }) {
   const fileInputRef = useRef(null);
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const token = useSelector(selectAccessToken);
+
   const methods = useForm({
     resolver: yupResolver(ValidationSchema),
+    defaultValues: {
+      name: user?.name || '',
+      email: user?.email || '',
+    },
   });
-  const { handleSubmit, reset } = methods;
+  const { handleSubmit, reset, setValue } = methods;
+  const [file, setFile] = useState(null);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  useEffect(() => {
+    if (isLoggedIn && !isRefreshing) {
+      dispatch(userCurrent());
+    }
+  }, [dispatch, isLoggedIn, isRefreshing]);
+
+  useEffect(() => {
+    if (user) {
+      setValue('name', user.name);
+      setValue('email', user.email);
+    }
+  }, [user, setValue]);
+
+  const onSubmit = async userData => {
+    const formData = new FormData();
+
+    for (const key in userData) {
+      if (userData.hasOwnProperty(key)) {
+        formData.append(key, userData[key]);
+      }
+    }
+
+    formData.append('theme', user.theme);
+
+    if (file) {
+      formData.append('avatar', file);
+    }
+    try {
+      await dispatch(updateUser({ formData, token })).unwrap();
+      toast.success('Updated successfully', {
+        position: 'top-center',
+        style: { background: 'green', color: 'white' },
+      });
+      reset();
+      onClose();
+    } catch (error) {
+      toast.error(`Error: ${error.message}`, {
+        position: 'top-center',
+        style: { background: 'red', color: 'white' },
+      });
+    }
   };
 
-  const handleMenuClick = (ev) => {
+  const handleMenuClick = ev => {
     ev.stopPropagation();
   };
 
@@ -38,12 +92,9 @@ export default function UserEditModal({ onClose }) {
     fileInputRef.current.click();
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      console.log("Selected file:", file.name);
-      // додати логіку для завантаження файлу на сервер або оновлення аватарки
-    }
+  const handleFileChange = event => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
   };
 
   return (
@@ -51,7 +102,7 @@ export default function UserEditModal({ onClose }) {
       <div className={css.backdrop} onClick={() => onClose()}>
         <div
           className={`${css.container} ${css.cont}`}
-          onClick={(e) => handleMenuClick(e)}
+          onClick={handleMenuClick}
         >
           <div className={css.wrap}>
             <button className={css.closeBtn} onClick={() => onClose()}>
@@ -62,13 +113,23 @@ export default function UserEditModal({ onClose }) {
           </div>
           <p className={css.txt}>Edit Profile</p>
           <div className={css.avatarContainer}>
-            <svg className={css.avatar}>
-              <use href={`${sprite}#icon-user`} />
-            </svg>
+            {file ? (
+              <img
+                src={URL.createObjectURL(file)}
+                alt="avatar"
+                className={css.avatar}
+              />
+            ) : user?.avatarURL ? (
+              <img src={user.avatarURL} alt="avatar" className={css.avatar} />
+            ) : (
+              <svg className={css.avatar}>
+                <use href={`${sprite}#icon-user`} />
+              </svg>
+            )}
             <button
               type="button"
               className={css.plusBtn}
-              onClick={() => handleButtonClick()}
+              onClick={handleButtonClick}
             >
               <svg width="10" height="10" stroke="currentColor">
                 <use href={`${sprite}#icon-plus`}></use>
@@ -76,13 +137,17 @@ export default function UserEditModal({ onClose }) {
               <input
                 type="file"
                 ref={fileInputRef}
-                style={{ display: "none" }}
-                onChange={(e) => handleFileChange(e)}
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
               />
             </button>
           </div>
           <FormProvider {...methods}>
-            <form className={css.forma} onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+            <form
+              className={css.forma}
+              onSubmit={handleSubmit(onSubmit)}
+              autoComplete="off"
+            >
               <div className={css.formGroup}>
                 <label htmlFor="name" className={css.formLabel}></label>
                 <input
@@ -90,10 +155,12 @@ export default function UserEditModal({ onClose }) {
                   name="name"
                   className={css.formInput}
                   placeholder="Name"
-                  {...methods.register("name")}
+                  {...methods.register('name')}
                 />
                 {methods.formState.errors.name && (
-                  <span className={css.error}>{methods.formState.errors.name.message}</span>
+                  <span className={css.error}>
+                    {methods.formState.errors.name.message}
+                  </span>
                 )}
               </div>
               <div className={css.formGroup}>
@@ -103,24 +170,27 @@ export default function UserEditModal({ onClose }) {
                   name="email"
                   className={css.formInput}
                   placeholder="Email"
-                  {...methods.register("email")}
+                  {...methods.register('email')}
                 />
                 {methods.formState.errors.email && (
-                  <span className={css.error}>{methods.formState.errors.email.message}</span>
+                  <span className={css.error}>
+                    {methods.formState.errors.email.message}
+                  </span>
                 )}
               </div>
               <div className={css.formGroup}>
                 <label htmlFor="password" className={css.formLabel}></label>
                 <input
-                    type="password"
-                    name="password"
-                    className={css.formInput}
-                    placeholder="Password"
-                    {...methods.register("password")}
-                  />
-                {/* <PasswordField /> */}
+                  type="password"
+                  name="password"
+                  className={css.formInput}
+                  placeholder="Password"
+                  {...methods.register('password')}
+                />
                 {methods.formState.errors.password && (
-                  <span className={css.error}>{methods.formState.errors.password.message}</span>
+                  <span className={css.error}>
+                    {methods.formState.errors.password.message}
+                  </span>
                 )}
               </div>
               <button type="submit" className={css.btn}>
@@ -130,6 +200,7 @@ export default function UserEditModal({ onClose }) {
           </FormProvider>
         </div>
       </div>
+      <Toaster />
     </>
   );
 }
