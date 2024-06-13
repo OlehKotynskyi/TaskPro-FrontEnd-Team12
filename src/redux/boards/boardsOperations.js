@@ -28,6 +28,7 @@ export const featchBoards = createAsyncThunk(
 export const editBoard = createAsyncThunk(
   'boards/editBoard',
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const { data } = await axios.put('/api', payload);
 

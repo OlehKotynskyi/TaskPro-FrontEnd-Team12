@@ -68,5 +68,5 @@ const boardSlice = createSlice({
   },
 });
 // export const {  } = boardSlice.actions;
-
+export const { selectBoards } = boardSlice.selectors;
 export default boardSlice.reducer;

@@ -20,6 +20,8 @@ import path15 from '../../../images/modal_background/modalBgIcon(15).jpg';
 import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { useForm } from 'react-hook-form';
 import { ModalButton } from '../Shared/ModalButton/ModalButton';
+import { useDispatch } from 'react-redux';
+import { addBoard, editBoard } from '../../../redux/boards/boardsOperations';
 
 const icons = [
   'icon-project',
@@ -94,6 +96,7 @@ const backgrounds = [
   },
 ];
 export const BordModal = ({ onClose, type, board }) => {
+  const dispatch = useDispatch();
   const isCreate = type === 'create';
 
   const { register, handleSubmit } = useForm({
@@ -105,7 +108,18 @@ export const BordModal = ({ onClose, type, board }) => {
   });
 
   const onSubmit = data => {
-    console.log(data);
+    const payload = {
+      title: data.title,
+      icon: data.icon,
+      background: data.bgnd,
+    };
+    if (isCreate) {
+      dispatch(addBoard(payload));
+    } else {
+      payload.id = board.id;
+
+      dispatch(editBoard(payload));
+    }
   };
 
   return (
