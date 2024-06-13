@@ -13,7 +13,7 @@
 }
 
 .h3 {
-	color: rgb(82, 79, 79);
+	color: var(--color-dark);
 }
 
 .ring {
@@ -25,7 +25,7 @@
 }
 
 .ring:nth-child(1) {
-	border-bottom: 8px solid rgb(240, 42, 230);
+	border-bottom: 8px solid var(--color-green);
 	animation: rotate1 2s linear infinite;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .ring:nth-child(2) {
-	border-bottom: 8px solid rgb(240, 19, 67);
+	border-bottom: 8px solid var(--color-pink);
 	animation: rotate2 2s linear infinite;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .ring:nth-child(3) {
-	border-bottom: 8px solid rgb(3, 170, 170);
+	border-bottom: 8px solid var(--color-blue-light);
 	animation: rotate3 2s linear infinite;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .ring:nth-child(4) {
-	border-bottom: 8px solid rgb(207, 135, 1);
+	border-bottom: 8px solid var(--color-light);
 	animation: rotate4 2s linear infinite;
 }
 

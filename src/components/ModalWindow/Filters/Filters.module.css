@@ -1,90 +1,90 @@
 .labelTitle {
-    margin-bottom: 14px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    color: #fff;
+	margin-bottom: 14px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	letter-spacing: 0.02em;
+	color: var(--color-white);
 }
 
 .radioGroup {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .radioLabel {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 
-    position: relative;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1.5;
+	position: relative;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1.5;
 }
 
 .radioLabel:not(:last-child) {
-    margin-bottom: 12px;
+	margin-bottom: 12px;
 }
 
 .radioInput {
-    display: none;
+	display: none;
 }
 
 .labelText {
-    font-weight: 400;
-    font-size: 12px;
-    letter-spacing: -0.02em;
-    color: #fff;
-    margin-left: 10px;
+	font-weight: 400;
+	font-size: 12px;
+	letter-spacing: -0.02em;
+	color: var(--color-white);
+	margin-left: 10px;
 }
 
 .customRadio {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: currentColor;
-    position: relative;
-    transition: all 0.2s ease;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: currentColor;
+	position: relative;
+	transition: all 0.2s ease;
 }
 
 .customRadio::before {
-    content: '';
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: transparent;
-    border: 2px solid transparent;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.2s ease;
+	content: '';
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: transparent;
+	border: 2px solid transparent;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: all 0.2s ease;
 }
 
-.radioInput:checked + .customRadio {
-    border: 1px solid currentColor;
-    background: #1e1e1e;
+.radioInput:checked+.customRadio {
+	border: 1px solid currentColor;
+	background: #1e1e1e;
 }
 
-.radioInput:checked + .customRadio::before {
-    background: currentColor;
-    border-color: currentColor;
+.radioInput:checked+.customRadio::before {
+	background: currentColor;
+	border-color: currentColor;
 }
 
 
 .blueLabel {
-    color: #6C89FA;
+	color: #6C89FA;
 }
 
 .pinkLabel {
-    color: #F99FB4;
+	color: #F99FB4;
 }
 
 .greenLabel {
-    color: #B4E1A8;
+	color: #B4E1A8;
 }
 
 .blackLabel {
-    color: #555555;
+	color: #555555;
 }

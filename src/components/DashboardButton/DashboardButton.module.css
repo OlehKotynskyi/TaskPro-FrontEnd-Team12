@@ -9,18 +9,17 @@
 	border: 0;
 	border-radius: 8px;
 	padding: 14px;
-
 	transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .default {
-	background: #bedbb0;
-	color: #161616;
+	background-color: var(--color-green);
+	color: var(--color-dark-text);
 }
 
 .neutral {
-	background: #121212;
-	color: #fff;
+	background-color: var(--background-dark);
+	color: var(--color-white);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -28,7 +27,7 @@
 	.default:hover,
 	.default:focus,
 	.default:active {
-		background: #a1cf89;
+		background: var(--color-green-hover);
 		transform: scale(1.04);
 	}
 
@@ -46,7 +45,6 @@
 }
 
 .buttonText {
-	font-family: "Poppins", sans-serif;
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 21px;
@@ -65,11 +63,11 @@
 }
 
 .defaultWrap {
-	background: #161616;
+	background-color: var(--color-dark-text);
 }
 
 .neutralWrap {
-	background: #ffffff;
+	background-color: var(--color-white);
 }
 
 .icon {
@@ -79,9 +77,9 @@
 }
 
 .defaultIcon {
-	stroke: #fff;
+	stroke: var(--color-white);
 }
 
 .neutralIcon {
-	stroke: #161616;
+	stroke: var(--color-dark-text);
 }
