@@ -4,6 +4,7 @@ import css from './Header.module.css';
 import sprite from '../../images/sprite.svg';
 import { useOutsideClick } from 'hooks/useOutsideClick';
 import UserEditModal from '../ModalWindow/UserEditModal/UserEditModal';
+import { useTheme } from '../ThemeContext/ThemeContext';
 import {
   selectUser,
   selectIsLoggedIn,
@@ -19,6 +20,7 @@ export const Header = ({ onVisible }) => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
+  const { changeTheme } = useTheme();
 
   useOutsideClick(ref, () => setIsShowTheme(false));
 
@@ -39,7 +41,7 @@ export const Header = ({ onVisible }) => {
   };
 
   const onSelectTheme = value => {
-    console.log(value);
+    changeTheme(value);
     setIsShowTheme(false);
   };
 

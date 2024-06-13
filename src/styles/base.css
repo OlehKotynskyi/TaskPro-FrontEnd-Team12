@@ -1,26 +1,104 @@
 @import url('../fonts/fonts.css');
 @import url('./normalize.css');
 
+
 :root {
-	--background-dark: #121212;
-	--background-dark-light: #1f1f1f;
-	--background-blue-light: #d6d8ff;
-	--color-light: #635e5e;
-	--color-gray: rgba(255, 255, 255, 0.5);
+	--background-header: #161616;
+	--color-text-base: #fff;
+	--color-text-rgb: rgba(255, 255, 255, 0.8);
+	--color-modal-time: #151515;
+	--color-borer-modal: #BEDBB0;
 	--color-green: #bedbb0;
-	--color-green-hover: #9dc888;
-	--color-dark-gray: rgba(255, 255, 255, 0.3);
-	--color-blue: #5255bc;
-	--color-blue-light: #8fa1d0;
-	--color-blue-light-btn: #7b7ede;
-	--color-pink: #e09cb5;
-	--color-dark-text: #161616;
-	--color-dark: #000;
-	--color-blue-white: #b8bcfd;
-	--color-white: #fff;
-	--color-gray-rgb: rgba(255, 255, 255, 0.8);
+	--color-modal-text-time: rgba(255, 255, 255, 0.5);
+	--color-green-border: rgba(190, 219, 176, 0.4);
+	--color-btn-text: #161616;
+	--color-green-dark: #9dc888;
+	--bg-add-user: #bedbb0;
+	--bg-sidebar: #121212;
+	--titel-sidebar: #fff;
+	--logo-sidebar: #fff;
+	--logo-sidebar-bg: #1f1f1f;
+	--text-sidebar-rgb: rgba(255, 255, 255, 0.5);
+	--border-sidebar: rgba(255, 255, 255, 0.1);
+	--help-sidebar: #1f1f1f;
+	--logSvg-sidebar: #bedbb0;
+	--logSvg-sidebar-hv: #9dc888;
+	--svg-sidebar: #9dc888;
+	--main-bg: #1f1f1f;
+	--main-todo: #121212;
+	--main-todo-hv: #1a1a1a;
+	--card-text: rgba(255, 255, 255, 0.5);
+	--main-todo-svg: #fff;
+	--main-todo-svg-defalt: #fff;
+	--modal-colo-transparent: #1f1f1f;
+	--modal-icon: rgba(255, 255, 255, 0.5);
+
 }
 
-/*transition: all 0.3s ease-in-out;*/
-/*transition: background-color 0.3s ease,
-transform 0.3s ease;*/
+/* Light theme */
+[data-theme='light'] {
+	--background-header: #fcfcfcfc;
+	--color-text-base: #161616;
+	--color-text-rgb: rgba(22, 22, 22, 0.8);
+	--color-modal-time: #fcfcfc;
+	--color-borer-modal: #BEDBB0;
+	--color-green: #bedbb0;
+	--color-modal-text-time: #161616;
+	--color-green-border: rgba(190, 219, 176, 0.4);
+	--color-btn-text: #161616;
+	--color-green-dark: #9dc888;
+	--bg-add-user: #bedbb0;
+	--bg-sidebar: #fff;
+	--titel-sidebar: #161616;
+	--logo-sidebar: #fff;
+	--logo-sidebar-bg: #161616;
+	--text-sidebar-rgb: rgba(22, 22, 22, 0.5);
+	--border-sidebar: rgba(22, 22, 22, 0.1);
+	--help-sidebar: #f6f6f7;
+	--logSvg-sidebar: #9dc888;
+	--main-bg: #f6f6f7;
+	--main-todo: #fff;
+	--card-text: rgba(22, 22, 22, 0.7);
+	--main-todo-hv: rgba(190, 219, 176, 0.4);
+	--main-todo-svg: #161616;
+	--main-todo-svg-defalt: #fff;
+	--modal-colo-transparent: transparent;
+	--modal-icon: #ECEDFD;
+}
+
+/* Violet theme */
+[data-theme='violet'] {
+	--background-header: #fff;
+	--color-text-base: #161616;
+	--color-text-rgb: rgba(22, 22, 22, 0.8);
+	--color-modal-time: #fcfcfc;
+	--color-borer-modal: #ECEDFD;
+	--color-green: #5255bc;
+	--color-modal-text-time: #161616;
+	--color-green-border: rgba(82, 85, 188, 0.4);
+	--color-btn-text: #fff;
+	--color-green-dark: #7b7ede;
+	--bg-add-user: #ECEDFD;
+	--bg-sidebar: #5255bc;
+	--titel-sidebar: #fff;
+	--logo-sidebar: #5255bc;
+	--logo-sidebar-bg: #fff;
+	--text-sidebar-rgb: rgba(255, 255, 255, 0.5);
+	--border-sidebar: rgba(255, 255, 255, 0.1);
+	--help-sidebar: rgba(236, 237, 253, 0.4);
+	--logSvg-sidebar: #7b7ede;
+	--main-bg: #B8BCFD;
+	--main-todo: #fff;
+	--card-text: rgba(22, 22, 22, 0.7);
+	--main-todo-hv: rgba(236, 237, 253, 0.4);
+	--main-todo-svg: #5255bc;
+	--main-todo-svg-defalt: #161616;
+	--modal-colo-transparent: transparent;
+	--modal-icon: #ECEDFD;
+}
+
+/* Example usage of variables */
+body {
+	background-color: var(--background-dark);
+	color: var(--color-white);
+}

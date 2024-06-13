@@ -3,7 +3,7 @@
 	align-items: center;
 	padding: 20px 18px 20px 14px;
 	gap: 4px;
-	background-color: var(--background-dark-light);
+	background-color: var(--help-sidebar);
 	position: relative;
 }
 
@@ -15,7 +15,7 @@
 	border-radius: 4px 0 0 4px;
 	width: 4px;
 	height: 100%;
-	background-color: var(--color-green);
+	background-color: var(--bg-add-user);
 }
 
 .cardSvg {
@@ -27,19 +27,15 @@
 .btnSvg {
 	width: 16px;
 	height: 16px;
-	stroke: var(--color-gray);
-}
-
-.btn {
-	background-color: inherit;
-	color: var(--color-gray);
+	color: var(--text-sidebar-rgb);
 	transition: all 0.3s ease-in-out;
 }
 
+
 @media (hover: hover) and (pointer: fine) {
 
-	.btn:hover {
-		color: var(--color-green);
+	.btnSvg:hover {
+		color: var(--color-green-dark);
 	}
 }
 
@@ -52,7 +48,7 @@
 	font-weight: 500;
 	font-size: 14px;
 	letter-spacing: -0.02em;
-	color: var(--color-white);
+	color: var(--titel-sidebar);
 	flex-grow: 1;
 	white-space: nowrap;
 	overflow: hidden;

@@ -5,7 +5,7 @@
 	line-height: 129%;
 	letter-spacing: -0.02em;
 	text-align: center;
-	color: var(--color-gray);
+	color: var(--color-text-rgb);
 
 }
 
@@ -14,7 +14,7 @@
 	flex-grow: 1;
 	overflow-x: auto;
 	margin-bottom: 10px;
-
+	background-color: var(--main-bg);
 }
 
 .dashboardBackground::-webkit-scrollbar {
@@ -59,6 +59,12 @@
 	align-items: center;
 	gap: 8px;
 	border: 0;
+	color: var(--color-text-base);
+}
+
+.filter svg {
+	color: var(--color-text-base);
+	transition: all 0.3s ease-in-out;
 }
 
 .filterContainer {
@@ -73,14 +79,14 @@
 	font-weight: 500;
 	font-size: 14px;
 	letter-spacing: -0.02em;
-	color: var(--color-gray-rgb);
+	color: var(--color-text-rgb);
 }
 
 .headerText {
 	font-weight: 500;
 	font-size: 18px;
 	letter-spacing: -0.02em;
-	color: var(--color-white);
+	color: var(--color-text-base);
 }
 
 @media (min-width: 1440px) {
@@ -97,41 +103,12 @@
 
 }
 
-.addColumnButton {
-	border-radius: 8px;
-	max-width: 334px;
-	height: 56px;
-	background-color: var(--background-dark);
-	display: flex;
-	border: 0;
-	align-items: center;
-	justify-content: center;
-	flex-shrink: 0;
-	margin-left: 10px;
-	white-space: nowrap;
-}
-
-.buttonText {
-	font-weight: 500;
-	font-size: 14px;
-	letter-spacing: -0.02em;
-	color: var(--color-white);
-}
-
-.plusSvg {
-	background-color: var(--color-white);
-	border-radius: 8px;
-	margin-right: 8px;
-}
-
 .columnsWrapper {
 	display: flex;
 	padding-bottom: 10px;
 	padding-top: 14px;
 	flex-grow: 1;
-
 }
-
 
 @media (min-width: 768px) {
 	.columnsWrapper {
