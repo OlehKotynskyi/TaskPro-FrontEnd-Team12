@@ -87,11 +87,21 @@
     background: #bedbb0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
+
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.createBtn:hover, .createBtn:active {
-    background: #9dc888;
+@media (hover: hover) and (pointer: fine) {
+	.createBtn:hover,
+	.createBtn:focus,
+    .createBtn:active {
+		background: #a1cf89;
+		transform: scale(1.08);
+	}
+	.createBtn:active {
+		transform: scale(1);
+	}
 }
 
 .createSvg {
