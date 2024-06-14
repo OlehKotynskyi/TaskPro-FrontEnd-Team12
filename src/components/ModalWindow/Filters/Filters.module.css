@@ -64,7 +64,7 @@
 
 .radioInput:checked+.customRadio {
 	border: 1px solid currentColor;
-	background: #1e1e1e;
+	background: var(--color-modal-time);
 }
 
 .radioInput:checked+.customRadio::before {

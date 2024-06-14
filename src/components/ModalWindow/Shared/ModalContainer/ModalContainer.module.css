@@ -48,8 +48,8 @@
 .icon {
 	width: 18px;
 	height: 18px;
-	fill: var(--color-text-base);
-
+	background: transparent;
+	stroke: var(--color-text-base);
 }
 
 @media screen and (min-width: 768px) {
