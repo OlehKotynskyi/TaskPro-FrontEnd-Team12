@@ -1,4 +1,5 @@
 .homePage {
+	display: flex;
 	height: 100vh;
 	overflow: auto;
 	background-color: var(--main-bg);
