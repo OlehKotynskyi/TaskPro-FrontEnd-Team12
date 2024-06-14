@@ -41,12 +41,15 @@ export const NewColumn = ({ onClose }) => {
         </div>
       </div>
 
-      <div className={css.cardsContainer}>
+      <div className={css.contentContainer}>
+        <div className={css.cardsContainer}>
         <ColumnCard />
       </div>
       <Button usage="dashboard" className={css.addCardButton} icon="plus" onClick={handleAddCardModalOpen}>
         Add another card
       </Button>
+      </div>
+      
       {showAddCardModal && (
         <AddCardModal onClose={handleAddCardModalClose}></AddCardModal>
       )}

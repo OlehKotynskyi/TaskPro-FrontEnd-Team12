@@ -62,7 +62,7 @@ export const ColumnCard = () => {
         <div
           className={css.scrollable}
           style={{
-            maxHeight: `calc(100vh - 20px)`,
+            maxHeight: `462px`,
             overflowY: 'auto',
           }}
           ref={listRef}
