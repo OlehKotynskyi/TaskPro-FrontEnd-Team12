@@ -101,14 +101,17 @@ export const userCurrent = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
-  async ({formData}, thunkAPI) => {
+  async ({ formData }, thunkAPI) => {
     const accessToken = thunkAPI.getState().auth.accessToken;
     const controller = new AbortController();
     thunkAPI.signal.addEventListener('abort', () => controller.abort());
+
     if (!accessToken) {
       return thunkAPI.rejectWithValue('No access token available');
     }
+
     setAuthHeader(accessToken);
+
     try {
       const response = await axios.patch('/api/users/update', formData, {
         headers: {
@@ -116,9 +119,9 @@ export const updateUser = createAsyncThunk(
         },
         signal: controller.signal,
       });
+
       return response.data.user;
     } catch (error) {
-      
       return thunkAPI.rejectWithValue(error.message);
     }
   }
