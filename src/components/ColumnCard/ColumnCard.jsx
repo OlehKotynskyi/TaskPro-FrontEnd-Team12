@@ -3,12 +3,16 @@ import clsx from 'clsx';
 import css from './ColumnCard.module.css';
 import { ColumnCardItem } from 'components/ColumnCardItem/ColumnCardItem';
 import { ProgressModal } from 'components/ModalWindow/ProgressModal/ProgressModal';
-import { EditCardModal } from 'components/ModalWindow/EditCardModal/EditCardModal';
+import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 
-export const ColumnCard = () => {
+export const ColumnCard = ({
+  card,
+  handleDeleteCard,
+  setColumns,
+  columns,
+  columnTitle,
+}) => {
   const [showProgressModal, setShowProgressModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [cards, setCards] = useState([1, 2, 3, 4]);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [screenSize, setScreenSize] = useState('pc');
   const listRef = useRef(null);
@@ -40,17 +44,23 @@ export const ColumnCard = () => {
     setShowProgressModal(false);
   };
 
-  const handleOpenEdit = () => setShowEditModal(true);
-  const handleCloseEdit = () => setShowEditModal(false);
-
-  const handleDeleteCard = indexToDelete => {
-    setCards(prevCards =>
-      prevCards.filter((_, index) => index !== indexToDelete)
-    );
+  const handleOpenEdit = () => setShowEditCardModal(true);
+  const handleCloseEdit = updatedCard => {
+    if (updatedCard) {
+      const updatedColumns = columns.map(col =>
+        col.title === columnTitle
+          ? {
+              ...col,
+              cards: col.cards.map(c =>
+                c.title === card.title ? updatedCard : c
+              ),
+            }
+          : col
+      );
+      setColumns(updatedColumns);
+    }
+    setShowEditCardModal(false);
   };
-
-  const handleEditModalOpen = () => setShowEditCardModal(true);
-  const handleEditModalClose = () => setShowEditCardModal(false);
 
   return (
     <div
@@ -67,22 +77,21 @@ export const ColumnCard = () => {
         ref={listRef}
       >
         <ul className={css.cardsList}>
-          {cards.map((card, index) => (
-            <ColumnCardItem
-              key={index}
-              index={index}
-              handleOpenProgress={handleOpenProgress}
-              handleDeleteCard={handleDeleteCard}
-              handleEditModalOpen={handleEditModalOpen}
-              handleOpenEdit={handleOpenEdit}
-            />
-          ))}
+          <ColumnCardItem
+            key={0}
+            index={0}
+            handleOpenProgress={handleOpenProgress}
+            handleOpenEdit={handleOpenEdit}
+            handleDeleteCard={handleDeleteCard}
+            card={card}
+          />
         </ul>
       </div>
 
       {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
-      {showEditCardModal && <EditCardModal onClose={handleEditModalClose} />}
-      {showEditModal && <EditCardModal onClose={handleCloseEdit} />}
+      {showEditCardModal && (
+        <AddCardModal onClose={handleCloseEdit} existingCard={card} />
+      )}
     </div>
   );
 };
