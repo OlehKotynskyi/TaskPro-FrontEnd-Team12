@@ -1,18 +1,19 @@
-// ThemeContext.js
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { setTheme as setThemeAction } from '../../redux/themeSlice';
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('dark');
+  const dispatch = useDispatch();
 
   const changeTheme = theme => {
-    setTheme(theme);
     document.documentElement.setAttribute('data-theme', theme);
+    dispatch(setThemeAction(theme));
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme }}>
+    <ThemeContext.Provider value={{ changeTheme }}>
       {children}
     </ThemeContext.Provider>
   );

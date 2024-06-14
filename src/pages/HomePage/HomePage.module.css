@@ -1,17 +1,13 @@
 .homePage {
-	/*width: 100%;*/
-	/*height: 100%;*/
-	overflow: hidden;
 	display: flex;
-	/*align-items: flex-start;*/
-	background-color: var(--background-dark-light);
-
+	height: 100vh;
+	background-color: var(--main-bg);
 }
 
 .homePageContent {
 	display: flex;
 	flex-direction: column;
-	/*flex-grow: 1;*/
+	flex-grow: 1;
 	width: 100%;
-	/*height: 100%;*/
+	height: 100%;
 }
