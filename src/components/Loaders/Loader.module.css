@@ -13,7 +13,7 @@
 }
 
 .h3 {
-	color: var(--color-dark);
+	color: #161616;
 }
 
 .ring {
@@ -25,7 +25,7 @@
 }
 
 .ring:nth-child(1) {
-	border-bottom: 8px solid var(--color-green);
+	border-bottom: 8px solid rgba(190, 219, 176, 0.4);
 	animation: rotate1 2s linear infinite;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .ring:nth-child(2) {
-	border-bottom: 8px solid var(--color-pink);
+	border-bottom: 8px solid rgba(22, 22, 22, 0.5);
 	animation: rotate2 2s linear infinite;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .ring:nth-child(3) {
-	border-bottom: 8px solid var(--color-blue-light);
+	border-bottom: 8px solid #7b7ede;
 	animation: rotate3 2s linear infinite;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .ring:nth-child(4) {
-	border-bottom: 8px solid var(--color-light);
+	border-bottom: 8px solid #1f1f1f;
 	animation: rotate4 2s linear infinite;
 }
 
