@@ -5,7 +5,7 @@
 	width: 100%;
 	flex-shrink: 0;
 	flex-grow: 1;
-	height: 100vh;
+	height: 100%;
 	position: relative;
 }
 
@@ -56,40 +56,15 @@
 	color: var(--color-white);
 }
 
-.priority {
-	display: block;
-}
-
-.deadlineContainer {
-	display: block;
-}
-
-.infoIcons {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	flex-direction: row;
-	gap: 8px;
-	margin-left: 126px;
-}
-
-.container {
-	display: flex;
-}
-
 .headerSvgButton {
 	width: 16px;
 	height: 16px;
 
 }
 
-.cardsList {
+.cardsContainer {
 	display: flex;
-	gap: 8px;
-}
-
-.contentContainer {
-	padding: 14px 20px 28px 20px;
+	flex-grow: 1;
 }
 
 .iconTrash,

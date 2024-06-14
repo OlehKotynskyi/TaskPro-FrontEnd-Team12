@@ -53,38 +53,36 @@ export const ColumnCard = () => {
   const handleEditModalClose = () => setShowEditCardModal(false);
 
   return (
-    <>
+    <div
+      className={clsx(css.column, {
+        [css.columnResponsive]: screenSize !== 'pc',
+      })}
+    >
       <div
-        className={clsx(css.column, {
-          [css.columnResponsive]: screenSize !== 'pc',
-        })}
+        className={css.scrollable}
+        style={{
+          maxHeight: `calc(100vh - 20px)`,
+          overflowY: 'auto',
+        }}
+        ref={listRef}
       >
-        <div
-          className={css.scrollable}
-          style={{
-            maxHeight: `calc(100vh - 20px)`,
-            overflowY: 'auto',
-          }}
-          ref={listRef}
-        >
-          <ul className={css.cardsList}>
-            {cards.map((card, index) => (
-              <ColumnCardItem
-                key={index}
-                index={index}
-                handleOpenProgress={handleOpenProgress}
-                handleDeleteCard={handleDeleteCard}
-                handleEditModalOpen={handleEditModalOpen}
-                handleOpenEdit={handleOpenEdit}
-              />
-            ))}
-          </ul>
-        </div>
-
-        {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
-        {showEditCardModal && <EditCardModal onClose={handleEditModalClose} />}
-        {showEditModal && <EditCardModal onClose={handleCloseEdit} />}
+        <ul className={css.cardsList}>
+          {cards.map((card, index) => (
+            <ColumnCardItem
+              key={index}
+              index={index}
+              handleOpenProgress={handleOpenProgress}
+              handleDeleteCard={handleDeleteCard}
+              handleEditModalOpen={handleEditModalOpen}
+              handleOpenEdit={handleOpenEdit}
+            />
+          ))}
+        </ul>
       </div>
-    </>
+
+      {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
+      {showEditCardModal && <EditCardModal onClose={handleEditModalClose} />}
+      {showEditModal && <EditCardModal onClose={handleCloseEdit} />}
+    </div>
   );
 };
