@@ -126,6 +126,7 @@
 .logoIcon {
 	width: 40px;
 	height: 40px;
+	color: #ffffff;
 }
 
 @media (min-width: 768px) {

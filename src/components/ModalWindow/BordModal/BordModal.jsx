@@ -130,7 +130,10 @@ export const BordModal = ({ onClose, type, board }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           className={css.input}
-          {...register('title')}
+          {...register('title', {
+            required: 'Title',
+            validate: value => value !== '' || '',
+          })}
           type="text"
           name="title"
           placeholder="Title"

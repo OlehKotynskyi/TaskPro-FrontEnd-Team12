@@ -21,7 +21,7 @@
     position: absolute;
     width: 225px;
     height: 100%;
-    background-color: var(--background-dark);
+    background-color: var(--bg-sidebar);
     padding: 14px 0 24px;
 }
 
@@ -44,25 +44,26 @@
     font-weight: 600;
     font-size: 16px;
     letter-spacing: -0.04em;
-    color: var(--color-white);
+    color: var(--titel-sidebar);
 }
 
 .logoSvg {
     width: 32px;
     height: 32px;
-    fill: var(--background-dark-light);
+    color: var(--logo-sidebar);
+    fill: var(--logo-sidebar-bg);
 }
 
 .createTitle {
     font-size: 12px;
     letter-spacing: -0.02em;
-    color: var(--color-gray);
+    color: var(--text-sidebar-rgb);
     margin-bottom: 8px;
 }
 
 .createBox {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-sidebar);
+    border-bottom: 1px solid var(--border-sidebar);
     display: flex;
     justify-content: space-between;
     padding: 14px 4px 14px 0;
@@ -76,7 +77,7 @@
     font-size: 14px;
     letter-spacing: -0.02em;
     line-height: 21px;
-    color: var(--color-white);
+    color: var(--titel-sidebar);
 }
 
 .createBtn {
@@ -84,7 +85,7 @@
     border-radius: 6px;
     width: 40px;
     height: 36px;
-    background-color: var(--color-green);
+    background-color: var(--bg-add-user);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,7 +98,7 @@
     .createBtn:hover,
     .createBtn:focus,
     .createBtn:active {
-        background-color: var(--color-green-hover);
+        background-color: var(--color-green-dark);
         transform: scale(1.08);
     }
 
@@ -109,7 +110,7 @@
 .createSvg {
     width: 20px;
     height: 20px;
-    stroke: var(--background-dark);
+    stroke: #161616;
 }
 
 .projects {
@@ -120,7 +121,7 @@
 }
 
 .helpBlock {
-    background-color: var(--background-dark-light);
+    background-color: var(--help-sidebar);
     padding: 14px;
     border-radius: 8px;
     margin-bottom: 24px;
@@ -138,19 +139,19 @@
     font-size: 12px;
     line-height: 133%;
     letter-spacing: -0.02em;
-    color: var(--color-white);
-    word-break: break-word;
+    color: var(--titel-sidebar);
+    word-break: break-all;
     margin-bottom: 18px;
 }
 
 .helpLink {
-    color: var(--color-green-hover);
+    color: var(--color-green);
 }
 
 .helpSvg {
     width: 20px;
     height: 20px;
-
+    color: var(--titel-sidebar);
 }
 
 .helpBtn {
@@ -162,7 +163,12 @@
     font-weight: 500;
     font-size: 12px;
     letter-spacing: -0.02em;
-    color: var(--color-white);
+    color: var(--titel-sidebar);
+    transition: all 0.3s ease-in-out;
+}
+
+.helpBtn:hover {
+    color: var(--color-green-dark);
 }
 
 .logOutSvg {
@@ -179,7 +185,15 @@
     background-color: transparent;
     font-weight: 500;
     font-size: 14px;
-    color: var(--color-white);
+    color: var(--titel-sidebar);
+}
+
+.logOutBtn svg {
+    transition: all 0.3s ease-in-out;
+}
+
+.logOutBtn:hover svg {
+    color: var(--color-green-dark);
 }
 
 .block {
