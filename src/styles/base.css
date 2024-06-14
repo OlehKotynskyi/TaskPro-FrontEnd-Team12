@@ -33,6 +33,10 @@
 	--modal-colo-transparent: #1f1f1f;
 	--modal-icon: rgba(255, 255, 255, 0.5);
 	--modal-border-line: rgba(255, 255, 255, 0.1);
+	--priority-low: #6C89FA;
+	--priority-medium: #F99FB4;
+	--priority-high: #B4E1A8;
+	--priority-without: #555555;
 }
 
 /* Light theme */
@@ -65,6 +69,10 @@
 	--modal-colo-transparent: transparent;
 	--modal-icon: #ECEDFD;
 	--modal-border-line: rgba(22, 22, 22, 0.1);
+	--priority-low: #6C89FA;
+	--priority-medium: #F99FB4;
+	--priority-high: #B4E1A8;
+	--priority-without: #555555;
 }
 
 /* Violet theme */
@@ -97,6 +105,10 @@
 	--modal-colo-transparent: transparent;
 	--modal-icon: #ECEDFD;
 	--modal-border-line: rgba(22, 22, 22, 0.1);
+	--priority-low: #6C89FA;
+	--priority-medium: #F99FB4;
+	--priority-high: #B4E1A8;
+	--priority-without: #555555;
 }
 
 /* Example usage of variables */

@@ -13,7 +13,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     existingCard ? existingCard.description : ''
   );
   const [labelColor, setLabelColor] = useState(
-    existingCard ? existingCard.labelColor : 'black'
+    existingCard ? existingCard.labelColor : 'without'
   );
   const [deadline, setDeadline] = useState(
     existingCard ? new Date(existingCard.deadline) : new Date()
@@ -81,7 +81,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
         <div className={styles.labelContainer}>
           <span className={styles.labelTitle}>Label color</span>
           <div className={styles.radioGroup}>
-            {['blue', 'pink', 'green', 'black'].map(color => (
+            {['low', 'medium', 'high', 'without'].map(color => (
               <label className={styles.radioLabel} key={color}>
                 <input
                   type="radio"

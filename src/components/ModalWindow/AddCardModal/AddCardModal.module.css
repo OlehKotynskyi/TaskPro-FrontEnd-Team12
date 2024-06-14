@@ -111,20 +111,20 @@
 	border-color: currentColor;
 }
 
-.blueLabel {
-	color: #6C89FA;
+.lowLabel {
+	color: var(--priority-low);
 }
 
-.pinkLabel {
-	color: #F99FB4;
+.mediumLabel {
+	color: var(--priority-medium);
 }
 
-.greenLabel {
-	color: #B4E1A8;
+.highLabel {
+	color: var(--priority-high);
 }
 
-.blackLabel {
-	color: #555555;
+.withoutLabel {
+	color: var(--priority-without);
 }
 
 .deadlineContainer {
