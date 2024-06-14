@@ -32,7 +32,7 @@
 	--main-todo-svg-defalt: #fff;
 	--modal-colo-transparent: #1f1f1f;
 	--modal-icon: rgba(255, 255, 255, 0.5);
-
+	--modal-border-line: rgba(255, 255, 255, 0.1);
 }
 
 /* Light theme */
@@ -64,6 +64,7 @@
 	--main-todo-svg-defalt: #fff;
 	--modal-colo-transparent: transparent;
 	--modal-icon: #ECEDFD;
+	--modal-border-line: rgba(22, 22, 22, 0.1);
 }
 
 /* Violet theme */
@@ -95,6 +96,7 @@
 	--main-todo-svg-defalt: #161616;
 	--modal-colo-transparent: transparent;
 	--modal-icon: #ECEDFD;
+	--modal-border-line: rgba(22, 22, 22, 0.1);
 }
 
 /* Example usage of variables */

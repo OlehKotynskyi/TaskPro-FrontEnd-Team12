@@ -109,8 +109,6 @@
 	background-color: var(--color-blue-light);
 }
 
-
-
 .infoColor {
 	width: 14px;
 	height: 14px;
@@ -128,8 +126,4 @@
 	.icon:hover {
 		color: var(--color-green-dark);
 	}
-}
-
-.modal {
-	z-index: 99999;
 }
