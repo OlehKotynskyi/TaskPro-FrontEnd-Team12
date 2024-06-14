@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import css from './ColumnCardItem.module.css';
 import sprite from '../../images/sprite.svg';
 
@@ -7,32 +6,31 @@ export const ColumnCardItem = ({
   handleOpenEdit,
   handleOpenProgress,
   handleDeleteCard,
+  card,
 }) => {
   const handleDelete = () => handleDeleteCard(index);
 
   return (
     <li className={css.cardContainer}>
       <div className={css.contentContainer}>
-        <h4 className={css.contentTitle}>The Watch Spot Design</h4>
-        <p className={css.contentText}>
-          Create a visually stunning and eye-catching watch dial design that
-          embodies our brand's essence of sleek aesthetics and modern elegance.
-          Your design should be unique, innovative, and reflective of the latest
-          trends in watch design.
-        </p>
+        <h4 className={css.contentTitle}>{card.title}</h4>
+        <p className={css.contentText}>{card.description}</p>
       </div>
       <div className={css.infoContainer}>
         <div className={css.priority}>
           <p className={css.infoTitle}>Priority</p>
           <div className={css.container}>
-            <p className={css.infoColor}></p>
+            <p
+              className={css.infoColor}
+              style={{ backgroundColor: card.labelColor }}
+            ></p>
             <p className={css.infoText}>Low</p>
           </div>
         </div>
         <div className={css.deadlineContainer}>
           <p className={css.infoTitle}>Deadline</p>
           <div>
-            <p className={css.infoText}>12/05/2023</p>
+            <p className={css.infoText}>{card.deadline.toLocaleDateString()}</p>
           </div>
         </div>
         <div className={css.infoIcons}>

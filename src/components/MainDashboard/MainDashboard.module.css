@@ -111,7 +111,12 @@
 	padding-top: 14px;
 	flex-grow: 1;
 	height: 100%;
+}
 
+.button {
+	color: green;
+	font-size: 18px;
+	font-weight: 500;
 }
 
 @media (min-width: 768px) {

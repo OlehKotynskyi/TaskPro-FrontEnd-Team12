@@ -6,22 +6,53 @@ import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 import { Button } from '../Shared/Button/Button';
 import sprite from '../../images/sprite.svg';
 
-export const NewColumn = ({ onClose }) => {
+export const NewColumn = ({
+  column,
+  setColumns,
+  columns,
+  handleDeleteColumn,
+}) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAddCardModal, setShowAddCardModal] = useState(false);
-  const [columnTitle, setColumnTitle] = useState('To Do');
+  const [columnTitle, setColumnTitle] = useState(column.title);
 
   const handleOpenEdit = () => {
     setShowEditModal(true);
   };
 
-  const handleCloseEdit = (newTitle) => {
-    setColumnTitle(newTitle === "" ? "Untitled" : newTitle);
+  const handleCloseEdit = newTitle => {
+    const updatedColumns = columns.map(col =>
+      col.title === column.title ? { ...col, title: newTitle } : col
+    );
+    setColumns(updatedColumns);
+    setColumnTitle(newTitle === '' ? 'Untitled' : newTitle);
     setShowEditModal(false);
   };
 
   const handleAddCardModalOpen = () => setShowAddCardModal(true);
-  const handleAddCardModalClose = () => setShowAddCardModal(false);
+  const handleAddCardModalClose = newCard => {
+    if (newCard) {
+      const updatedColumns = columns.map(col =>
+        col.title === column.title
+          ? { ...col, cards: [...col.cards, newCard] }
+          : col
+      );
+      setColumns(updatedColumns);
+    }
+    setShowAddCardModal(false);
+  };
+
+  const handleDeleteCard = indexToDelete => {
+    const updatedColumns = columns.map(col =>
+      col.title === column.title
+        ? {
+            ...col,
+            cards: col.cards.filter((_, index) => index !== indexToDelete),
+          }
+        : col
+    );
+    setColumns(updatedColumns);
+  };
 
   return (
     <div className={css.columnContainer}>
@@ -33,7 +64,10 @@ export const NewColumn = ({ onClose }) => {
               <use href={`${sprite}#icon-pencil`} />
             </svg>
           </button>
-          <button className={css.headerSvgButton}>
+          <button
+            className={css.headerSvgButton}
+            onClick={() => handleDeleteColumn(column.title)}
+          >
             <svg className={css.iconTrash} width="16px" height="16px">
               <use href={`${sprite}#icon-trash`} />
             </svg>
@@ -42,15 +76,31 @@ export const NewColumn = ({ onClose }) => {
       </div>
 
       <div className={css.cardsContainer}>
-        <ColumnCard />
+        {column.cards.map((card, index) => (
+          <ColumnCard
+            key={index}
+            card={card}
+            handleDeleteCard={() => handleDeleteCard(index)}
+            setColumns={setColumns}
+            columns={columns}
+            columnTitle={column.title}
+          />
+        ))}
       </div>
-      <Button usage="dashboard" className={css.addCardButton} icon="plus" onClick={handleAddCardModalOpen}>
+      <Button
+        usage="dashboard"
+        className={css.addCardButton}
+        icon="plus"
+        onClick={handleAddCardModalOpen}
+      >
         Add another card
       </Button>
       {showAddCardModal && (
         <AddCardModal onClose={handleAddCardModalClose}></AddCardModal>
       )}
-      {showEditModal && <EditColumnModal columnTitle={columnTitle} onClose={handleCloseEdit} />}
+      {showEditModal && (
+        <EditColumnModal columnTitle={columnTitle} onClose={handleCloseEdit} />
+      )}
     </div>
   );
 };
