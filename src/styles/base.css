@@ -37,6 +37,13 @@
 	--priority-medium: #F99FB4;
 	--priority-high: #B4E1A8;
 	--priority-without: #555555;
+	
+	/* calendar */
+	--calendar-week: rgba(255, 255, 255, 0.5);
+	--calendar-day: #fff;
+	--calendar-selected-day: #161616;
+	--calendar-hover: #9dc888;
+	--calendar-selected-day-bg: #bedbb0;
 }
 
 /* Light theme */
@@ -73,6 +80,13 @@
 	--priority-medium: #F99FB4;
 	--priority-high: #B4E1A8;
 	--priority-without: #555555;
+
+	/* calendar */
+	--calendar-week: rgba(0, 0, 0, 0.5);
+	--calendar-day: #161616;
+	--calendar-selected-day: #161616;
+	--calendar-hover: #9dc888;
+	--calendar-selected-day-bg: #bedbb0;
 }
 
 /* Violet theme */
@@ -109,6 +123,13 @@
 	--priority-medium: #F99FB4;
 	--priority-high: #B4E1A8;
 	--priority-without: #555555;
+
+	/* calendar */
+	--calendar-week: rgba(0, 0, 0, 0.5);
+	--calendar-day: #161616;
+	--calendar-selected-day: #fff;
+	--calendar-hover: #7b7ede;
+	--calendar-selected-day-bg: #7b7ede;
 }
 
 /* Example usage of variables */

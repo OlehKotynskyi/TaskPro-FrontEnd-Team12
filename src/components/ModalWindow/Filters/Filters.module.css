@@ -85,19 +85,19 @@
 
 
 .lowLabel {
-	color: #6C89FA;
+	color: var(--priority-low);
 }
 
 .mediumLabel {
-	color: #F99FB4;
+	color: var(--priority-medium);
 }
 
 .highLabel {
-	color: #B4E1A8;
+	color: var(--priority-high);
 }
 
 .withoutLabel {
-	color: #555555;
+	color: var(--priority-without);
 }
 
 .showAll {
