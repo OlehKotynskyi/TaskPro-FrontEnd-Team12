@@ -12,9 +12,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import authReducer from './auth/authSlice';
-
-import boardsReduser from './boards/boardsSlice';
-
+import boardsReducer from './boards/boardsSlice';
+import themeReducer from './themeSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -25,24 +24,12 @@ const authPersistConfig = {
 const rootPersistConfig = {
   key: 'root',
   storage,
-  // Тимчасово закоментуємо чорний список редюсерів, які зараз не використовуються
-  // blacklist: [
-  //   boardsApi.reducerPath,
-  //   columnsApi.reducerPath,
-  //   todosApi.reducerPath,
-  // ],
 };
 
 const rootReducer = combineReducers({
-  // theme: themeSlice.reducer,
-  // sidebar: sidebarReducer,
   auth: persistReducer(authPersistConfig, authReducer),
-  boards: boardsReduser,
-  // filter: filterReducer,
-  // activeBoardId: activeBoardIdSlice.reducer,
-  // [boardsApi.reducerPath]: boardsApi.reducer,
-  // [columnsApi.reducerPath]: columnsApi.reducer,
-  // [todosApi.reducerPath]: todosApi.reducer,
+  boards: boardsReducer,
+  theme: themeReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
@@ -55,11 +42,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-  // .concat(
-  //   boardsApi.middleware,
-  //   columnsApi.middleware,
-  //   todosApi.middleware
-  // ),
 });
 
 export const persistor = persistStore(store);

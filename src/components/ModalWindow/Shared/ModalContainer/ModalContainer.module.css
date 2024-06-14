@@ -12,8 +12,8 @@
 }
 
 .modalContainer {
-	background-color: var(--background-dark);
-	border: 1px solid rgba(190, 219, 176, 0.5);
+	background-color: var(--color-modal-time);
+	border: 1px solid var(--modal-colo-transparent);
 	border-radius: 8px;
 	padding: 24px;
 	width: 335px;
@@ -42,18 +42,19 @@
 	font-weight: 500;
 	line-height: 27px;
 	letter-spacing: -0.02em;
-	color: var(--color-white);
+	color: var(--color-text-base);
+	padding-bottom: 0;
 }
 
 .icon {
 	width: 18px;
 	height: 18px;
-	fill: var(--color-white);
-	background: none;
+	background: transparent;
+	stroke: var(--color-text-base);
 }
 
 @media screen and (min-width: 768px) {
 	.modalContainer {
 		width: 350px;
 	}
-}
+} 

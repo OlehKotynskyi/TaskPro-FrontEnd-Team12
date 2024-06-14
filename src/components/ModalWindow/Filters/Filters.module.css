@@ -1,10 +1,21 @@
+.container {
+	display:flex;
+	flex-direction: row;
+	align-items: baseline;
+	justify-content: space-between;
+	margin-top: -12px;
+	border-top: 1px solid var(--modal-border-line);
+	padding-top: 16px;
+}
+
 .labelTitle {
 	margin-bottom: 14px;
+	margin-top: -10px;
 	font-family: "Poppins", sans-serif;
 	font-weight: 400;
 	font-size: 14px;
 	letter-spacing: 0.02em;
-	color: var(--color-white);
+	color: var(--color-text-base);
 }
 
 .radioGroup {
@@ -23,7 +34,7 @@
 }
 
 .radioLabel:not(:last-child) {
-	margin-bottom: 12px;
+	margin-bottom: 8px;
 }
 
 .radioInput {
@@ -34,8 +45,8 @@
 	font-weight: 400;
 	font-size: 12px;
 	letter-spacing: -0.02em;
-	color: var(--color-white);
-	margin-left: 10px;
+	color: var(--card-text);
+	margin-left: 8px;
 }
 
 .customRadio {
@@ -64,7 +75,7 @@
 
 .radioInput:checked+.customRadio {
 	border: 1px solid currentColor;
-	background: #1e1e1e;
+	background: var(--color-modal-time);
 }
 
 .radioInput:checked+.customRadio::before {
@@ -73,18 +84,26 @@
 }
 
 
-.blueLabel {
+.lowLabel {
 	color: #6C89FA;
 }
 
-.pinkLabel {
+.mediumLabel {
 	color: #F99FB4;
 }
 
-.greenLabel {
+.highLabel {
 	color: #B4E1A8;
 }
 
-.blackLabel {
+.withoutLabel {
 	color: #555555;
+}
+
+.showAll {
+	font-size: 12px;
+	color: var(--card-text);
+	text-decoration: underline;
+
+	cursor: pointer;
 }
