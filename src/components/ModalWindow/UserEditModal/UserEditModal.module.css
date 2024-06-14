@@ -1,6 +1,7 @@
 .container {
 	min-width: 320px;
 	max-width: 375px;
+	top: 60px;
 }
 
 .backdrop {
@@ -8,7 +9,7 @@
 	top: 0;
 	left: 0;
 	width: 100vw;
-	height: 100vw;
+	height: 100vh;
 	z-index: 100;
 }
 
@@ -21,6 +22,7 @@
 	box-shadow: 0 4px 16px hsla(0, 0%, 7%, 0.1);
 	padding: 24px;
 	margin: 0 auto;
+	position: relative;
 }
 
 .wrap {
@@ -147,17 +149,6 @@
 	background-color: var(--color-green-dark);
 }
 
-.eye {
-	background-color: transparent;
-	border: none;
-	color: #FDFDFD;
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	right: 18px;
-}
-
-
 
 .eye {
 	background-color: transparent;
@@ -173,7 +164,6 @@
 	display: block;
 	cursor: pointer;
 	border-radius: 5px;
-	/* background-image: url(/src/img/deftAvBlack.png); */
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -184,7 +174,7 @@
 
 @media screen and (min-width: 375px) {
 	.wrap {
-		right: 34px;
+		right: 14px;
 	}
 }
 
@@ -192,7 +182,7 @@
 	.cont {
 		position: fixed;
 		right: 20px;
-		/* top: 60px; */
+		top: 60px;
 		margin-top: 5px;
 		margin-bottom: 5px;
 		max-height: 440px;
