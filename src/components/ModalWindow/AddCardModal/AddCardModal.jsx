@@ -1,11 +1,8 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState } from 'react';
 import styles from './AddCardModal.module.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import './customDatePicker.css';
-import { format, isToday, isTomorrow, isYesterday } from 'date-fns';
 import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { Button } from '../../Shared/Button/Button';
+import { Calendar } from '../Calendar/Calendar';
 
 export const AddCardModal = ({ onClose, existingCard }) => {
   const [title, setTitle] = useState(existingCard ? existingCard.title : '');
@@ -13,7 +10,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     existingCard ? existingCard.description : ''
   );
   const [labelColor, setLabelColor] = useState(
-    existingCard ? existingCard.labelColor : 'black'
+    existingCard ? existingCard.labelColor : 'without'
   );
   const [deadline, setDeadline] = useState(
     existingCard ? new Date(existingCard.deadline) : new Date()
@@ -27,35 +24,6 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     } else {
       alert('Please enter a title for the card.');
     }
-  };
-
-  const CustomInput = forwardRef(({ value: formattedDate, onClick }, ref) => {
-    const displayValue = getDisplayValue(deadline, formattedDate);
-
-    return (
-      <button className={styles.customInput} onClick={onClick} ref={ref}>
-        {displayValue}
-        <span className={styles.calendarIcon} />
-      </button>
-    );
-  });
-
-  const getDisplayValue = (date, formattedDate) => {
-    if (isToday(date)) {
-      return `Today, ${formattedDate}`;
-    } else if (isTomorrow(date)) {
-      return `Tomorrow, ${formattedDate}`;
-    } else if (isYesterday(date)) {
-      return `Yesterday, ${formattedDate}`;
-    } else {
-      const dayOfWeek = format(date, 'EEEE');
-      return `${dayOfWeek}, ${formattedDate}`;
-    }
-  };
-
-  const isPastDate = date => {
-    const today = new Date();
-    return date < today.setHours(0, 0, 0, 0);
   };
 
   return (
@@ -81,7 +49,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
         <div className={styles.labelContainer}>
           <span className={styles.labelTitle}>Label color</span>
           <div className={styles.radioGroup}>
-            {['blue', 'pink', 'green', 'black'].map(color => (
+            {['low', 'medium', 'high', 'without'].map(color => (
               <label className={styles.radioLabel} key={color}>
                 <input
                   type="radio"
@@ -102,16 +70,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
 
         <div className={styles.deadlineContainer}>
           <span className={styles.labelTitle}>Deadline</span>
-          <DatePicker
-            selected={deadline}
-            dateFormat="MMMM d"
-            onChange={date => setDeadline(date)}
-            customInput={<CustomInput />}
-            minDate={new Date()}
-            dayClassName={date =>
-              isPastDate(date) ? 'react-datepicker__day--disabled' : undefined
-            }
-          />
+          <Calendar deadline={deadline} setDeadline ={setDeadline} />
         </div>
         <Button icon="plus" onClick={handleSubmit}>
           {existingCard ? 'Save' : 'Add'}
