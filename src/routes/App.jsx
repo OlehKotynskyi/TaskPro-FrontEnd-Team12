@@ -2,6 +2,7 @@ import React, { lazy, useEffect, useRef } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PrivateRoute from './PrivateRoute';
+import RestrictedRoute from './RestrictedRoute';
 import { Layout } from '../components/Layout/Layout';
 import {
   selectIsRefreshing,
@@ -11,6 +12,7 @@ import { refreshUser } from '../redux/auth/authOperations';
 import { Loader } from '../components/Loaders/Loader';
 import { ThemeProvider } from '../components/ThemeContext/ThemeContext';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage'));
@@ -41,26 +43,38 @@ export const App = () => {
       {isRefreshing ? (
         <Loader />
       ) : (
-        <>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route path="/" element={<Navigate to="/welcome" replace />} />
-              <Route path="/welcome" element={<WelcomePage />} />
-              <Route path="/auth/*" element={<AuthPage />} />
-              <Route
-                path="/home"
-                element={
-                  <ThemeProvider>
-                    <PrivateRoute>
-                      <HomePage />
-                    </PrivateRoute>
-                  </ThemeProvider>
-                }
-              />
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
-          </Routes>
-        </>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Navigate to="/welcome" replace />} />
+            <Route
+              path="/welcome"
+              element={
+                <RestrictedRoute redirectTo="/home">
+                  <WelcomePage />
+                </RestrictedRoute>
+              }
+            />
+            <Route
+              path="/auth/*"
+              element={
+                <RestrictedRoute redirectTo="/home">
+                  <AuthPage />
+                </RestrictedRoute>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <ThemeProvider>
+                  <PrivateRoute>
+                    <HomePage />
+                  </PrivateRoute>
+                </ThemeProvider>
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
       )}
     </>
   );

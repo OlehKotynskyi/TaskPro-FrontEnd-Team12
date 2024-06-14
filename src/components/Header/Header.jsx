@@ -10,7 +10,8 @@ import {
   selectIsLoggedIn,
   selectIsRefreshing,
 } from '../../redux/auth/authSelectors';
-import { userCurrent } from '../../redux/auth/authOperations';
+import { userCurrent, updateUser } from '../../redux/auth/authOperations';
+import { selectCurrentTheme, setTheme } from '../../redux/themeSlice';
 
 export const Header = ({ onVisible }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -20,6 +21,7 @@ export const Header = ({ onVisible }) => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
+  const currentTheme = useSelector(selectCurrentTheme);
   const { changeTheme } = useTheme();
 
   useOutsideClick(ref, () => setIsShowTheme(false));
@@ -29,6 +31,10 @@ export const Header = ({ onVisible }) => {
       dispatch(userCurrent());
     }
   }, [dispatch, isLoggedIn, isRefreshing]);
+
+  useEffect(() => {
+    changeTheme(currentTheme);
+  }, [currentTheme, changeTheme]);
 
   const toggleOpenTheme = () => setIsShowTheme(!isShowTheme);
 
@@ -41,7 +47,10 @@ export const Header = ({ onVisible }) => {
   };
 
   const onSelectTheme = value => {
-    changeTheme(value);
+    dispatch(setTheme(value));
+    const formData = new FormData();
+    formData.append('theme', value);
+    dispatch(updateUser({ formData }));
     setIsShowTheme(false);
   };
 
