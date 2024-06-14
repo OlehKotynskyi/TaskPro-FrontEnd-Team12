@@ -43,6 +43,7 @@
 	line-height: 27px;
 	letter-spacing: -0.02em;
 	color: var(--color-text-base);
+	padding-bottom: 0;
 }
 
 .icon {
@@ -56,4 +57,4 @@
 	.modalContainer {
 		width: 350px;
 	}
-}
+} 
