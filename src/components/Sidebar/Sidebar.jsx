@@ -5,17 +5,15 @@ import sprite from '../../images/sprite.svg';
 import helpImg2x from '../../images/flower/flower_@2x.png';
 import helpImg from '../../images/flower/flower.png';
 import { BordCard } from 'components/BordCard/BordCard';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from '../../redux/auth/authOperations';
 import { BordModal } from 'components/ModalWindow/BordModal/BordModal';
 import { HelpModal } from 'components/ModalWindow/HelpModal/HelpModal';
-import { selectBoards } from '../../redux/boards/boardsSlice';
 
 export const Sidebar = ({ visible, onVisible }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const boards = useSelector(selectBoards);
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isModalOpenHelp, setModalOpenHelp] = useState(false);
@@ -30,7 +28,6 @@ export const Sidebar = ({ visible, onVisible }) => {
     setModalOpenHelp(true);
     onVisible(false);
   };
-
   const handleLogOut = () => {
     dispatch(logOut());
     navigate('/welcome');
@@ -66,15 +63,11 @@ export const Sidebar = ({ visible, onVisible }) => {
           </div>
         </div>
         <ul className={css.projects}>
-          {boards.map(bord => (
-            <BordCard
-              key={bord._id}
-              board={bord}
-              closeSidebar={() => onVisible(false)}
-            />
-          ))}
+          <BordCard
+            board={{ title: 'Project office', icon: 'icon-colors' }}
+            closeSidebar={() => onVisible(false)}
+          />
         </ul>
-
         <div className={css.block}>
           <div className={css.helpBlock}>
             <img
