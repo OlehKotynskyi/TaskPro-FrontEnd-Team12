@@ -1,4 +1,3 @@
-
 .customInput {
 	background: none;
 	border: none;
@@ -28,6 +27,7 @@
 	margin-top: 5px;
 }
 
-.customInput:hover {
+.customInput:hover,
+.customInput:active {
 	color: var(--color-green-dark);
 }
