@@ -200,7 +200,11 @@
     padding: 0 14px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 769px) {
+    .sidebar {
+        width: 260px;
+        padding: 24px 0;
+    }
 
 
 
@@ -231,9 +235,9 @@
     }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 769px) {
 
-    .sidebarWrap {
+    .sidebarWra {
         position: static;
         width: 260px;
     }
