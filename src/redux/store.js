@@ -13,7 +13,9 @@ import storage from 'redux-persist/lib/storage';
 
 import authReducer from './auth/authSlice';
 import boardsReducer from './boards/boardsSlice';
-import themeReducer from './themeSlice';
+import columnsReducer from './columns/columnsSlice';
+import todosReducer from './todos/todosSlice';
+import themeReducer from './themeSlice'; 
 
 const authPersistConfig = {
   key: 'auth',
@@ -21,18 +23,22 @@ const authPersistConfig = {
   whitelist: ['accessToken', 'refreshToken'],
 };
 
-const rootPersistConfig = {
-  key: 'root',
-  storage,
-};
-
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   boards: boardsReducer,
-  theme: themeReducer,
+  columns: columnsReducer,
+  todos: todosReducer,
+  theme: themeReducer, 
 });
 
-const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
+const persistedReducer = persistReducer(
+  {
+    key: 'root',
+    storage,
+    blacklist: ['auth'],
+  },
+  rootReducer
+);
 
 export const store = configureStore({
   reducer: persistedReducer,

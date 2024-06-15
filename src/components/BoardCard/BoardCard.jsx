@@ -1,26 +1,43 @@
 import React, { useState } from 'react';
-import css from './BordCard.module.css';
+import css from './BoardCard.module.css';
 import sprite from '../../images/sprite.svg';
 import clsx from 'clsx';
-import { BordModal } from 'components/ModalWindow/BordModal/BordModal';
+import { BoardModal } from '../ModalWindow/BoardModal/BoardModal';
+import { useDispatch } from 'react-redux';
+import { deleteBoard } from '../../redux/boards/boardsOperations';
 
-export const BordCard = ({ board, closeSidebar }) => {
+export const BoardCard = ({
+  board,
+  activeBoardId,
+  setActiveBoardId,
+  closeSidebar,
+}) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  const onEditBoard = () => {
+  const onEditBoard = e => {
+    e.preventDefault();
+    e.stopPropagation();
     setModalOpen(true);
     closeSidebar();
   };
 
   const handleModalClose = () => setModalOpen(false);
 
-  const onDelete = () => {
+  const onDelete = e => {
+    e.preventDefault();
+    e.stopPropagation();
     closeSidebar();
-    console.log(board);
+    dispatch(deleteBoard(board._id));
   };
 
   return (
-    <li className={clsx(css.card, { [css.cardActive]: true })}>
+    <li
+      className={clsx(css.card, {
+        [css.cardActive]: board._id === activeBoardId,
+      })}
+      onClick={() => setActiveBoardId(board._id)}
+    >
       <svg className={css.cardSvg}>
         <use href={`${sprite}#${board.icon}`} />
       </svg>
@@ -38,7 +55,7 @@ export const BordCard = ({ board, closeSidebar }) => {
         </button>
       </div>
       {isModalOpen && (
-        <BordModal onClose={handleModalClose} type="edit" board={board} />
+        <BoardModal onClose={handleModalClose} type="edit" board={board} />
       )}
     </li>
   );

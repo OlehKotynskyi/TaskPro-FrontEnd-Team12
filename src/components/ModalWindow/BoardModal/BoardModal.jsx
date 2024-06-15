@@ -1,6 +1,6 @@
 import React from 'react';
 import sprite from '../../../images/sprite.svg';
-import css from './BordModal.module.css';
+import css from './BoardModal.module.css';
 import path1 from '../../../images/modal_background/modalBgIcon(1).jpg';
 import path2 from '../../../images/modal_background/modalBgIcon (2) .jpg';
 import path3 from '../../../images/modal_background/modalBgIcon(3).jpg';
@@ -19,7 +19,10 @@ import path15 from '../../../images/modal_background/modalBgIcon(15).jpg';
 
 import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { useForm } from 'react-hook-form';
-import { Button } from "../../Shared/Button/Button"
+import { useDispatch } from 'react-redux';
+import { Button } from '../../Shared/Button/Button';
+import { addBoard, editBoard } from '../../../redux/boards/boardsOperations.js';
+
 
 const icons = [
   'icon-project',
@@ -93,19 +96,39 @@ const backgrounds = [
     path: path15,
   },
 ];
-export const BordModal = ({ onClose, type, board }) => {
+
+export const BoardModal = ({ onClose, type, board }) => {
+  const dispatch = useDispatch();
   const isCreate = type === 'create';
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       title: isCreate ? '' : board.title,
       icon: isCreate ? 'icon-project' : board.icon,
-      bgnd: isCreate ? '' : '2',
+      background: isCreate ? '' : board.background,
     },
   });
 
   const onSubmit = data => {
-    console.log(data);
+    const payload = {
+      title: data.title,
+      icon: data.icon,
+      background: data.background,
+    };
+
+    if (isCreate) {
+      dispatch(addBoard(payload));
+    } else {
+      payload.id = board._id;
+      dispatch(editBoard(payload));
+    }
+
+    onClose();
   };
 
   return (
@@ -115,13 +138,16 @@ export const BordModal = ({ onClose, type, board }) => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          className={css.input}
-          {...register('title')}
+          className={`${css.input} ${errors.title && css.error}`}
+          {...register('title', {
+            required: 'Title required',
+          })}
           type="text"
           name="title"
           placeholder="Title"
           id="title"
         />
+        {errors.title && <p className={css.errors}>{errors.title.message}</p>}
         <p className={css.text}>Icons</p>
         <ul className={css.listIcons}>
           {icons.map(item => (
@@ -146,7 +172,7 @@ export const BordModal = ({ onClose, type, board }) => {
           <li>
             <input
               className={css.inputIcon}
-              {...register('bgnd')}
+              {...register('background')}
               type="radio"
               value=""
               id="empty"
@@ -160,15 +186,16 @@ export const BordModal = ({ onClose, type, board }) => {
             </label>
           </li>
           {backgrounds.map(item => (
-            <li key={item}>
+            <li key={item.name}>
               <input
                 className={css.inputIcon}
-                {...register('bgnd')}
+                {...register('background')}
                 type="radio"
-                value={item}
-                id={item}
+                value={item.name}
+                id={item.name}
+                onClick={() => setValue('background', item.name)}
               />
-              <label htmlFor={item} className={css.labeIcon}>
+              <label htmlFor={item.name} className={css.labeIcon}>
                 <img src={item.path} alt="#" className={css.iconImg} />
               </label>
             </li>

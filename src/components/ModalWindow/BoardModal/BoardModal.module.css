@@ -65,6 +65,7 @@
 	align-items: center;
 	justify-content: center;
 	background-color: transparent;
+	
 }
 
 .emptyPicture {
@@ -72,10 +73,23 @@
 	height: 28px;
 	fill: var(--modal-icon);
 	color: rgb(56, 55, 55);
+	
 }
 
 .iconImg {
 	width: 28;
 	height: 28px;
 	border-radius: 8px;
+}
+
+.errors {
+	position: relative;
+	bottom: -6px;
+	font-size: 10px;
+	color: rgba(255, 0, 0, 0.788);
+	left: 18px;
+}
+
+.input.error {
+	border-color: rgba(255, 0, 0, 0.788);
 }
