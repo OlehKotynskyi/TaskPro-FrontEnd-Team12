@@ -79,3 +79,15 @@
 	height: 28px;
 	border-radius: 8px;
 }
+
+.errors {
+	position: relative;
+	bottom: -6px;
+	font-size: 10px;
+	color: rgba(255, 0, 0, 0.788);
+	left: 18px;
+}
+
+.input.error {
+	border-color: rgba(255, 0, 0, 0.788);
+}

@@ -95,15 +95,22 @@ const backgrounds = [
     path: path15,
   },
 ];
+
 export const BordModal = ({ onClose, type, board }) => {
   const dispatch = useDispatch();
   const isCreate = type === 'create';
+  console.log(isCreate);
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {
-      title: isCreate ? '' : board.title,
+      title: isCreate ? 'a' : board.title,
       icon: isCreate ? 'icon-project' : board.icon,
-      bgnd: isCreate ? '' : '2',
+      bgnd: isCreate ? 'h' : board.background,
     },
   });
 
@@ -113,10 +120,12 @@ export const BordModal = ({ onClose, type, board }) => {
       icon: data.icon,
       background: data.bgnd,
     };
+    console.log(data);
+
     if (isCreate) {
       dispatch(addBoard(payload));
     } else {
-      payload.id = board.id;
+      payload.id = board._id;
 
       dispatch(editBoard(payload));
     }
@@ -129,16 +138,16 @@ export const BordModal = ({ onClose, type, board }) => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          className={css.input}
+          className={`${css.input} ${errors.title && css.error}`}
           {...register('title', {
-            required: 'Title',
-            validate: value => value !== '' || '',
+            required: 'Title required',
           })}
           type="text"
           name="title"
           placeholder="Title"
           id="title"
         />
+        {errors.title && <p className={css.errors}>{errors.title.message}</p>}
         <p className={css.text}>Icons</p>
         <ul className={css.listIcons}>
           {icons.map(item => (
@@ -177,12 +186,12 @@ export const BordModal = ({ onClose, type, board }) => {
             </label>
           </li>
           {backgrounds.map(item => (
-            <li key={item}>
+            <li key={item.name}>
               <input
                 className={css.inputIcon}
                 {...register('bgnd')}
                 type="radio"
-                value={item}
+                value={item.name}
                 id={item}
               />
               <label htmlFor={item} className={css.labeIcon}>

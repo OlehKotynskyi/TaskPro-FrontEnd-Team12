@@ -12,8 +12,8 @@ export const BordCard = ({ board, closeSidebar }) => {
   const dispatch = useDispatch();
 
   const onEditBoard = e => {
-    e.preventDefault();
-    e.stopPropagation();
+    // e.preventDefault();
+    // e.stopPropagation();
     setModalOpen(true);
     closeSidebar();
   };
@@ -23,11 +23,9 @@ export const BordCard = ({ board, closeSidebar }) => {
   const onDelete = e => {
     e.preventDefault();
     e.stopPropagation();
-    const payload = {
-      id: board.id,
-    };
+
     closeSidebar();
-    dispatch(deletBoard(payload));
+    dispatch(deletBoard(board._id));
   };
 
   return (
