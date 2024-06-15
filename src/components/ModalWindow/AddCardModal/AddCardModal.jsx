@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './AddCardModal.module.css';
-import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
+import { ModalContainerEffect } from '../Shared/ModalContainerEffect/ModalContainerEffect';
 import { Button } from '../../Shared/Button/Button';
 import { Calendar } from '../Calendar/Calendar';
 
@@ -16,20 +16,20 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     existingCard ? new Date(existingCard.deadline) : new Date()
   );
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = (triggerClose) => {
     if (title.trim()) {
       const newCard = { title, description, labelColor, deadline };
-      onClose(newCard);
+      triggerClose(() => onClose(newCard)); // Trigger close with callback
     } else {
       alert('Please enter a title for the card.');
     }
   };
 
   return (
-    <ModalContainer
+    <ModalContainerEffect
       modalTitle={existingCard ? 'Edit card' : 'Add card'}
-      onClose={() => onClose(null)}
+      onClose={onClose}
+      handleSubmit={handleSubmit}
     >
       <div className={styles.form}>
         <input
@@ -37,19 +37,19 @@ export const AddCardModal = ({ onClose, existingCard }) => {
           type="text"
           placeholder="Title"
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
           className={styles.textareaInput}
           placeholder="Description"
           value={description}
-          onChange={e => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         ></textarea>
 
         <div className={styles.labelContainer}>
           <span className={styles.labelTitle}>Label color</span>
           <div className={styles.radioGroup}>
-            {['low', 'medium', 'high', 'without'].map(color => (
+            {['low', 'medium', 'high', 'without'].map((color) => (
               <label className={styles.radioLabel} key={color}>
                 <input
                   type="radio"
@@ -70,12 +70,12 @@ export const AddCardModal = ({ onClose, existingCard }) => {
 
         <div className={styles.deadlineContainer}>
           <span className={styles.labelTitle}>Deadline</span>
-          <Calendar deadline={deadline} setDeadline ={setDeadline} />
+          <Calendar deadline={deadline} setDeadline={setDeadline} />
         </div>
-        <Button icon="plus" onClick={handleSubmit}>
+        <Button icon="plus" type="submit">
           {existingCard ? 'Save' : 'Add'}
         </Button>
       </div>
-    </ModalContainer>
+    </ModalContainerEffect>
   );
 };
