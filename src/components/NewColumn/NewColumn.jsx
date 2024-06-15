@@ -56,7 +56,7 @@ export const NewColumn = ({
   };
 
   // title to display
-  const maxWidth = 250; 
+  const maxWidth = 250;
   const font = "500 14px Poppins, sans-serif";
   const reducedTitle = reduceTextToFit(columnTitle, maxWidth, font);
 

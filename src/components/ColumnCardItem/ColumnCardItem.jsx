@@ -23,10 +23,16 @@ export const ColumnCardItem = ({
     }
   };
 
+  const toDeadLine = date => {
+    const deadline = Date.parse(new Date(date));
+    const daysLeft = Math.ceil((deadline - Date.now()) / (1000 * 3600 * 24));
+    return daysLeft;
+  };
+
   return (
     <li
       className={css.cardContainer}
-           style={{ '--priority-color': priorityColor() }}
+      style={{ '--priority-color': priorityColor() }}
     >
       <div className={css.contentContainer}>
         <h4 className={css.contentTitle}>{card.title}</h4>
@@ -49,11 +55,13 @@ export const ColumnCardItem = ({
             <p className={css.infoText}>{new Date(card.deadline).toLocaleDateString()}</p>
           </div>
         </div>
-        <div className={css.infoIcons}>
-          <svg className={css.icon} width="16px" height="16px">
-            <use href={`${sprite}#icon-bell`}></use>
-          </svg>
-        </div>
+        {toDeadLine(card.deadline) <= 1 && (
+          <div className={css.infoIcons}>
+            <svg className={css.icon} width="16px" height="16px">
+              <use href={`${sprite}#icon-bell`}></use>
+            </svg>
+          </div>
+        )}
         <div className={css.infoIcons}>
           <button onClick={handleOpenProgress} className={css.headerSvgButton}>
             <svg className={css.icon} width="16px" height="16px">
@@ -75,4 +83,3 @@ export const ColumnCardItem = ({
     </li>
   );
 };
-
