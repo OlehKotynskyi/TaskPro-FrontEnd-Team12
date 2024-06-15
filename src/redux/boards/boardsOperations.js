@@ -55,7 +55,7 @@ export const editBoard = createAsyncThunk(
     }
   }
 );
-export const deletBoard = createAsyncThunk(
+export const deleteBoard = createAsyncThunk(
   'boards/deletBoard',
   async (params, thunkAPI) => {
     try {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import css from './Info.module.css';
-import { BordModal } from 'components/ModalWindow/BordModal/BordModal';
+import { BoardModal } from '../ModalWindow/BoardModal/BoardModal';
 
 export const Info = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -21,7 +21,7 @@ export const Info = () => {
         board serves as a powerful tool to organize the workflow and ensure
         effective collaboration among team members.
       </p>
-      {isModalOpen && <BordModal onClose={handleModalClose} type="create" />}
+      {isModalOpen && <BoardModal onClose={handleModalClose} type="create" />}
     </div>
   );
 };

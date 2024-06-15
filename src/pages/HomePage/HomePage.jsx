@@ -5,7 +5,7 @@ import css from './HomePage.module.css';
 import { useDispatch } from 'react-redux';
 import { fetchBoards } from '../../redux/boards/boardsOperations';
 import { Outlet, useParams } from 'react-router-dom';
-import { Info } from 'components/Info/Info';
+import { Info } from '../../components/Info/Info';
 
 const HomePage = () => {
   const { boardId } = useParams();
