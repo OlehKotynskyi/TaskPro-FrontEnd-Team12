@@ -11,8 +11,7 @@ const initialState = { loading: false, boards: [], error: null };
 const boardSlice = createSlice({
   name: 'boards',
   initialState,
-  selectors: { selectBoards: state => state.boards },
-
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(addBoard.pending, state => {
@@ -65,6 +64,6 @@ const boardSlice = createSlice({
       });
   },
 });
-// export const {  } = boardSlice.actions;
 
+export const selectBoards = state => state.boards.boards;
 export default boardSlice.reducer;

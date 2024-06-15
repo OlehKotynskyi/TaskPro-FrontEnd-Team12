@@ -21,8 +21,8 @@ import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Button } from '../../Shared/Button/Button';
-import { addBoard } from 'redux/boards/boardsOperations';
-import { editBoard } from 'redux/boards/boardsOperations';
+import { addBoard, editBoard } from '../../../redux/boards/boardsOperations.js';
+
 
 const icons = [
   'icon-project',

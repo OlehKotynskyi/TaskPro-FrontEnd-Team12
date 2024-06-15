@@ -11,6 +11,7 @@ import { logOut } from '../../redux/auth/authOperations';
 import { fetchBoards } from '../../redux/boards/boardsOperations';
 import { BoardModal } from '../ModalWindow/BoardModal/BoardModal';
 import { HelpModal } from 'components/ModalWindow/HelpModal/HelpModal';
+import { selectBoards } from '../../redux/boards/boardsSlice';
 
 export const Sidebar = ({ visible, onVisible }) => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ export const Sidebar = ({ visible, onVisible }) => {
     setModalOpenHelp(true);
     onVisible(false);
   };
+
   const handleLogOut = () => {
     dispatch(logOut());
     navigate('/welcome');
@@ -91,6 +93,7 @@ export const Sidebar = ({ visible, onVisible }) => {
             />
           ))}
         </ul>
+
         <div className={css.block}>
           <div className={css.helpBlock}>
             <img
