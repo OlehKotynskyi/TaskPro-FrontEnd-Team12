@@ -9,7 +9,6 @@
 	position: relative;
 }
 
-
 .columnHeader {
 	border-radius: 8px;
 	max-width: 334px;
@@ -71,8 +70,6 @@
 
 	overflow-y: auto;
 } 
-
-
 
 .iconTrash,
 .iconPencil {
