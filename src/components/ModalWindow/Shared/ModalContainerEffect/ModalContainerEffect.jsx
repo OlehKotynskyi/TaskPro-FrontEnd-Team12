@@ -42,7 +42,7 @@ export const ModalContainerEffect = ({ children, onClose, modalTitle, width, han
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [triggerClose]);
 
   return (
     <div
