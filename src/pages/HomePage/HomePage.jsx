@@ -4,7 +4,7 @@ import { Header } from '../../components/Header/Header';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import css from './HomePage.module.css';
 import { useDispatch } from 'react-redux';
-import { featchBoards } from '../../redux/boards/boardsOperations';
+import { fetchBoards } from '../../redux/boards/boardsOperations';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const HomePage = () => {
   useEffect(() => {
     const getAllBoards = () => {
       const payload = {};
-      dispatch(featchBoards(payload));
+      dispatch(fetchBoards(payload));
     };
     getAllBoards();
   }, [dispatch]);

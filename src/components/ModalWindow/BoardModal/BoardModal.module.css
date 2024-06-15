@@ -65,6 +65,7 @@
 	align-items: center;
 	justify-content: center;
 	background-color: transparent;
+	
 }
 
 .emptyPicture {
@@ -72,12 +73,14 @@
 	height: 28px;
 	fill: var(--modal-icon);
 	color: rgb(56, 55, 55);
+	
 }
 
 .iconImg {
 	width: 28;
 	height: 28px;
 	border-radius: 8px;
+	cursor: pointer;
 }
 
 .errors {

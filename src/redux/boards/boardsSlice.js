@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addBoard,
-  deletBoard,
+  deleteBoard,
   editBoard,
-  featchBoards,
+  fetchBoards,
 } from './boardsOperations';
 
 const initialState = { loading: false, boards: [], error: null };
@@ -20,21 +20,20 @@ const boardSlice = createSlice({
       })
       .addCase(addBoard.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
         state.boards.push({ ...action.payload });
       })
       .addCase(addBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(featchBoards.pending, state => {
+      .addCase(fetchBoards.pending, state => {
         state.loading = true;
       })
-      .addCase(featchBoards.fulfilled, (state, action) => {
+      .addCase(fetchBoards.fulfilled, (state, action) => {
         state.loading = false;
         state.boards = action.payload;
       })
-      .addCase(featchBoards.rejected, (state, action) => {
+      .addCase(fetchBoards.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
@@ -43,25 +42,24 @@ const boardSlice = createSlice({
       })
       .addCase(editBoard.fulfilled, (state, action) => {
         state.loading = false;
-
         state.boards = state.boards.map(board =>
-          board.id === action.payload.id ? action.payload : board
+          board._id === action.payload._id ? action.payload : board
         );
       })
       .addCase(editBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(deletBoard.pending, state => {
+      .addCase(deleteBoard.pending, state => {
         state.loading = true;
       })
-      .addCase(deletBoard.fulfilled, (state, action) => {
+      .addCase(deleteBoard.fulfilled, (state, action) => {
         state.loading = false;
         state.boards = state.boards.filter(
-          board => board.id !== action.payload.id
+          board => board._id !== action.meta.arg
         );
       })
-      .addCase(deletBoard.rejected, (state, action) => {
+      .addCase(deleteBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

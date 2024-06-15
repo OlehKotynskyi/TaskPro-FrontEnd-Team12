@@ -1,6 +1,6 @@
 import React from 'react';
 import sprite from '../../../images/sprite.svg';
-import css from './BordModal.module.css';
+import css from './BoardModal.module.css';
 import path1 from '../../../images/modal_background/modalBgIcon(1).jpg';
 import path2 from '../../../images/modal_background/modalBgIcon (2) .jpg';
 import path3 from '../../../images/modal_background/modalBgIcon(3).jpg';
@@ -96,21 +96,20 @@ const backgrounds = [
   },
 ];
 
-export const BordModal = ({ onClose, type, board }) => {
+export const BoardModal = ({ onClose, type, board }) => {
   const dispatch = useDispatch();
   const isCreate = type === 'create';
-  console.log(isCreate);
 
   const {
     register,
     handleSubmit,
-
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: isCreate ? 'a' : board.title,
+      title: isCreate ? '' : board.title,
       icon: isCreate ? 'icon-project' : board.icon,
-      bgnd: isCreate ? 'h' : board.background,
+      background: isCreate ? '' : board.background,
     },
   });
 
@@ -118,17 +117,17 @@ export const BordModal = ({ onClose, type, board }) => {
     const payload = {
       title: data.title,
       icon: data.icon,
-      background: data.bgnd,
+      background: data.background,
     };
-    console.log(data);
 
     if (isCreate) {
       dispatch(addBoard(payload));
     } else {
       payload.id = board._id;
-
       dispatch(editBoard(payload));
     }
+
+    onClose();
   };
 
   return (
@@ -172,7 +171,7 @@ export const BordModal = ({ onClose, type, board }) => {
           <li>
             <input
               className={css.inputIcon}
-              {...register('bgnd')}
+              {...register('background')}
               type="radio"
               value=""
               id="empty"
@@ -189,12 +188,13 @@ export const BordModal = ({ onClose, type, board }) => {
             <li key={item.name}>
               <input
                 className={css.inputIcon}
-                {...register('bgnd')}
+                {...register('background')}
                 type="radio"
                 value={item.name}
-                id={item}
+                id={item.name}
+                onClick={() => setValue('background', item.name)}
               />
-              <label htmlFor={item} className={css.labeIcon}>
+              <label htmlFor={item.name} className={css.labeIcon}>
                 <img src={item.path} alt="#" className={css.iconImg} />
               </label>
             </li>
