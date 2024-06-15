@@ -19,10 +19,10 @@
 	white-space: nowrap;
 }
 
-/* .contentText {
+.contentText {
 	font-weight: 400;
 	font-size: 12px;
-	line-height: 133%;
+	line-height: 1.2em;
 	letter-spacing: -0.02em;
 	color: var(--card-text);
 	display: -webkit-box;
@@ -30,24 +30,8 @@
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: normal;
-	position: relative;
-} */
-
-
-.contentText {
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 1.2em;
-	letter-spacing: -0.02em;
-	color: var(--card-text);
-	/* display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical; */
-	overflow: hidden;
-	text-overflow: ellipsis;
 	width: 290px;
-	height: 38px;
+	max-height: calc(1.2em * 2);
 	white-space: normal;
 	position: relative;
 }
