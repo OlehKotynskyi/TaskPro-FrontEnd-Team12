@@ -38,7 +38,7 @@ export const fetchBoards = createAsyncThunk(
 
 export const editBoard = createAsyncThunk(
   'boards/editBoard',
-  async ({ id, payload }, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
       const params = {
         title: payload.title,
