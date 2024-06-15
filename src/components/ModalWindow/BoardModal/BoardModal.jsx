@@ -20,7 +20,7 @@ import path15 from '../../../images/modal_background/modalBgIcon(15).jpg';
 import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { Button } from "../../Shared/Button/Button"
+import { Button } from '../../Shared/Button/Button';
 import { addBoard } from 'redux/boards/boardsOperations';
 import { editBoard } from 'redux/boards/boardsOperations';
 
@@ -138,13 +138,16 @@ export const BoardModal = ({ onClose, type, board }) => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          className={css.input}
-          {...register('title')}
+          className={`${css.input} ${errors.title && css.error}`}
+          {...register('title', {
+            required: 'Title required',
+          })}
           type="text"
           name="title"
           placeholder="Title"
           id="title"
         />
+        {errors.title && <p className={css.errors}>{errors.title.message}</p>}
         <p className={css.text}>Icons</p>
         <ul className={css.listIcons}>
           {icons.map(item => (
@@ -183,7 +186,7 @@ export const BoardModal = ({ onClose, type, board }) => {
             </label>
           </li>
           {backgrounds.map(item => (
-            <li key={item}>
+            <li key={item.name}>
               <input
                 className={css.inputIcon}
                 {...register('background')}
