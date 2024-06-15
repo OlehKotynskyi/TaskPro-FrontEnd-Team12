@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './AddCardModal.module.css';
-import { ModalContainerEffect } from '../Shared/ModalContainerEffect/ModalContainerEffect';
+import { ModalContainerReact } from '../Shared/ModalContainerReact/ModalContainerReact';
 import { Button } from '../../Shared/Button/Button';
 import { Calendar } from '../Calendar/Calendar';
 
@@ -16,66 +16,67 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     existingCard ? new Date(existingCard.deadline) : new Date()
   );
 
-  const handleSubmit = (triggerClose) => {
+  const handleSubmit = () => {
     if (title.trim()) {
       const newCard = { title, description, labelColor, deadline };
-      triggerClose(() => onClose(newCard)); // Trigger close with callback
+      onClose(newCard); // Close the modal and pass the new card data
     } else {
       alert('Please enter a title for the card.');
     }
   };
 
   return (
-    <ModalContainerEffect
+    <ModalContainerReact
       modalTitle={existingCard ? 'Edit card' : 'Add card'}
-      onClose={onClose}
-      handleSubmit={handleSubmit}
+      onClose={() => onClose(null)}
     >
-      <div className={styles.form}>
-        <input
-          className={styles.formInput}
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          className={styles.textareaInput}
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
+      <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+        <div className={styles.form}>
+          <input
+            className={styles.formInput}
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <textarea
+            className={styles.textareaInput}
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
 
-        <div className={styles.labelContainer}>
-          <span className={styles.labelTitle}>Label color</span>
-          <div className={styles.radioGroup}>
-            {['low', 'medium', 'high', 'without'].map((color) => (
-              <label className={styles.radioLabel} key={color}>
-                <input
-                  type="radio"
-                  value={color}
-                  checked={labelColor === color}
-                  onChange={() => setLabelColor(color)}
-                  className={styles.radioInput}
-                />
-                <span
-                  className={`${styles.customRadio} ${
-                    styles[`${color}Label`]
-                  } ${labelColor === color ? styles.selected : ''}`}
-                ></span>
-              </label>
-            ))}
+          <div className={styles.labelContainer}>
+            <span className={styles.labelTitle}>Label color</span>
+            <div className={styles.radioGroup}>
+              {['low', 'medium', 'high', 'without'].map((color) => (
+                <label className={styles.radioLabel} key={color}>
+                  <input
+                    type="radio"
+                    value={color}
+                    checked={labelColor === color}
+                    onChange={() => setLabelColor(color)}
+                    className={styles.radioInput}
+                  />
+                  <span
+                    className={`${styles.customRadio} ${
+                      styles[`${color}Label`]
+                    } ${labelColor === color ? styles.selected : ''}`}
+                  ></span>
+                </label>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className={styles.deadlineContainer}>
-          <span className={styles.labelTitle}>Deadline</span>
-          <Calendar deadline={deadline} setDeadline={setDeadline} />
+          <div className={styles.deadlineContainer}>
+            <span className={styles.labelTitle}>Deadline</span>
+            <Calendar deadline={deadline} setDeadline={setDeadline} />
+          </div>
+          <Button icon="plus" type="submit">
+            {existingCard ? 'Save' : 'Add'}
+          </Button>
         </div>
-        <Button icon="plus" type="submit">
-          {existingCard ? 'Save' : 'Add'}
-        </Button>
-      </div>
-    </ModalContainerEffect>
+      </form>
+    </ModalContainerReact>
   );
 };

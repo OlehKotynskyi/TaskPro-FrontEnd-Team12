@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
+import { ModalContainerReact } from '../Shared/ModalContainerReact/ModalContainerReact';
 import styles from './Filters.module.css';
 
 // showPriority - значення фільтру відображення карток певного пріорітету
@@ -23,7 +23,7 @@ export const Filters = ({ showPriority = 'all', onClose }) => {
   };
 
   return (
-    <ModalContainer width={300} modalTitle="Filters" onClose={onClose}>
+    <ModalContainerReact width={300} modalTitle="Filters" onClose={onClose}>
       <div className={styles.container}>
         <div>
           <h3 className={styles.labelTitle}>Label color</h3>
@@ -45,6 +45,6 @@ export const Filters = ({ showPriority = 'all', onClose }) => {
         </div>
         <button className={styles.showAll} onClick={handleShowAll}>Show all</button>
       </div>
-    </ModalContainer>
+    </ModalContainerReact>
   );
 };
