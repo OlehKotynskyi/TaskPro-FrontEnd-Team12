@@ -19,6 +19,8 @@ const HomePage = () => {
     getAllBoards();
   }, [dispatch]);
 
+  console.log('boardId', boardId);
+
   return (
     <div className={css.homePage}>
       <Sidebar visible={sidebarVisible} onVisible={setSidebarVisible} />

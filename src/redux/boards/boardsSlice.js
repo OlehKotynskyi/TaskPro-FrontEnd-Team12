@@ -21,7 +21,6 @@ const boardSlice = createSlice({
     selectBoards: state => state.boards,
     selectCurrentBoard: state => state.currentBoard,
   },
-
   extraReducers: builder => {
     builder
       .addCase(addBoard.pending, state => {

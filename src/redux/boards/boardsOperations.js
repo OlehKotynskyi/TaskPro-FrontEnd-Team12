@@ -56,9 +56,11 @@ export const editBoard = createAsyncThunk(
 );
 export const deletBoard = createAsyncThunk(
   'boards/deletBoard',
-  async (id, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/api/boards/${id}`);
+      const { data } = await axios.delete(`/api/boards/${params.id}`);
+      params.callback();
+
       return data.deletedBoard;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

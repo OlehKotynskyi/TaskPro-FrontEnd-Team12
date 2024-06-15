@@ -5,36 +5,47 @@ import clsx from 'clsx';
 import { BordModal } from 'components/ModalWindow/BordModal/BordModal';
 import { useDispatch } from 'react-redux';
 import { deletBoard } from '../../redux/boards/boardsOperations';
-import { NavLink } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const BordCard = ({ board, closeSidebar }) => {
+  const navigate = useNavigate();
+  const { boardId } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
 
+  const onSelectBoard = () => navigate(board._id);
+
+  const handleModalClose = () => setModalOpen(false);
+
+  const onSuccessDelete = () => {
+    if (boardId === board._id) {
+      navigate('/home', { replace: true });
+    }
+  };
+
   const onEditBoard = e => {
-    // e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
     setModalOpen(true);
     closeSidebar();
   };
 
-  const handleModalClose = () => setModalOpen(false);
-
   const onDelete = e => {
-    // e.preventDefault();
-    // e.stopPropagation();
-
-    closeSidebar();
-    dispatch(deletBoard(board._id));
+    e.stopPropagation();
+    const params = {
+      id: board._id,
+      callback: onSuccessDelete,
+    };
+    dispatch(deletBoard(params));
   };
 
   return (
     <>
       <li>
-        <NavLink
-          className={({ isActive }) => {
-            return clsx(css.card, { [css.cardActive]: isActive });
-          }}
+        <div
+          onClick={onSelectBoard}
+          className={clsx(css.card, {
+            [css.cardActive]: boardId === board._id,
+          })}
           to={board._id}
         >
           <svg className={css.cardSvg}>
@@ -53,7 +64,7 @@ export const BordCard = ({ board, closeSidebar }) => {
               </svg>
             </button>
           </div>
-        </NavLink>
+        </div>
       </li>
       {isModalOpen && (
         <BordModal onClose={handleModalClose} type="edit" board={board} />

@@ -127,6 +127,7 @@ export const BordModal = ({ onClose, type, board }) => {
 
       dispatch(editBoard(payload));
     }
+    onClose();
   };
 
   return (
