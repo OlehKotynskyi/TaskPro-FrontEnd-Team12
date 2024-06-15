@@ -3,12 +3,22 @@ import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
 import { useForm } from 'react-hook-form';
 import css from './HelpModal.module.css';
 import clsx from 'clsx';
-import { Button } from "../../Shared/Button/Button"
+import { Button } from '../../Shared/Button/Button';
+import axios from 'axios';
 
 export const HelpModal = ({ onClose }) => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = async data => {
+    try {
+      const payload = {
+        email: data.email,
+        text: data.text,
+      };
+      await axios.post('api/', payload);
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <ModalContainer onClose={onClose} modalTitle="Need help">
