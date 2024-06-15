@@ -5,6 +5,7 @@ import { ColumnCard } from 'components/ColumnCard/ColumnCard';
 import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 import { Button } from '../Shared/Button/Button';
 import sprite from '../../images/sprite.svg';
+import {reduceTextToFit} from '../../utils/reduceTextToFit.js'
 
 export const NewColumn = ({
   column,
@@ -54,10 +55,15 @@ export const NewColumn = ({
     setColumns(updatedColumns);
   };
 
+  // title to display
+  const maxWidth = 250;
+  const font = "500 14px Poppins, sans-serif";
+  const reducedTitle = reduceTextToFit(columnTitle, maxWidth, font);
+
   return (
     <div className={css.columnContainer}>
       <div className={css.columnHeader}>
-        <h4 className={css.columnTitle}>{columnTitle}</h4>
+        <h4 className={css.columnTitle}>{reducedTitle}</h4>
         <div className={css.headerSvgContainer}>
           <button onClick={handleOpenEdit} className={css.headerSvgButton}>
             <svg className={css.iconPencil} width="16px" height="16px">

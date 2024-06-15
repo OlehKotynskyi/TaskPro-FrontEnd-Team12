@@ -37,6 +37,7 @@
 	--priority-medium: #F99FB4;
 	--priority-high: #B4E1A8;
 	--priority-without: #555555;
+	--text-project: rgba(255, 255, 255, 0.5);
 
 	/* calendar */
 	--calendar-week: rgba(255, 255, 255, 0.5);
@@ -80,6 +81,7 @@
 	--priority-medium: #F99FB4;
 	--priority-high: #B4E1A8;
 	--priority-without: #555555;
+	--text-project: rgba(22, 22, 22, 0.5);
 
 	/* calendar */
 	--calendar-week: rgba(0, 0, 0, 0.5);
@@ -123,6 +125,7 @@
 	--priority-medium: #F99FB4;
 	--priority-high: #B4E1A8;
 	--priority-without: #555555;
+	--text-project: rgba(22, 22, 22, 0.5);
 
 	/* calendar */
 	--calendar-week: rgba(0, 0, 0, 0.5);

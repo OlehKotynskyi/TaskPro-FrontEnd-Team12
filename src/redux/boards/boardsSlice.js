@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addBoard,
-  deletBoard,
+  deleteBoard,
   editBoard,
   fetchBoards,
   getBoard,
@@ -50,7 +50,6 @@ const boardSlice = createSlice({
       })
       .addCase(editBoard.fulfilled, (state, action) => {
         state.loading = false;
-
         state.boards = state.boards.map(board =>
           board._id === action.payload._id ? action.payload : board
         );
@@ -59,16 +58,16 @@ const boardSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(deletBoard.pending, state => {
+      .addCase(deleteBoard.pending, state => {
         state.loading = true;
       })
-      .addCase(deletBoard.fulfilled, (state, action) => {
+      .addCase(deleteBoard.fulfilled, (state, action) => {
         state.loading = false;
         state.boards = state.boards.filter(
           board => board._id !== action.payload._id
         );
       })
-      .addCase(deletBoard.rejected, (state, action) => {
+      .addCase(deleteBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

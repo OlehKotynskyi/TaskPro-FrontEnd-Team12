@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import css from './Sidebar.module.css';
 import clsx from 'clsx';
 import sprite from '../../images/sprite.svg';
 import helpImg2x from '../../images/flower/flower_@2x.png';
 import helpImg from '../../images/flower/flower.png';
-import { BordCard } from 'components/BordCard/BordCard';
+import { BoardCard } from '../BoardCard/BoardCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from '../../redux/auth/authOperations';
-import { BordModal } from 'components/ModalWindow/BordModal/BordModal';
+import { fetchBoards } from '../../redux/boards/boardsOperations';
+import { BoardModal } from '../ModalWindow/BoardModal/BoardModal';
 import { HelpModal } from 'components/ModalWindow/HelpModal/HelpModal';
 import { selectBoards } from '../../redux/boards/boardsSlice';
 
@@ -16,15 +17,31 @@ export const Sidebar = ({ visible, onVisible }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const boards = useSelector(selectBoards);
+  const [activeBoardId, setActiveBoardId] = useState(() => {
+    return localStorage.getItem('activeBoardId');
+  });
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isModalOpenHelp, setModalOpenHelp] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchBoards());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (activeBoardId) {
+      localStorage.setItem('activeBoardId', activeBoardId);
+    }
+  }, [activeBoardId]);
 
   const handleModalOpen = () => {
     setModalOpen(true);
     onVisible(false);
   };
-  const handleModalClose = () => setModalOpen(false);
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
 
   const handleModalOpenHelp = () => {
     setModalOpenHelp(true);
@@ -66,10 +83,12 @@ export const Sidebar = ({ visible, onVisible }) => {
           </div>
         </div>
         <ul className={css.projects}>
-          {boards.map(bord => (
-            <BordCard
-              key={bord._id}
-              board={bord}
+          {boards.map(board => (
+            <BoardCard
+              key={board._id}
+              board={board}
+              activeBoardId={activeBoardId}
+              setActiveBoardId={setActiveBoardId}
               closeSidebar={() => onVisible(false)}
             />
           ))}
@@ -106,7 +125,7 @@ export const Sidebar = ({ visible, onVisible }) => {
           </button>
         </div>
       </aside>
-      {isModalOpen && <BordModal onClose={handleModalClose} type="create" />}
+      {isModalOpen && <BoardModal onClose={handleModalClose} type="create" />}
       {isModalOpenHelp && <HelpModal onClose={handleModalCloseHelp} />}
     </div>
   );

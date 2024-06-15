@@ -39,8 +39,12 @@
 	fill: var(--color1);
 }
 
-.avatarWrap:hover {
-	transform: scale(1.1);
+
+@media (hover: hover) and (pointer: fine) {
+
+	.avatarWrap:hover {
+		transform: scale(1.1);
+	}
 }
 
 .avatar {
@@ -94,12 +98,16 @@
 	transition: all 0.3s ease-in-out;
 }
 
-.dropbtn:hover {
-	color: var(--color-text-rgb);
-}
 
-.dropbtn:hover .arrow {
-	color: var(--color-text-rgb);
+@media (hover: hover) and (pointer: fine) {
+
+	.dropbtn:hover {
+		color: var(--color-text-rgb);
+	}
+
+	.dropbtn:hover .arrow {
+		color: var(--color-text-rgb);
+	}
 }
 
 .dropdownContent {
@@ -149,9 +157,13 @@
 	margin-bottom: 5px;
 }
 
-.themeBtn:hover {
-	color: var(--color-green);
-	transform: translateX(5px);
+
+@media (hover: hover) and (pointer: fine) {
+
+	.themeBtn:hover {
+		color: var(--color-green);
+		transform: translateX(5px);
+	}
 }
 
 .burgerMenu {
@@ -172,8 +184,12 @@
 	transition: all 0.3s ease-in-out;
 }
 
-.menu:hover {
-	color: var(--color-text-rgb);
+
+@media (hover: hover) and (pointer: fine) {
+
+	.menu:hover {
+		color: var(--color-text-rgb);
+	}
 }
 
 @media screen and (min-width: 768px) {
@@ -183,7 +199,7 @@
 	}
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1440px) {
 	.menu {
 		display: none;
 	}

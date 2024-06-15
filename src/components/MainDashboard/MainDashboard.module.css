@@ -47,12 +47,27 @@
 	gap: 8px;
 	border: 0;
 	color: var(--color-text-base);
+	transition: all 0.3s ease-in-out;
 }
+
 
 .filter svg {
 	color: var(--color-text-base);
 	transition: all 0.3s ease-in-out;
 }
+
+
+@media (hover: hover) and (pointer: fine) {
+
+	.filter:hover {
+		color: var(--color-text-rgb);
+	}
+
+	.filter:hover svg {
+		color: var(--color-text-rgb);
+	}
+}
+
 
 .filterContainer {
 	position: static;
@@ -66,7 +81,6 @@
 	font-weight: 500;
 	font-size: 14px;
 	letter-spacing: -0.02em;
-	color: var(--color-text-rgb);
 }
 
 .headerText {
@@ -98,6 +112,13 @@
 	height: 100%;
 }
 
+
+
+@media (hover: hover) and (pointer: fine) {
+	.button:hover {
+		color: var(--color-green-dark);
+	}
+}
 
 @media (min-width: 768px) {
 	.columnsWrapper {

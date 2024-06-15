@@ -1,42 +1,24 @@
 .input {
-    width: 100%;
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 14px;
-    letter-spacing: -0.02em;
-    color: var(--color-text-base);
-    border: 1px solid var(--color-green-border);
-    border-radius: 8px;
-    box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
-    background-color: var(--modal-colo-transparent);
-    padding: 14px 18px;
+	width: 100%;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 14px;
+	letter-spacing: -0.02em;
+	color: var(--color-text-base);
+	border: 1px solid var(--color-green-border);
+	border-radius: 8px;
+	box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
+	background-color: var(--modal-colo-transparent);
+	padding: 14px 18px;
 }
 
 .input:focus {
-    outline: none;
-    border: 1px solid var(--color-green);
+	outline: none;
+	border: 1px solid var(--color-green);
 }
 
 .textarea {
-    resize: none;
-    height: 120px;
-    margin: 14px 0 24px;
-}
-
-.formWrapImput {
-    position: relative;
-    width: 100%;
-
-}
-
-.errors {
-    position: relative;
-    bottom: -6px;
-    font-size: 10px;
-    color: rgba(255, 0, 0, 0.788);
-    left: 18px;
-}
-
-.input.error {
-    border-color: rgba(255, 0, 0, 0.788);
+	resize: none;
+	height: 120px;
+	margin: 14px 0 24px;
 }
