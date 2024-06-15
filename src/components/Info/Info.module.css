@@ -1,0 +1,29 @@
+.noProjectContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noProjectNotify {
+    width: 335px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: var(--color-text-rgb);
+}
+
+.button {
+    color: green;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+    .noProjectNotify {
+        width: 486px;
+    }
+}

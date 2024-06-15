@@ -99,7 +99,6 @@ const backgrounds = [
 export const BordModal = ({ onClose, type, board }) => {
   const dispatch = useDispatch();
   const isCreate = type === 'create';
-  console.log(isCreate);
 
   const {
     register,
@@ -108,7 +107,7 @@ export const BordModal = ({ onClose, type, board }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: isCreate ? 'a' : board.title,
+      title: isCreate ? '' : board.title,
       icon: isCreate ? 'icon-project' : board.icon,
       bgnd: isCreate ? 'h' : board.background,
     },
@@ -120,7 +119,6 @@ export const BordModal = ({ onClose, type, board }) => {
       icon: data.icon,
       background: data.bgnd,
     };
-    console.log(data);
 
     if (isCreate) {
       dispatch(addBoard(payload));

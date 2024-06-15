@@ -5,6 +5,11 @@
 	gap: 4px;
 	background-color: var(--help-sidebar);
 	position: relative;
+	margin-bottom: 4px;
+}
+
+.card:last-child {
+	margin-bottom: 0;
 }
 
 .cardActive::after {

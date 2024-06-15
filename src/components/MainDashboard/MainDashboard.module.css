@@ -1,14 +1,3 @@
-.noProjectNotify {
-	width: 486px;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 129%;
-	letter-spacing: -0.02em;
-	text-align: center;
-	color: var(--color-text-rgb);
-
-}
-
 .dashboardBackground {
 	display: flex;
 	flex-direction: column;
@@ -49,10 +38,6 @@
 
 }
 
-.noProjectContainer {
-	display: flex;
-	justify-content: center;
-}
 
 .filter {
 	display: flex;
@@ -113,11 +98,6 @@
 	height: 100%;
 }
 
-.button {
-	color: green;
-	font-size: 18px;
-	font-weight: 500;
-}
 
 @media (min-width: 768px) {
 	.columnsWrapper {
