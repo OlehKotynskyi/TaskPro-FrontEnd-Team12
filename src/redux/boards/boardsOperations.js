@@ -5,7 +5,7 @@ export const addBoard = createAsyncThunk(
   'boards/addBoard',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post('/api/boards/create', payload);
+      const { data } = await axios.post('/api', payload);
 
       return data;
     } catch (error) {
@@ -18,7 +18,7 @@ export const fetchBoards = createAsyncThunk(
   'boards/fetchBoards',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get('/api/boards');
+      const { data } = await axios.get('/api', { params });
 
       return data;
     } catch (error) {
@@ -44,7 +44,7 @@ export const deleteBoard = createAsyncThunk(
   'boards/deleteBoard',
   async (id, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/api/boards/${id}`);
+      const { data } = await axios.delete('/api', payload);
 
       return data;
     } catch (error) {

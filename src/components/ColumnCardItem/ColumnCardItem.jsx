@@ -10,8 +10,24 @@ export const ColumnCardItem = ({
 }) => {
   const handleDelete = () => handleDeleteCard(index);
 
+  const priorityColor = () => {
+    switch (card.labelColor) {
+      case 'high':
+        return 'var(--priority-high)';
+      case 'medium':
+        return 'var(--priority-medium)';
+      case 'low':
+        return 'var(--priority-low)';
+      default:
+        return 'var(--priority-without)';
+    }
+  };
+
   return (
-    <li className={css.cardContainer}>
+    <li
+      className={css.cardContainer}
+           style={{ '--priority-color': priorityColor() }}
+    >
       <div className={css.contentContainer}>
         <h4 className={css.contentTitle}>{card.title}</h4>
         <p className={css.contentText}>{card.description}</p>
@@ -22,15 +38,15 @@ export const ColumnCardItem = ({
           <div className={css.container}>
             <p
               className={css.infoColor}
-              style={{ backgroundColor: card.labelColor }}
+              style={{ backgroundColor: priorityColor() }}
             ></p>
-            <p className={css.infoText}>Low</p>
+            <p className={css.infoText}>{card.labelColor}</p>
           </div>
         </div>
         <div className={css.deadlineContainer}>
           <p className={css.infoTitle}>Deadline</p>
           <div>
-            <p className={css.infoText}>{card.deadline.toLocaleDateString()}</p>
+            <p className={css.infoText}>{new Date(card.deadline).toLocaleDateString()}</p>
           </div>
         </div>
         <div className={css.infoIcons}>
@@ -59,3 +75,4 @@ export const ColumnCardItem = ({
     </li>
   );
 };
+

@@ -1,3 +1,12 @@
+/* .contentTitle {
+	font-weight: 600;
+	font-size: 14px;
+	letter-spacing: -0.02em;
+	color: var(--color-text-base);
+	line-height: normal;
+	margin-bottom: 8px;
+} */
+
 .contentTitle {
 	font-weight: 600;
 	font-size: 14px;
@@ -5,12 +14,15 @@
 	color: var(--color-text-base);
 	line-height: normal;
 	margin-bottom: 8px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .contentText {
 	font-weight: 400;
 	font-size: 12px;
-	line-height: 133%;
+	line-height: 1.2em;
 	letter-spacing: -0.02em;
 	color: var(--card-text);
 	display: -webkit-box;
@@ -18,6 +30,8 @@
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	width: 290px;
+	max-height: calc(1.2em * 2);
 	white-space: normal;
 	position: relative;
 }
@@ -28,6 +42,7 @@
 	background-color: var(--main-todo);
 	position: relative;
 	padding: 14px 24px;
+	--priority-color: var(--priority-without);
 }
 
 .infoContainer {
@@ -106,14 +121,14 @@
 	width: 4px;
 	height: 100%;
 	border-radius: 4px 0 0 4px;
-	background-color: var(--color-blue-light);
+	background-color: var(--priority-color);
 }
 
 .infoColor {
 	width: 14px;
 	height: 14px;
 	border-radius: 50%;
-	background-color: var(--color-green);
+	background-color: var(--priority-color);
 }
 
 .icon {
