@@ -24,8 +24,8 @@ export const getBoard = createAsyncThunk(
   }
 );
 
-export const featchBoards = createAsyncThunk(
-  'boards/featchBoards',
+export const fetchBoards = createAsyncThunk(
+  'boards/fetchBoards',
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/api/boards');

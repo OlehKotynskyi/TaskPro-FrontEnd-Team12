@@ -3,7 +3,7 @@ import { Header } from '../../components/Header/Header';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import css from './HomePage.module.css';
 import { useDispatch } from 'react-redux';
-import { featchBoards } from '../../redux/boards/boardsOperations';
+import { fetchBoards } from '../../redux/boards/boardsOperations';
 import { Outlet, useParams } from 'react-router-dom';
 import { Info } from 'components/Info/Info';
 
@@ -14,7 +14,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const getAllBoards = () => {
-      dispatch(featchBoards());
+      dispatch(fetchBoards());
     };
     getAllBoards();
   }, [dispatch]);

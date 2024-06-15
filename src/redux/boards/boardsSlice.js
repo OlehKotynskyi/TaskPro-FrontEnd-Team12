@@ -3,7 +3,7 @@ import {
   addBoard,
   deletBoard,
   editBoard,
-  featchBoards,
+  fetchBoards,
   getBoard,
 } from './boardsOperations';
 
@@ -35,14 +35,14 @@ const boardSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(featchBoards.pending, state => {
+      .addCase(fetchBoards.pending, state => {
         state.loading = true;
       })
-      .addCase(featchBoards.fulfilled, (state, action) => {
+      .addCase(fetchBoards.fulfilled, (state, action) => {
         state.loading = false;
         state.boards = action.payload;
       })
-      .addCase(featchBoards.rejected, (state, action) => {
+      .addCase(fetchBoards.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
