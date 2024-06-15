@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './ModalContainerEffect.module.css';
 import sprite from '../../../../images/sprite.svg';
 
@@ -15,13 +15,13 @@ export const ModalContainerEffect = ({ children, onClose, modalTitle, width, han
     }
   };
 
-  const triggerClose = (callback) => {
+  const triggerClose = useCallback((callback) => {
     setIsVisible(false);
     setTimeout(() => {
       if (callback) callback();
       onClose();
     }, 300);
-  };
+  }, [onClose]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
