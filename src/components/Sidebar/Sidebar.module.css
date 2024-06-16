@@ -179,6 +179,8 @@
 
 
 .logOutBtn {
+    width: 105px;
+    height: 32px;
     gap: 14px;
     display: flex;
     align-items: center;
@@ -190,16 +192,30 @@
     color: var(--titel-sidebar);
 }
 
-.logOutSvg svg {
-    width: 23px;
-    height: 23px;
+.logOutSvg {
+    width: 32px;
+    height: 32px;
     transition: all 0.3s ease-in-out;
+    color: var(--color-green);
 }
 
+@media (hover: hover) and (pointer: fine) {
 
-.logOutSvg:hover svg {
-    color: var(--color-green-dark);
+    .login:hover,
+    .login:focus {
+        opacity: 0.8;
+        background: #161616;
+        color: #ffffff;
+    }
 }
+
+@media (hover: hover) and (pointer: fine) {
+
+    .logOutSvg:hover {
+        color: var(--color-green-dark);
+    }
+}
+
 
 .block {
     padding: 0 14px;
@@ -208,7 +224,7 @@
 @media screen and (min-width: 769px) {
     .sidebar {
         width: 260px;
-        padding: 24px 0;
+        padding: 24px 0 24px;
     }
 
     .logoBox {
@@ -229,7 +245,7 @@
     }
 
     .projects {
-        height: calc(100% - 527px);
+        height: calc(100% - 507px);
     }
 }
 
@@ -238,10 +254,14 @@
     .sidebarWrap,
     .sidebar {
         position: static;
-        width: 260px;
     }
 
     .helpText {
-        font-size: 16px;
+        font-size: 14px;
     }
+
+    .projects {
+        height: calc(100% - 527px);
+    }
+
 }
