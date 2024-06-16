@@ -15,13 +15,17 @@ export const ModalInput = ({
   return (
     <div>
       <input
-        className={`${styles.input} ${className} ${error ? styles.error : ''} ${error ? errorClassName : ''}`}
+        className={`${styles.input} ${className} ${error ? styles.error : ''} ${
+          error ? errorClassName : ''
+        }`}
         {...register(name)}
         {...rest}
       />
-      {error && <div className={styles.errorMessage}>{errorMessage || error.message}</div>}
+      {error && (
+        <div className={styles.errorMessage}>
+          {errorMessage || error.message}
+        </div>
+      )}
     </div>
   );
 };
-
-
