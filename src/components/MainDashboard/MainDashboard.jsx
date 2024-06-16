@@ -18,7 +18,7 @@ import {
 export const MainDashboard = () => {
   const { boardId } = useParams();
   const dispatch = useDispatch();
-  const { board } = useSelector(selectCurrentBoard) || {};
+  const board = useSelector(selectCurrentBoard);
 
   const boards = useSelector(selectBoards);
   const currentBoard = boards?.find(b => b._id === boardId);
