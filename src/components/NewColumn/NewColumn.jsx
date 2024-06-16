@@ -5,13 +5,14 @@ import { ColumnCard } from 'components/ColumnCard/ColumnCard';
 import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 import { Button } from '../Shared/Button/Button';
 import sprite from '../../images/sprite.svg';
-import {reduceTextToFit} from '../../utils/reduceTextToFit.js'
+import { reduceTextToFit } from '../../utils/reduceTextToFit.js';
 
 export const NewColumn = ({
   column,
   setColumns,
   columns,
   handleDeleteColumn,
+  filterPriority, // Додано фільтр пріоритету
 }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAddCardModal, setShowAddCardModal] = useState(false);
@@ -23,7 +24,7 @@ export const NewColumn = ({
 
   const handleCloseEdit = newTitle => {
     const updatedColumns = columns.map(col =>
-      col.title === column.title ? { ...col, title: newTitle } : col
+      col.id === column.id ? { ...col, title: newTitle } : col
     );
     setColumns(updatedColumns);
     setColumnTitle(newTitle === '' ? 'Untitled' : newTitle);
@@ -34,9 +35,7 @@ export const NewColumn = ({
   const handleAddCardModalClose = newCard => {
     if (newCard) {
       const updatedColumns = columns.map(col =>
-        col.title === column.title
-          ? { ...col, cards: [...col.cards, newCard] }
-          : col
+        col.id === column.id ? { ...col, cards: [...col.cards, newCard] } : col
       );
       setColumns(updatedColumns);
     }
@@ -45,7 +44,7 @@ export const NewColumn = ({
 
   const handleDeleteCard = indexToDelete => {
     const updatedColumns = columns.map(col =>
-      col.title === column.title
+      col.id === column.id
         ? {
             ...col,
             cards: col.cards.filter((_, index) => index !== indexToDelete),
@@ -55,9 +54,32 @@ export const NewColumn = ({
     setColumns(updatedColumns);
   };
 
+  // Функція для сортування карток за пріоритетом
+  const sortCardsByPriority = cards => {
+    const priorityOrder = ['high', 'medium', 'low', 'without'];
+    return cards
+      .slice()
+      .sort(
+        (a, b) =>
+          priorityOrder.indexOf(a.labelColor) -
+          priorityOrder.indexOf(b.labelColor)
+      );
+  };
+
+  // Функція для фільтрації карток
+  const filterCards = (cards, priority) => {
+    return priority === 'all'
+      ? cards
+      : cards.filter(card => card.labelColor === priority);
+  };
+
+  // Отримання відфільтрованих і відсортованих карток
+  const filteredCards = filterCards(column.cards, filterPriority);
+  const sortedCards = sortCardsByPriority(filteredCards);
+
   // title to display
   const maxWidth = 250;
-  const font = "500 14px Poppins, sans-serif";
+  const font = '500 14px Poppins, sans-serif';
   const reducedTitle = reduceTextToFit(columnTitle, maxWidth, font);
 
   return (
@@ -72,7 +94,7 @@ export const NewColumn = ({
           </button>
           <button
             className={css.headerSvgButton}
-            onClick={() => handleDeleteColumn(column.title)}
+            onClick={() => handleDeleteColumn(column.id)}
           >
             <svg className={css.iconTrash} width="16px" height="16px">
               <use href={`${sprite}#icon-trash`} />
@@ -82,14 +104,14 @@ export const NewColumn = ({
       </div>
 
       <div className={css.cardsContainer}>
-        {column.cards.map((card, index) => (
+        {sortedCards.map((card, index) => (
           <ColumnCard
             key={index}
             card={card}
             handleDeleteCard={() => handleDeleteCard(index)}
             setColumns={setColumns}
             columns={columns}
-            columnTitle={column.title}
+            columnId={column.id} // Передача ID колонки
           />
         ))}
       </div>
