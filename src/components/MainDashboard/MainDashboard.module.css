@@ -1,14 +1,3 @@
-.noProjectNotify {
-	max-width: 486px;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 129%;
-	letter-spacing: -0.02em;
-	text-align: center;
-	color: var(--text-project);
-
-}
-
 .dashboardBackground {
 	display: flex;
 	flex-direction: column;
@@ -19,7 +8,7 @@
 	flex-grow: 1;
 }
 
-.dashboardBackground::-webkit-scrollbar {
+/* .dashboardBackground::-webkit-scrollbar {
 	height: 12px;
 	width: calc(100% - 24px);
 }
@@ -34,7 +23,7 @@
 	background-color: rgba(255, 255, 255, 0.1);
 	border-radius: 12px;
 	border: 1px solid rgba(0, 0, 0, 0.5);
-}
+} */
 
 @media (min-width: 768px) {
 	.dashboardBackground {
@@ -49,12 +38,6 @@
 
 }
 
-.noProjectContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 80%;
-}
 
 .filter {
 	display: flex;
@@ -129,14 +112,7 @@
 	height: 100%;
 }
 
-.button {
-	color: var(--color-green);
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 129%;
-	letter-spacing: -0.02em;
-	transition: all 0.3s ease-in-out;
-}
+
 
 @media (hover: hover) and (pointer: fine) {
 	.button:hover {

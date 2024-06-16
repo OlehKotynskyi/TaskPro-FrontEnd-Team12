@@ -12,6 +12,7 @@ import { refreshUser } from '../redux/auth/authOperations';
 import { Loader } from '../components/Loaders/Loader';
 import { ThemeProvider } from '../components/ThemeContext/ThemeContext';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import { MainDashboard } from 'components/MainDashboard/MainDashboard';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -71,7 +72,9 @@ export const App = () => {
                   </PrivateRoute>
                 </ThemeProvider>
               }
-            />
+            >
+              <Route path=":boardId" element={<MainDashboard />} />
+            </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

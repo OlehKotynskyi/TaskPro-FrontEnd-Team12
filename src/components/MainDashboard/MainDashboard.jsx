@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-//import { Link } from 'react-router-dom';
 import { AddColumnModal } from 'components/ModalWindow/AddColumnModal/AddColumnModal';
 import { Filters } from 'components/ModalWindow/Filters/Filters';
 import { NewColumn } from 'components/NewColumn/NewColumn';
@@ -8,8 +7,20 @@ import css from './MainDashboard.module.css';
 import sprite from '../../images/sprite.svg';
 import { Button } from '../Shared/Button/Button';
 import { v4 as uuidv4 } from 'uuid'; // Додано для генерації унікальних ідентифікаторів
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBoard } from '../../redux/boards/boardsOperations';
+import {
+  selectBoards,
+  selectCurrentBoard,
+} from '../../redux/boards/boardsSlice';
 
 export const MainDashboard = () => {
+  const { boardId } = useParams();
+  const dispatch = useDispatch();
+  const { board } = useSelector(selectCurrentBoard);
+  const boards = useSelector(selectBoards);
+  const currentBoard = boards?.find(b => b._id === boardId);
   const [amountOfBoards, setAmountOfBoards] = useState(0);
   const [columns, setColumns] = useState([]);
   const [showAddColumnModal, setShowAddColumnModal] = useState(false);
@@ -31,6 +42,13 @@ export const MainDashboard = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const getAllBoards = () => {
+      dispatch(getBoard(boardId));
+    };
+    getAllBoards();
+  }, [dispatch, boardId]);
 
   const handleOpenAdd = () => {
     setShowAddColumnModal(true);
@@ -66,67 +84,51 @@ export const MainDashboard = () => {
     setFilterPriority(priority); // Оновлення фільтру пріоритету
   };
 
+  if (!board || !currentBoard) return;
+
   return (
     <div className={css.dashboardBackground}>
-      {amountOfBoards > 0 && (
-        <div className={css.filterContainer}>
-          <h3 className={css.headerText}>Project office</h3>
-          <button onClick={handleOpenFilter} className={css.filter}>
-            <svg className={css.iconFilter} width={16} height={16}>
-              <use href={`${sprite}#icon-filter`} />
-            </svg>
-            <p className={css.filterText}>Filters</p>
-          </button>
-        </div>
-      )}
-      {amountOfBoards > 0 ? (
-        <div className={css.dashboardContainer}>
-          <div className={css.columnsWrapper}>
-            <div className={css.columnsContainer}>
-              {columns
-                .filter(
-                  column =>
-                    filterPriority === 'all' ||
-                    column.cards.some(
-                      card => card.labelColor === filterPriority
-                    )
-                ) // Фільтрація колонок
-                .map((column, index) => (
-                  <NewColumn
-                    key={column.id}
-                    column={column}
-                    setColumns={setColumns}
-                    columns={columns}
-                    handleDeleteColumn={handleDeleteColumn}
-                    filterPriority={filterPriority} // Передача фільтру пріоритету
-                  />
-                ))}
-              <Button
-                usage="dashboard"
-                color="neutral"
-                icon="plus"
-                onClick={handleOpenAdd}
-                className={css.addColumnButton}
-              >
-                Add another column
-              </Button>
-              {showRightSpacer && <div className={css.rightSpacer}></div>}
-            </div>
+      <div className={css.filterContainer}>
+        <h3 className={css.headerText}>{currentBoard.title}</h3>
+        <button onClick={handleOpenFilter} className={css.filter}>
+          <svg className={css.iconFilter} width={16} height={16}>
+            <use href={`${sprite}#icon-filter`} />
+          </svg>
+          <p className={css.filterText}>Filters</p>
+        </button>
+      </div>
+      <div className={css.dashboardContainer}>
+        <div className={css.columnsWrapper}>
+          <div className={css.columnsContainer}>
+            {columns
+              .filter(
+                column =>
+                  filterPriority === 'all' ||
+                  column.cards.some(card => card.labelColor === filterPriority)
+              ) // Фільтрація колонок
+              .map((column, index) => (
+                <NewColumn
+                  key={column.id}
+                  column={column}
+                  setColumns={setColumns}
+                  columns={columns}
+                  handleDeleteColumn={handleDeleteColumn}
+                  filterPriority={filterPriority} // Передача фільтру пріоритету
+                />
+              ))}
+            <Button
+              usage="dashboard"
+              color="neutral"
+              icon="plus"
+              onClick={handleOpenAdd}
+              className={css.addColumnButton}
+            >
+              Add another column
+            </Button>
+            {showRightSpacer && <div className={css.rightSpacer}></div>}
           </div>
         </div>
-      ) : (
-        <div className={css.noProjectContainer}>
-          <p className={css.noProjectNotify}>
-            Before starting your project, it is essential{' '}
-            <button className={css.button} onClick={() => setAmountOfBoards(1)}>
-              to create a board
-            </button>{' '}
-            to visualize and track all the necessary tasks and milestones. This
-            board serves as a powerful tool to organize the workflow and ensure
-            effective collaboration among team members.
-          </p>
-        </div>
-      )}
+      </div>
       {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
       {showFilter && (
         <Filters onClose={handleCloseFilter} applyFilter={applyFilter} />

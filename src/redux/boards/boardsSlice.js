@@ -4,14 +4,23 @@ import {
   deleteBoard,
   editBoard,
   fetchBoards,
+  getBoard,
 } from './boardsOperations';
 
-const initialState = { loading: false, boards: [], error: null };
+const initialState = {
+  loading: false,
+  boards: [],
+  error: null,
+  currentBoard: null,
+};
 
 const boardSlice = createSlice({
   name: 'boards',
   initialState,
-  reducers: {},
+  selectors: {
+    selectBoards: state => state.boards,
+    selectCurrentBoard: state => state.currentBoard,
+  },
   extraReducers: builder => {
     builder
       .addCase(addBoard.pending, state => {
@@ -55,15 +64,26 @@ const boardSlice = createSlice({
       .addCase(deleteBoard.fulfilled, (state, action) => {
         state.loading = false;
         state.boards = state.boards.filter(
-          board => board._id !== action.meta.arg
+          board => board._id !== action.payload._id
         );
       })
       .addCase(deleteBoard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getBoard.pending, state => {
+        state.loading = true;
+      })
+      .addCase(getBoard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentBoard = action.payload;
+      })
+      .addCase(getBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
 
-export const selectBoards = state => state.boards.boards;
+export const { selectBoards, selectCurrentBoard } = boardSlice.selectors;
 export default boardSlice.reducer;

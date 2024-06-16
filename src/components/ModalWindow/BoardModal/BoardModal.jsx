@@ -23,7 +23,6 @@ import { useDispatch } from 'react-redux';
 import { Button } from '../../Shared/Button/Button';
 import { addBoard, editBoard } from '../../../redux/boards/boardsOperations.js';
 
-
 const icons = [
   'icon-project',
   'icon-star-04',
@@ -127,7 +126,6 @@ export const BoardModal = ({ onClose, type, board }) => {
       payload.id = board._id;
       dispatch(editBoard(payload));
     }
-
     onClose();
   };
 
