@@ -3,6 +3,7 @@ import styles from './AddCardModal.module.css';
 import { ModalContainerReact } from '../Shared/ModalContainerReact/ModalContainerReact';
 import { Button } from '../../Shared/Button/Button';
 import { Calendar } from '../Calendar/Calendar';
+import { ModalInput } from '../../Shared/ModalInput/ModalInput';
 
 export const AddCardModal = ({ onClose, existingCard }) => {
   const [title, setTitle] = useState(existingCard ? existingCard.title : '');
@@ -32,12 +33,11 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     >
       <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
         <div className={styles.form}>
-          <input
+          <ModalInput
             className={styles.formInput}
-            type="text"
-            placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title"
           />
           <textarea
             className={styles.textareaInput}

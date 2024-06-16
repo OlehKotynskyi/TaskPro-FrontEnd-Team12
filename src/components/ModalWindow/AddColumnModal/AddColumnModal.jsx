@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import styles from './AddColumnModal.module.css';
+// import styles from './AddColumnModal.module.css';
 import { ModalContainerReact } from '../Shared/ModalContainerReact/ModalContainerReact';
 import { Button } from '../../Shared/Button/Button';
+import { ModalInput } from '../../Shared/ModalInput/ModalInput';
 
 export const AddColumnModal = ({ onClose }) => {
   const [title, setTitle] = useState('');
@@ -17,8 +18,8 @@ export const AddColumnModal = ({ onClose }) => {
   return (
     <ModalContainerReact modalTitle="Add column" onClose={() => onClose(null)}>
       <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-        <input
-          className={styles.formInput}
+        <ModalInput
+          // className={styles.formInput}
           type="text"
           placeholder="Title"
           value={title}

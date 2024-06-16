@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import styles from './EditColumnModal.module.css';
+// import styles from './EditColumnModal.module.css';
 import { ModalContainerReact } from "../Shared/ModalContainerReact/ModalContainerReact";
 import { Button } from "../../Shared/Button/Button";
+import { ModalInput } from '../../Shared/ModalInput/ModalInput';
+
 
 export const EditColumnModal = ({ columnTitle, onClose }) => {
   const [newTitle, setNewTitle] = useState(columnTitle);
@@ -14,8 +16,8 @@ export const EditColumnModal = ({ columnTitle, onClose }) => {
   return (
     <ModalContainerReact modalTitle="Edit column" onClose={() => onClose(columnTitle)}>
       <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-        <input
-          className={styles.formInput}
+        <ModalInput
+          // className={styles.formInput}
           type="text"
           placeholder="Title"
           value={newTitle}
