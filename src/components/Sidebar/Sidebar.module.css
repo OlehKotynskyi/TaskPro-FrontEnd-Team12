@@ -21,6 +21,8 @@
     position: absolute;
     width: 225px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: var(--bg-sidebar);
     padding: 14px 0 24px;
 }
@@ -175,10 +177,6 @@
     color: var(--color-green-dark);
 }
 
-.logOutSvg {
-    width: 23px;
-    height: 23px;
-}
 
 .logOutBtn {
     gap: 14px;
@@ -192,11 +190,14 @@
     color: var(--titel-sidebar);
 }
 
-.logOutBtn svg {
+.logOutSvg svg {
+    width: 23px;
+    height: 23px;
     transition: all 0.3s ease-in-out;
 }
 
-.logOutBtn:hover svg {
+
+.logOutSvg:hover svg {
     color: var(--color-green-dark);
 }
 
@@ -214,15 +215,6 @@
         padding: 0 24px;
     }
 
-    .helpText {
-        font-size: 14px;
-    }
-
-    .logOutSvg {
-        width: 32px;
-        height: 32px;
-    }
-
     .block {
         padding: 0 24px;
     }
@@ -234,10 +226,6 @@
     .logOutSvg {
         width: 32px;
         height: 32px;
-    }
-
-    .block {
-        padding: 0 24px;
     }
 
     .projects {
@@ -252,12 +240,6 @@
         position: static;
         width: 260px;
     }
-
-
-    .projects {
-        height: calc(100% - 527px);
-    }
-
 
     .helpText {
         font-size: 16px;

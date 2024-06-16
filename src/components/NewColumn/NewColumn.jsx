@@ -102,18 +102,21 @@ export const NewColumn = ({
           </button>
         </div>
       </div>
-
-      <div className={css.cardsContainer}>
-        {sortedCards.map((card, index) => (
-          <ColumnCard
-            key={index}
-            card={card}
-            handleDeleteCard={() => handleDeleteCard(index)}
-            setColumns={setColumns}
-            columns={columns}
-            columnId={column.id} // Передача ID колонки
-          />
-        ))}
+      <div className={css.section}>
+        <div className={css.wrap}>
+          <div className={css.cardsContainer}>
+            {sortedCards.map((card, index) => (
+              <ColumnCard
+                key={index}
+                card={card}
+                handleDeleteCard={() => handleDeleteCard(index)}
+                setColumns={setColumns}
+                columns={columns}
+                columnId={column.id} // Передача ID колонки
+              />
+            ))}
+          </div>
+        </div>
       </div>
       <Button
         usage="dashboard"

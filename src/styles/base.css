@@ -38,6 +38,8 @@
 	--priority-high: #B4E1A8;
 	--priority-without: #555555;
 	--text-project: rgba(255, 255, 255, 0.5);
+	--scroll-bg: #161616;
+	--scroll-col: rgba(255, 255, 255, 0.1);
 
 	/* calendar */
 	--calendar-week: rgba(255, 255, 255, 0.5);
@@ -87,6 +89,8 @@
 	--priority-high: #B4E1A8;
 	--priority-without: #555555;
 	--text-project: rgba(22, 22, 22, 0.5);
+	--scroll-bg: #fff;
+	--scroll-col: #e8e8e8;
 
 	/* calendar */
 	--calendar-week: rgba(0, 0, 0, 0.5);
@@ -135,6 +139,8 @@
 	--priority-high: #B4E1A8;
 	--priority-without: #555555;
 	--text-project: rgba(22, 22, 22, 0.5);
+	--scroll-bg: #fff;
+	--scroll-col: #b8bcfd;
 
 	/* calendar */
 	--calendar-week: rgba(0, 0, 0, 0.5);
@@ -156,18 +162,16 @@ body {
 
 ::-webkit-scrollbar {
 	height: 12px;
-	width: 12px;
-	/* width: calc(100% - 24px); */
+	width: calc(100% - 24px);
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: rgb(18, 18, 18);
+	background-color: var(--scroll-col);
 	border-radius: 12px;
-
 }
 
 ::-webkit-scrollbar-track {
-	background-color: rgba(255, 255, 255, 0.1);
+	background-color: var(--scroll-bg);
 	border-radius: 12px;
-	border: 1px solid rgba(0, 0, 0, 0.5);
+	border: 1px solid rgba(128, 128, 128, 0.39);
 }

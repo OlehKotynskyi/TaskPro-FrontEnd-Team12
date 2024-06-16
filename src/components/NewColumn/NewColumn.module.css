@@ -62,13 +62,41 @@
 
 }
 
+.section {
+	display: flex;
+	overflow: hidden;
+	margin-bottom: 14px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin-right: -16px;
+	flex-grow: 1;
+}
+
+.section::-webkit-scrollbar {
+	width: 8px;
+	height: 100%;
+}
+
+.section::-webkit-scrollbar-thumb {
+	background-color: var(--scroll-col);
+	border-radius: 12px;
+}
+
+.section::-webkit-scrollbar-track {
+	background-color: var(--scroll-bg);
+	border-radius: 12px;
+	border: 1px solid rgba(128, 128, 128, 0.39);
+}
+
+.wrap {
+	display: flex;
+}
+
 .cardsContainer {
 	display: flex;
 	flex-direction: column;
-	flex-grow: 1;
-	height: 100%;
-	overflow-y: auto;
-} 
+}
+
 
 .iconTrash,
 .iconPencil {

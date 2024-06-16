@@ -9,9 +9,3 @@
 	gap: 8px;
 	flex-direction: column;
 }
-
-.scrollable {
-	overflow-y: auto;
-	max-height: calc(100% - 150px);
-	/* 120px for the header and button height */
-}
