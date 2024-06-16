@@ -14,6 +14,7 @@ export const ModalInput = ({
   register,
   errors,
   errorMessage,
+  autoFocus = false
 }) => {
   const error = errors && errors[name];
 
@@ -27,6 +28,7 @@ export const ModalInput = ({
         onChange={onChange}
         name={name}
         id={id}
+        autoFocus={autoFocus}
         {...(register && register(name))}
       />
       {error && <div className={styles.errorMessage}>{errorMessage || error.message}</div>}

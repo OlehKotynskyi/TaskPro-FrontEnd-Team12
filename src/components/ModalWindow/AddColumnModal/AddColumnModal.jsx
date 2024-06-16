@@ -24,6 +24,7 @@ export const AddColumnModal = ({ onClose }) => {
           placeholder="Title"
           value={title}
           onChange={e => setTitle(e.target.value)}
+          autoFocus = {true}
         />
         <Button icon="plus" type="submit">Add</Button>
       </form>

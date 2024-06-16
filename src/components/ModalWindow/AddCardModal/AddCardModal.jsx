@@ -38,6 +38,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Title"
+            autoFocus = {existingCard ? false : true}
           />
           <textarea
             className={styles.textareaInput}

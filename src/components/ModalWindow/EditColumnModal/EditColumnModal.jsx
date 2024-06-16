@@ -22,6 +22,7 @@ export const EditColumnModal = ({ columnTitle, onClose }) => {
           placeholder="Title"
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
+          autoFocus = {true}
         />
         <Button icon="plus" type="submit">Save</Button>
       </form>
