@@ -5,7 +5,14 @@ export const addBoard = createAsyncThunk(
   'boards/addBoard',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post('/api/boards/create', payload);
+      const params = {
+        title: payload.title,
+        background: payload.background,
+        icon: payload.icon,
+      };
+      const { data } = await axios.post('/api/boards/create', params);
+      payload.callBack(data._id);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

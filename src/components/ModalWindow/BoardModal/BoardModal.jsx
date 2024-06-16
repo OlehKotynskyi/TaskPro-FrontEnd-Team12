@@ -23,6 +23,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Button } from '../../Shared/Button/Button';
 import { addBoard, editBoard } from '../../../redux/boards/boardsOperations.js';
+import { useNavigate } from 'react-router';
 
 const icons = [
   'icon-project',
@@ -98,6 +99,7 @@ const backgrounds = [
 ];
 
 export const BoardModal = ({ onClose, type, board }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isCreate = type === 'create';
 
@@ -113,12 +115,16 @@ export const BoardModal = ({ onClose, type, board }) => {
       background: isCreate ? '' : board.background,
     },
   });
+  const onSuccessCreate = id => {
+    navigate(id);
+  };
 
   const onSubmit = data => {
     const payload = {
       title: data.title,
       icon: data.icon,
       background: data.background,
+      callBack: onSuccessCreate,
     };
 
     if (isCreate) {
@@ -147,7 +153,7 @@ export const BoardModal = ({ onClose, type, board }) => {
           id="title"
         />
         {errors.title && <p className={css.errors}>{errors.title.message}</p>}
-        
+
         <p className={css.text}>Icons</p>
         <ul className={css.listIcons}>
           {icons.map(item => (
