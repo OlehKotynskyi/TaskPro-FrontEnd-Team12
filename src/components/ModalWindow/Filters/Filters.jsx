@@ -29,7 +29,7 @@ export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {
   };
 
   return (
-    <ModalContainerReact max-width={300} modalTitle="Filters" onClose={onClose}>
+    <ModalContainerReact width={300} modalTitle="Filters" onClose={onClose}>
       <div className={styles.container}>
         <div>
           <h3 className={styles.labelTitle}>Label color</h3>
