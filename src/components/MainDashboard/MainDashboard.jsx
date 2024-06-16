@@ -6,6 +6,7 @@ import '../../styles/base.css';
 import css from './MainDashboard.module.css';
 import sprite from '../../images/sprite.svg';
 import { Button } from '../Shared/Button/Button';
+import { v4 as uuidv4 } from 'uuid'; // Додано для генерації унікальних ідентифікаторів
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBoard } from '../../redux/boards/boardsOperations';
@@ -20,12 +21,12 @@ export const MainDashboard = () => {
   const { board } = useSelector(selectCurrentBoard);
   const boards = useSelector(selectBoards);
   const currentBoard = boards?.find(b => b._id === boardId);
-  console.log(currentBoard);
   const [amountOfBoards, setAmountOfBoards] = useState(0);
   const [columns, setColumns] = useState([]);
   const [showAddColumnModal, setShowAddColumnModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [showRightSpacer, setShowRightSpacer] = useState(false);
+  const [filterPriority, setFilterPriority] = useState('all'); // Додано фільтр пріоритету
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +57,12 @@ export const MainDashboard = () => {
   const handleCloseAdd = newColumnTitle => {
     setShowAddColumnModal(false);
     if (newColumnTitle) {
-      setColumns([...columns, { title: newColumnTitle, cards: [] }]);
+      const newColumn = {
+        id: uuidv4(), // Додано унікальний ідентифікатор
+        title: newColumnTitle,
+        cards: [],
+      };
+      setColumns([...columns, newColumn]);
       setAmountOfBoards(amountOfBoards + 1);
     }
   };
@@ -69,9 +75,13 @@ export const MainDashboard = () => {
     setShowFilter(false);
   };
 
-  const handleDeleteColumn = columnTitle => {
-    setColumns(columns.filter(col => col.title !== columnTitle));
+  const handleDeleteColumn = columnId => {
+    setColumns(columns.filter(col => col.id !== columnId));
     setAmountOfBoards(amountOfBoards - 1);
+  };
+
+  const applyFilter = priority => {
+    setFilterPriority(priority); // Оновлення фільтру пріоритету
   };
 
   if (!board || !currentBoard) return;
@@ -87,19 +97,25 @@ export const MainDashboard = () => {
           <p className={css.filterText}>Filters</p>
         </button>
       </div>
-
       <div className={css.dashboardContainer}>
         <div className={css.columnsWrapper}>
           <div className={css.columnsContainer}>
-            {columns.map((column, index) => (
-              <NewColumn
-                key={index}
-                column={column}
-                setColumns={setColumns}
-                columns={columns}
-                handleDeleteColumn={handleDeleteColumn}
-              />
-            ))}
+            {columns
+              .filter(
+                column =>
+                  filterPriority === 'all' ||
+                  column.cards.some(card => card.labelColor === filterPriority)
+              ) // Фільтрація колонок
+              .map((column, index) => (
+                <NewColumn
+                  key={column.id}
+                  column={column}
+                  setColumns={setColumns}
+                  columns={columns}
+                  handleDeleteColumn={handleDeleteColumn}
+                  filterPriority={filterPriority} // Передача фільтру пріоритету
+                />
+              ))}
             <Button
               usage="dashboard"
               color="neutral"
@@ -113,9 +129,11 @@ export const MainDashboard = () => {
           </div>
         </div>
       </div>
-
       {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
-      {showFilter && <Filters onClose={handleCloseFilter} />}
+      {showFilter && (
+        <Filters onClose={handleCloseFilter} applyFilter={applyFilter} />
+      )}{' '}
+      {/* Додано функцію фільтру */}
     </div>
   );
 };

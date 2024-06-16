@@ -1,13 +1,19 @@
+import { useState } from 'react';
 import css from './ColumnCardItem.module.css';
 import sprite from '../../images/sprite.svg';
+import Dropdown from '../Dropdown/Dropdown'; 
 
 export const ColumnCardItem = ({
   index,
   handleOpenEdit,
-  handleOpenProgress,
   handleDeleteCard,
   card,
+  columns,
+  currentColumn,
+  moveCardToColumn,
 }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+
   const handleDelete = () => handleDeleteCard(index);
 
   const priorityColor = () => {
@@ -28,6 +34,8 @@ export const ColumnCardItem = ({
     const daysLeft = Math.ceil((deadline - Date.now()) / (1000 * 3600 * 24));
     return daysLeft;
   };
+
+  const toggleDropdown = () => setShowDropdown(!showDropdown);
 
   return (
     <li
@@ -63,7 +71,7 @@ export const ColumnCardItem = ({
           </div>
         )}
         <div className={css.infoIcons}>
-          <button onClick={handleOpenProgress} className={css.headerSvgButton}>
+          <button onClick={toggleDropdown} className={css.headerSvgButton}>
             <svg className={css.icon} width="16px" height="16px">
               <use href={`${sprite}#icon-arrow-circle-broken`}></use>
             </svg>
@@ -80,6 +88,13 @@ export const ColumnCardItem = ({
           </button>
         </div>
       </div>
+      {showDropdown && (
+        <Dropdown
+          columns={columns}
+          currentColumn={currentColumn}
+          moveCardToColumn={moveCardToColumn}
+        />
+      )}
     </li>
   );
 };

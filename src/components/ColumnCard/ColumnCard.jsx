@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import css from './ColumnCard.module.css';
 import { ColumnCardItem } from 'components/ColumnCardItem/ColumnCardItem';
-import { ProgressModal } from 'components/ModalWindow/ProgressModal/ProgressModal';
 import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 
 export const ColumnCard = ({
@@ -10,9 +9,8 @@ export const ColumnCard = ({
   handleDeleteCard,
   setColumns,
   columns,
-  columnTitle,
+  columnId, // Зміна назви пропса
 }) => {
-  const [showProgressModal, setShowProgressModal] = useState(false);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [screenSize, setScreenSize] = useState('pc');
   const listRef = useRef(null);
@@ -36,19 +34,11 @@ export const ColumnCard = ({
     };
   }, []);
 
-  const handleOpenProgress = () => {
-    setShowProgressModal(true);
-  };
-
-  const handleCloseProgress = () => {
-    setShowProgressModal(false);
-  };
-
   const handleOpenEdit = () => setShowEditCardModal(true);
   const handleCloseEdit = updatedCard => {
     if (updatedCard) {
       const updatedColumns = columns.map(col =>
-        col.title === columnTitle
+        col.id === columnId
           ? {
               ...col,
               cards: col.cards.map(c =>
@@ -60,6 +50,25 @@ export const ColumnCard = ({
       setColumns(updatedColumns);
     }
     setShowEditCardModal(false);
+  };
+
+  const moveCardToColumn = targetColumnId => {
+    const updatedColumns = columns.map(col => {
+      if (col.id === columnId) {
+        return {
+          ...col,
+          cards: col.cards.filter(c => c.title !== card.title),
+        };
+      }
+      if (col.id === targetColumnId) {
+        return {
+          ...col,
+          cards: [...col.cards, card],
+        };
+      }
+      return col;
+    });
+    setColumns(updatedColumns);
   };
 
   return (
@@ -80,15 +89,15 @@ export const ColumnCard = ({
           <ColumnCardItem
             key={0}
             index={0}
-            handleOpenProgress={handleOpenProgress}
             handleOpenEdit={handleOpenEdit}
             handleDeleteCard={handleDeleteCard}
             card={card}
+            columns={columns}
+            currentColumnId={columnId} // Передача ID колонки
+            moveCardToColumn={moveCardToColumn}
           />
         </ul>
       </div>
-
-      {showProgressModal && <ProgressModal onClose={handleCloseProgress} />}
       {showEditCardModal && (
         <AddCardModal onClose={handleCloseEdit} existingCard={card} />
       )}
