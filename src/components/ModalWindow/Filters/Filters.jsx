@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalContainerReact } from '../Shared/ModalContainerReact/ModalContainerReact';
+import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import styles from './Filters.module.css';
 
 export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {
@@ -29,7 +29,7 @@ export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {
   };
 
   return (
-    <ModalContainerReact max-width={300} modalTitle="Filters" onClose={onClose}>
+    <ModalContainerReact width={300} modalTitle="Filters" onClose={onClose}>
       <div className={styles.container}>
         <div>
           <h3 className={styles.labelTitle}>Label color</h3>
