@@ -1,29 +1,58 @@
 .noProjectContainer {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	height: 85%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .noProjectNotify {
-    width: 335px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 129%;
-    letter-spacing: -0.02em;
-    text-align: center;
-    color: var(--color-text-rgb);
+	max-width: 335px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 129%;
+	letter-spacing: -0.02em;
+	text-align: center;
+	color: var(--text-project);
 }
 
 .button {
-    color: green;
-    font-size: 18px;
-    font-weight: 500;
+	color: var(--color-green);
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 129%;
+	letter-spacing: -0.02em;
+	position: relative;
+	transition: all 0.3s ease-in-out;
+}
+
+.button::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	height: 1px;
+	background-color: var(--color-green-dark);
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease-in-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.button:hover {
+		color: var(--color-green-dark);
+	}
+
+	.button:hover::after {
+		opacity: 1;
+		visibility: visible;
+	}
+
 }
 
 @media screen and (min-width: 768px) {
-    .noProjectNotify {
-        width: 486px;
-    }
+	.noProjectNotify {
+		max-width: 486px;
+	}
 }
