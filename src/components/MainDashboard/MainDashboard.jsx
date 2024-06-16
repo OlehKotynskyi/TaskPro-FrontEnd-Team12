@@ -40,10 +40,10 @@ export const MainDashboard = () => {
   }, []);
 
   useEffect(() => {
-    const getAllBoards = () => {
+    const getCurrentBoard = () => {
       dispatch(getBoard(boardId));
     };
-    getAllBoards();
+    getCurrentBoard();
   }, [dispatch, boardId]);
 
   const handleOpenAdd = () => {

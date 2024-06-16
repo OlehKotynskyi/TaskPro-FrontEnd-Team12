@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import css from './Sidebar.module.css';
 import clsx from 'clsx';
 import sprite from '../../images/sprite.svg';
@@ -8,7 +8,7 @@ import { BoardCard } from '../BoardCard/BoardCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from '../../redux/auth/authOperations';
-import { fetchBoards } from '../../redux/boards/boardsOperations';
+
 import { BoardModal } from '../ModalWindow/BoardModal/BoardModal';
 import { HelpModal } from 'components/ModalWindow/HelpModal/HelpModal';
 import { selectBoards } from '../../redux/boards/boardsSlice';
@@ -17,22 +17,9 @@ export const Sidebar = ({ visible, onVisible }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const boards = useSelector(selectBoards);
-  const [activeBoardId, setActiveBoardId] = useState(() => {
-    return localStorage.getItem('activeBoardId');
-  });
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isModalOpenHelp, setModalOpenHelp] = useState(false);
-
-  useEffect(() => {
-    dispatch(fetchBoards());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (activeBoardId) {
-      localStorage.setItem('activeBoardId', activeBoardId);
-    }
-  }, [activeBoardId]);
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -87,8 +74,6 @@ export const Sidebar = ({ visible, onVisible }) => {
             <BoardCard
               key={board._id}
               board={board}
-              activeBoardId={activeBoardId}
-              setActiveBoardId={setActiveBoardId}
               closeSidebar={() => onVisible(false)}
             />
           ))}

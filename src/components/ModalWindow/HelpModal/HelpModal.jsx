@@ -12,9 +12,9 @@ export const HelpModal = ({ onClose }) => {
     try {
       const payload = {
         email: data.email,
-        text: data.text,
+        comment: data.text,
       };
-      await axios.post('api/', payload);
+      await axios.post('/api/users/help', payload);
       onClose();
     } catch (error) {
       console.log(error);
