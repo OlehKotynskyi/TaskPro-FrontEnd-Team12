@@ -77,14 +77,7 @@ export const ColumnCard = ({
         [css.columnResponsive]: screenSize !== 'pc',
       })}
     >
-      <div
-        className={css.scrollable}
-        style={{
-          maxHeight: `calc(100vh - 20px)`,
-          overflowY: 'auto',
-        }}
-        ref={listRef}
-      >
+      <div className={css.scrollable} ref={listRef}>
         <ul className={css.cardsList}>
           <ColumnCardItem
             key={0}

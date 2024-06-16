@@ -1,29 +1,14 @@
 .dashboardBackground {
 	display: flex;
 	flex-direction: column;
-	padding: 14px 20px;
+	padding: 14px 20px 0px;
+	overflow-y: hidden;
 	overflow-x: auto;
 	margin-bottom: 10px;
+
 	background-color: var(--main-bg);
 	flex-grow: 1;
 }
-
-/* .dashboardBackground::-webkit-scrollbar {
-	height: 12px;
-	width: calc(100% - 24px);
-}
-
-.dashboardBackground::-webkit-scrollbar-thumb {
-	background-color: rgb(18, 18, 18);
-	border-radius: 12px;
-
-}
-
-.dashboardBackground::-webkit-scrollbar-track {
-	background-color: rgba(255, 255, 255, 0.1);
-	border-radius: 12px;
-	border: 1px solid rgba(0, 0, 0, 0.5);
-} */
 
 @media (min-width: 768px) {
 	.dashboardBackground {
@@ -35,9 +20,7 @@
 	.dashboardBackground {
 		padding: 14px 24px;
 	}
-
 }
-
 
 .filter {
 	display: flex;
@@ -50,12 +33,10 @@
 	transition: all 0.3s ease-in-out;
 }
 
-
 .filter svg {
 	color: var(--color-text-base);
 	transition: all 0.3s ease-in-out;
 }
-
 
 @media (hover: hover) and (pointer: fine) {
 
@@ -67,7 +48,6 @@
 		color: var(--color-text-rgb);
 	}
 }
-
 
 .filterContainer {
 	position: static;
@@ -106,13 +86,11 @@
 
 .columnsWrapper {
 	display: flex;
-	padding-bottom: 10px;
+	padding-bottom: 14px;
 	padding-top: 14px;
 	flex-grow: 1;
 	height: 100%;
 }
-
-
 
 @media (hover: hover) and (pointer: fine) {
 	.button:hover {
@@ -138,14 +116,14 @@
 	gap: 34px;
 }
 
-
 @media screen and (max-width: 768px) {
 	.dashboardBackground {
-		padding: 26px 32px 96px 32px;
+		padding: 26px 32px 14px 32px;
 	}
 
 	.columnsWrapper {
 		padding-top: 26px;
+
 	}
 
 	.headerText {
@@ -156,7 +134,7 @@
 
 @media screen and (max-width: 375px) {
 	.dashboardBackground {
-		padding: 14px 20px 60px 20px;
+		padding: 14px 20px 0px 20px;
 	}
 
 	.headerText {
