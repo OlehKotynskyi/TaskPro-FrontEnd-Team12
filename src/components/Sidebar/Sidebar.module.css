@@ -215,6 +215,7 @@
     }
 
     .helpText {
+        width: 172px;
         font-size: 14px;
     }
 
@@ -254,12 +255,10 @@
     }
 
 
-    .projects {
+    .project {
         height: calc(100% - 527px);
     }
 
 
-    .helpText {
-        font-size: 16px;
-    }
+
 }
