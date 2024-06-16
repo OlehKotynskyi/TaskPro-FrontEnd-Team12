@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalContainerReact } from '../Shared/ModalContainerReact/ModalContainerReact';
+import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import styles from './Filters.module.css';
 
 export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {

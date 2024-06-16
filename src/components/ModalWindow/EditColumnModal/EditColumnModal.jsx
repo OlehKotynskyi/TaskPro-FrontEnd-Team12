@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import styles from './EditColumnModal.module.css';
-import { ModalContainerReact } from "../Shared/ModalContainerReact/ModalContainerReact";
+import { ModalContainerReact } from "../../Shared/ModalContainerReact/ModalContainerReact";
 import { Button } from "../../Shared/Button/Button";
 import { ModalInput } from '../../Shared/ModalInput/ModalInput';
 

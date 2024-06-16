@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './AddCardModal.module.css';
-import { ModalContainerReact } from '../Shared/ModalContainerReact/ModalContainerReact';
+import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import { Button } from '../../Shared/Button/Button';
 import { Calendar } from '../Calendar/Calendar';
 import { ModalInput } from '../../Shared/ModalInput/ModalInput';

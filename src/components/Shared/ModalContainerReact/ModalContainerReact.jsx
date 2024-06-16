@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import styles from './ModalContainerReact.module.css';
-import sprite from '../../../../images/sprite.svg';
+import sprite from '../../../images/sprite.svg';
 
 ReactModal.setAppElement('#root');
 
