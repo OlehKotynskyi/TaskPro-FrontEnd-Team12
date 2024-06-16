@@ -9,7 +9,7 @@ export const ColumnCard = ({
   handleDeleteCard,
   setColumns,
   columns,
-  columnTitle,
+  columnId, // Зміна назви пропса
 }) => {
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [screenSize, setScreenSize] = useState('pc');
@@ -38,7 +38,7 @@ export const ColumnCard = ({
   const handleCloseEdit = updatedCard => {
     if (updatedCard) {
       const updatedColumns = columns.map(col =>
-        col.title === columnTitle
+        col.id === columnId
           ? {
               ...col,
               cards: col.cards.map(c =>
@@ -52,15 +52,15 @@ export const ColumnCard = ({
     setShowEditCardModal(false);
   };
 
-  const moveCardToColumn = (targetColumnTitle) => {
+  const moveCardToColumn = targetColumnId => {
     const updatedColumns = columns.map(col => {
-      if (col.title === columnTitle) {
+      if (col.id === columnId) {
         return {
           ...col,
           cards: col.cards.filter(c => c.title !== card.title),
         };
       }
-      if (col.title === targetColumnTitle) {
+      if (col.id === targetColumnId) {
         return {
           ...col,
           cards: [...col.cards, card],
@@ -93,7 +93,7 @@ export const ColumnCard = ({
             handleDeleteCard={handleDeleteCard}
             card={card}
             columns={columns}
-            currentColumn={columnTitle}
+            currentColumnId={columnId} // Передача ID колонки
             moveCardToColumn={moveCardToColumn}
           />
         </ul>

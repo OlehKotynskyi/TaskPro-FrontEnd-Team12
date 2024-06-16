@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import { ModalContainerReact } from '../Shared/ModalContainerReact/ModalContainerReact';
 import styles from './Filters.module.css';
 
-// showPriority - значення фільтру відображення карток певного пріорітету
-
-export const Filters = ({ showPriority = 'all', onClose }) => {
+export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {
+  // Додано applyFilter
   const [priority, setPriority] = useState(showPriority);
 
   const handleShowAll = () => {
     setPriority('all');
+    applyFilter('all'); // Виклик функції фільтру
     onClose();
-  }
-  
-  const getLabel = (value) => {
+  };
+
+  const handleFilterChange = value => {
+    setPriority(value);
+    applyFilter(value); // Виклик функції фільтру
+    onClose();
+  };
+
+  const getLabel = value => {
     const labels = {
       without: 'Without priority',
       low: 'Low',
@@ -23,27 +29,31 @@ export const Filters = ({ showPriority = 'all', onClose }) => {
   };
 
   return (
-    <ModalContainerReact width={300} modalTitle="Filters" onClose={onClose}>
+    <ModalContainerReact max-width={300} modalTitle="Filters" onClose={onClose}>
       <div className={styles.container}>
         <div>
           <h3 className={styles.labelTitle}>Label color</h3>
           <div className={styles.radioGroup}>
-            {['without', 'low', 'medium', 'high'].map((color) => (
+            {['without', 'low', 'medium', 'high'].map(color => (
               <label className={styles.radioLabel} key={color}>
                 <input
                   type="radio"
                   value={color}
                   checked={priority === color}
-                  onChange={() => setPriority(color)}
+                  onChange={() => handleFilterChange(color)} // Виклик функції фільтру
                   className={styles.radioInput}
                 />
-                <span className={`${styles.customRadio} ${styles[`${color}Label`]}`}></span>
+                <span
+                  className={`${styles.customRadio} ${styles[`${color}Label`]}`}
+                ></span>
                 <span className={styles.labelText}>{getLabel(color)}</span>
               </label>
             ))}
           </div>
         </div>
-        <button className={styles.showAll} onClick={handleShowAll}>Show all</button>
+        <button className={styles.showAll} onClick={handleShowAll}>
+          Show all
+        </button>
       </div>
     </ModalContainerReact>
   );
