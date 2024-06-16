@@ -43,8 +43,13 @@
 	--calendar-week: rgba(255, 255, 255, 0.5);
 	--calendar-day: #fff;
 	--calendar-selected-day: #161616;
-	--calendar-hover: #9dc888;
+	--calendar-hover: #838383;
 	--calendar-selected-day-bg: #bedbb0;
+
+	/* sidebar icons */
+	--sidebar-icons-active: #fff;
+	--sidebar-icons: rgb(134, 134, 134);
+
 }
 
 /* Light theme */
@@ -89,6 +94,10 @@
 	--calendar-selected-day: #161616;
 	--calendar-hover: #9dc888;
 	--calendar-selected-day-bg: #bedbb0;
+
+	/* sidebar icons */
+	--sidebar-icons-active: #161616;
+	--sidebar-icons: rgba(22, 22, 22, 0.5);
 }
 
 /* Violet theme */
@@ -133,6 +142,10 @@
 	--calendar-selected-day: #fff;
 	--calendar-hover: #7b7ede;
 	--calendar-selected-day-bg: #7b7ede;
+
+	/* sidebar icons */
+	--sidebar-icons-active: #161616;
+	--sidebar-icons: rgba(22, 22, 22, 0.5);
 }
 
 /* Example usage of variables */

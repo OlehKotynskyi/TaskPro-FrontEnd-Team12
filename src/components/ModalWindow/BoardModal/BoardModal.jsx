@@ -17,7 +17,8 @@ import path13 from '../../../images/modal_background/modalBgIcon (13).jpg';
 import path14 from '../../../images/modal_background/modalBgIcon (14).jpg';
 import path15 from '../../../images/modal_background/modalBgIcon(15).jpg';
 
-import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
+import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
+
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Button } from '../../Shared/Button/Button';
@@ -130,7 +131,7 @@ export const BoardModal = ({ onClose, type, board }) => {
   };
 
   return (
-    <ModalContainer
+    <ModalContainerReact
       onClose={onClose}
       modalTitle={isCreate ? 'New Board' : 'Edit Board'}
     >
@@ -146,6 +147,7 @@ export const BoardModal = ({ onClose, type, board }) => {
           id="title"
         />
         {errors.title && <p className={css.errors}>{errors.title.message}</p>}
+        
         <p className={css.text}>Icons</p>
         <ul className={css.listIcons}>
           {icons.map(item => (
@@ -201,6 +203,6 @@ export const BoardModal = ({ onClose, type, board }) => {
         </ul>
         <Button icon="plus">{isCreate ? 'Create' : 'Edit'}</Button>
       </form>
-    </ModalContainer>
+    </ModalContainerReact>
   );
 };
