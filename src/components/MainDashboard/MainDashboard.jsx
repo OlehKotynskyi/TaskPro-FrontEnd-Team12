@@ -10,17 +10,13 @@ import { v4 as uuidv4 } from 'uuid'; // Додано для генерації �
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBoard } from '../../redux/boards/boardsOperations';
-import {
-  selectBoards,
-  selectCurrentBoard,
-} from '../../redux/boards/boardsSlice';
+import { selectCurrentBoard } from '../../redux/boards/boardsSlice';
 
 export const MainDashboard = () => {
   const { boardId } = useParams();
   const dispatch = useDispatch();
-  const { board } = useSelector(selectCurrentBoard);
-  const boards = useSelector(selectBoards);
-  const currentBoard = boards?.find(b => b._id === boardId);
+  const board = useSelector(selectCurrentBoard);
+
   const [amountOfBoards, setAmountOfBoards] = useState(0);
   const [columns, setColumns] = useState([]);
   const [showAddColumnModal, setShowAddColumnModal] = useState(false);
@@ -84,12 +80,12 @@ export const MainDashboard = () => {
     setFilterPriority(priority); // Оновлення фільтру пріоритету
   };
 
-  if (!board || !currentBoard) return;
+  if (!board) return;
 
   return (
     <div className={css.dashboardBackground}>
       <div className={css.filterContainer}>
-        <h3 className={css.headerText}>{currentBoard.title}</h3>
+        <h3 className={css.headerText}>{board.board.title}</h3>
         <button onClick={handleOpenFilter} className={css.filter}>
           <svg className={css.iconFilter} width={16} height={16}>
             <use href={`${sprite}#icon-filter`} />
