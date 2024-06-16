@@ -1,15 +1,17 @@
 .input {
 	width: 100%;
-	font-family: var(--font-family);
-	font-weight: 400;
-	font-size: 14px;
-	letter-spacing: -0.02em;
-	color: var(--color-text-base);
+	height: 49px;
 	border: 1px solid var(--color-green-border);
 	border-radius: 8px;
-	box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
-	background-color: var(--color-modal-time);
-	padding: 14px 18px;
+	padding: 10px;
+	margin-bottom: 2px;
+	background-color: var(--modal-color-transparent);
+	color: var(--color-text-base);
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: -0.02em;
+	outline: none;
 }
 
 .input:focus {
@@ -20,19 +22,15 @@
 .listIcons {
 	display: flex;
 	gap: 8px;
-
+	margin-bottom: 24px;
 }
 
 .icon {
 	width: 18px;
 	height: 18px;
 	opacity: 0.5;
-	color: var(--card-text);
-	background-color: var(--color-text-base, #161616);
-	stroke: aliceblue
+	color: var(--sidebar-icons);
 }
-
-
 
 .inputIcon:checked+.labeIcon .icon {
 	opacity: 1;
@@ -47,12 +45,12 @@
 }
 
 .text {
-
+	margin-top: 24px;
+	margin-bottom: 14px;
 	font-weight: 500;
 	font-size: 14px;
 	letter-spacing: -0.02em;
 	color: var(--color-text-base);
-	margin: 24px 0 14px;
 }
 
 .listBackground {
@@ -73,7 +71,6 @@
 	align-items: center;
 	justify-content: center;
 	background-color: transparent;
-
 }
 
 
@@ -83,7 +80,6 @@
 	height: 28px;
 	fill: var(--modal-icon);
 	color: rgb(56, 55, 55);
-
 }
 
 .iconImg {

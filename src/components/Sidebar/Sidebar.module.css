@@ -215,7 +215,6 @@
     }
 
     .helpText {
-        width: 172px;
         font-size: 14px;
     }
 
@@ -246,7 +245,7 @@
     }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 769px) {
 
     .sidebarWrap,
     .sidebar {
@@ -260,5 +259,7 @@
     }
 
 
-
+    .helpText {
+        font-size: 16px;
+    }
 }

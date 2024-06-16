@@ -1,5 +1,5 @@
 import React from 'react';
-import { ModalContainer } from '../Shared/ModalContainer/ModalContainer';
+import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import { useForm } from 'react-hook-form';
 import css from './HelpModal.module.css';
 import clsx from 'clsx';
@@ -21,7 +21,7 @@ export const HelpModal = ({ onClose }) => {
     }
   };
   return (
-    <ModalContainer onClose={onClose} modalTitle="Need help">
+    <ModalContainerReact onClose={onClose} modalTitle="Need help">
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           className={css.input}
@@ -39,6 +39,6 @@ export const HelpModal = ({ onClose }) => {
         />
         <Button>Send</Button>
       </form>
-    </ModalContainer>
+    </ModalContainerReact>
   );
 };

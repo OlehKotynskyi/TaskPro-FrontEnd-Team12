@@ -53,7 +53,10 @@ const boardSlice = createSlice({
         state.boards = state.boards.map(board =>
           board._id === action.payload._id ? action.payload : board
         );
-        if (state.currentBoard.board._id === action.payload._id) {
+        if (
+          state.currentBoard &&
+          state.currentBoard.board._id === action.payload._id
+        ) {
           state.currentBoard = { ...state.currentBoard, board: action.payload };
         }
       })
@@ -69,7 +72,10 @@ const boardSlice = createSlice({
         state.boards = state.boards.filter(
           board => board._id !== action.payload._id
         );
-        if (state.currentBoard.board._id === action.payload._id) {
+        if (
+          state.currentBoard &&
+          state.currentBoard.board._id === action.payload._id
+        ) {
           state.currentBoard = null;
         }
       })
