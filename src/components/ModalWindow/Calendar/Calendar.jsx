@@ -24,9 +24,9 @@ export const Calendar = ({ deadline, setDeadline }) => {
       >
         {displayValue}
         <div className={`${styles.arrowIcon} ${isCalendarOpen ? styles.open : ''}`}>
-              <svg className={styles.arrow}>
-                <use href={`${sprite}#icon-chevron-down`} />
-              </svg>
+          <svg className={styles.arrow}>
+            <use href={`${sprite}#icon-chevron-down`} />
+          </svg>
         </div>
         {/* <span className={styles.calendarIcon} /> */}
       </button>

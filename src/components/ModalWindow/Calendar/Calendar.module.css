@@ -9,7 +9,7 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
-	transition: all 0.3s ease-in-out;
+	transition: color 0.3s ease-in-out;
 }
 /* 
 .calendarIcon {
@@ -31,19 +31,18 @@
 	width: 18px;
 	height: 18px;
 	margin-left: 5px;
+	transition: all 0.3s ease-in-out;
 }
 
 .arrow {
 	width: 18px;
 	height: 18px;
 	color: var(--color-green);
-	transition: transform 0.3s ease-in-out;
+	transition: color 0.3s ease-in-out;
 }
 
-
-.open .arrow {
-	color: var(--color-green-dark);
-	transform: rotate(-180deg);
+.arrowIcon.open  {
+	transform: rotate(180deg);
 }
 
 .customInput:hover,
@@ -52,8 +51,7 @@
 .customInput:active .arrow {
 	color: var(--color-green-dark);
 }
-  
+
 .active {
 	color: var(--color-green-dark);
-	transition: all 0.3s ease-in-out;
 }
