@@ -3,18 +3,17 @@ import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalConta
 import styles from './Filters.module.css';
 
 export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {
-  // Додано applyFilter
   const [priority, setPriority] = useState(showPriority);
 
   const handleShowAll = () => {
     setPriority('all');
-    applyFilter('all'); // Виклик функції фільтру
+    applyFilter('all');
     onClose();
   };
 
   const handleFilterChange = value => {
     setPriority(value);
-    applyFilter(value); // Виклик функції фільтру
+    applyFilter(value);
     onClose();
   };
 
@@ -40,7 +39,7 @@ export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {
                   type="radio"
                   value={color}
                   checked={priority === color}
-                  onChange={() => handleFilterChange(color)} // Виклик функції фільтру
+                  onChange={() => handleFilterChange(color)}
                   className={styles.radioInput}
                 />
                 <span

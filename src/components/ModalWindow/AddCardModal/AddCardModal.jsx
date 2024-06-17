@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './AddCardModal.module.css';
 import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import { Button } from '../../Shared/Button/Button';
 import { Calendar } from '../Calendar/Calendar';
+import { format } from 'date-fns';
 
 export const AddCardModal = ({ onClose, existingCard }) => {
-  const [deadline, setDeadline] = useState(existingCard ? new Date(existingCard.deadline) : new Date());
-  
+  const [deadline, setDeadline] = useState(
+    existingCard ? new Date(existingCard.deadline) : new Date()
+  );
+
   const {
     register,
     handleSubmit,
@@ -16,13 +19,24 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     defaultValues: {
       title: existingCard ? existingCard.title : '',
       description: existingCard ? existingCard.description : '',
-      labelColor: existingCard ? existingCard.labelColor : 'without',
+      priority: existingCard ? existingCard.priority : 'Without priority',
+      deadline: existingCard ? new Date(existingCard.deadline) : new Date(),
     },
   });
 
   const onSubmit = data => {
-    const newCard = { ...data, deadline };
-    onClose(newCard); 
+    if (data.title.trim()) {
+      const formattedDeadline = format(new Date(data.deadline), 'yyyy-MM-dd');
+      const newCard = { ...data, deadline: formattedDeadline };
+      onClose(newCard); // Close the modal and pass the new card data
+    } else {
+      alert('Please enter a title for the card.');
+    }
+  };
+
+  const getPriorityClass = priority => {
+    const formattedPriority = priority.replace(/\s+/g, '').toLowerCase();
+    return styles[`${formattedPriority}Label`];
   };
 
   return (
@@ -40,10 +54,14 @@ export const AddCardModal = ({ onClose, existingCard }) => {
             type="text"
             name="title"
             placeholder="Title"
-            id="title"
+            register={register}
+            errors={errors}
             autoFocus={existingCard ? false : true}
+            errorMessage="Title is required"
           />
-          {errors.title && <p className={styles.errors}>{errors.title.message}</p>}
+          {errors.title && (
+            <p className={styles.errors}>{errors.title.message}</p>
+          )}
 
           <textarea
             className={styles.textareaInput}
@@ -52,21 +70,33 @@ export const AddCardModal = ({ onClose, existingCard }) => {
           ></textarea>
 
           <div className={styles.labelContainer}>
-            <span className={styles.labelTitle}>Label color</span>
+            <span className={styles.labelTitle}>Priority</span>
             <div className={styles.radioGroup}>
-              {['low', 'medium', 'high', 'without'].map(color => (
-                <label className={styles.radioLabel} key={color}>
+              {['Low', 'Medium', 'High', 'Without priority'].map(priority => (
+                <label className={styles.radioLabel} key={priority}>
                   <input
                     type="radio"
-                    value={color}
-                    {...register('labelColor')}
-                    defaultChecked={color === (existingCard ? existingCard.labelColor : 'without')}
+                    value={priority}
+                    {...register('priority')}
+                    defaultChecked={
+                      priority ===
+                      (existingCard
+                        ? existingCard.priority
+                        : 'Without priority')
+                    }
                     className={styles.radioInput}
                   />
                   <span
-                    className={`${styles.customRadio} ${styles[`${color}Label`]} ${
-                      color === (existingCard ? existingCard.labelColor : 'without')
-                        ? styles.selected : ''}`}
+                    className={`${styles.customRadio} ${getPriorityClass(
+                      priority
+                    )} ${
+                      priority ===
+                      (existingCard
+                        ? existingCard.priority
+                        : 'Without priority')
+                        ? styles.selected
+                        : ''
+                    }`}
                   ></span>
                 </label>
               ))}
@@ -75,10 +105,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
 
           <div className={styles.deadlineContainer}>
             <span className={styles.labelTitle}>Deadline</span>
-            <Calendar
-              deadline={deadline}
-              setDeadline={setDeadline}
-            />
+            <Calendar deadline={deadline} setDeadline={setDeadline} />
           </div>
           <Button icon="plus" type="submit">
             {existingCard ? 'Save' : 'Add'}

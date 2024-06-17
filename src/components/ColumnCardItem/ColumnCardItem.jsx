@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import css from './ColumnCardItem.module.css';
 import sprite from '../../images/sprite.svg';
-import Dropdown from '../Dropdown/Dropdown'; 
+import Dropdown from '../Dropdown/Dropdown';
 
 export const ColumnCardItem = ({
   index,
@@ -14,15 +14,15 @@ export const ColumnCardItem = ({
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const handleDelete = () => handleDeleteCard(index);
+  const handleDelete = () => handleDeleteCard(card._id);
 
   const priorityColor = () => {
-    switch (card.labelColor) {
-      case 'high':
+    switch (card.priority) {
+      case 'High':
         return 'var(--priority-high)';
-      case 'medium':
+      case 'Medium':
         return 'var(--priority-medium)';
-      case 'low':
+      case 'Low':
         return 'var(--priority-low)';
       default:
         return 'var(--priority-without)';
@@ -54,13 +54,15 @@ export const ColumnCardItem = ({
               className={css.infoColor}
               style={{ backgroundColor: priorityColor() }}
             ></p>
-            <p className={css.infoText}>{card.labelColor}</p>
+            <p className={css.infoText}>{card.priority}</p>
           </div>
         </div>
         <div className={css.deadlineContainer}>
           <p className={css.infoTitle}>Deadline</p>
           <div>
-            <p className={css.infoText}>{new Date(card.deadline).toLocaleDateString()}</p>
+            <p className={css.infoText}>
+              {new Date(card.deadline).toLocaleDateString()}
+            </p>
           </div>
         </div>
         {toDeadLine(card.deadline) <= 1 && (
