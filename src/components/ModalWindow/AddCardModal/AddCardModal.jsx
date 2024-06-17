@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './AddCardModal.module.css';
 import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import { Button } from '../../Shared/Button/Button';
 import { Calendar } from '../Calendar/Calendar';
-import { ModalInput } from '../../Shared/ModalInput/ModalInput';
 import { format } from 'date-fns';
 
 export const AddCardModal = ({ onClose, existingCard }) => {
+  const [deadline, setDeadline] = useState(
+    existingCard ? new Date(existingCard.deadline) : new Date()
+  );
+
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -44,15 +46,23 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form}>
-          <ModalInput
-            className={styles.formInput}
-            placeholder="Title"
+          <input
+            className={`${styles.input} ${errors.title && styles.error}`}
+            {...register('title', {
+              required: 'Title required',
+            })}
+            type="text"
             name="title"
+            placeholder="Title"
             register={register}
             errors={errors}
-            autoFocus={!existingCard}
+            autoFocus={existingCard ? false : true}
             errorMessage="Title is required"
           />
+          {errors.title && (
+            <p className={styles.errors}>{errors.title.message}</p>
+          )}
+
           <textarea
             className={styles.textareaInput}
             placeholder="Description"
@@ -95,10 +105,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
 
           <div className={styles.deadlineContainer}>
             <span className={styles.labelTitle}>Deadline</span>
-            <Calendar
-              deadline={new Date()}
-              setDeadline={date => setValue('deadline', date)}
-            />
+            <Calendar deadline={deadline} setDeadline={setDeadline} />
           </div>
           <Button icon="plus" type="submit">
             {existingCard ? 'Save' : 'Add'}

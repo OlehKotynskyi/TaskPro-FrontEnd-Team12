@@ -45,7 +45,10 @@ export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {
                 <span
                   className={`${styles.customRadio} ${styles[`${color}Label`]}`}
                 ></span>
-                <span className={styles.labelText}>{getLabel(color)}</span>
+                <span className={`${styles.labelText} ${priority === color ? styles.highlightedText : ''}`}>
+                  {getLabel(color)}
+                </span>
+                {/* <span className={styles.labelText}>{getLabel(color)}</span> */}
               </label>
             ))}
           </div>
