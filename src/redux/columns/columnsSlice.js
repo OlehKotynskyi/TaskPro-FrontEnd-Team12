@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createColumn,getColumn, deleteColumn, updateColumn } from './columnsOperations';
+import {
+  createColumn,
+  getColumn,
+  deleteColumn,
+  updateColumn,
+} from './columnsOperations';
 
 const columnsSlice = createSlice({
   name: 'columns',
@@ -77,4 +82,3 @@ const columnsSlice = createSlice({
 });
 
 export default columnsSlice.reducer;
-

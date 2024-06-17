@@ -1,28 +1,34 @@
 import { useState, useEffect } from 'react';
 import { AddColumnModal } from 'components/ModalWindow/AddColumnModal/AddColumnModal';
+import { EditColumnModal } from 'components/ModalWindow/EditColumnModal/EditColumnModal';
 import { Filters } from 'components/ModalWindow/Filters/Filters';
 import { NewColumn } from 'components/NewColumn/NewColumn';
 import '../../styles/base.css';
 import css from './MainDashboard.module.css';
 import sprite from '../../images/sprite.svg';
 import { Button } from '../Shared/Button/Button';
-import { v4 as uuidv4 } from 'uuid'; // Додано для генерації унікальних ідентифікаторів
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBoard } from '../../redux/boards/boardsOperations';
 import { selectCurrentBoard } from '../../redux/boards/boardsSlice';
+import {
+  createColumn,
+  updateColumn,
+  deleteColumn,
+} from '../../redux/columns/columnsOperations';
 
 export const MainDashboard = () => {
   const { boardId } = useParams();
   const dispatch = useDispatch();
   const board = useSelector(selectCurrentBoard);
 
-  const [amountOfBoards, setAmountOfBoards] = useState(0);
   const [columns, setColumns] = useState([]);
   const [showAddColumnModal, setShowAddColumnModal] = useState(false);
+  const [showEditColumnModal, setShowEditColumnModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [showRightSpacer, setShowRightSpacer] = useState(false);
-  const [filterPriority, setFilterPriority] = useState('all'); // Додано фільтр пріоритету
+  const [filterPriority, setFilterPriority] = useState('all');
+  const [editingColumn, setEditingColumn] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,21 +52,63 @@ export const MainDashboard = () => {
     getCurrentBoard();
   }, [dispatch, boardId]);
 
+  useEffect(() => {
+    if (board) {
+      setColumns(board.columns || []);
+    }
+  }, [board]);
+
   const handleOpenAdd = () => {
     setShowAddColumnModal(true);
   };
 
-  const handleCloseAdd = newColumnTitle => {
+  const handleCloseAdd = async newColumnTitle => {
     setShowAddColumnModal(false);
     if (newColumnTitle) {
       const newColumn = {
-        id: uuidv4(), // Додано унікальний ідентифікатор
         title: newColumnTitle,
-        cards: [],
       };
-      setColumns([...columns, newColumn]);
-      setAmountOfBoards(amountOfBoards + 1);
+
+      try {
+        const response = await dispatch(
+          createColumn({ boardId, columnData: newColumn })
+        ).unwrap();
+        setColumns([...columns, response]);
+      } catch (error) {
+        console.error('Failed to create column:', error);
+      }
     }
+  };
+
+  const handleOpenEdit = column => {
+    setEditingColumn(column);
+    setShowEditColumnModal(true);
+  };
+
+  const handleCloseEdit = async updatedColumnTitle => {
+    setShowEditColumnModal(false);
+    if (updatedColumnTitle && editingColumn) {
+      const updatedColumn = {
+        title: updatedColumnTitle,
+      };
+
+      try {
+        const response = await dispatch(
+          updateColumn({
+            columnId: editingColumn._id,
+            columnData: updatedColumn,
+          })
+        ).unwrap();
+        setColumns(
+          columns.map(col =>
+            col._id === response._id ? { ...col, title: response.title } : col
+          )
+        );
+      } catch (error) {
+        console.error('Failed to update column:', error);
+      }
+    }
+    setEditingColumn(null);
   };
 
   const handleOpenFilter = () => {
@@ -71,21 +119,35 @@ export const MainDashboard = () => {
     setShowFilter(false);
   };
 
-  const handleDeleteColumn = columnId => {
-    setColumns(columns.filter(col => col.id !== columnId));
-    setAmountOfBoards(amountOfBoards - 1);
+  const handleDeleteColumn = async columnId => {
+    try {
+      await dispatch(deleteColumn(columnId)).unwrap();
+      setColumns(columns.filter(col => col._id !== columnId));
+    } catch (error) {
+      console.error('Failed to delete column:', error);
+    }
   };
 
   const applyFilter = priority => {
-    setFilterPriority(priority); // Оновлення фільтру пріоритету
+    setFilterPriority(priority);
   };
 
-  if (!board) return;
+  const filteredColumns = columns.map(column => ({
+    ...column,
+    cards:
+      filterPriority === 'all'
+        ? column.cards
+        : (column.cards || []).filter(
+            card => card.labelColor === filterPriority
+          ),
+  }));
+
+  if (!board) return null;
 
   return (
     <div className={css.dashboardBackground}>
       <div className={css.filterContainer}>
-        <h3 className={css.headerText}>{board.board.title}</h3>
+        <h3 className={css.headerText}>{board.title}</h3>
         <button onClick={handleOpenFilter} className={css.filter}>
           <svg className={css.iconFilter} width={16} height={16}>
             <use href={`${sprite}#icon-filter`} />
@@ -96,22 +158,17 @@ export const MainDashboard = () => {
       <div className={css.dashboardContainer}>
         <div className={css.columnsWrapper}>
           <div className={css.columnsContainer}>
-            {columns
-              .filter(
-                column =>
-                  filterPriority === 'all' ||
-                  column.cards.some(card => card.labelColor === filterPriority)
-              ) // Фільтрація колонок
-              .map((column, index) => (
-                <NewColumn
-                  key={column.id}
-                  column={column}
-                  setColumns={setColumns}
-                  columns={columns}
-                  handleDeleteColumn={handleDeleteColumn}
-                  filterPriority={filterPriority} // Передача фільтру пріоритету
-                />
-              ))}
+            {filteredColumns.map(column => (
+              <NewColumn
+                key={column.id || column._id}
+                column={column}
+                setColumns={setColumns}
+                columns={columns}
+                handleDeleteColumn={handleDeleteColumn}
+                filterPriority={filterPriority}
+                handleOpenEdit={handleOpenEdit}
+              />
+            ))}
             <Button
               usage="dashboard"
               color="neutral"
@@ -126,10 +183,12 @@ export const MainDashboard = () => {
         </div>
       </div>
       {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
+      {showEditColumnModal && editingColumn && (
+        <EditColumnModal column={editingColumn} onClose={handleCloseEdit} />
+      )}
       {showFilter && (
         <Filters onClose={handleCloseFilter} applyFilter={applyFilter} />
-      )}{' '}
-      {/* Додано функцію фільтру */}
+      )}
     </div>
   );
 };

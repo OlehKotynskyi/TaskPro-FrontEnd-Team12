@@ -3,17 +3,24 @@ import clsx from 'clsx';
 import css from './ColumnCard.module.css';
 import { ColumnCardItem } from 'components/ColumnCardItem/ColumnCardItem';
 import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
+import { useDispatch } from 'react-redux';
+import {
+  deleteTodo,
+  updateTodo,
+  changeTodoColumn,
+} from '../../redux/todos/todosOperations';
 
 export const ColumnCard = ({
   card,
   handleDeleteCard,
   setColumns,
   columns,
-  columnId, // Зміна назви пропса
+  columnId,
 }) => {
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [screenSize, setScreenSize] = useState('pc');
   const listRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,40 +42,62 @@ export const ColumnCard = ({
   }, []);
 
   const handleOpenEdit = () => setShowEditCardModal(true);
-  const handleCloseEdit = updatedCard => {
+
+  const handleCloseEdit = async updatedCard => {
     if (updatedCard) {
-      const updatedColumns = columns.map(col =>
-        col.id === columnId
-          ? {
-              ...col,
-              cards: col.cards.map(c =>
-                c.title === card.title ? updatedCard : c
-              ),
-            }
-          : col
-      );
-      setColumns(updatedColumns);
+      try {
+        const response = await dispatch(
+          updateTodo({ todoId: card._id, todoData: updatedCard })
+        ).unwrap();
+        const updatedColumns = columns.map(col =>
+          col._id === columnId
+            ? {
+                ...col,
+                cards: col.cards.map(c => (c._id === card._id ? response : c)),
+              }
+            : col
+        );
+        setColumns(updatedColumns);
+      } catch (error) {
+        console.error('Failed to update card:', error);
+      }
     }
     setShowEditCardModal(false);
   };
 
-  const moveCardToColumn = targetColumnId => {
-    const updatedColumns = columns.map(col => {
-      if (col.id === columnId) {
-        return {
-          ...col,
-          cards: col.cards.filter(c => c.title !== card.title),
-        };
-      }
-      if (col.id === targetColumnId) {
-        return {
-          ...col,
-          cards: [...col.cards, card],
-        };
-      }
-      return col;
-    });
-    setColumns(updatedColumns);
+  const handleDelete = async () => {
+    try {
+      await dispatch(deleteTodo(card._id)).unwrap();
+      handleDeleteCard(card._id);
+    } catch (error) {
+      console.error('Failed to delete card:', error);
+    }
+  };
+
+  const moveCardToColumn = async targetColumnId => {
+    try {
+      const response = await dispatch(
+        changeTodoColumn({ todoId: card._id, columnId: targetColumnId })
+      ).unwrap();
+      const updatedColumns = columns.map(col => {
+        if (col._id === columnId) {
+          return {
+            ...col,
+            cards: col.cards.filter(c => c._id !== card._id),
+          };
+        }
+        if (col._id === targetColumnId) {
+          return {
+            ...col,
+            cards: [...col.cards, response],
+          };
+        }
+        return col;
+      });
+      setColumns(updatedColumns);
+    } catch (error) {
+      console.error('Failed to move card:', error);
+    }
   };
 
   return (
@@ -83,10 +112,10 @@ export const ColumnCard = ({
             key={0}
             index={0}
             handleOpenEdit={handleOpenEdit}
-            handleDeleteCard={handleDeleteCard}
+            handleDeleteCard={handleDelete}
             card={card}
             columns={columns}
-            currentColumnId={columnId} // Передача ID колонки
+            currentColumnId={columnId}
             moveCardToColumn={moveCardToColumn}
           />
         </ul>

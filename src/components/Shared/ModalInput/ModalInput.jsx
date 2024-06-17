@@ -20,6 +20,7 @@ export const ModalInput = ({
         }`}
         {...register(name)}
         {...rest}
+        autoFocus={autoFocus}
       />
       {error && (
         <div className={styles.errorMessage}>
