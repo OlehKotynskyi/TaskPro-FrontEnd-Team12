@@ -1,33 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './AddCardModal.module.css';
 import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import { Button } from '../../Shared/Button/Button';
 import { Calendar } from '../Calendar/Calendar';
-import { ModalInput } from '../../Shared/ModalInput/ModalInput';
 
 export const AddCardModal = ({ onClose, existingCard }) => {
+  const [deadline, setDeadline] = useState(existingCard ? new Date(existingCard.deadline) : new Date());
+  
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
       title: existingCard ? existingCard.title : '',
       description: existingCard ? existingCard.description : '',
       labelColor: existingCard ? existingCard.labelColor : 'without',
-      deadline: existingCard ? new Date(existingCard.deadline) : new Date(),
     },
   });
 
   const onSubmit = data => {
-    if (data.title.trim()) {
-      const newCard = { ...data, deadline: new Date(data.deadline) };
-      onClose(newCard); // Close the modal and pass the new card data
-    } else {
-      alert('Please enter a title for the card.');
-    }
+    const newCard = { ...data, deadline };
+    onClose(newCard); 
   };
 
   return (
@@ -37,15 +32,19 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form}>
-          <ModalInput
-            className={styles.formInput}
-            placeholder="Title"
+          <input
+            className={`${styles.input} ${errors.title && styles.error}`}
+            {...register('title', {
+              required: 'Title required',
+            })}
+            type="text"
             name="title"
-            register={register}
-            errors={errors}
+            placeholder="Title"
+            id="title"
             autoFocus={existingCard ? false : true}
-            errorMessage="Title is required"
           />
+          {errors.title && <p className={styles.errors}>{errors.title.message}</p>}
+
           <textarea
             className={styles.textareaInput}
             placeholder="Description"
@@ -61,21 +60,13 @@ export const AddCardModal = ({ onClose, existingCard }) => {
                     type="radio"
                     value={color}
                     {...register('labelColor')}
-                    defaultChecked={
-                      color ===
-                      (existingCard ? existingCard.labelColor : 'without')
-                    }
+                    defaultChecked={color === (existingCard ? existingCard.labelColor : 'without')}
                     className={styles.radioInput}
                   />
                   <span
-                    className={`${styles.customRadio} ${
-                      styles[`${color}Label`]
-                    } ${
-                      color ===
-                      (existingCard ? existingCard.labelColor : 'without')
-                        ? styles.selected
-                        : ''
-                    }`}
+                    className={`${styles.customRadio} ${styles[`${color}Label`]} ${
+                      color === (existingCard ? existingCard.labelColor : 'without')
+                        ? styles.selected : ''}`}
                   ></span>
                 </label>
               ))}
@@ -85,8 +76,8 @@ export const AddCardModal = ({ onClose, existingCard }) => {
           <div className={styles.deadlineContainer}>
             <span className={styles.labelTitle}>Deadline</span>
             <Calendar
-              deadline={new Date()}
-              setDeadline={date => setValue('deadline', date)}
+              deadline={deadline}
+              setDeadline={setDeadline}
             />
           </div>
           <Button icon="plus" type="submit">

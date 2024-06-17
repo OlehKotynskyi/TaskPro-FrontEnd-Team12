@@ -127,7 +127,7 @@ export const MainDashboard = () => {
       </div>
       {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
       {showFilter && (
-        <Filters onClose={handleCloseFilter} applyFilter={applyFilter} />
+        <Filters onClose={handleCloseFilter} applyFilter={applyFilter} showPriority={filterPriority} />
       )}{' '}
       {/* Додано функцію фільтру */}
     </div>
