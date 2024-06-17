@@ -102,7 +102,6 @@
 .iconPencil {
 	color: var(--card-text);
 	transition: all 0.3s ease-in-out;
-
 }
 
 @media (hover: hover) and (pointer: fine) {

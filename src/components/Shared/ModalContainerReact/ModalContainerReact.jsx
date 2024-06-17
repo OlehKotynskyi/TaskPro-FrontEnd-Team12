@@ -29,7 +29,7 @@ export const ModalContainerReact = ({ children, onClose, modalTitle, width }) =>
         <div className={styles.header}>
           <h2 className={styles.title}>{modalTitle}</h2>
           <button onClick={onClose} className={styles.closeButton}>
-            <svg className={styles.icon} aria-hidden="true">
+            <svg className={styles.icon} width="18px" height="18px">
               <use xlinkHref={`${sprite}#icon-x-close`} />
             </svg>
           </button>

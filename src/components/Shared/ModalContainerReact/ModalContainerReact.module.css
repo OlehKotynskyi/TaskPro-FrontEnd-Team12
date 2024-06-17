@@ -10,7 +10,7 @@
   justify-content: center;
   z-index: 99999;
   opacity: 0;
-  transition: opacity 300ms ease-in-out; /* Ensure this matches closeTimeoutMS */
+  transition: opacity 300ms ease-in-out;
 }
 
 .modalBackdropOpen {
@@ -18,7 +18,7 @@
 }
 
 .modalBackdropClose {
-  opacity: 0;
+  opacity: 0.1;
 }
 
 .modalContainer {
@@ -29,7 +29,7 @@
   width: 300px;
   transform: translateY(-50px);
   opacity: 0;
-  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out; /* Ensure this matches closeTimeoutMS */
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
 }
 
 .modalContainerOpen {
@@ -50,9 +50,7 @@
 }
 
 .closeButton {
-  position: relative;
-  top: -9px;
-  right: -9px;
+  transform: translateX(50%) translateY(-50%);; 
   background: none;
   border: none;
   cursor: pointer;
@@ -69,10 +67,15 @@
 }
 
 .icon {
-  width: 18px;
-  height: 18px;
-  fill: var(--color-text-base);
+  color: var(--color-text-base);
+	/* transition: all 0.3s ease-in-out; */
 }
+
+/* @media (hover: hover) and (pointer: fine) {
+	.icon:hover {
+		color: var(--color-green);
+	}
+} */
 
 @media screen and (min-width: 768px) {
   .modalContainer {

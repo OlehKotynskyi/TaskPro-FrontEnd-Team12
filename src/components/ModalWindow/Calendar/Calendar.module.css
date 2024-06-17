@@ -11,7 +11,7 @@
 	align-items: center;
 	transition: all 0.3s ease-in-out;
 }
-
+/* 
 .calendarIcon {
 	display: inline-block;
 	margin-left: 8px;
@@ -25,9 +25,35 @@
 	align-items: center;
 	justify-content: center;
 	margin-top: 5px;
+} */
+
+.arrowIcon {
+	width: 18px;
+	height: 18px;
+	margin-left: 5px;
+}
+
+.arrow {
+	width: 18px;
+	height: 18px;
+	color: var(--color-green);
+	transition: transform 0.3s ease-in-out;
+}
+
+
+.open .arrow {
+	color: var(--color-green-dark);
+	transform: rotate(-180deg);
 }
 
 .customInput:hover,
-.customInput:active {
+.customInput:active,
+.customInput:hover .arrow,
+.customInput:active .arrow {
 	color: var(--color-green-dark);
+}
+  
+.active {
+	color: var(--color-green-dark);
+	transition: all 0.3s ease-in-out;
 }

@@ -40,7 +40,7 @@
       <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M12 4h8M4 8h24M6.667 8l.801 12.018c.149 2.231.223 3.347.588 4.243a6 6 0 0 0 3.672 3.435c.919.304 2.037.304 4.273.304v0c2.236 0 3.354 0 4.273-.304a6 6 0 0 0 3.672-3.435c.365-.896.439-2.012.588-4.243L25.335 8" style="stroke:var(--color1,currentColor)"/>
     </symbol>
     <symbol id="icon-x-close" viewBox="0 0 32 32">
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.667" d="M24 8 8 24M8 8l16 16" style="stroke:var(--color-text-base)"/>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.667" d="M24 8 8 24M8 8l16 16" style="stroke:var(currentColor)"/>
     </symbol>
     <symbol id="icon-colors" viewBox="0 0 32 32">
       <path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.667" d="M16 27.296a8 8 0 1 0 7.44-13.683m-14.88.001a8 8 0 1 0 9.546 4.773M24 10.667a8 8 0 1 1-16 0 8 8 0 0 1 16 0z" style="stroke:var(--color-text-base, #161616)"/>
