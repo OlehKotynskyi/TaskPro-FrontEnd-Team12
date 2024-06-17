@@ -21,7 +21,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
   });
 
   const onSubmit = data => {
-    const newCard = { ...data, deadline: new Date(data.deadline) };
+    const newCard = { ...data, deadline };
     onClose(newCard); 
   };
 
