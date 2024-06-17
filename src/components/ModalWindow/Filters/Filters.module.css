@@ -50,8 +50,12 @@
 	transition: all 0.3s ease-in-out;
 }
 
-@media (hover: hover) and (pointer: fine) {
+.highlightedText {
+	color: var(--color-text-base);
+}
 
+@media (hover: hover) and (pointer: fine) {
+	
 	.labelText:hover {
 		color: var(--color-text-base);
 	}
