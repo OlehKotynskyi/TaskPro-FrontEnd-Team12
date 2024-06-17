@@ -4,7 +4,6 @@ import styles from './AddCardModal.module.css';
 import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import { Button } from '../../Shared/Button/Button';
 import { Calendar } from '../Calendar/Calendar';
-import { ModalInput } from '../../Shared/ModalInput/ModalInput';
 
 export const AddCardModal = ({ onClose, existingCard }) => {
   const {
@@ -22,12 +21,8 @@ export const AddCardModal = ({ onClose, existingCard }) => {
   });
 
   const onSubmit = data => {
-    if (data.title.trim()) {
-      const newCard = { ...data, deadline: new Date(data.deadline) };
-      onClose(newCard); // Close the modal and pass the new card data
-    } else {
-      alert('Please enter a title for the card.');
-    }
+    const newCard = { ...data, deadline: new Date(data.deadline) };
+    onClose(newCard); // Close the modal and pass the new card data
   };
 
   return (
@@ -37,15 +32,19 @@ export const AddCardModal = ({ onClose, existingCard }) => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form}>
-          <ModalInput
-            className={styles.formInput}
-            placeholder="Title"
+          <input
+            className={`${styles.input} ${errors.title && styles.error}`}
+            {...register('title', {
+              required: 'Title required',
+            })}
+            type="text"
             name="title"
-            register={register}
-            errors={errors}
+            placeholder="Title"
+            id="title"
             autoFocus={existingCard ? false : true}
-            errorMessage="Title is required"
           />
+          {errors.title && <p className={styles.errors}>{errors.title.message}</p>}
+
           <textarea
             className={styles.textareaInput}
             placeholder="Description"
@@ -61,21 +60,13 @@ export const AddCardModal = ({ onClose, existingCard }) => {
                     type="radio"
                     value={color}
                     {...register('labelColor')}
-                    defaultChecked={
-                      color ===
-                      (existingCard ? existingCard.labelColor : 'without')
-                    }
+                    defaultChecked={color === (existingCard ? existingCard.labelColor : 'without')}
                     className={styles.radioInput}
                   />
                   <span
-                    className={`${styles.customRadio} ${
-                      styles[`${color}Label`]
-                    } ${
-                      color ===
-                      (existingCard ? existingCard.labelColor : 'without')
-                        ? styles.selected
-                        : ''
-                    }`}
+                    className={`${styles.customRadio} ${styles[`${color}Label`]} ${
+                      color === (existingCard ? existingCard.labelColor : 'without')
+                        ? styles.selected : ''}`}
                   ></span>
                 </label>
               ))}
