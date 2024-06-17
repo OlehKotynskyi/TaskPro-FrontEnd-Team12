@@ -13,6 +13,7 @@ export const NewColumn = ({
   handleDeleteColumn,
   filterPriority,
   handleOpenEdit,
+  handleAddCard, // Додаємо новий пропс для обробки додавання картки
 }) => {
   const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [columnTitle, setColumnTitle] = useState(column.title);
@@ -24,22 +25,17 @@ export const NewColumn = ({
   const handleAddCardModalOpen = () => setShowAddCardModal(true);
   const handleAddCardModalClose = newCard => {
     if (newCard) {
-      const updatedColumns = columns.map(col =>
-        col.id === column.id
-          ? { ...col, cards: [...(col.cards || []), newCard] }
-          : col
-      );
-      setColumns(updatedColumns);
+      handleAddCard(column._id, newCard); // Викликаємо обробник додавання картки
     }
     setShowAddCardModal(false);
   };
 
   const handleDeleteCard = indexToDelete => {
     const updatedColumns = columns.map(col =>
-      col.id === column.id
+      col._id === column._id
         ? {
             ...col,
-            cards: col.cards.filter((_, index) => index !== indexToDelete),
+            todos: col.todos.filter((_, index) => index !== indexToDelete),
           }
         : col
     );
@@ -63,7 +59,7 @@ export const NewColumn = ({
       : cards.filter(card => card.labelColor === priority);
   };
 
-  const filteredCards = filterCards(column.cards || [], filterPriority);
+  const filteredCards = filterCards(column.todos || [], filterPriority);
   const sortedCards = sortCardsByPriority(filteredCards);
 
   const maxWidth = 250;
@@ -85,7 +81,7 @@ export const NewColumn = ({
           </button>
           <button
             className={css.headerSvgButton}
-            onClick={() => handleDeleteColumn(column._id)}
+            onClick={() => handleDeleteColumn(column._id)} // Використовуємо column._id
           >
             <svg className={css.iconTrash} width="16px" height="16px">
               <use href={`${sprite}#icon-trash`} />
@@ -98,12 +94,12 @@ export const NewColumn = ({
           <div className={css.cardsContainer}>
             {sortedCards.map((card, index) => (
               <ColumnCard
-                key={index}
+                key={card._id}
                 card={card}
                 handleDeleteCard={() => handleDeleteCard(index)}
                 setColumns={setColumns}
                 columns={columns}
-                columnId={column.id}
+                columnId={column._id}
               />
             ))}
           </div>

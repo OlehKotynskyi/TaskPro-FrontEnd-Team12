@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AddColumnModal } from 'components/ModalWindow/AddColumnModal/AddColumnModal';
 import { EditColumnModal } from 'components/ModalWindow/EditColumnModal/EditColumnModal';
 import { Filters } from 'components/ModalWindow/Filters/Filters';
@@ -16,6 +16,7 @@ import {
   updateColumn,
   deleteColumn,
 } from '../../redux/columns/columnsOperations';
+import { createTodo } from '../../redux/todos/todosOperations'; // Додаємо імпорт createTodo
 
 export const MainDashboard = () => {
   const { boardId } = useParams();
@@ -46,17 +47,16 @@ export const MainDashboard = () => {
   }, []);
 
   useEffect(() => {
-    const getCurrentBoard = () => {
-      dispatch(getBoard(boardId));
+    const getCurrentBoard = async () => {
+      try {
+        const response = await dispatch(getBoard(boardId)).unwrap();
+        setColumns(response.columns || []);
+      } catch (error) {
+        console.error('Failed to fetch board:', error);
+      }
     };
     getCurrentBoard();
   }, [dispatch, boardId]);
-
-  useEffect(() => {
-    if (board) {
-      setColumns(board.columns || []);
-    }
-  }, [board]);
 
   const handleOpenAdd = () => {
     setShowAddColumnModal(true);
@@ -128,19 +128,44 @@ export const MainDashboard = () => {
     }
   };
 
+  const handleAddCard = async (columnId, newCard) => {
+    try {
+      const response = await dispatch(
+        createTodo({ columnId, todoData: newCard })
+      ).unwrap();
+      const updatedColumns = columns.map(col =>
+        col._id === columnId
+          ? { ...col, todos: [...(col.todos || []), response] }
+          : col
+      );
+      setColumns(updatedColumns);
+    } catch (error) {
+      console.error('Failed to add card:', error);
+    }
+  };
+
   const applyFilter = priority => {
     setFilterPriority(priority);
   };
 
-  const filteredColumns = columns.map(column => ({
-    ...column,
-    cards:
-      filterPriority === 'all'
-        ? column.cards
-        : (column.cards || []).filter(
-            card => card.labelColor === filterPriority
-          ),
-  }));
+  const resetFilters = () => {
+    setFilterPriority('all');
+  };
+
+  const filteredColumns = columns
+    .map(column => ({
+      ...column,
+      todos:
+        filterPriority === 'all'
+          ? column.todos
+          : (column.todos || []).filter(
+              card => card.priority.toLowerCase() === filterPriority
+            ),
+    }))
+    .filter(
+      column =>
+        filterPriority === 'all' || (column.todos && column.todos.length > 0)
+    );
 
   if (!board) return null;
 
@@ -160,13 +185,14 @@ export const MainDashboard = () => {
           <div className={css.columnsContainer}>
             {filteredColumns.map(column => (
               <NewColumn
-                key={column.id || column._id}
+                key={column._id}
                 column={column}
                 setColumns={setColumns}
                 columns={columns}
                 handleDeleteColumn={handleDeleteColumn}
                 filterPriority={filterPriority}
                 handleOpenEdit={handleOpenEdit}
+                handleAddCard={handleAddCard}
               />
             ))}
             <Button
@@ -187,9 +213,12 @@ export const MainDashboard = () => {
         <EditColumnModal column={editingColumn} onClose={handleCloseEdit} />
       )}
       {showFilter && (
-        <Filters onClose={handleCloseFilter} applyFilter={applyFilter} showPriority={filterPriority} />
-      )}{' '}
-      {/* Додано функцію фільтру */}
+        <Filters
+          onClose={handleCloseFilter}
+          applyFilter={applyFilter}
+          resetFilters={resetFilters}
+        />
+      )}
     </div>
   );
 };

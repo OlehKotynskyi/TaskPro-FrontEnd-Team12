@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import styles from './Filters.module.css';
 
-export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {
+export const Filters = ({
+  showPriority = 'all',
+  onClose,
+  applyFilter,
+  resetFilters,
+}) => {
   const [priority, setPriority] = useState(showPriority);
 
   const handleShowAll = () => {
     setPriority('all');
     applyFilter('all');
+    resetFilters(); // Виклик функції для скидання фільтрів
     onClose();
   };
 
@@ -45,10 +51,13 @@ export const Filters = ({ showPriority = 'all', onClose, applyFilter }) => {
                 <span
                   className={`${styles.customRadio} ${styles[`${color}Label`]}`}
                 ></span>
-                <span className={`${styles.labelText} ${priority === color ? styles.highlightedText : ''}`}>
+                <span
+                  className={`${styles.labelText} ${
+                    priority === color ? styles.highlightedText : ''
+                  }`}
+                >
                   {getLabel(color)}
                 </span>
-                {/* <span className={styles.labelText}>{getLabel(color)}</span> */}
               </label>
             ))}
           </div>

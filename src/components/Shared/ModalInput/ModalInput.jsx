@@ -12,15 +12,15 @@ export const ModalInput = ({
   ...rest
 }) => {
   const error = errors && errors[name];
+  const inputProps = register ? register(name) : {};
   return (
     <div>
       <input
         className={`${styles.input} ${className} ${error ? styles.error : ''} ${
           error ? errorClassName : ''
         }`}
-        {...register(name)}
+        {...inputProps}
         {...rest}
-        autoFocus={autoFocus}
       />
       {error && (
         <div className={styles.errorMessage}>

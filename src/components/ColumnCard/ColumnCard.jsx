@@ -53,7 +53,7 @@ export const ColumnCard = ({
           col._id === columnId
             ? {
                 ...col,
-                cards: col.cards.map(c => (c._id === card._id ? response : c)),
+                todos: col.todos.map(c => (c._id === card._id ? response : c)),
               }
             : col
         );
@@ -83,13 +83,13 @@ export const ColumnCard = ({
         if (col._id === columnId) {
           return {
             ...col,
-            cards: col.cards.filter(c => c._id !== card._id),
+            todos: col.todos.filter(c => c._id !== card._id),
           };
         }
         if (col._id === targetColumnId) {
           return {
             ...col,
-            cards: [...col.cards, response],
+            todos: [...col.todos, response],
           };
         }
         return col;
@@ -109,7 +109,7 @@ export const ColumnCard = ({
       <div className={css.scrollable} ref={listRef}>
         <ul className={css.cardsList}>
           <ColumnCardItem
-            key={0}
+            key={card._id}
             index={0}
             handleOpenEdit={handleOpenEdit}
             handleDeleteCard={handleDelete}
