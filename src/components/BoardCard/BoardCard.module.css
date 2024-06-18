@@ -1,16 +1,18 @@
 .card {
   display: flex;
   align-items: center;
-  padding: 22px 24px;
+  padding: 22px 24px 22px 24px;
   gap: 4px;
   position: relative;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
-
-.card:focus, .cardActive {
+  
+.card:hover,
+.cardActive {
   background-color: var(--help-sidebar);
 }
-
+  
 .cardActive::after {
   content: '';
   position: absolute;
@@ -21,20 +23,42 @@
   height: 100%;
   background-color: var(--bg-add-user);
 }
-
+  
 .cardSvg {
   width: 18px;
   height: 18px;
   margin-right: 6px;
+  color: var(--sidebar-logout-text);
+  fill: var(--sidebar-logout-text);
   opacity: 0.5;
 }
 
+.btnBlock {
+  visibility: hidden;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+  
+.cardActive .btnBlock {
+  visibility: visible;
+  opacity: 1;
+}
+  
 .btnSvg {
   width: 16px;
   height: 16px;
-  color: var(--text-sidebar-rgb);
+  color: var(--sidebar-icon);
+  transition: color 0.3s ease-in-out;
 }
-
+  
+@media (hover: hover) and (pointer: fine) {
+  .btnSvg:hover {
+    color: var(--color-green);
+  }
+}
+  
 .title {
   font-weight: 500;
   font-size: 14px;
@@ -46,21 +70,9 @@
   text-overflow: ellipsis;
   opacity: 0.5;
 }
-
-.cardActive .title, .cardActive .cardSvg {
+  
+.cardActive .title,
+.cardActive .cardSvg {
   opacity: 1;
 }
-
-.btnBlock {
-  visibility: hidden;
-  display: flex;
-  gap: 8px;
-}
-
-.cardActive .btnBlock {
-  visibility: visible;
-}
-
-.card, .cardActive, .btnSvg, .cardSvg {
-  transition: all 0.3s ease-in-out;
-}
+  
