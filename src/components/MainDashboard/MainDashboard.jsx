@@ -16,7 +16,7 @@ import {
   updateColumn,
   deleteColumn,
 } from '../../redux/columns/columnsOperations';
-import { createTodo } from '../../redux/todos/todosOperations'; // Додаємо імпорт createTodo
+import { createTodo } from '../../redux/todos/todosOperations'; 
 
 export const MainDashboard = () => {
   const { boardId } = useParams();
@@ -159,7 +159,10 @@ export const MainDashboard = () => {
         filterPriority === 'all'
           ? column.todos
           : (column.todos || []).filter(
-              card => card.priority.toLowerCase() === filterPriority
+              card =>
+                (filterPriority === 'without' &&
+                  (card.priority === 'Without priority' || !card.priority)) ||
+                card.priority.toLowerCase() === filterPriority
             ),
     }))
     .filter(
@@ -193,6 +196,7 @@ export const MainDashboard = () => {
                 filterPriority={filterPriority}
                 handleOpenEdit={handleOpenEdit}
                 handleAddCard={handleAddCard}
+                filteredTodos={column.todos} 
               />
             ))}
             <div className={css.addColumnButton}>
@@ -218,7 +222,7 @@ export const MainDashboard = () => {
           onClose={handleCloseFilter}
           applyFilter={applyFilter}
           resetFilters={resetFilters}
-          // showPriority={filterPriority}
+          showPriority={filterPriority}
         />
       )}
     </div>

@@ -4,7 +4,6 @@ import sprite from '../../images/sprite.svg';
 import Dropdown from '../Dropdown/Dropdown';
 
 export const ColumnCardItem = ({
-  index,
   handleOpenEdit,
   handleDeleteCard,
   card,
@@ -36,6 +35,8 @@ export const ColumnCardItem = ({
   };
 
   const toggleDropdown = () => setShowDropdown(!showDropdown);
+
+  const handleCloseDropdown = () => setShowDropdown(false);
 
   return (
     <li
@@ -75,17 +76,17 @@ export const ColumnCardItem = ({
         <div className={css.infoIcons}>
           <button onClick={toggleDropdown} className={css.headerSvgButton}>
             <svg className={css.icon} width="16px" height="16px">
-              <use href={`${sprite}#icon-arrow-circle-broken`}></use>
+              <use href={`${sprite}#icon-arrow-circle-broken`} />
             </svg>
           </button>
           <button className={css.headerSvgButton} onClick={handleOpenEdit}>
             <svg className={css.icon} width="16px" height="16px">
-              <use href={`${sprite}#icon-pencil`}></use>
+              <use href={`${sprite}#icon-pencil`} />
             </svg>
           </button>
           <button className={css.headerSvgButton} onClick={handleDelete}>
             <svg className={css.icon} width="16px" height="16px">
-              <use href={`${sprite}#icon-trash`}></use>
+              <use href={`${sprite}#icon-trash`} />
             </svg>
           </button>
         </div>
@@ -93,8 +94,9 @@ export const ColumnCardItem = ({
       {showDropdown && (
         <Dropdown
           columns={columns}
-          currentColumnId={currentColumnId}
+          currentColumnId={currentColumnId} 
           moveCardToColumn={moveCardToColumn}
+          onClose={handleCloseDropdown} 
         />
       )}
     </li>

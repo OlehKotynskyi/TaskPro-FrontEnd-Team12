@@ -13,7 +13,7 @@ export const Filters = ({
   const handleShowAll = () => {
     setPriority('all');
     applyFilter('all');
-    resetFilters(); // Виклик функції для скидання фільтрів
+    resetFilters();
     onClose();
   };
 
@@ -23,15 +23,15 @@ export const Filters = ({
     onClose();
   };
 
-  const getLabel = value => {
-    const labels = {
+  const getLabel = value =>
+    ({
       without: 'Without priority',
       low: 'Low',
       medium: 'Medium',
       high: 'High',
-    };
-    return labels[value];
-  };
+    }[value]);
+
+  console.log('Current filter priority:', priority);
 
   return (
     <ModalContainerReact width={300} modalTitle="Filters" onClose={onClose}>

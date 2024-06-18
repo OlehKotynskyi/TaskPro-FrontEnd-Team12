@@ -13,7 +13,8 @@ export const NewColumn = ({
   handleDeleteColumn,
   filterPriority,
   handleOpenEdit,
-  handleAddCard, // Додаємо новий пропс для обробки додавання картки
+  handleAddCard,
+  filteredTodos,
 }) => {
   const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [columnTitle, setColumnTitle] = useState(column.title);
@@ -25,7 +26,7 @@ export const NewColumn = ({
   const handleAddCardModalOpen = () => setShowAddCardModal(true);
   const handleAddCardModalClose = newCard => {
     if (newCard) {
-      handleAddCard(column._id, newCard); // Викликаємо обробник додавання картки
+      handleAddCard(column._id, newCard);
     }
     setShowAddCardModal(false);
   };
@@ -42,24 +43,18 @@ export const NewColumn = ({
     setColumns(updatedColumns);
   };
 
-  const sortCardsByPriority = cards => {
+  const sortCardsByPriority = (cards = []) => {
     const priorityOrder = ['high', 'medium', 'low', 'without'];
     return cards
       .slice()
       .sort(
         (a, b) =>
-          priorityOrder.indexOf(a.labelColor) -
-          priorityOrder.indexOf(b.labelColor)
+          priorityOrder.indexOf(a.priority?.toLowerCase() || 'without') -
+          priorityOrder.indexOf(b.priority?.toLowerCase() || 'without')
       );
   };
 
-  const filterCards = (cards, priority) => {
-    return priority === 'all'
-      ? cards
-      : cards.filter(card => card.labelColor === priority);
-  };
-
-  const filteredCards = filterCards(column.todos || [], filterPriority);
+  const filteredCards = filteredTodos || [];
   const sortedCards = sortCardsByPriority(filteredCards);
 
   const maxWidth = 250;
@@ -81,7 +76,7 @@ export const NewColumn = ({
           </button>
           <button
             className={css.headerSvgButton}
-            onClick={() => handleDeleteColumn(column._id)} // Використовуємо column._id
+            onClick={() => handleDeleteColumn(column._id)}
           >
             <svg className={css.iconTrash} width="16px" height="16px">
               <use href={`${sprite}#icon-trash`} />
