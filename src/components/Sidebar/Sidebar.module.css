@@ -5,15 +5,11 @@
 	left: -100%;
 	z-index: 1;
 	position: absolute;
-
-
 }
 
 .sidebarWrap.visible {
-
 	background-color: rgba(21, 21, 21, 0.5);
 	transition: background-color 0.1s linear;
-
 	left: 0;
 }
 
@@ -29,13 +25,10 @@
 	padding: 14px 0 24px;
 }
 
-
 .sidebarWrap.visible .sidebar {
 	left: 0;
 	transition: left 0.3s ease-in-out;
 }
-
-
 
 .logoBox {
 	display: flex;
@@ -180,7 +173,6 @@
 	color: var(--color-green-dark);
 }
 
-
 .logOutBtn {
 	width: 105px;
 	height: 32px;
@@ -192,33 +184,23 @@
 	background-color: transparent;
 	font-weight: 500;
 	font-size: 14px;
-	color: var(--titel-sidebar);
+	color: var(--sidebar-logout-text);
 }
 
 .logOutSvg {
 	width: 32px;
 	height: 32px;
 	transition: all 0.3s ease-in-out;
-	color: var(--color-green);
+	color: var(--sidebar-logout-icon);
 }
+
 
 @media (hover: hover) and (pointer: fine) {
-
-	.login:hover,
-	.login:focus {
-		opacity: 0.8;
-		background: #161616;
-		color: #ffffff;
+	.logOutSvg:hover,
+	.logOutBtn:hover .logOutSvg {
+		color: var(--sidebar-logout-icon-hover);
 	}
 }
-
-@media (hover: hover) and (pointer: fine) {
-
-	.logOutSvg:hover {
-		color: var(--color-green-dark);
-	}
-}
-
 
 .block {
 	padding: 0 14px;
