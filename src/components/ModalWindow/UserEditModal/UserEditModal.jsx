@@ -12,7 +12,6 @@ import {
   selectAccessToken,
 } from '../../../redux/auth/authSelectors';
 import { userCurrent, updateUser } from '../../../redux/auth/authOperations';
-import { Toaster, toast } from 'react-hot-toast';
 
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -36,6 +35,7 @@ export default function UserEditModal({ onClose }) {
     defaultValues: {
       name: user?.name || '',
       email: user?.email || '',
+      password: '',
     },
   });
   const { handleSubmit, reset, setValue } = methods;
@@ -51,6 +51,7 @@ export default function UserEditModal({ onClose }) {
     if (user) {
       setValue('name', user.name);
       setValue('email', user.email);
+      setValue('password', user.password);
     }
   }, [user, setValue]);
 
@@ -70,18 +71,9 @@ export default function UserEditModal({ onClose }) {
     }
     try {
       await dispatch(updateUser({ formData, token })).unwrap();
-      toast.success('Updated successfully', {
-        position: 'top-center',
-        style: { background: 'green', color: 'white' },
-      });
       reset();
       onClose();
-    } catch (error) {
-      toast.error(`Error: ${error.message}`, {
-        position: 'top-center',
-        style: { background: 'red', color: 'white' },
-      });
-    }
+    } catch (error) {}
   };
 
   const handleMenuClick = ev => {
@@ -200,7 +192,6 @@ export default function UserEditModal({ onClose }) {
           </FormProvider>
         </div>
       </div>
-      <Toaster />
     </>
   );
 }
