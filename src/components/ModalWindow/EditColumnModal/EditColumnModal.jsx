@@ -28,16 +28,13 @@ export const EditColumnModal = ({ column, onClose }) => {
     <ModalContainerReact modalTitle="Edit column" onClose={() => onClose(null)}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalInput
-          name="title"
-          register={register}
-          errors={errors}
           placeholder="Title"
+          name="title"
+          errors={errors}
           autoFocus={true}
-          errorMessage="Title is required"
+          register={register}
         />
-        <Button icon="plus" type="submit">
-          Save
-        </Button>
+        <Button icon="plus" type="submit">Save</Button>
       </form>
     </ModalContainerReact>
   );

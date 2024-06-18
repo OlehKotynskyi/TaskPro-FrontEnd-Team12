@@ -12,21 +12,17 @@ export const ModalInput = ({
   ...rest
 }) => {
   const error = errors && errors[name];
-  const inputProps = register ? register(name) : {};
+  const inputProps = register ? register('title', {
+    required: 'Title required',
+  }) : {};
   return (
-    <div>
+    <div className={styles.inputContainer}>
       <input
-        className={`${styles.input} ${className} ${error ? styles.error : ''} ${
-          error ? errorClassName : ''
-        }`}
+        className={`${styles.input} ${className} ${error ? styles.error : ''} `}
         {...inputProps}
         {...rest}
       />
-      {error && (
-        <div className={styles.errorMessage}>
-          {errorMessage || error.message}
-        </div>
-      )}
+      {error && (<div className={styles.errorMessage}>{errorMessage || error.message}</div>)}
     </div>
   );
 };

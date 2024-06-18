@@ -217,6 +217,7 @@ export const MainDashboard = () => {
           onClose={handleCloseFilter}
           applyFilter={applyFilter}
           resetFilters={resetFilters}
+          // showPriority={filterPriority}
         />
       )}
     </div>
