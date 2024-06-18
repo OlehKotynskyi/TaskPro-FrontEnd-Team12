@@ -49,8 +49,11 @@
 	--calendar-selected-day-bg: #bedbb0;
 
 	/* sidebar icons */
-	--sidebar-icons-active: #fff;
-	--sidebar-icons: rgb(134, 134, 134);
+	--sidebar-icon-active: #fff;
+	--sidebar-icon: rgb(134, 134, 134);
+	--sidebar-logout-text: #fff;
+	--sidebar-logout-icon: #bedbb0;
+	--sidebar-logout-icon-hover: #9dc888;
 
 }
 
@@ -100,8 +103,11 @@
 	--calendar-selected-day-bg: #bedbb0;
 
 	/* sidebar icons */
-	--sidebar-icons-active: #161616;
-	--sidebar-icons: rgba(22, 22, 22, 0.5);
+	--sidebar-icon-active: #161616;
+	--sidebar-icon: rgba(22, 22, 22, 0.5);
+	--sidebar-logout-text: #161616;
+	--sidebar-logout-icon: #bedbb0;
+	--sidebar-logout-icon-hover: #9dc888;
 }
 
 /* Violet theme */
@@ -150,8 +156,11 @@
 	--calendar-selected-day-bg: #7b7ede;
 
 	/* sidebar icons */
-	--sidebar-icons-active: #161616;
-	--sidebar-icons: rgba(22, 22, 22, 0.5);
+	--sidebar-icon-active: #161616;
+	--sidebar-icon: rgba(22, 22, 22, 0.5);
+	--sidebar-logout-text: #fff;
+	--sidebar-logout-icon: #fff;
+	--sidebar-logout-icon-hover: #B8BCFD;
 }
 
 /* Example usage of variables */
