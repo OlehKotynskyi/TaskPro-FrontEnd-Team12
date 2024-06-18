@@ -13,6 +13,7 @@ import { Loader } from '../components/Loaders/Loader';
 import { ThemeProvider } from '../components/ThemeContext/ThemeContext';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import { MainDashboard } from 'components/MainDashboard/MainDashboard';
+import { Toaster } from 'react-hot-toast';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -79,6 +80,7 @@ export const App = () => {
           </Route>
         </Routes>
       )}
+      <Toaster />
     </>
   );
 };

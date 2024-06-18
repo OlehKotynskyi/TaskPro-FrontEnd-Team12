@@ -8,6 +8,7 @@ import sprite from '../../images/sprite.svg';
 import { logIn } from '../../redux/auth/authOperations.js';
 import { useDispatch } from 'react-redux';
 import { LoaderButton } from 'components/Loaders/LoaderButton';
+import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -36,6 +37,7 @@ export const LoginForm = () => {
     try {
       setIsLoading(true);
       await dispatch(logIn(data)).unwrap();
+      toast.success('Login successful!');
       navigate('/home');
     } catch (error) {
       console.error('Failed to log in:', error);
@@ -43,6 +45,7 @@ export const LoginForm = () => {
         type: 'manual',
         message: 'Failed to log in. Please try again.',
       });
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }

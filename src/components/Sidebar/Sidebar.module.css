@@ -5,15 +5,11 @@
 	left: -100%;
 	z-index: 1;
 	position: absolute;
-
-
 }
 
 .sidebarWrap.visible {
-
 	background-color: rgba(21, 21, 21, 0.5);
 	transition: background-color 0.1s linear;
-
 	left: 0;
 }
 
@@ -218,7 +214,6 @@
 		color: var(--color-green-dark);
 	}
 }
-
 
 .block {
 	padding: 0 14px;

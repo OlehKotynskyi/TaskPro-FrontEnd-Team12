@@ -8,6 +8,7 @@ import sprite from '../../images/sprite.svg';
 import { register as registerUser } from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { LoaderButton } from 'components/Loaders/LoaderButton';
+import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   name: yup
@@ -41,9 +42,15 @@ export const RegisterForm = () => {
     try {
       setIsLoading(true);
       await dispatch(registerUser(data)).unwrap();
+      toast.success('Registration successful!');
       navigate('/home');
     } catch (error) {
-      console.error('Failed to register:', error);
+      if (error.response && error.response.status === 409) {
+        toast.error('User already registered. Please log in.');
+      } else {
+        toast.error('Failed to register. Please try again.');
+      }
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
