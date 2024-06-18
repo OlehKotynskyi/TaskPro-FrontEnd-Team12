@@ -196,9 +196,16 @@
 
 
 @media (hover: hover) and (pointer: fine) {
+
 	.logOutSvg:hover,
 	.logOutBtn:hover .logOutSvg {
 		color: var(--sidebar-logout-icon-hover);
+	}
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.logOutSvg:hover {
+		color: var(--color-green-dark);
 	}
 }
 
