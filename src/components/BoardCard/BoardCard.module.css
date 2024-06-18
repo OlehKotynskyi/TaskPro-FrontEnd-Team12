@@ -28,8 +28,7 @@
   width: 18px;
   height: 18px;
   margin-right: 6px;
-  color: var(--sidebar-logout-text);
-  fill: var(--sidebar-logout-text);
+  color: var(--titel-sidebar);
   opacity: 0.5;
 }
 

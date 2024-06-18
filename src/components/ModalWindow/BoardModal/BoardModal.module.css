@@ -29,7 +29,7 @@
 	width: 18px;
 	height: 18px;
 	opacity: 0.5;
-	color: var(--sidebar-icons);
+	color: var(--newboard-icon);
 	cursor: pointer;
 	transition: all 0.8s ease-in-out;
 }
