@@ -9,7 +9,7 @@ export const ColumnCardItem = ({
   handleDeleteCard,
   card,
   columns,
-  currentColumn,
+  currentColumnId,
   moveCardToColumn,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -93,7 +93,7 @@ export const ColumnCardItem = ({
       {showDropdown && (
         <Dropdown
           columns={columns}
-          currentColumn={currentColumn}
+          currentColumnId={currentColumnId}
           moveCardToColumn={moveCardToColumn}
         />
       )}
