@@ -36,6 +36,12 @@
 	--priority-color: var(--priority-without);
 }
 
+@media (max-width: 320px) {
+	.cardContainer {
+		max-width: 295px;
+	}
+}
+
 .infoContainer {
 	display: flex;
 	align-items: flex-end;

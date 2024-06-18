@@ -172,7 +172,7 @@ export const MainDashboard = () => {
   return (
     <div className={css.dashboardBackground}>
       <div className={css.filterContainer}>
-        <h3 className={css.headerText}>{board.title}</h3>
+        <h3 className={css.headerText}>{board.board.title}</h3>
         <button onClick={handleOpenFilter} className={css.filter}>
           <svg className={css.iconFilter} width={16} height={16}>
             <use href={`${sprite}#icon-filter`} />
@@ -195,15 +195,16 @@ export const MainDashboard = () => {
                 handleAddCard={handleAddCard}
               />
             ))}
-            <Button
-              usage="dashboard"
-              color="neutral"
-              icon="plus"
-              onClick={handleOpenAdd}
-              className={css.addColumnButton}
-            >
-              Add another column
-            </Button>
+            <div className={css.addColumnButton}>
+              <Button
+                usage="dashboard"
+                color="neutral"
+                icon="plus"
+                onClick={handleOpenAdd}
+              >
+                Add another column
+              </Button>
+            </div>
             {showRightSpacer && <div className={css.rightSpacer}></div>}
           </div>
         </div>

@@ -9,6 +9,8 @@
 	position: relative;
 }
 
+
+
 .columnHeader {
 	border-radius: 8px;
 	max-width: 334px;
@@ -59,17 +61,33 @@
 .headerSvgButton {
 	width: 16px;
 	height: 16px;
-
 }
 
 .section {
 	display: flex;
-	overflow: hidden;
 	margin-bottom: 14px;
-	overflow-x: hidden;
 	overflow-y: auto;
-	margin-right: -16px;
+	overflow-x: hidden;
 	flex-grow: 1;
+	margin-right: -12px;
+}
+
+@media (max-width: 1440px) {
+	.section {
+		margin-right: -16px;
+	}
+}
+
+@media (max-width: 768px) {
+	.section {
+		margin-right: -14px;
+	}
+}
+
+@media (max-width: 320px) {
+	.section {
+		max-width: 305px;
+	}
 }
 
 .section::-webkit-scrollbar {
@@ -96,7 +114,6 @@
 	display: flex;
 	flex-direction: column;
 }
-
 
 .iconTrash,
 .iconPencil {
