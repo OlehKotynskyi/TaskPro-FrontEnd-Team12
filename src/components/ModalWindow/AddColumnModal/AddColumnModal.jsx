@@ -28,7 +28,6 @@ export const AddColumnModal = ({ onClose }) => {
           errors={errors}
           placeholder="Title"
           autoFocus={true}
-          errorMessage="Title is required"
         />
         <Button icon="plus" type="submit">
           Add

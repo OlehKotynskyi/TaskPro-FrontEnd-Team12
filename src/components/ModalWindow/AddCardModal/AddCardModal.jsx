@@ -26,13 +26,9 @@ export const AddCardModal = ({ onClose, existingCard }) => {
   const deadline = watch('deadline'); // Додамо watch для динамічного відображення дати
 
   const onSubmit = data => {
-    if (data.title.trim()) {
       const formattedDeadline = format(new Date(data.deadline), 'yyyy-MM-dd');
       const newCard = { ...data, deadline: formattedDeadline };
       onClose(newCard); // Close the modal and pass the new card data
-    } else {
-      alert('Please enter a title for the card.');
-    }
   };
 
   const getPriorityClass = priority => {
@@ -48,13 +44,11 @@ export const AddCardModal = ({ onClose, existingCard }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form}>
           <ModalInput
-            className={styles.formInput}
             placeholder="Title"
             name="title"
-            register={register}
             errors={errors}
             autoFocus={!existingCard}
-            errorMessage="Title is required"
+            register={register}
           />
           <textarea
             className={styles.textareaInput}
