@@ -34,7 +34,7 @@ export const AddCardModal = ({ onClose, existingCard }) => {
   const getPriorityClass = priority => {
     let formattedPriority = priority.replace(/\s+/g, '').toLowerCase();
     if(priority === "Without priority") {
-      formattedPriority="without"
+      formattedPriority = "without";
     }
     return styles[`${formattedPriority}Label`];
   };

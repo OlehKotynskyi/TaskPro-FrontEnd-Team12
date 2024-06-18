@@ -18,6 +18,7 @@ import path14 from '../../../images/modal_background/modalBgIcon (14).jpg';
 import path15 from '../../../images/modal_background/modalBgIcon(15).jpg';
 
 import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
+import { ModalInput } from '../../Shared/ModalInput/ModalInput';
 
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -142,7 +143,16 @@ export const BoardModal = ({ onClose, type, board }) => {
       modalTitle={isCreate ? 'New Board' : 'Edit Board'}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
+        <ModalInput
+          placeholder="Title"
+          name="title"
+          errors={errors}
+          autoFocus={true}
+          register={register}
+          id="title"
+        />
+        
+        {/* <input
           className={`${css.input} ${errors.title && css.error}`}
           {...register('title', {
             required: 'Title required',
@@ -152,7 +162,7 @@ export const BoardModal = ({ onClose, type, board }) => {
           placeholder="Title"
           id="title"
         />
-        {errors.title && <p className={css.errors}>{errors.title.message}</p>}
+        {errors.title && <p className={css.errors}>{errors.title.message}</p>} */}
 
         <p className={css.text}>Icons</p>
         <ul className={css.listIcons}>

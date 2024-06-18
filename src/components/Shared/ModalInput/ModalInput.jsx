@@ -12,9 +12,10 @@ export const ModalInput = ({
   ...rest
 }) => {
   const error = errors && errors[name];
-  const inputProps = register ? register('title', {
-    required: 'Title required',
+  const inputProps = register ? register(name, {
+    required: `${name.charAt(0).toUpperCase() + name.slice(1)} required`,
   }) : {};
+  
   return (
     <div className={styles.inputContainer}>
       <input
