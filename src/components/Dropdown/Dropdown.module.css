@@ -19,6 +19,8 @@
     border: none;
     cursor: pointer;
     padding: 0;
+    color: var(--card-text);
+    transition: all 0.3s ease-in-out;
 }
 
 .listItem:not(:last-child) {
@@ -28,6 +30,10 @@
 .text {
     font-size: 14px;
     color: var(--card-text);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100px;
 }
 
 .icon {
@@ -35,4 +41,19 @@
     height: 16px;
     background: none;
     color: var(--card-text);
+    margin-left: 10px;
 }
+
+@media (hover: hover) and (pointer: fine) {
+    .button:hover {
+        color: var(--color-green);
+    }
+
+    .button:hover .text {
+        color: var(--color-green);
+    }
+
+    .button:hover .icon {
+        color: var(--color-green);
+    }
+} 
