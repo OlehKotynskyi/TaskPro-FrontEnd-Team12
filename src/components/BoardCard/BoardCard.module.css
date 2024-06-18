@@ -1,16 +1,13 @@
 .card {
   display: flex;
   align-items: center;
-  padding: 20px 18px 20px 14px;
+  padding: 22px 24px;
   gap: 4px;
   position: relative;
+  cursor: pointer;
 }
 
-.card:focus {
-  background-color: var(--help-sidebar);
-}
-
-.cardActive {
+.card:focus, .cardActive {
   background-color: var(--help-sidebar);
 }
 
@@ -28,25 +25,14 @@
 .cardSvg {
   width: 18px;
   height: 18px;
-  flex-shrink: 0;
+  margin-right: 6px;
+  opacity: 0.5;
 }
 
 .btnSvg {
   width: 16px;
   height: 16px;
   color: var(--text-sidebar-rgb);
-  transition: all 0.3s ease-in-out;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .btnSvg:hover {
-    color: var(--color-green-dark);
-  }
-}
-
-.btnBlock {
-  display: flex;
-  gap: 8px;
 }
 
 .title {
@@ -58,4 +44,23 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  opacity: 0.5;
+}
+
+.cardActive .title, .cardActive .cardSvg {
+  opacity: 1;
+}
+
+.btnBlock {
+  visibility: hidden;
+  display: flex;
+  gap: 8px;
+}
+
+.cardActive .btnBlock {
+  visibility: visible;
+}
+
+.card, .cardActive, .btnSvg, .cardSvg {
+  transition: all 0.3s ease-in-out;
 }

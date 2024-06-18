@@ -25,9 +25,13 @@
   }
   
   .error {
-    border-color: rgba(255, 0, 0, 0.788);
+    border: 1px solid rgba(255, 0, 0, 0.788);
   }
   
+  .input.error {
+    border: 1px solid rgba(255, 0, 0, 0.788);
+  }
+
   .errorMessage {
     position: fixed;
     margin-left: 11px;
