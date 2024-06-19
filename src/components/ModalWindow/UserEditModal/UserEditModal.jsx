@@ -12,6 +12,7 @@ import {
   selectAccessToken,
 } from '../../../redux/auth/authSelectors';
 import { userCurrent, updateUser } from '../../../redux/auth/authOperations';
+import { LoaderButton } from 'components/Loaders/LoaderButton';
 
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -29,6 +30,7 @@ export default function UserEditModal({ onClose }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
   const token = useSelector(selectAccessToken);
+  const [isLoading, setIsLoading] = useState(false);
 
   const methods = useForm({
     resolver: yupResolver(ValidationSchema),
@@ -56,6 +58,7 @@ export default function UserEditModal({ onClose }) {
   }, [user, setValue]);
 
   const onSubmit = async userData => {
+    setIsLoading(true);
     const formData = new FormData();
 
     for (const key in userData) {
@@ -73,7 +76,11 @@ export default function UserEditModal({ onClose }) {
       await dispatch(updateUser({ formData, token })).unwrap();
       reset();
       onClose();
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleMenuClick = ev => {
@@ -185,8 +192,8 @@ export default function UserEditModal({ onClose }) {
                   </span>
                 )}
               </div>
-              <button type="submit" className={css.btn}>
-                Send
+              <button type="submit" className={css.btn} disabled={isLoading}>
+                {isLoading ? <LoaderButton /> : 'Send'}
               </button>
             </form>
           </FormProvider>
