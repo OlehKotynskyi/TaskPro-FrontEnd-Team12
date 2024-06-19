@@ -18,8 +18,8 @@
       <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.88" d="M12.12 12a4.003 4.003 0 0 1 6.834-1.249c.608.722.941 1.637.94 2.582 0 2.667-4 4-4 4M16 22.667h.02" style="stroke:var(--color1, currentColor)"/>
     </symbol>
     <symbol id="icon-login" viewBox="0 0 32 32">
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.867 10.08c.413-4.8 2.88-6.76 8.28-6.76h.173c5.96 0 8.347 2.387 8.347 8.347v8.693c0 5.96-2.387 8.347-8.347 8.347h-.173c-5.36 0-7.827-1.933-8.267-6.653M2.667 16H19.84" style="stroke:var(--color2, currentColor)"/>
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.867 11.533 21.334 16l-4.467 4.467" style="stroke:var(--color2, currentColor)"/>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.867 10.08c.413-4.8 2.88-6.76 8.28-6.76h.173c5.96 0 8.347 2.387 8.347 8.347v8.693c0 5.96-2.387 8.347-8.347 8.347h-.173c-5.36 0-7.827-1.933-8.267-6.653M2.667 16H19.84" style="stroke:var(--color1, currentColor)"/>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.867 11.533 21.334 16l-4.467 4.467" style="stroke:var(--color1, currentColor)"/>
     </symbol>
     <symbol id="icon-logo" viewBox="0 0 32 32">
       <path fill="currentColorf" d="M26.667 0H5.334A5.333 5.333 0 0 0 .001 5.333v21.333a5.333 5.333 0 0 0 5.333 5.333h21.333A5.333 5.333 0 0 0 32 26.666V5.333A5.333 5.333 0 0 0 26.667 0z" style="fill:var(--color3, currentColorf)"/>
