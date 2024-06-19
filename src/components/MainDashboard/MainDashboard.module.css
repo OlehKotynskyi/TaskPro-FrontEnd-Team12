@@ -120,14 +120,33 @@
 .addColumnButton {
 	display: flex;
 	flex-shrink: 0;
-	max-width: 356px;
-	width: 100%;
+	width: 356px;
 	padding-right: 20px;
+}
+
+@media (max-width: 320px) {
+	.addColumnButton {
+		width: 315px;
+	}
+}
+
+@media screen and (max-width: 1440px) {
+	.headerText {
+		font-size: 18px;
+	}
+
+	.columnsContainer {
+		gap: 34px;
+	}
 }
 
 @media screen and (max-width: 768px) {
 	.headerText {
 		font-size: 18px;
+	}
+
+	.columnsContainer {
+		gap: 34px;
 	}
 }
 
