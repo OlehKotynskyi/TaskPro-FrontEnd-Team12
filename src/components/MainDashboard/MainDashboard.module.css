@@ -82,6 +82,7 @@
 	flex-grow: 1;
 	height: 100%;
 	padding: 0px 14px 24px;
+	position: relative;
 }
 
 @media (min-width: 768px) {
@@ -100,6 +101,8 @@
 	display: flex;
 	flex-grow: 1;
 	height: 100%;
+	position: absolute;
+	padding-bottom: 16px;
 }
 
 @media (hover: hover) and (pointer: fine) {
