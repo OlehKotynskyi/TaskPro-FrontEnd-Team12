@@ -80,19 +80,19 @@ export const Header = ({ onVisible }) => {
             className={`${css.dropdownContent} ${isShowTheme ? css.show : ''}`}
           >
             <button
-              className={css.themeBtn}
+              className={`${css.themeBtn} ${currentTheme === 'light' ? css.active : ''}`}
               onClick={() => onSelectTheme('light')}
             >
               Light
             </button>
             <button
-              className={css.themeBtn}
+              className={`${css.themeBtn} ${currentTheme === 'dark' ? css.active : ''}`}
               onClick={() => onSelectTheme('dark')}
             >
               Dark
             </button>
             <button
-              className={css.themeBtn}
+              className={`${css.themeBtn} ${currentTheme === 'violet' ? css.active : ''}`}
               onClick={() => onSelectTheme('violet')}
             >
               Violet
