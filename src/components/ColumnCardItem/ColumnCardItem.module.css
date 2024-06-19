@@ -131,6 +131,11 @@
 	transition: all 0.3s ease-in-out;
 }
 
+.bellIcon {
+	color: var(--color-green);
+	transition: all 0.3s ease-in-out;
+}
+
 @media (hover: hover) and (pointer: fine) {
 	.icon:hover {
 		color: var(--color-green-dark);
