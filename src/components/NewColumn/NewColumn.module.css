@@ -127,24 +127,6 @@
 	}
 }
 
-/* .tooltip {
-	display: inline-block;
-	position: absolute;
-	bottom: 89%;
-	left: 3%;
-	transform: translateX(-50%);
-	background-color: #fff;
-	color: #8a8a8a;
-	padding: 5px 10px;
-	border: 1px solid rgb(138, 138, 138);
-	border-radius: 5px;
-	box-shadow: rgba(0, 0, 0, 0.847) 0px 25px 20px -20px;
-	white-space: nowrap;
-	z-index: 1000;
-	font-size: 11px;
-	font-weight: 300;
-  } */
-
 .tooltip {
   	position: absolute;
     top: 47px;
@@ -156,6 +138,7 @@
 	max-width: 175px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	font-size: 11px;
+	word-break: break-all;
 	color: var(--card-text);
     z-index: 1000; 
 }
