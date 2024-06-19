@@ -2,6 +2,8 @@ import { useState } from 'react';
 import css from './ColumnCardItem.module.css';
 import sprite from '../../images/sprite.svg';
 import Dropdown from '../Dropdown/Dropdown';
+import { reduceTextToFit } from '../../utils/reduceTextToFit.js';
+import { motion } from 'framer-motion';
 
 export const ColumnCardItem = ({
   handleOpenEdit,
@@ -12,6 +14,9 @@ export const ColumnCardItem = ({
   moveCardToColumn,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isTitleTooltipVisible, setIsTitleTooltipVisible] = useState(false);
+  const [isDescriptionTooltipVisible, setIsDescriptionTooltipVisible] =
+    useState(false);
 
   const handleDelete = () => handleDeleteCard(card._id);
 
@@ -38,14 +43,56 @@ export const ColumnCardItem = ({
 
   const handleCloseDropdown = () => setShowDropdown(false);
 
+  const maxWidthTitle = 150;
+  const fontTitle = '500 14px Poppins, sans-serif';
+  const reducedTitle = reduceTextToFit(card.title, maxWidthTitle, fontTitle);
+  const isTitleReduced = reducedTitle < card.title ? true : false;
+
+  const maxWidthText = 200;
+  const fontText = '400 12px Poppins, sans-serif';
+  const reducedText = reduceTextToFit(card.description, maxWidthText, fontText);
+  const isTextReduced = reducedText < card.description ? true : false;
+
   return (
     <li
       className={css.cardContainer}
       style={{ '--priority-color': priorityColor() }}
     >
       <div className={css.contentContainer}>
-        <h4 className={css.contentTitle}>{card.title}</h4>
-        <p className={css.contentText}>{card.description}</p>
+        <motion.h4
+          className={css.contentTitle}
+          onMouseEnter={() => setIsTitleTooltipVisible(true)}
+          onMouseLeave={() => setIsTitleTooltipVisible(false)}
+        >
+          {reducedTitle}
+        </motion.h4>
+        {isTitleTooltipVisible && isTitleReduced && (
+          <motion.div
+            className={css.tooltip}
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: -0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            {card.title}
+          </motion.div>
+        )}
+        <motion.p
+          className={css.contentText}
+          onMouseEnter={() => setIsDescriptionTooltipVisible(true)}
+          onMouseLeave={() => setIsDescriptionTooltipVisible(false)}
+        >
+          {reducedText}
+        </motion.p>
+        {isDescriptionTooltipVisible && isTextReduced && (
+          <motion.div
+            className={css.tooltip}
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: -0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            {card.description}
+          </motion.div>
+        )}
       </div>
       <div className={css.infoContainer}>
         <div className={css.priority}>
@@ -68,7 +115,11 @@ export const ColumnCardItem = ({
         </div>
         {toDeadLine(card.deadline) <= 1 && (
           <div className={css.infoIcons}>
-            <svg className={`${css.icon} ${css.bellIcon}`} width="16px" height="16px">
+            <svg
+              className={`${css.icon} ${css.bellIcon}`}
+              width="16px"
+              height="16px"
+            >
               <use href={`${sprite}#icon-bell`}></use>
             </svg>
           </div>
@@ -94,9 +145,9 @@ export const ColumnCardItem = ({
       {showDropdown && (
         <Dropdown
           columns={columns}
-          currentColumnId={currentColumnId} 
+          currentColumnId={currentColumnId}
           moveCardToColumn={moveCardToColumn}
-          onClose={handleCloseDropdown} 
+          onClose={handleCloseDropdown}
         />
       )}
     </li>

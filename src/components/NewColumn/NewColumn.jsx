@@ -5,7 +5,7 @@ import { AddCardModal } from 'components/ModalWindow/AddCardModal/AddCardModal';
 import { Button } from '../Shared/Button/Button';
 import sprite from '../../images/sprite.svg';
 import { reduceTextToFit } from '../../utils/reduceTextToFit.js';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 export const NewColumn = ({
   column,
@@ -62,28 +62,28 @@ export const NewColumn = ({
   const maxWidth = 250;
   const font = '500 14px Poppins, sans-serif';
   const reducedTitle = reduceTextToFit(columnTitle, maxWidth, font);
-  const isReduced = reducedTitle < columnTitle ? true : false;  
+  const isReduced = reducedTitle < columnTitle ? true : false;
 
   return (
     <div className={css.columnContainer}>
       <div className={css.columnHeader}>
-      <motion.h4
-        className={css.columnTitle}
-        onMouseEnter={() => setIsTooltipVisible(true)}
-        onMouseLeave={() => setIsTooltipVisible(false)}
-      >
-        {reducedTitle}
-      </motion.h4>
-      {isTooltipVisible && isReduced && (
-        <motion.div
-          className={css.tooltip}
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: -0, opacity: 1 }}
-          transition={{ duration: 0.4 }}
+        <motion.h4
+          className={css.columnTitle}
+          onMouseEnter={() => setIsTooltipVisible(true)}
+          onMouseLeave={() => setIsTooltipVisible(false)}
         >
-          {columnTitle}
-        </motion.div>
-      )}
+          {reducedTitle}
+        </motion.h4>
+        {isTooltipVisible && isReduced && (
+          <motion.div
+            className={css.tooltip}
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: -0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            {columnTitle}
+          </motion.div>
+        )}
 
         {/* <h4 className={css.columnTitle}>{reducedTitle}</h4> */}
         <div className={css.headerSvgContainer}>
