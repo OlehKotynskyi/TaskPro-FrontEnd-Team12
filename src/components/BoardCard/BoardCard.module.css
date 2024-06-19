@@ -1,77 +1,77 @@
 .card {
-  display: flex;
-  align-items: center;
-  padding: 22px 24px 22px 24px;
-  gap: 4px;
-  position: relative;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	padding: 22px 24px 22px 24px;
+	gap: 4px;
+	position: relative;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
 }
-  
+
 .card:hover,
 .cardActive {
-  background-color: var(--help-sidebar);
+	background-color: var(--help-sidebar);
 }
-  
+
 .cardActive::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  border-radius: 4px 0 0 4px;
-  width: 4px;
-  height: 100%;
-  background-color: var(--bg-add-user);
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 0;
+	border-radius: 4px 0 0 4px;
+	width: 4px;
+	height: 100%;
+	background-color: var(--bg-add-user);
 }
-  
+
 .cardSvg {
-  width: 18px;
-  height: 18px;
-  margin-right: 6px;
-  color: var(--titel-sidebar);
-  opacity: 0.5;
+	width: 18px;
+	height: 18px;
+	margin-right: 6px;
+	color: var(--titel-sidebar);
+	opacity: 0.5;
+	flex-shrink: 0;
 }
 
 .btnBlock {
-  visibility: hidden;
-  display: flex;
-  gap: 8px;
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
+	visibility: hidden;
+	display: flex;
+	gap: 8px;
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
 }
-  
+
 .cardActive .btnBlock {
-  visibility: visible;
-  opacity: 1;
+	visibility: visible;
+	opacity: 1;
 }
-  
+
 .btnSvg {
-  width: 16px;
-  height: 16px;
-  color: var(--sidebar-icon);
-  transition: color 0.3s ease-in-out;
+	width: 16px;
+	height: 16px;
+	color: var(--sidebar-icon);
+	transition: color 0.3s ease-in-out;
 }
-  
+
 @media (hover: hover) and (pointer: fine) {
-  .btnSvg:hover {
-    color: var(--color-green);
-  }
+	.btnSvg:hover {
+		color: var(--color-green);
+	}
 }
-  
+
 .title {
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: -0.02em;
-  color: var(--titel-sidebar);
-  flex-grow: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  opacity: 0.5;
+	font-weight: 500;
+	font-size: 14px;
+	letter-spacing: -0.02em;
+	color: var(--titel-sidebar);
+	flex-grow: 1;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	opacity: 0.5;
 }
-  
+
 .cardActive .title,
 .cardActive .cardSvg {
-  opacity: 1;
+	opacity: 1;
 }
-  
