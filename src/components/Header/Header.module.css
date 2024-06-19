@@ -157,6 +157,10 @@
 	margin-bottom: 5px;
 }
 
+.active {
+	color: var(--color-green);
+}
+
 
 @media (hover: hover) and (pointer: fine) {
 
