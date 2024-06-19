@@ -68,7 +68,7 @@ export const ColumnCardItem = ({
         </div>
         {toDeadLine(card.deadline) <= 1 && (
           <div className={css.infoIcons}>
-            <svg className={css.icon} width="16px" height="16px">
+            <svg className={`${css.icon} ${css.bellIcon}`} width="16px" height="16px">
               <use href={`${sprite}#icon-bell`}></use>
             </svg>
           </div>

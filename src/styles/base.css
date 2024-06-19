@@ -40,6 +40,7 @@
 	--text-project: rgba(255, 255, 255, 0.5);
 	--scroll-bg: #161616;
 	--scroll-col: rgba(255, 255, 255, 0.1);
+	--color2: #bedbb0;
 
 	/* calendar */
 	--calendar-week: rgba(255, 255, 255, 0.5);
@@ -94,6 +95,7 @@
 	--text-project: rgba(22, 22, 22, 0.5);
 	--scroll-bg: #fff;
 	--scroll-col: #e8e8e8;
+	--color2: #bedbb0;
 
 	/* calendar */
 	--calendar-week: rgba(0, 0, 0, 0.5);
@@ -147,6 +149,7 @@
 	--text-project: rgba(22, 22, 22, 0.5);
 	--scroll-bg: #fff;
 	--scroll-col: #b8bcfd;
+	--color2: #5255bc;
 
 	/* calendar */
 	--calendar-week: rgba(0, 0, 0, 0.5);
