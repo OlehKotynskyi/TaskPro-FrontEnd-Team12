@@ -43,12 +43,12 @@ export const ColumnCardItem = ({
 
   const handleCloseDropdown = () => setShowDropdown(false);
 
-  const maxWidthTitle = 150;
+  const maxWidthTitle = 250;
   const fontTitle = '500 14px Poppins, sans-serif';
   const reducedTitle = reduceTextToFit(card.title, maxWidthTitle, fontTitle);
   const isTitleReduced = reducedTitle < card.title ? true : false;
 
-  const maxWidthText = 200;
+  const maxWidthText = 600;
   const fontText = '400 12px Poppins, sans-serif';
   const reducedText = reduceTextToFit(card.description, maxWidthText, fontText);
   const isTextReduced = reducedText < card.description ? true : false;
