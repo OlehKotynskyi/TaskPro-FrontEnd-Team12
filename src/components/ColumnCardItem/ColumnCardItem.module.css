@@ -120,6 +120,23 @@
 	background-color: var(--priority-color);
 }
 
+.tooltip {
+	position: absolute;
+	top: 47px;
+	left: 20px;
+	padding: 10px;
+	background-color: var(--color-modal-time);
+	border: 1px solid var(--color-green-border);
+	border-radius: 8px;
+	max-width: 255px;
+	width: 100%;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	font-size: 11px;
+	word-break: break-all;
+	color: var(--card-text);
+	z-index: 1000;
+}
+
 .infoColor {
 	width: 14px;
 	height: 14px;
@@ -141,21 +158,4 @@
 	.icon:hover {
 		color: var(--color-green-dark);
 	}
-}
-
-.tooltip {
-	position: absolute;
-	top: 47px;
-	left: 20px;
-	padding: 10px;
-	background-color: var(--color-modal-time);
-	border: 1px solid var(--color-green-border);
-	border-radius: 8px;
-	max-width: 255px;
-	width: 100%;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	font-size: 11px;
-	word-break: break-all;
-	color: var(--card-text);
-	z-index: 1000;
 }
