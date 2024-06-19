@@ -65,12 +65,27 @@
 	font-size: 18px;
 	letter-spacing: -0.02em;
 	color: var(--color-text-base);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 @media (min-width: 1440px) {
 
 	.headerText {
 		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.headerText {
+		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.headerText {
+		font-size: 14px;
 	}
 }
 
@@ -125,14 +140,3 @@
 	padding-right: 20px;
 }
 
-@media screen and (max-width: 768px) {
-	.headerText {
-		font-size: 18px;
-	}
-}
-
-@media screen and (max-width: 375px) {
-	.headerText {
-		font-size: 14px;
-	}
-}
