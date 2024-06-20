@@ -117,39 +117,6 @@
 	color: var(--card-text);
 }
 
-.customInput {
-	background: none;
-	border: none;
-	padding: 0;
-	color: var(--color-green);
-	font-family: "Poppins", sans-serif;
-	font-size: 14px;
-	font-weight: 500;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	transition: all 0.3s ease-in-out;
-}
-
-.calendarIcon {
-	display: inline-block;
-	margin-left: 8px;
-	border: solid var(--color-green);
-	border-width: 0 2px 2px 0;
-	padding: 3px;
-	width: 8px;
-	height: 8px;
-	transform: rotate(45deg);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 5px;
-}
-
-.customInput:hover {
-	color: var(--color-green-dark);
-}
-
 @media screen and (min-width: 768px) {
 	.textareaInput {
 	  min-height: 150px;

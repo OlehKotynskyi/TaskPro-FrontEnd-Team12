@@ -18,8 +18,8 @@ export const ModalTextarea = ({
       message: `${name.charAt(0).toUpperCase() + name.slice(1)} must be at least 10 characters long`
     },
     maxLength: {
-      value: 100,
-      message: `${name.charAt(0).toUpperCase() + name.slice(1)} must be less than 100 characters`
+      value: 1000,
+      message: `${name.charAt(0).toUpperCase() + name.slice(1)} must be less than 1000 characters`
     }
   }) : {};
   

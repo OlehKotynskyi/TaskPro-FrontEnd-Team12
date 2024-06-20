@@ -28,7 +28,6 @@ export const Calendar = ({ deadline, setDeadline }) => {
             <use href={`${sprite}#icon-chevron-down`} />
           </svg>
         </div>
-        {/* <span className={styles.calendarIcon} /> */}
       </button>
     );
   });
