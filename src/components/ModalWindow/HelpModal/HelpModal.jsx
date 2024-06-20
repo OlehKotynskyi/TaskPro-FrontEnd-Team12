@@ -1,41 +1,52 @@
 import React from 'react';
-import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import { useForm } from 'react-hook-form';
-import css from './HelpModal.module.css';
-import clsx from 'clsx';
-import { Button } from '../../Shared/Button/Button';
+// import css from './HelpModal.module.css';
+
 import axios from 'axios';
 
+import { Button } from '../../Shared/Button/Button';
+import { ModalInput } from '../../Shared/ModalInput/ModalInput';
+import { ModalTextarea } from '../../Shared/ModalTextarea/ModalTextarea';
+import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
+
 export const HelpModal = ({ onClose }) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const onSubmit = async data => {
     try {
       const payload = {
         email: data.email,
-        comment: data.text,
+        text: data.comment,
       };
       await axios.post('/api/users/help', payload);
       onClose();
     } catch (error) {
       console.log(error);
+      onClose();
     }
   };
+
   return (
     <ModalContainerReact onClose={onClose} modalTitle="Need help">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          className={css.input}
-          {...register('email')}
-          type="text"
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <ModalInput
           name="email"
-          placeholder="Email address "
+          placeholder="Email address"
+          type="email"
+          errors={errors}
+          register={register}
           id="email"
         />
-        <textarea
-          className={clsx(css.input, css.textarea)}
-          {...register('text')}
-          name="text"
+        <ModalTextarea 
+          name="comment"
           placeholder="Comment"
+          errors={errors}
+          register={register}
+          id="comment"
         />
         <Button>Send</Button>
       </form>
