@@ -6,13 +6,8 @@ import {
   logOut,
   refreshUser,
   userCurrent,
-  updateUser
+  updateUser,
 } from './authOperations.js';
-// import {
-//   addCard,
-//   deleteCard,
-//   editCard,
-// } from '../dashboards/dashboardsOperations';
 
 const initialState = {
   user: { name: '', email: '', avatarURL: null },

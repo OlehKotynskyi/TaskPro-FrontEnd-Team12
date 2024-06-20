@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import css from './Sidebar.module.css';
 import clsx from 'clsx';
 import sprite from '../../images/sprite.svg';
@@ -115,3 +115,6 @@ export const Sidebar = ({ visible, onVisible }) => {
     </div>
   );
 };
+
+
+// '../../../redux/auth/authOperations';
