@@ -17,11 +17,16 @@ import {
   deleteColumn,
 } from '../../redux/columns/columnsOperations';
 import { createTodo } from '../../redux/todos/todosOperations';
+import {
+  selectBackgroundUrl,
+  setBackgroundUrl,
+} from '../../redux/auth/authSlice';
 
 export const MainDashboard = () => {
   const { boardId } = useParams();
   const dispatch = useDispatch();
   const board = useSelector(selectCurrentBoard);
+  const backgroundUrl = useSelector(selectBackgroundUrl);
 
   const [columns, setColumns] = useState([]);
   const [showAddColumnModal, setShowAddColumnModal] = useState(false);
@@ -30,7 +35,6 @@ export const MainDashboard = () => {
   const [showRightSpacer, setShowRightSpacer] = useState(false);
   const [filterPriority, setFilterPriority] = useState('all');
   const [editingColumn, setEditingColumn] = useState(null);
-  const [backgroundUrl, setBackgroundUrl] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,17 +56,22 @@ export const MainDashboard = () => {
       try {
         const response = await dispatch(getBoard(boardId)).unwrap();
         setColumns(response.columns || []);
-        setBackgroundUrl(response.board.background);
-        document.documentElement.style.setProperty(
-          '--dashboard-background-image',
-          `url(${response.board.background})`
-        );
+        dispatch(setBackgroundUrl(response.board.background));
       } catch (error) {
         console.error('Failed to fetch board:', error);
       }
     };
     getCurrentBoard();
   }, [dispatch, boardId]);
+
+  useEffect(() => {
+    if (backgroundUrl) {
+      document.documentElement.style.setProperty(
+        '--dashboard-background-image',
+        `url(${backgroundUrl})`
+      );
+    }
+  }, [backgroundUrl]);
 
   const handleOpenAdd = () => {
     setShowAddColumnModal(true);

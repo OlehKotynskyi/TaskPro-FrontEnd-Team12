@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { useForm } from 'react-hook-form';
+import { useMediaQuery } from 'react-responsive';
 import sprite from '../../../images/sprite.svg';
 import css from './BoardModal.module.css';
 import { ModalContainerReact } from '../../Shared/ModalContainerReact/ModalContainerReact';
 import { ModalInput } from '../../Shared/ModalInput/ModalInput';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { Button } from '../../Shared/Button/Button';
 import { addBoard, editBoard } from '../../../redux/boards/boardsOperations.js';
-import { useNavigate } from 'react-router';
 import { fetchBackgrounds } from '../../../redux/auth/authOperations';
-import { useMediaQuery } from 'react-responsive';
+import { setBackgroundUrl } from '../../../redux/auth/authSlice';
 
 const icons = [
   'icon-project',
@@ -61,6 +62,7 @@ export const BoardModal = ({ onClose, type, board }) => {
       payload.id = board._id;
       dispatch(editBoard(payload));
     }
+    dispatch(setBackgroundUrl(selectedBackground)); // Додано збереження в Redux стан
     onClose();
   };
 
@@ -91,22 +93,23 @@ export const BoardModal = ({ onClose, type, board }) => {
   };
 
   const getFilteredBackgrounds = () => {
+    let backgroundsList = [];
+
     if (isMobile) {
-      return isRetina
+      backgroundsList = isRetina
         ? backgrounds.mobile?.retina
         : backgrounds.mobile?.regular;
-    }
-    if (isTablet) {
-      return isRetina
+    } else if (isTablet) {
+      backgroundsList = isRetina
         ? backgrounds.tablet?.retina
         : backgrounds.tablet?.regular;
-    }
-    if (isDesktop) {
-      return isRetina
+    } else if (isDesktop) {
+      backgroundsList = isRetina
         ? backgrounds.desktop?.retina
         : backgrounds.desktop?.regular;
     }
-    return [];
+
+    return backgroundsList || [];
   };
 
   const renderIcons = () => {
@@ -130,31 +133,32 @@ export const BoardModal = ({ onClose, type, board }) => {
 
   const renderBackgrounds = () => {
     const filteredBackgrounds = getFilteredBackgrounds();
-    return Array.isArray(filteredBackgrounds)
-      ? filteredBackgrounds.map((bg, index) => (
-          <li key={index}>
-            <input
-              className={css.inputIcon}
-              {...register('background')}
-              type="radio"
-              value={bg}
-              id={`background-${index}`}
-              onClick={() => handleBackgroundClick(bg)}
+    return filteredBackgrounds.length > 0 ? (
+      filteredBackgrounds.map((bg, index) => (
+        <li key={index}>
+          <input
+            className={css.inputIcon}
+            {...register('background')}
+            type="radio"
+            value={bg}
+            id={`background-${index}`}
+            onClick={() => handleBackgroundClick(bg)}
+          />
+          <label htmlFor={`background-${index}`} className={css.labeIcon}>
+            <img
+              src={bg}
+              alt={`Background ${index}`}
+              className={`${css.iconImg} ${
+                selectedBackground === bg ? css.selected : ''
+              }`}
+              style={{ width: '28px', height: '28px' }}
             />
-            <label htmlFor={`background-${index}`} className={css.labeIcon}>
-              <img
-                src={bg}
-                srcSet={`${bg} 1x, ${bg.replace(/(\.\w+)$/, '__2x$1')} 2x`}
-                alt="#"
-                className={`${css.iconImg} ${
-                  selectedBackground === bg ? css.selected : ''
-                }`}
-                style={{ width: '28px', height: '28px' }}
-              />
-            </label>
-          </li>
-        ))
-      : null;
+          </label>
+        </li>
+      ))
+    ) : (
+      <p>No backgrounds available</p>
+    );
   };
 
   return (
