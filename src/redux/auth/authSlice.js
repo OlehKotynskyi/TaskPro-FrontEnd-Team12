@@ -7,6 +7,7 @@ import {
   refreshUser,
   userCurrent,
   updateUser,
+  handleGoogleAuth,
 } from './authOperations.js';
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
   boards: [],
+  backgroundUrl: '',
   status: 'idle',
   error: null,
 };
@@ -25,6 +27,9 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     clearState: () => initialState,
+    setBackgroundUrl: (state, action) => {
+      state.backgroundUrl = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -83,72 +88,21 @@ const authSlice = createSlice({
       .addCase(updateUser.rejected, (state, action) => {
         state.error = action.payload;
         toast.error('Failed to update user profile');
+      })
+      .addCase(handleGoogleAuth.fulfilled, (state, action) => {
+        const { accessToken, refreshToken } = action.payload;
+        state.accessToken = accessToken;
+        state.refreshToken = refreshToken;
+        state.isLoggedIn = true;
+      })
+      .addCase(handleGoogleAuth.rejected, (state, action) => {
+        state.error = action.payload;
       });
-    //   .addCase(handleGoogleAuth.fulfilled, (state, action) => {
-    //     const { token } = action.payload;
-    //     state.token = token;
-    //     state.isLoggedIn = true;
-    //   })
-    //   .addCase(editProfile.fulfilled, (state, { payload }) => {
-    //     const { name, email, avatarURL } = payload;
-    //     state.user.name = name;
-    //     state.user.email = email;
-    //     state.user.avatarURL = avatarURL;
-    //     state.isRefreshing = false;
-    //     state.error = null;
-    //   })
-    //   .addCase(editProfile.pending, state => {
-    //     state.isRefreshing = true;
-    //   })
-    //   .addCase(editProfile.rejected, (state, { payload }) => {
-    //     state.isRefreshing = false;
-    //     state.error = payload;
-    //     toast.error(payload);
-    //   })
-    //   .addCase(addCard.fulfilled, (state, action) => {
-    //     const { owner } = action.payload;
-    //     const index = state.currentDashboard.columns.findIndex(
-    //       item => item._id === owner
-    //     );
-    //     const { cards } = state.currentDashboard.columns[index];
-    //     if (!cards) {
-    //       state.currentDashboard.columns[index].cards = [action.payload];
-    //     } else {
-    //       cards.push(action.payload);
-    //     }
-    //     state.error = null;
-    //   })
-    //   .addCase(deleteCard.fulfilled, (state, action) => {
-    //     const { owner, _id } = action.payload;
-    //     const indexColumn = state.currentDashboard.columns.findIndex(
-    //       item => item._id === owner
-    //     );
-    //     const { cards } = state.currentDashboard.columns[indexColumn];
-    //     const indexCard = cards.findIndex(item => item._id === _id);
-    //     cards.splice(indexCard, 1);
-    //     state.columnsLength = state.currentDashboard.columns.length;
-    //   })
-    //   .addCase(editCard.fulfilled, (state, action) => {
-    //     const { _id, title, description, priority, deadline, owner } =
-    //       action.payload;
-    //     const indexColumn = state.currentDashboard.columns.findIndex(
-    //       item => item._id === owner
-    //     );
-    //     const { cards } = state.currentDashboard.columns[indexColumn];
-    //     const indexCard = cards.findIndex(item => item._id === _id);
-    //     const updatedCard = {
-    //       ...cards[indexCard],
-    //       title,
-    //       description,
-    //       priority,
-    //       deadline,
-    //     };
-    //     cards[indexCard] = updatedCard;
-    //     state.columnsLength = state.currentDashboard.columns.length;
-    //   });
   },
 });
 
-export const { clearState } = authSlice.actions;
+export const { clearState, setBackgroundUrl } = authSlice.actions;
+
+export const selectBackgroundUrl = state => state.auth.backgroundUrl;
 
 export default authSlice.reducer;

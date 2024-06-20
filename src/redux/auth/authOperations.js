@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://project-team-12-taskpro-backend.onrender.com';
+axios.defaults.baseURL = 'http://localhost:3000';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -127,31 +127,32 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-// export const handleGoogleAuth = createAsyncThunk(
-//   'auth/handleAuth',
-//   async (_, thunkAPI) => {
-//     try {
-//       const urlParams = new URLSearchParams(window.location.search);
-//       const token = urlParams.get('accessToken');
+export const handleGoogleAuth = createAsyncThunk(
+  'auth/handleGoogleAuth',
+  async (_, thunkAPI) => {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const accessToken = urlParams.get('accessToken');
+      const refreshToken = urlParams.get('refreshToken');
 
-//       if (token) {
-//         setAuthHeader(token);
-//         thunkAPI.dispatch({
-//           type: 'auth/saveTokens',
-//           payload: { token },
-//         });
+      if (accessToken && refreshToken) {
+        setAuthHeader(accessToken);
+        thunkAPI.dispatch({
+          type: 'auth/saveTokens',
+          payload: { accessToken, refreshToken },
+        });
 
-//         return { token };
-//       } else {
-//         return thunkAPI.rejectWithValue(
-//           'Access token or refresh token is missing'
-//         );
-//       }
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+        return { accessToken, refreshToken };
+      } else {
+        return thunkAPI.rejectWithValue(
+          'Access token or refresh token is missing'
+        );
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 
 export const fetchBackgrounds = async () => {
