@@ -152,3 +152,16 @@ export const updateUser = createAsyncThunk(
 //     }
 //   }
 // );
+
+
+export const fetchBackgrounds = async () => {
+  try {
+    const response = await axios.get('/api/users/backgrounds');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching backgrounds:', error);
+    throw error;
+  }
+};
+
+

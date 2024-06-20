@@ -60,7 +60,7 @@ export const changeTodoColumn = createAsyncThunk(
   async ({ todoId, columnId }, thunkAPI) => {
     try {
       const response = await axios.patch(
-        `/api/todos/${todoId}/changeOwner/${columnId}`
+        `/api/todos/${todoId}/${columnId}/update`
       );
       return response.data;
     } catch (error) {
