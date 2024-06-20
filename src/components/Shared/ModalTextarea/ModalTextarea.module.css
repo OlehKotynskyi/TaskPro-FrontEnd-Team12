@@ -18,7 +18,7 @@
     line-height: 18px;
     letter-spacing: -0.02em;
     outline: none;
-    /* resize: vertical; */
+    resize: vertical;
   }
   
   .input:focus {

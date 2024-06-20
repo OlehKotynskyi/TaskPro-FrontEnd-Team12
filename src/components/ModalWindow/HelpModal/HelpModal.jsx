@@ -1,7 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-// import css from './HelpModal.module.css';
-
 import axios from 'axios';
 
 import { Button } from '../../Shared/Button/Button';
