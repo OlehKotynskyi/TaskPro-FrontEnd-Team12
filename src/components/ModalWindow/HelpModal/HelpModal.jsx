@@ -16,17 +16,23 @@ export const HelpModal = ({ onClose }) => {
     formState: { errors },
   } = useForm();
 
+
   const onSubmit = async data => {
     try {
       const payload = {
         email: data.email,
-        text: data.comment,
+        comment: data.comment,  
       };
-      await axios.post('/api/users/help', payload);
-      onClose();
+      const response = await axios.post('/api/users/help', payload, {
+        headers: {
+          'Content-Type': 'application/json'  
+        }
+      });
+      console.log('Response:', response.data); 
+      onClose(); 
     } catch (error) {
-      console.log(error);
-      onClose();
+      console.error("Error submitting form:", error.response ? error.response.data : error.message);
+      onClose(); 
     }
   };
 
