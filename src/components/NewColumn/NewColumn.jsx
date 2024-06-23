@@ -85,7 +85,6 @@ export const NewColumn = ({
           </motion.div>
         )}
 
-        {/* <h4 className={css.columnTitle}>{reducedTitle}</h4> */}
         <div className={css.headerSvgContainer}>
           <button
             onClick={() => handleOpenEdit(column)}
@@ -116,6 +115,7 @@ export const NewColumn = ({
                 setColumns={setColumns}
                 columns={columns}
                 columnId={column._id}
+                index={index} // Додаємо індекс до кожної картки
               />
             ))}
           </div>

@@ -12,6 +12,7 @@ export const ColumnCardItem = ({
   columns,
   currentColumnId,
   moveCardToColumn,
+  index, // Додаємо індекс як пропс
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isTitleTooltipVisible, setIsTitleTooltipVisible] = useState(false);
@@ -54,9 +55,12 @@ export const ColumnCardItem = ({
   const isTextReduced = reducedText < card.description ? true : false;
 
   return (
-    <li
+    <motion.li
       className={css.cardContainer}
       style={{ '--priority-color': priorityColor() }}
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, delay: index * 0.2 }} // Додаємо затримку для послідовної анімації
     >
       <div className={css.contentContainer}>
         <motion.h4
@@ -70,7 +74,7 @@ export const ColumnCardItem = ({
           <motion.div
             className={css.tooltip}
             initial={{ x: -100, opacity: 0 }}
-            animate={{ x: -0, opacity: 1 }}
+            animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
             {card.title}
@@ -87,7 +91,7 @@ export const ColumnCardItem = ({
           <motion.div
             className={css.tooltip}
             initial={{ x: -100, opacity: 0 }}
-            animate={{ x: -0, opacity: 1 }}
+            animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
             {card.description}
@@ -150,6 +154,6 @@ export const ColumnCardItem = ({
           onClose={handleCloseDropdown}
         />
       )}
-    </li>
+    </motion.li>
   );
 };

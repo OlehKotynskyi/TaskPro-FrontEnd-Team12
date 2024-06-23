@@ -16,6 +16,7 @@ export const ColumnCard = ({
   setColumns,
   columns,
   columnId,
+  index, // Додаємо індекс як пропс
 }) => {
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [screenSize, setScreenSize] = useState('pc');
@@ -110,7 +111,7 @@ export const ColumnCard = ({
         <ul className={css.cardsList}>
           <ColumnCardItem
             key={card._id}
-            index={0}
+            index={index} // Передаємо індекс до кожної картки
             handleOpenEdit={handleOpenEdit}
             handleDeleteCard={handleDelete}
             card={card}

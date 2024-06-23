@@ -18,16 +18,22 @@ const Dropdown = ({ columns, currentColumnId, moveCardToColumn, onClose }) => {
     };
   }, [dropdownRef, onClose]);
 
+  const filteredColumns = columns.filter(col => col._id !== currentColumnId);
+
   return (
     <div ref={dropdownRef} className={css.dropdownContainer}>
-      <ul>
-        {columns
-          .filter(col => col._id !== currentColumnId) // Фільтруємо колонку, в якій знаходиться картка
-          .map(col => (
+      {filteredColumns.length === 0 ? (
+        <div className={css.placeholderText}>Create a column</div>
+      ) : (
+        <ul>
+          {filteredColumns.map(col => (
             <li
               key={col._id} // Використовуємо col._id як унікальний ключ
               className={css.listItem}
-              onClick={() => moveCardToColumn(col._id)}
+              onClick={() => {
+                moveCardToColumn(col._id);
+                onClose(); // Закриваємо меню після переміщення картки
+              }}
             >
               <button className={css.button}>
                 <span className={css.text}>{col.title}</span>
@@ -37,7 +43,8 @@ const Dropdown = ({ columns, currentColumnId, moveCardToColumn, onClose }) => {
               </button>
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 };
