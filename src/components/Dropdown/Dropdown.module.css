@@ -1,59 +1,66 @@
 .dropdownContainer {
-    position: absolute;
-    top: 120px;
-    right: 60px;
-    background-color: var(--color-modal-time);
-    border: 1px solid var(--color-green-border);
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+	position: absolute;
+	top: 120px;
+	right: 60px;
+	background-color: var(--color-modal-time);
+	border: 1px solid var(--color-green-border);
+	border-radius: 8px;
+	padding: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+}
+
+.placeholderText {
+	font-size: 14px;
+	color: var(--card-text);
+	text-align: center;
+
 }
 
 .button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    color: var(--card-text);
-    transition: all 0.3s ease-in-out;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	color: var(--card-text);
+	transition: all 0.3s ease-in-out;
 }
 
 .listItem:not(:last-child) {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .text {
-    font-size: 14px;
-    color: var(--card-text);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 135px;
+	font-size: 14px;
+	color: var(--card-text);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-width: 135px;
 }
 
 .icon {
-    width: 16px;
-    height: 16px;
-    background: none;
-    color: var(--card-text);
-    margin-left: 10px;
+	width: 16px;
+	height: 16px;
+	background: none;
+	color: var(--card-text);
+	margin-left: 10px;
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .button:hover {
-        color: var(--color-green);
-    }
+	.button:hover {
+		color: var(--color-green);
+	}
 
-    .button:hover .text {
-        color: var(--color-green);
-    }
+	.button:hover .text {
+		color: var(--color-green);
+	}
 
-    .button:hover .icon {
-        color: var(--color-green);
-    }
-} 
+	.button:hover .icon {
+		color: var(--color-green);
+	}
+}
