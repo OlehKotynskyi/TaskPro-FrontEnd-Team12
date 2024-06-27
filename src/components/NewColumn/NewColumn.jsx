@@ -6,15 +6,16 @@ import { Button } from '../Shared/Button/Button';
 import sprite from '../../images/sprite.svg';
 import { reduceTextToFit } from '../../utils/reduceTextToFit.js';
 import { motion } from 'framer-motion';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 export const NewColumn = ({
   column,
   setColumns,
   columns,
   handleDeleteColumn,
-  filterPriority,
   handleOpenEdit,
   handleAddCard,
+  handleDeleteCard,
   filteredTodos,
 }) => {
   const [showAddCardModal, setShowAddCardModal] = useState(false);
@@ -33,31 +34,10 @@ export const NewColumn = ({
     setShowAddCardModal(false);
   };
 
-  const handleDeleteCard = indexToDelete => {
-    const updatedColumns = columns.map(col =>
-      col._id === column._id
-        ? {
-            ...col,
-            todos: col.todos.filter((_, index) => index !== indexToDelete),
-          }
-        : col
-    );
-    setColumns(updatedColumns);
-  };
-
-  const sortCardsByPriority = (cards = []) => {
-    const priorityOrder = ['high', 'medium', 'low', 'without'];
-    return cards
-      .slice()
-      .sort(
-        (a, b) =>
-          priorityOrder.indexOf(a.priority?.toLowerCase() || 'without') -
-          priorityOrder.indexOf(b.priority?.toLowerCase() || 'without')
-      );
-  };
-
-  const filteredCards = filteredTodos || [];
-  const sortedCards = sortCardsByPriority(filteredCards);
+  // Сортування карток за полем position
+  const sortedCards = (filteredTodos || [])
+    .slice()
+    .sort((a, b) => a.position - b.position);
 
   const maxWidth = 250;
   const font = '500 14px Poppins, sans-serif';
@@ -106,19 +86,47 @@ export const NewColumn = ({
       </div>
       <div className={css.section}>
         <div className={css.wrap}>
-          <div className={css.cardsContainer}>
-            {sortedCards.map((card, index) => (
-              <ColumnCard
-                key={card._id}
-                card={card}
-                handleDeleteCard={() => handleDeleteCard(index)}
-                setColumns={setColumns}
-                columns={columns}
-                columnId={column._id}
-                index={index} // Додаємо індекс до кожної картки
-              />
-            ))}
-          </div>
+          <Droppable droppableId={column._id} key={column._id}>
+            {provided => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className={css.cardsContainer}
+              >
+                {sortedCards.map((card, index) => (
+                  <Draggable
+                    key={card._id}
+                    draggableId={card._id}
+                    index={index}
+                  >
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className={`${css.todoItem} ${
+                          snapshot.isDragging ? 'dragging' : 'draggable'
+                        }`}
+                      >
+                        <ColumnCard
+                          key={card._id}
+                          card={card}
+                          handleDeleteCard={() =>
+                            handleDeleteCard(column._id, card._id)
+                          }
+                          setColumns={setColumns}
+                          columns={columns}
+                          columnId={column._id}
+                          index={index}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
         </div>
       </div>
       <Button

@@ -68,3 +68,18 @@ export const changeTodoColumn = createAsyncThunk(
     }
   }
 );
+
+export const updateTodoOrder = createAsyncThunk(
+  'todos/updateTodoOrder',
+  async ({ columnId, todos }, thunkAPI) => {
+    try {
+      const response = await axios.patch(
+        `/api/todos/update-order/${columnId}`,
+        { todos }
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

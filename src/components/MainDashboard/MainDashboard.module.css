@@ -1,173 +1,341 @@
 .dashboardBackground {
-	display: flex;
-	flex-direction: column;
-	padding-bottom: 10px;
-	background-color: var(--main-bg);
-	flex-grow: 1;
-	overflow: auto;
-	background-size: cover;
-	background-position: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  background-color: var(--main-bg);
+  flex-grow: 1;
+  overflow: auto;
+  background-size: cover;
+  background-position: center;
 }
 
 .filterContainer {
-	display: flex;
-	justify-content: space-between;
-	gap: 10px;
-	padding: 14px 20px 20px;
-	background-color: var(--main-bg);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 20px 20px;
+  background-color: var(--main-bg);
 }
 
 @media (min-width: 768px) {
-	.filterContainer {
-		padding: 20px 32px 20px;
-	}
+  .filterContainer {
+    padding: 20px 32px 20px;
+  }
 }
 
 @media (min-width: 1440px) {
-	.filterContainer {
-		padding: 14px 24px;
-	}
+  .filterContainer {
+    padding: 14px 24px;
+  }
 }
 
 .filter {
-	display: flex;
-	background: inherit;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
-	border: 0;
-	color: var(--color-text-base);
-	transition: all 0.3s ease-in-out;
+  display: flex;
+  background: inherit;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  color: var(--color-text-base);
+  transition: all 0.3s ease-in-out;
 }
 
 .filter svg {
-	color: var(--color-text-base);
-	transition: all 0.3s ease-in-out;
+  color: var(--color-text-base);
+  transition: all 0.3s ease-in-out;
 }
 
 @media (hover: hover) and (pointer: fine) {
-	.filter:hover {
-		color: var(--color-text-rgb);
-	}
+  .filter:hover {
+    color: var(--color-text-rgb);
+  }
 
-	.filter:hover svg {
-		color: var(--color-text-rgb);
-	}
+  .filter:hover svg {
+    color: var(--color-text-rgb);
+  }
 }
 
 .filterText {
-	font-weight: 500;
-	font-size: 14px;
-	letter-spacing: -0.02em;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
 }
 
 .headerText {
-	font-weight: 500;
-	font-size: 18px;
-	letter-spacing: -0.02em;
-	color: var(--color-text-base);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--color-text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (min-width: 1440px) {
-	.headerText {
-		font-size: 18px;
-	}
+  .headerText {
+    font-size: 18px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-	.headerText {
-		font-size: 18px;
-	}
+  .headerText {
+    font-size: 18px;
+  }
 }
 
 @media screen and (max-width: 375px) {
-	.headerText {
-		font-size: 14px;
-	}
+  .headerText {
+    font-size: 14px;
+  }
 }
 
 .dashboardContainer {
-	display: flex;
-	flex-direction: column;
-	overflow-y: hidden;
-	overflow-x: auto;
-	flex-grow: 1;
-	height: 100%;
-	padding: 0px 14px 24px;
-	position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  overflow-x: auto;
+  flex-grow: 1;
+  height: 100%;
+  padding: 0px 14px 24px;
+  position: relative;
 }
 
 @media (min-width: 768px) {
-	.dashboardContainer {
-		padding: 0px 32px 16px;
-	}
+  .dashboardContainer {
+    padding: 0px 32px 16px;
+  }
 }
 
 @media (min-width: 1440px) {
-	.dashboardContainer {
-		padding: 0px 24px 16px;
-	}
+  .dashboardContainer {
+    padding: 0px 24px 16px;
+  }
 }
 
 .columnsWrapper {
-	display: flex;
-	flex-grow: 1;
-	height: 100%;
-	position: absolute;
-	padding-bottom: 16px;
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  position: absolute;
+  padding-bottom: 16px;
 }
 
 @media (hover: hover) and (pointer: fine) {
-	.button:hover {
-		color: var(--color-green-dark);
-	}
+  .button:hover {
+    color: var(--color-green-dark);
+  }
 }
 
 .columnsContainer {
-	display: flex;
-	width: 100%;
-	gap: 20px;
-	padding-top: 20px;
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  padding-top: 20px;
 }
 
 .addColumnButton {
-	display: flex;
-	flex-shrink: 0;
-	width: 356px;
-	padding-right: 20px;
+  display: flex;
+  flex-shrink: 0;
+  width: 356px;
+  padding-right: 20px;
 }
 
 @media (max-width: 320px) {
-	.addColumnButton {
-		width: 315px;
-	}
+  .addColumnButton {
+    width: 315px;
+  }
 }
 
 @media screen and (max-width: 1440px) {
-	.headerText {
-		font-size: 18px;
-	}
+  .headerText {
+    font-size: 18px;
+  }
 
-	.columnsContainer {
-		gap: 34px;
-	}
+  .columnsContainer {
+    gap: 34px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-	.headerText {
-		font-size: 18px;
-	}
+  .headerText {
+    font-size: 18px;
+  }
 
-	.columnsContainer {
-		gap: 34px;
-	}
+  .columnsContainer {
+    gap: 34px;
+  }
 }
 
 @media screen and (max-width: 375px) {
-	.headerText {
-		font-size: 14px;
-	}
+  .headerText {
+    font-size: 14px;
+  }
+}
+
+.columnContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 335px;
+  width: 100%;
+  flex-shrink: 0;
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+}
+
+@media (max-width: 320px) {
+  .columnContainer {
+    max-width: 295px;
+  }
+}
+
+.columnHeader {
+  border-radius: 8px;
+  max-width: 334px;
+  height: 56px;
+  background-color: var(--main-todo);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 320px) {
+  .columnHeader {
+    width: 295px;
+  }
+}
+
+.columnTitle {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--color-text-base);
+}
+
+.headerSvgContainer {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.infoContainer {
+  display: flex;
+  gap: 14px;
+  padding: 0 18px 14px 20px;
+}
+
+.infoTitle {
+  font-weight: 400;
+  font-size: 8px;
+  letter-spacing: -0.02em;
+  color: var(--color-gray);
+  padding-bottom: 4px;
+}
+
+.infoText {
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+
+.headerSvgButton {
+  width: 16px;
+  height: 16px;
+}
+
+.section {
+  display: flex;
+  margin-bottom: 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-grow: 1;
+  margin-right: -12px;
+}
+
+@media (max-width: 1440px) {
+  .section {
+    margin-right: -16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    margin-right: -14px;
+  }
+}
+
+@media (max-width: 320px) {
+  .section {
+    max-width: 305px;
+  }
+}
+
+.section::-webkit-scrollbar {
+  width: 8px;
+  height: 100%;
+}
+
+.section::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-col);
+  border-radius: 12px;
+}
+
+.section::-webkit-scrollbar-track {
+  background-color: var(--scroll-bg);
+  border-radius: 12px;
+  border: 1px solid rgba(128, 128, 128, 0.39);
+}
+
+.wrap {
+  display: flex;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.iconTrash,
+.iconPencil {
+  color: var(--card-text);
+  transition: all 0.3s ease-in-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .iconTrash:hover,
+  .iconPencil:hover {
+    color: var(--color-green-dark);
+  }
+}
+
+.tooltip {
+  position: absolute;
+  top: 47px;
+  left: 140px;
+  padding: 10px;
+  background-color: var(--color-modal-time);
+  border: 1px solid var(--color-green-border);
+  border-radius: 8px;
+  max-width: 175px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 11px;
+  word-break: break-all;
+  color: var(--card-text);
+  z-index: 1000;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.cardsList {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
 }

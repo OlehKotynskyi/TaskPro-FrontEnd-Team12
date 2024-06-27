@@ -5,6 +5,7 @@ import {
   deleteTodo,
   updateTodo,
   changeTodoColumn,
+  updateTodoOrder,
 } from './todosOperations';
 
 const todosSlice = createSlice({
@@ -93,6 +94,23 @@ const todosSlice = createSlice({
         }
       })
       .addCase(changeTodoColumn.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateTodoOrder.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateTodoOrder.fulfilled, (state, action) => {
+        state.loading = false;
+        const columnIndex = state.todos.findIndex(
+          column => column._id === action.payload.columnId
+        );
+        if (columnIndex !== -1) {
+          state.todos[columnIndex].todos = action.payload.todos;
+        }
+      })
+      .addCase(updateTodoOrder.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

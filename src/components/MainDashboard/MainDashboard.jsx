@@ -16,11 +16,16 @@ import {
   updateColumn,
   deleteColumn,
 } from '../../redux/columns/columnsOperations';
-import { createTodo } from '../../redux/todos/todosOperations';
+import {
+  createTodo,
+  updateTodoOrder,
+  changeTodoColumn,
+} from '../../redux/todos/todosOperations';
 import {
   selectBackgroundUrl,
   setBackgroundUrl,
 } from '../../redux/auth/authSlice';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 export const MainDashboard = () => {
   const { boardId } = useParams();
@@ -159,6 +164,19 @@ export const MainDashboard = () => {
     }
   };
 
+  const handleDeleteCard = async (columnId, cardId) => {
+    const updatedColumns = columns.map(col => {
+      if (col._id === columnId) {
+        return {
+          ...col,
+          todos: col.todos.filter(card => card._id !== cardId),
+        };
+      }
+      return col;
+    });
+    setColumns(updatedColumns);
+  };
+
   const applyFilter = priority => {
     setFilterPriority(priority);
   };
@@ -187,6 +205,92 @@ export const MainDashboard = () => {
 
   if (!board) return null;
 
+  const onDragEnd = async result => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const start = columns.find(col => col._id === source.droppableId);
+    const finish = columns.find(col => col._id === destination.droppableId);
+
+    if (start === finish) {
+      const newTodoIds = Array.from(start.todos);
+      const [movedTodo] = newTodoIds.splice(source.index, 1);
+      newTodoIds.splice(destination.index, 0, movedTodo);
+
+      const newColumn = {
+        ...start,
+        todos: newTodoIds.map((todo, index) => ({ ...todo, position: index })),
+      };
+
+      const newColumns = columns.map(col =>
+        col._id === newColumn._id ? newColumn : col
+      );
+      setColumns(newColumns);
+
+      try {
+        await dispatch(
+          updateTodoOrder({ columnId: start._id, todos: newColumn.todos })
+        ).unwrap();
+      } catch (error) {
+        console.error('Failed to update todo order:', error);
+      }
+    } else {
+      const startTodoIds = Array.from(start.todos);
+      const [movedTodo] = startTodoIds.splice(source.index, 1);
+
+      const finishTodoIds = Array.from(finish.todos);
+      finishTodoIds.splice(destination.index, 0, movedTodo);
+
+      const newStart = {
+        ...start,
+        todos: startTodoIds.map((todo, index) => ({
+          ...todo,
+          position: index,
+        })),
+      };
+
+      const newFinish = {
+        ...finish,
+        todos: finishTodoIds.map((todo, index) => ({
+          ...todo,
+          position: index,
+        })),
+      };
+
+      const newColumns = columns.map(col => {
+        if (col._id === newStart._id) return newStart;
+        if (col._id === newFinish._id) return newFinish;
+        return col;
+      });
+
+      setColumns(newColumns);
+
+      try {
+        await dispatch(
+          changeTodoColumn({ todoId: draggableId, columnId: finish._id })
+        ).unwrap();
+        await dispatch(
+          updateTodoOrder({ columnId: newStart._id, todos: newStart.todos })
+        ).unwrap();
+        await dispatch(
+          updateTodoOrder({ columnId: newFinish._id, todos: newFinish.todos })
+        ).unwrap();
+      } catch (error) {
+        console.error('Failed to update todo column and order:', error);
+      }
+    }
+  };
+
   return (
     <div
       className={css.dashboardBackground}
@@ -203,32 +307,46 @@ export const MainDashboard = () => {
       </div>
       <div className={css.dashboardContainer}>
         <div className={css.columnsWrapper}>
-          <div className={css.columnsContainer}>
-            {filteredColumns.map(column => (
-              <NewColumn
-                key={column._id}
-                column={column}
-                setColumns={setColumns}
-                columns={columns}
-                handleDeleteColumn={handleDeleteColumn}
-                filterPriority={filterPriority}
-                handleOpenEdit={handleOpenEdit}
-                handleAddCard={handleAddCard}
-                filteredTodos={column.todos}
-              />
-            ))}
-            <div className={css.addColumnButton}>
-              <Button
-                usage="dashboard"
-                color="neutral"
-                icon="plus"
-                onClick={handleOpenAdd}
-              >
-                Add another column
-              </Button>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <div className={css.columnsContainer}>
+              {filteredColumns.map(column => (
+                <Droppable droppableId={column._id} key={column._id}>
+                  {provided => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className={css.columnContainer}
+                    >
+                      <NewColumn
+                        key={column._id}
+                        column={column}
+                        setColumns={setColumns}
+                        columns={columns}
+                        handleDeleteColumn={handleDeleteColumn}
+                        filterPriority={filterPriority}
+                        handleOpenEdit={handleOpenEdit}
+                        handleAddCard={handleAddCard}
+                        handleDeleteCard={handleDeleteCard} // Додано handleDeleteCard
+                        filteredTodos={column.todos}
+                      />
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              ))}
+              <div className={css.addColumnButton}>
+                <Button
+                  usage="dashboard"
+                  color="neutral"
+                  icon="plus"
+                  onClick={handleOpenAdd}
+                >
+                  Add another column
+                </Button>
+              </div>
+              {showRightSpacer && <div className={css.rightSpacer}></div>}
             </div>
-            {showRightSpacer && <div className={css.rightSpacer}></div>}
-          </div>
+          </DragDropContext>
         </div>
       </div>
       {showAddColumnModal && <AddColumnModal onClose={handleCloseAdd} />}
