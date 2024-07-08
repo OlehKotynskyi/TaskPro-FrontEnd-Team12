@@ -8,10 +8,10 @@ import { BoardCard } from '../BoardCard/BoardCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from '../../redux/auth/authOperations';
-
 import { BoardModal } from '../ModalWindow/BoardModal/BoardModal';
 import { HelpModal } from 'components/ModalWindow/HelpModal/HelpModal';
 import { selectBoards } from '../../redux/boards/boardsSlice';
+import { useMediaQuery } from 'react-responsive';
 
 export const Sidebar = ({ visible, onVisible }) => {
   const dispatch = useDispatch();
@@ -20,6 +20,8 @@ export const Sidebar = ({ visible, onVisible }) => {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isModalOpenHelp, setModalOpenHelp] = useState(false);
+
+  const isMobileOrTablet = useMediaQuery({ query: '(max-width: 1024px)' });
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -46,6 +48,12 @@ export const Sidebar = ({ visible, onVisible }) => {
     if (e.target === e.currentTarget) onVisible(false);
   };
 
+  const handleBoardClick = () => {
+    if (isMobileOrTablet) {
+      onVisible(false);
+    }
+  };
+
   return (
     <div
       className={clsx(css.sidebarWrap, { [css.visible]: visible })}
@@ -70,13 +78,16 @@ export const Sidebar = ({ visible, onVisible }) => {
           </div>
         </div>
         <ul className={css.projects}>
-          {boards.map(board => (
-            <BoardCard
-              key={board._id}
-              board={board}
-              closeSidebar={() => onVisible(false)}
-            />
-          ))}
+          {boards.map(
+            board =>
+              board && (
+                <BoardCard
+                  key={board._id}
+                  board={board}
+                  closeSidebar={handleBoardClick}
+                />
+              )
+          )}
         </ul>
 
         <div className={css.block}>
@@ -115,5 +126,3 @@ export const Sidebar = ({ visible, onVisible }) => {
     </div>
   );
 };
-
-// '../../../redux/auth/authOperations';

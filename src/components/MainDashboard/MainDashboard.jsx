@@ -93,7 +93,7 @@ export const MainDashboard = () => {
         const response = await dispatch(
           createColumn({ boardId, columnData: newColumn })
         ).unwrap();
-        setColumns([...columns, response]);
+        setColumns([...columns, { ...response, todos: [] }]);
       } catch (error) {
         console.error('Failed to create column:', error);
       }
@@ -222,6 +222,10 @@ export const MainDashboard = () => {
     const start = columns.find(col => col._id === source.droppableId);
     const finish = columns.find(col => col._id === destination.droppableId);
 
+    if (!start || !start.todos || !finish || !finish.todos) {
+      return;
+    }
+
     if (start === finish) {
       const newTodoIds = Array.from(start.todos);
       const [movedTodo] = newTodoIds.splice(source.index, 1);
@@ -326,7 +330,7 @@ export const MainDashboard = () => {
                         filterPriority={filterPriority}
                         handleOpenEdit={handleOpenEdit}
                         handleAddCard={handleAddCard}
-                        handleDeleteCard={handleDeleteCard} // Додано handleDeleteCard
+                        handleDeleteCard={handleDeleteCard}
                         filteredTodos={column.todos}
                       />
                       {provided.placeholder}

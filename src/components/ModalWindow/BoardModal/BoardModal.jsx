@@ -23,11 +23,14 @@ const icons = [
   'icon-hexagon-01',
 ];
 
+const SkeletonBackground = () => <div className={css.skeletonBackground}></div>;
+
 export const BoardModal = ({ onClose, type, board }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [backgrounds, setBackgrounds] = useState({});
-  const [selectedBackground, setSelectedBackground] = useState(null);
+  const [selectedBackground, setSelectedBackground] = useState('none');
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const isCreate = type === 'create';
 
@@ -38,9 +41,9 @@ export const BoardModal = ({ onClose, type, board }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: isCreate ? '' : board.title,
-      icon: isCreate ? 'icon-project' : board.icon,
-      background: isCreate ? '' : board.background,
+      title: isCreate ? '' : board?.title || '',
+      icon: isCreate ? 'icon-project' : board?.icon || 'icon-project',
+      background: isCreate ? 'none' : board?.background || 'none',
     },
   });
 
@@ -52,17 +55,25 @@ export const BoardModal = ({ onClose, type, board }) => {
     const payload = {
       title: data.title,
       icon: data.icon,
-      background: selectedBackground,
+      background: selectedBackground === 'none' ? '' : selectedBackground,
       callBack: onSuccessCreate,
     };
 
     if (isCreate) {
       dispatch(addBoard(payload));
     } else {
-      payload.id = board._id;
+      payload.id = board?._id;
       dispatch(editBoard(payload));
     }
-    dispatch(setBackgroundUrl(selectedBackground)); // Додано збереження в Redux стан
+    dispatch(
+      setBackgroundUrl(selectedBackground === 'none' ? '' : selectedBackground)
+    );
+    if (board?._id) {
+      localStorage.setItem(
+        `selectedBackground_${board._id}`,
+        selectedBackground
+      );
+    }
     onClose();
   };
 
@@ -75,17 +86,35 @@ export const BoardModal = ({ onClose, type, board }) => {
 
   useEffect(() => {
     const fetchBackgroundsData = async () => {
+      setLoading(true);
       try {
         const backgroundsData = await fetchBackgrounds();
         setBackgrounds(backgroundsData);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching backgrounds:', error);
         setError('Failed to load backgrounds');
+        setLoading(false);
       }
     };
 
     fetchBackgroundsData();
   }, []);
+
+  useEffect(() => {
+    if (board && board._id) {
+      const savedBackground = localStorage.getItem(
+        `selectedBackground_${board._id}`
+      );
+      if (savedBackground) {
+        setSelectedBackground(savedBackground);
+        setValue('background', savedBackground);
+      } else if (board.background) {
+        setSelectedBackground(board.background);
+        setValue('background', board.background);
+      }
+    }
+  }, [board, setValue]);
 
   const handleBackgroundClick = bgUrl => {
     setSelectedBackground(bgUrl);
@@ -187,18 +216,31 @@ export const BoardModal = ({ onClose, type, board }) => {
               className={css.inputIcon}
               {...register('background')}
               type="radio"
-              value=""
+              value="none"
               id="empty"
+              onClick={() => handleBackgroundClick('none')}
             />
             <label htmlFor="empty" className={css.labeIcon}>
-              <div className={css.backgroundBox}>
+              <div
+                className={`${css.backgroundBox} ${
+                  selectedBackground === 'none' ? css.selected : ''
+                }`}
+              >
                 <svg className={css.emptyPicture}>
                   <use href={`${sprite}#icon-block-background`} />
                 </svg>
               </div>
             </label>
           </li>
-          {renderBackgrounds()}
+          {loading
+            ? Array(15)
+                .fill()
+                .map((_, index) => (
+                  <li key={index}>
+                    <SkeletonBackground />
+                  </li>
+                ))
+            : renderBackgrounds()}
         </ul>
         <Button icon="plus">{isCreate ? 'Create' : 'Edit'}</Button>
       </form>

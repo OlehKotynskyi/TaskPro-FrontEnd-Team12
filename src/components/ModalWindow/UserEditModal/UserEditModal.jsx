@@ -1,8 +1,9 @@
-import { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 import css from './UserEditModal.module.css';
 import sprite from '../../../images/sprite.svg';
 import {
@@ -22,6 +23,25 @@ const ValidationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
   password: Yup.string().min(7, 'Too short').max(256, 'Too long'),
 });
+
+const modalVariants = {
+  open: {
+    clipPath: `circle(1000px at 50% 50%)`,
+    transition: {
+      type: 'spring',
+      stiffness: 52,
+      restDelta: 2,
+    },
+  },
+  closed: {
+    clipPath: 'circle(30px at 50% 50%)',
+    transition: {
+      type: 'spring',
+      stiffness: 400,
+      damping: 40,
+    },
+  },
+};
 
 export default function UserEditModal({ onClose }) {
   const fileInputRef = useRef(null);
@@ -99,9 +119,13 @@ export default function UserEditModal({ onClose }) {
   return (
     <>
       <div className={css.backdrop} onClick={() => onClose()}>
-        <div
+        <motion.div
           className={`${css.container} ${css.cont}`}
           onClick={handleMenuClick}
+          initial="closed"
+          animate="open"
+          exit="closed"
+          variants={modalVariants}
         >
           <div className={css.wrap}>
             <button className={css.closeBtn} onClick={() => onClose()}>
@@ -197,7 +221,7 @@ export default function UserEditModal({ onClose }) {
               </button>
             </form>
           </FormProvider>
-        </div>
+        </motion.div>
       </div>
     </>
   );
