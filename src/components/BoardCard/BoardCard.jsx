@@ -13,7 +13,12 @@ export const BoardCard = ({ board, closeSidebar }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const onSelectBoard = () => navigate(board._id);
+  const onSelectBoard = () => {
+    navigate(board._id);
+    if (closeSidebar) {
+      closeSidebar();
+    }
+  };
 
   const handleModalClose = () => setModalOpen(false);
 
@@ -26,7 +31,9 @@ export const BoardCard = ({ board, closeSidebar }) => {
   const onEditBoard = e => {
     e.stopPropagation();
     setModalOpen(true);
-    closeSidebar();
+    if (closeSidebar) {
+      closeSidebar();
+    }
   };
 
   const onDelete = e => {

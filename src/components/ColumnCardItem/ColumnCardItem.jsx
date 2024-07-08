@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import css from './ColumnCardItem.module.css';
 import sprite from '../../images/sprite.svg';
 import Dropdown from '../Dropdown/Dropdown';
 import { reduceTextToFit } from '../../utils/reduceTextToFit.js';
-import { motion } from 'framer-motion';
 
 export const ColumnCardItem = ({
   handleOpenEdit,
@@ -12,12 +12,15 @@ export const ColumnCardItem = ({
   columns,
   currentColumnId,
   moveCardToColumn,
-  index, // Додаємо індекс як пропс
+  index,
+  isDragging,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isTitleTooltipVisible, setIsTitleTooltipVisible] = useState(false);
   const [isDescriptionTooltipVisible, setIsDescriptionTooltipVisible] =
     useState(false);
+  const [disableAnimation, setDisableAnimation] = useState(false);
+  const isCardDragged = useRef(false);
 
   const handleDelete = () => handleDeleteCard(card._id);
 
@@ -54,13 +57,27 @@ export const ColumnCardItem = ({
   const reducedText = reduceTextToFit(card.description, maxWidthText, fontText);
   const isTextReduced = reducedText < card.description ? true : false;
 
+  useEffect(() => {
+    if (isDragging) {
+      isCardDragged.current = true;
+    }
+  }, [isDragging]);
+
+  useEffect(() => {
+    if (isCardDragged.current) {
+      setDisableAnimation(true);
+    }
+  }, [card]);
+
   return (
     <motion.li
       className={css.cardContainer}
       style={{ '--priority-color': priorityColor() }}
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, delay: index * 0.2 }} // Додаємо затримку для послідовної анімації
+      initial={!disableAnimation ? { opacity: 0, y: 60 } : false}
+      animate={!disableAnimation ? { opacity: 1, y: 0 } : {}}
+      transition={
+        !disableAnimation ? { duration: 0.5, delay: index * 0.2 } : {}
+      }
     >
       <div className={css.contentContainer}>
         <motion.h4

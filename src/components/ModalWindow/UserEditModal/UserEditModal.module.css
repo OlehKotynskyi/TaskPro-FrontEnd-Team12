@@ -1,7 +1,7 @@
 .container {
 	min-width: 320px;
 	max-width: 375px;
-	top: 60px;
+	top: 61px;
 }
 
 .backdrop {
@@ -10,6 +10,7 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
+	background-color: #1616161e;
 	z-index: 100;
 }
 

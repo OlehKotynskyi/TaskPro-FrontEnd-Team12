@@ -60,7 +60,7 @@
 }
 
 .listBackground {
-  width: 280px;
+  width: 100%;
   display: flex;
   gap: 4px;
   margin-bottom: 40px;
@@ -75,10 +75,12 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .emptyPicture {
-  width: 28;
+  width: 28px;
   height: 28px;
   fill: var(--modal-icon);
   color: rgb(56, 55, 55);
@@ -95,8 +97,14 @@
 .iconImg:hover,
 .iconImg:focus,
 .iconImg.selected {
-	transform: scale(1.08);
-	box-shadow: 0px 0px 0px 1px var(--color-text-rgb);
+  transform: scale(1.08);
+  box-shadow: 0px 0px 0px 1px var(--color-text-rgb);
+}
+
+.backgroundBox:hover,
+.backgroundBox.selected {
+  transform: scale(1.08);
+  box-shadow: 0px 0px 0px 1px var(--color-text-rgb);
 }
 
 .errors {
@@ -109,4 +117,24 @@
 
 .input.error {
   border-color: rgba(255, 0, 0, 0.788);
+}
+
+.skeletonBackground {
+  width: 28px;
+  height: 28px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }
